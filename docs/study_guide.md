@@ -2,7 +2,7 @@
 
 > Suggested topics to review based on your interview timeline (short, medium, long).
 
-![Imgur](images/OfVllex.png)
+![Imgur](assets/images/OfVllex.png)
 
 **Q: For interviews, do I need to know everything here?**
 
@@ -26,13 +26,13 @@ Start broad and go deeper in a few areas.  It helps to know a little about vario
 
 | | Short | Medium | Long |
 |---|---|---|---|
-| Read through the [System design topics](#index-of-system-design-topics) to get a broad understanding of how systems work | :+1: | :+1: | :+1: |
-| Read through a few articles in the [Company engineering blogs](#company-engineering-blogs) for the companies you are interviewing with | :+1: | :+1: | :+1: |
-| Read through a few [Real world architectures](#real-world-architectures) | :+1: | :+1: | :+1: |
+| Read through the [System design topics](index.md#index-of-system-design-topics) to get a broad understanding of how systems work | :+1: | :+1: | :+1: |
+| Read through a few articles in the [Company engineering blogs](16_real_world_architectures.md#company-engineering-blogs) for the companies you are interviewing with | :+1: | :+1: | :+1: |
+| Read through a few [Real world architectures](16_real_world_architectures.md#real-world-architectures) | :+1: | :+1: | :+1: |
 | Review [How to approach a system design interview question](#how-to-approach-a-system-design-interview-question) | :+1: | :+1: | :+1: |
 | Work through [System design interview questions with solutions](#system-design-interview-questions-with-solutions) | Some | Many | Most |
 | Work through [Object-oriented design interview questions with solutions](#object-oriented-design-interview-questions-with-solutions) | Some | Many | Most |
-| Review [Additional system design interview questions](#additional-system-design-interview-questions) | Some | Many | Most |
+| Review [Additional system design interview questions](15_interview questions.md#system-design-interview-questions) | Some | Many | Most |
 
 ## How to approach a system design interview question
 
@@ -84,15 +84,15 @@ Identify and address bottlenecks, given the constraints.  For example, do you ne
 * Caching
 * Database sharding
 
-Discuss potential solutions and trade-offs.  Everything is a trade-off.  Address bottlenecks using [principles of scalable system design](#index-of-system-design-topics).
+Discuss potential solutions and trade-offs.  Everything is a trade-off.  Address bottlenecks using [principles of scalable system design](index.md#index-of-system-design-topics).
 
 ### Back-of-the-envelope calculations
 
-You might be asked to do some estimates by hand.  Refer to the [Appendix](#appendix) for the following resources:
+You might be asked to do some estimates by hand.  Refer to the [Appendix](14_back-of-the-envelope.md#appendix) for the following resources:
 
 * [Use back of the envelope calculations](http://highscalability.com/blog/2011/1/26/google-pro-tip-use-back-of-the-envelope-calculations-to-choo.html)
-* [Powers of two table](#powers-of-two-table)
-* [Latency numbers every programmer should know](#latency-numbers-every-programmer-should-know)
+* [Powers of two table](14_back-of-the-envelope.md#powers-of-two-table)
+* [Latency numbers every programmer should know](14_back-of-the-envelope.md#latency-numbers-every-programmer-should-know)
 
 ### Source(s) and further reading
 
@@ -119,55 +119,55 @@ Check out the following links to get a better idea of what to expect:
 | Design a key-value store for a search engine | [Solution](solutions/system_design/query_cache/README.md) |
 | Design Amazon's sales ranking by category feature | [Solution](solutions/system_design/sales_rank/README.md) |
 | Design a system that scales to millions of users on AWS | [Solution](solutions/system_design/scaling_aws/README.md) |
-| Add a system design question | [Contribute](#contributing) |
+| Add a system design question | [Contribute](01_Introduction.md#contributing) |
 
 ### Design Pastebin.com (or Bit.ly)
 
 [View exercise and solution](solutions/system_design/pastebin/README.md)
 
-![Imgur](images/4edXG0T.png)
+![Imgur](assets/images/4edXG0T.png)
 
 ### Design the Twitter timeline and search (or Facebook feed and search)
 
 [View exercise and solution](solutions/system_design/twitter/README.md)
 
-![Imgur](images/jrUBAF7.png)
+![Imgur](assets/images/jrUBAF7.png)
 
 ### Design a web crawler
 
 [View exercise and solution](solutions/system_design/web_crawler/README.md)
 
-![Imgur](images/bWxPtQA.png)
+![Imgur](assets/images/bWxPtQA.png)
 
 ### Design Mint.com
 
 [View exercise and solution](solutions/system_design/mint/README.md)
 
-![Imgur](images/V5q57vU.png)
+![Imgur](assets/images/V5q57vU.png)
 
 ### Design the data structures for a social network
 
 [View exercise and solution](solutions/system_design/social_graph/README.md)
 
-![Imgur](images/cdCv5g7.png)
+![Imgur](assets/images/cdCv5g7.png)
 
 ### Design a key-value store for a search engine
 
 [View exercise and solution](solutions/system_design/query_cache/README.md)
 
-![Imgur](images/4j99mhe.png)
+![Imgur](assets/images/4j99mhe.png)
 
 ### Design Amazon's sales ranking by category feature
 
 [View exercise and solution](solutions/system_design/sales_rank/README.md)
 
-![Imgur](images/MzExP06.png)
+![Imgur](assets/images/MzExP06.png)
 
 ### Design a system that scales to millions of users on AWS
 
 [View exercise and solution](solutions/system_design/scaling_aws/README.md)
 
-![Imgur](images/jj3A5N8.png)
+![Imgur](assets/images/jj3A5N8.png)
 
 ## Object-oriented design interview questions with solutions
 
@@ -185,6 +185,6 @@ Check out the following links to get a better idea of what to expect:
 | Design a deck of cards | [Solution](solutions/object_oriented_design/deck_of_cards/deck_of_cards.ipynb)  |
 | Design a parking lot | [Solution](solutions/object_oriented_design/parking_lot/parking_lot.ipynb)  |
 | Design a chat server | [Solution](solutions/object_oriented_design/online_chat/online_chat.ipynb)  |
-| Design a circular array | [Contribute](#contributing)  |
-| Add an object-oriented design question | [Contribute](#contributing) |
+| Design a circular array | [Contribute](01_Introduction.md#contributing)  |
+| Add an object-oriented design question | [Contribute](01_Introduction.md#contributing) |
 

@@ -29,17 +29,17 @@ In addition to coding interviews, system design is a **required component** of t
 
 ### Additional topics for interview prep:
 
-* [Study guide](#study-guide)
-* [How to approach a system design interview question](#how-to-approach-a-system-design-interview-question)
-* [System design interview questions, **with solutions**](#system-design-interview-questions-with-solutions)
-* [Object-oriented design interview questions, **with solutions**](#object-oriented-design-interview-questions-with-solutions)
-* [Additional system design interview questions](#additional-system-design-interview-questions)
+* [Study guide](study_guide.md#study-guide)
+* [How to approach a system design interview question](study_guide.md#how-to-approach-a-system-design-interview-question)
+* [System design interview questions, **with solutions**](study_guide.md#system-design-interview-questions-with-solutions)
+* [Object-oriented design interview questions, **with solutions**](study_guide.md#object-oriented-design-interview-questions-with-solutions)
+* [Additional system design interview questions](15_interview questions.md#system-design-interview-questions)
 
 ### Practice interactively (Anki):
 Based on the [Anki platform](https://apps.ankiweb.net/) use spaced repetition to help you retain key system design concepts.
-* [System design deck](https://github.com/ido777/system-design-primer-update.git/tree/master/resources/flash_cards/System%20Design.apkg)
-* [System design exercises deck](https://github.com/ido777/system-design-primer-update.git/tree/master/resources/flash_cards/System%20Design%20Exercises.apkg)
-* [Object oriented design exercises deck](https://github.com/ido777/system-design-primer-update.git/tree/master/resources/flash_cards/OO%20Design.apkg)
+* [System design deck](https://github.com/ido777/system-design-primer-update/tree/master/resources/flash_cards/System%20Design.apkg)
+* [System design exercises deck](https://github.com/ido777/system-design-primer-update/tree/master/resources/flash_cards/System%20Design%20Exercises.apkg)
+* [Object oriented design exercises deck](https://github.com/ido777/system-design-primer-update/tree/master/resources/flash_cards/OO%20Design.apkg)
 
 Great for use while on-the-go, 
 
@@ -64,6 +64,6 @@ Feel free to submit pull requests to help:
 * Add new sections
 
 
-Content that needs some polishing is placed [under development](#under-development).
+Content that needs some polishing is placed [under development](17_under_development.md#under-development).
 
-Review the [Contributing Guidelines](CONTRIBUTING.md).
+Review the [Contributing Guidelines](../CONTRIBUTING.md).
