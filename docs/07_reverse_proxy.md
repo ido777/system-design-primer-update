@@ -32,7 +32,7 @@ Additional benefits include:
 ### Disadvantage(s): reverse proxy
 
 * Introducing a reverse proxy results in increased complexity.
-* A single reverse proxy is a single point of failure, configuring multiple reverse proxies (ie a [failover](https://en.wikipedia.org/wiki/Failover)) further increases complexity.
+* A single reverse proxy is a single point of failure, configuring multiple reverse proxies (ie a [failover](03_tradeoffs.md#fail-over)) further increases complexity.
 
 ### Source(s) and further reading
 

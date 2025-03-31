@@ -1,6 +1,6 @@
 ## Security
 
-This section could use some updates.  Consider [contributing](#contributing)!
+This section could use some updates.  Consider [contributing](01_Introduction.md#contributing)!
 
 Security is a broad topic.  Unless you have considerable experience, a security background, or are applying for a position that requires knowledge of security, you probably won't need to know more than the basics:
 

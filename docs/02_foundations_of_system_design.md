@@ -4,7 +4,7 @@ New to system design?
 
 First, you'll need a basic understanding of common principles, learning about what they are, how they are used, and their pros and cons.
 
-# Web Application Deployment and Scaling basics 
+# Web Application Deployment and Scaling basics
 
 [Scalability Video Lecture at Harvard 2012](https://www.youtube.com/watch?v=-W9F__D3oY4)
 

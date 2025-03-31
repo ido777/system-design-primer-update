@@ -2,9 +2,9 @@
 
 Next, we'll look at high-level trade-offs:
 
-* **Performance** vs **scalability**
-* **Latency** vs **throughput**
-* **Availability** vs **consistency**
+* **[Performance vs scalability](#performance-vs-scalability)**
+* **[Latency vs throughput](#latency-vs-throughput)**
+* **[Availability vs consistency](#availability-vs-consistency)**
 
 Keep in mind that **everything is a trade-off**.
 
@@ -128,10 +128,10 @@ Active-active failover can also be referred to as master-master failover.
 
 #### Master-slave and master-master
 
-This topic is further discussed in the [Database](#database) section:
+This topic is further discussed in the [Database](09_database.md#database) section:
 
-* [Master-slave replication](#master-slave-replication)
-* [Master-master replication](#master-master-replication)
+* [Master-slave replication](09_database.md#master-slave-replication)
+* [Master-master replication](09_database.md#master-master-replication)
 
 ### Availability in numbers
 
