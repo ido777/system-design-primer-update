@@ -6,13 +6,13 @@ Welcome to the **System Design Primer: Update Edition**. This project is an evol
 
 ## Key Features
 
-- **Refactored into a course structure:** The original content is refactored into a course structure, with each chapter being a separate course.
-- **Serve with the help of GitHub pages:** 
+- **Refactored into a course structure:** The original content is refactored into small and concise modules.
+- **Serve with the help of GitHub pages:** To ease readability, navigation and maintainability the content is served with the help of GitHub pages.
 - **Deployable Examples:** Ready-to-use implementations that can be deployed using Docker, allowing users to experiment with real-world scenarios in cloud environments.
 - **Mermaid Diagrams:** Transitioning from static images to [Mermaid](https://mermaid-js.github.io/mermaid/#/) diagrams for system representations, facilitating easier modifications and better integration with markdown files.
 - **Add some fair use content from 2 books:** 
-- **System Design Interview – An insider's guide** - Alex Xu
-- **Designing Distributed Systems: Patterns and Paradigms for Scalable, Reliable Systems Using Kubernetes 2nd Edition** - Brendan Burns
+   - **System Design Interview – An insider's guide** - Alex Xu
+   - **Designing Distributed Systems: Patterns and Paradigms for Scalable, Reliable Systems Using Kubernetes 2nd Edition** - Brendan Burns
 - **Add some newer and more advanced gen AI generated information and links to ease your way into system design:** you are more than welcome to add your own notes and thoughts to the content. My goal is to make this a living document that every learner can and will contribute to - kind of self improving course :-).
 
 
