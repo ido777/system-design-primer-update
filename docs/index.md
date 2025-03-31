@@ -87,5 +87,5 @@
     * [Company engineering blogs](16_real_world_architectures.md#company-engineering-blogs)
 * [Under development](17_under_development.md#under-development)
 * [Credits](18_credits.md#credits)
-* [Contact info](18_credits.md#contact-info)
-* [License](18_credits.md#license)
+* [Contact info](../README.md#contact-info)
+* [License](/LICENSE.md)

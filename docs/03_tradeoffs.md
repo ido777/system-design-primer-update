@@ -41,7 +41,7 @@ Generally, you should aim for **maximal throughput** with **acceptable latency**
 ### CAP theorem
 
 <p align="center">
-  <img src="assets/images/1_2Ed1S7UUfLT21AeH0ymIwQ">
+  <img src="assets/images/1_2Ed1S7UUfLT21AeH0ymIwQ.png">
   <br/>
   <i><a href=https://medium.com/codenx/explaining-the-cap-theorem-and-its-limitations-e43f47f104c3>Source: medium.com explaining-the-cap-theorem-and-its-limitations</a></i>
 </p>
