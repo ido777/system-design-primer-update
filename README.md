@@ -1,18 +1,18 @@
-# System Design Primer: GenAI Edition
+# System Design Primer: Update Edition
 
 ## Introduction
 
-Welcome to the **System Design Primer: Update Edition**. This project is an evolution of the original [System Design Primer](https://github.com/donnemartin/system-design-primer), tailored for the new era of 2025 & Generative AI. Our goal is to provide dynamic, AI-assisted solutions that not only present system designs but also offer interactive tools to explore various architectural trade-offs. This approach aligns with the philosophy that system design interviews prioritize understanding trade-offs and fostering collaborative discussions over presenting fixed solutions.
+Welcome to the **System Design Primer: Update Edition**. This project is an evolution of the original [System Design Primer](https://github.com/donnemartin/system-design-primer), tailored for the new era of 2025 & Generative AI. Our goal is to provide down the road dynamic, AI-assisted solutions that not only present system designs but also offer interactive tools to explore various architectural trade-offs. This approach aligns with the philosophy that system design interviews prioritize understanding trade-offs and fostering collaborative discussions over presenting fixed solutions.
 
 ## Key Features
 
 - **Refactored into a course structure:** The original content is refactored into a course structure, with each chapter being a separate course.
-- **Serve with the help of GitHub docs:** 
+- **Serve with the help of GitHub pages:** 
 - **Deployable Examples:** Ready-to-use implementations that can be deployed using Docker, allowing users to experiment with real-world scenarios in cloud environments.
 - **Mermaid Diagrams:** Transitioning from static images to [Mermaid](https://mermaid-js.github.io/mermaid/#/) diagrams for system representations, facilitating easier modifications and better integration with markdown files.
 - **Add some fair use content from 2 books:** 
-### System Design Interview – An insider's guide - Alex Xu
-### Designing Distributed Systems: Patterns and Paradigms for Scalable, Reliable Systems Using Kubernetes 2nd Edition - Brendan Burns
+- **System Design Interview – An insider's guide** - Alex Xu
+- **Designing Distributed Systems: Patterns and Paradigms for Scalable, Reliable Systems Using Kubernetes 2nd Edition** - Brendan Burns
 - **Add some newer and more advanced gen AI generated information and links to ease your way into system design:** you are more than welcome to add your own notes and thoughts to the content. My goal is to make this a living document that every learner can and will contribute to - kind of self improving course :-).
 
 
@@ -53,7 +53,7 @@ To maintain clarity and focus, the repository is organized as follows:
 
 - **README.md:** Provides an overview of the project, its motivations, and key features.
 - **Introduction.md** Introduction to the new format. Some of the content of the original readme is here.
-
+TBA
 - 
 - **designs/**: Contains detailed system design documents, each exploring different architectures and their respective trade-offs.
 - **solutions/**: Houses AI-generated solutions and interactive tools for various system design problems.
