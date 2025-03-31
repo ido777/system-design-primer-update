@@ -1,4 +1,4 @@
-## Introduction: OSI 7 layer model
+## Communication
 
 <p align="center">
   <img src="assets/images/5KeocQs.jpg">
