@@ -37,9 +37,12 @@ In addition to coding interviews, system design is a **required component** of t
 
 ### Practice interactively (Anki):
 Based on the [Anki platform](https://apps.ankiweb.net/) use spaced repetition to help you retain key system design concepts.
-* [System design deck](https://github.com/ido777/system-design-primer-update/tree/master/resources/flash_cards/System%20Design.apkg)
-* [System design exercises deck](https://github.com/ido777/system-design-primer-update/tree/master/resources/flash_cards/System%20Design%20Exercises.apkg)
-* [Object oriented design exercises deck](https://github.com/ido777/system-design-primer-update/tree/master/resources/flash_cards/OO%20Design.apkg)
+
+See our **[Guide to Using Anki Decks](anki_guide.md)** for instructions on how to download and import these files.
+
+*   [System Design Deck](../resources/flash_cards/System%20Design.apkg?raw=true)
+*   [System Design Exercises Deck](../resources/flash_cards/System%20Design%20Exercises.apkg?raw=true)
+*   [Object Oriented Design Exercises Deck](../resources/flash_cards/OO%20Design.apkg?raw=true)
 
 Great for use while on-the-go, 
 
