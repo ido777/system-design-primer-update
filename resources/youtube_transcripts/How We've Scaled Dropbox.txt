@@ -1,0 +1,661 @@
+
+[Music] Stanford
+University Welcome to dou 380 winter 201122 I'm Andy Freeman the other course
+organizer is Dennis Allison we're approaching the end of the quarter so if you're taking the class for credit
+please caught up remember no incompletes um we've talked a lot about large
+systems and scalable systems but we haven't talked much if at all about rapidly growing systems and rapid growth
+is the goal of most startups but it can be extremely hard both financially and
+technically today's speaker Ted meleski of Dropbox had the Good Fortune to have
+extremely rapid demand growth and today's talk is about how Dropbox dealt
+with technical challenges with very minimal resources
+thanks so hi everyone uh my name is Kevin majeski and um I'm the server team
+lead at Dropbox uh server team is a little bit of a historical name uh as
+I'll talk about a little bit later uh but we're responsible for the architecture and evolution of the Dropbox back end which is what I'm here
+to talk to you guys today about uh so the rough structure of the
+Outline
+talk is first an introduction about what this talk is then uh some background
+about Dropbox what dropboxes what kinds of technical challenges we Face uh which
+will give some insight into the third part examples of things that we've had to scale over time going into like a
+fair amount of detail so you can see both what we did and all the other things that we considered that we could have done but and why we didn't choose
+to do those and then a uh a short wrap up at the end
+um if you guys have questions feel free at any time just to uh just to bring them
+up all right so jumping right into it what is this talk uh as he mentioned uh
+What is this talk
+there's a lot of talks and a lot of information about out there about what do big systems look like you know how do
+the Googles and Facebooks of the world how do they what do they have at this point um but it doesn't help you a whole
+lot when you're starting off by yourself with maybe one other person and you have nothing and you have to get from there
+to having a lot that you know if you wanted to build Dropbox now just with two people I mean one option in theory
+is you could take Google's infrastructure and build it on that but there's only one company in the world
+that has that option and that's Google so what do you do if you're not them how do you get there uh there's a lot of
+things I could talk about that would fall into this category about how to work at a startup uh how like what
+things you have to worry about and in particular I'm going to to talk about the technical ones related to backend
+engineering uh so this is a talk about what it's like to work on a fast changing backend and a very quickly
+growing environment uh where your resources are growing at the same time as the demands and you can't necessarily
+sort of start with the solution the final solution and I think this is should be
+Why this should be interesting
+interesting uh this was the talk that I wish I had gotten while I was still in school um cuz you know you you learn how
+to build big table you learn how to build GFS uh and then you go and you realize
+that it's just you and you don't have five maners to invest like they did in one of these projects uh so if you
+actually want to start a startup I hope that this is interesting in terms of uh letting you know how you
+might actually go and do that and what it might look like in terms of the technical background uh because there's
+as I said there's a lot more you can take entire classes I'm sure they have them here at Sanford about how to actually how to actually do startups uh
+and this part is one that I think doesn't really get covered that much which is the technical backend
+aspect so um first uh a little bit of background about Dropbox so uh just by
+What is Dropbox
+show of hands how many people here use dropbox cool so that's uh most people uh
+if you don't use dropbox that's okay welcome to Silicon Valley uh you will soon um but what is so what is Dropbox
+Dropbox is our goal is to make it really simple for you to get your files your
+data anywhere you want them anytime you want them and the way we do that right now is with our main sync product which
+is a uh a client that runs on your desktop or laptop but your computer and
+it uploads all the changes as you make them to files in your Dropbox um there's a yeah as for scale
+there's a tens of millions of people who are using this and who are syncing
+How many people use Dropbox
+hundreds of millions of files a day uh so I'm going into this because
+there's actually some very interesting implications in terms of what we have to do on the back end to support something
+like this that there're very different backend choices that we have to make compared to companies such as Facebook
+who uh not to pick on them or anything but just that we offer very different services that have very different
+requirements uh and there's there's a lot in involved in this that you know
+Backend challenges
+how do you write a a small client that doesn't take up too many resources how do you deal with low uh bandwidth to
+like most people's homes uh how do you build a mobile app that runs in even more resource constrained environment
+but again this is a talk mostly about the backend challenges and there's two in particular that I think are most uh
+most interesting for the backend architecture the first is the uh the right volume
+Read to write
+that uh most most applications most web applications especially have an extremely high read to write ratio just
+because people consume more content than they produce and so uh I believe Twitter
+has like I forget if it was 100 to one or a thousand to one something like that of tweets read versus tweeted uh what's
+interesting about the way we built Dropbox though is everyone's computers
+has a complete copy of their entire Dropbox and this means that we basically have a multi-petabyte cachee sitting in
+front of our service so normal rules of thumb about cach ability kind of get
+thrown out of the window because we're measuring our cache in petabytes uh so yeah so it turns out
+that our read to write ratio is roughly one: one when you look at when you measure that in terms of uh the two main
+client end points of uploading versus downloading files uh so this means
+another way of thinking about this is for the same number of servers we're doing maybe 10 to 100 times as many
+rights as other companies are so this is very interesting implications because many sort of best practices or standard
+Solutions are designed for you know a different order of magnitude on in terms of Rights another interesting thing is
+uh our service in our service we can't be wrong as
+Acid properties
+uh we don't have as much leeway to sort of play with people's expectations that
+um in certain other services you know it might be fine to see one person's comment before another and then later
+see it appear about them no one's going to say your service is broken if that happens I mean they won't be happy but
+they won't say it's broken but there's lots of sort of horror scenarios you can imagine for Dropbox that let's say you
+delete a file from a folder because you don't want to share it but you want to share the rest of the folder and then
+you that folder and then you check and you see that the file is still in the folder and then everyone you just shared
+with could see it that would fundamentally break what people thought Dropbox was doing and we just can't be
+wrong in that kind of scenario uh so in in technical terms uh from the database
+world uh these are referred to as the acid properties uh referring to
+atomicity um consistency why am
+I uh so sorry uh isolation for I and durability
+for d uh and we have to be very careful about how much we can trade off any of those that atomicity you know people
+don't want to put in a large home video for us to say we synced it and then only
+get half of it on the other side um isolation unfortunately sorry
+consistency also as I mentioned we can't really trade off that much on and we have to do a lot of things right and
+also because you might it's very very often that you're updating files in the same Dropbox for multiple computers at
+the same time uh isolation we're allowed to trade off a little bit more uh we
+have to so that you can do offline operation like those two are kind of directly opposed doing offline operation
+and isolation uh but durability is something that we absolutely cannot trade off on
+uh so as a whole we have much higher requirements in terms of the correctness of all this than many other services out
+there uh so the combination of these two things of very high consistency and
+correctness requirements with a very high right throughput um is sort of one
+of if not the hard problems in uh distributed systems these days and this
+is not just you know something that we're building internally to uh have for
+ourselves for development this is actually core to our service this is what we are providing to other people
+and these are the uh these are the expectations that we just can't play around with because that's the
+situation um oh this is not very nice okay so uh
+Background
+so that's some background about Dropbox what are uh what our setup is uh and what our
+requirements are are there any any questions about that before I go on cool so um I'm going to go into some
+specific examples of things that have evolved over time so uh the first one is
+Backend Architecture
+just the high level architecture of our backend in terms of what services we have how many of them we have how
+they're connected and stuff like that so let's say it's 2007 and you are starting
+a startup with someone else and you want to build a file syncing startup what would you make your initial
+architecture look like
+would you go and build GFS and put it on that or what would you
+do something simpler and faster to get those software guys going yeah yeah so
+how how simple do you think you can make
+it put corresponding to AB to Absolute directories and partition like crazy and
+hope so um yeah that's on the right lines I think
+uh I think what Drew and Arash came up with was actually probably one of the most elegant uh most elegant
+architectures that I've ever seen um it's just there's just a there's just a
+The Server Team
+single server and that was that was it uh it doesn't you can't really make it
+any simpler than that um and this is also why it's called the server team
+because it used to be called the the server uh as opposed to everything else
+um so this is what huh work well with your user yeah yeah uh I don't know the
+exact figures uh but it rounds approximately to zero so uh so this was uh mid2 2007 When J
+and Arash started the company together um this one server was doing everything
+it was running our application servers it was running the uh I don't I don't even know what web server they were
+running in front of it that was serving static content I was running my SQL and it was storing all data that anyone was
+putting on Dropbox on his local discs uh it's surprising but yes that's uh how it
+started and it's not that they didn't know how to build better things I mean they're both MIT educated they uh have
+read all the interesting papers they like know what's better out there but this was a conscious choice that you
+know you start with what's most important and it wasn't you know
+building out a complicated backend infrastructure it's that they need to prove to themselves and everyone else that it was the right thing for them to
+quit their jobs and drop out of school and all of that stuff uh so this is
+where this is the humble beginnings of drop boox um so say so say you've gotten
+to this point what would you do from here what do you think you know you're two guys working I don't know why he
+likes to say this but they like to say how they were working their boxers uh uh and you're coding
+away and you you know you want to get this company off the ground what's the what
+are the things that are most important for you to be improving about this picture because
+users okay um I think the next slide also says
+approximately zero users because I didn't know how many there were this 2007 all they needed was view C
+to get money but so so once once there are
+users what's what's going to start breaking about this or what what is going to be the most important and best
+usage of time because this is you know how you have to think when you're in this kind of environment
+reliability reliability probably uh was not great because you need
+bandwidth bandwidth um two
+Serv put your data on another box and put some web servers up front to handle
+it break it that way moving off the data yeah those are all those are all good
+things uh no I mean those all are things that happened it turns out the things that happened first was uh first the
+servers uh ran out of dis space so they had to put the data somewhere else um
+and the the second was that the server just became overloaded and they had to move something off of it uh so they
+chose to put all the data on Amazon's
+The Client Team
+S3 and they decided to move the MySQL instance to a different box so that it could be uh they could be separated and
+run on separate Hardware uh and just for reference this um this bottom part of
+the diagram is the clients uh this all people's computers are running Dropbox
+uh this side is sort of our own machines it used to be on managed hosting and now
+it's self- hosted and this side on the right is ec2 or AWS uh for now it's only
+S3 so uh these are two somewhat controversial choices I mean not so much at the time but now they're viewed as a
+little bit more controversial you know there's the whole my SQL versus nosql debate or whatever you want to
+call it um the database is my SQL by the way
+uh and again it's not that they didn't know that you know they could have written a custom database if if they
+wanted to they could have written their own custom key value store and run it on their own Hardware started like specking
+out new uh new machines that are like optimized for our use cases and stuff like that but you know there's only
+three people still at this point and it wasn't clear at all that where this thing was going to go uh so I I
+personally believe that the choices of my SQL ns3 were extremely valuable
+especially in the early stages so uh now it's getting a little
+bit harder can you guys figure out what uh the next things are that are going to
+break stop sending the files through the server to S3 sorry and how would you do that I
+don't know that's the magic all right all right yeah so um that's actually that is
+uh one of the two things that had to be done next that well first of all just the capacity on the server eventually
+ran out uh and it would get to the point that you know downloading files would
+eventually push people out of being able to access the website uh so so they
+wanted to separate all the downloading and uploading functionality from all the sort of website and syncing
+functionality so that one they wouldn't interfere with each other and it was also one of the easier ways of of
+splitting the the work into multiple servers um the other thing that was fun
+at this time is you can see that there's only this errow only goes in one
+direction that the clients are only hitting the server so uh when the there's new changes that
+happen you have to the client has to hit the server again and that's called polling the clients have to PLL sit in a
+loop just pull the server every now and then and uh that's usually a bad thing
+so uh I mean we could you could play around with it you could uh increase the polling timeout to reduce load on the
+servers you can decrease it to make it seem more responsive but you know you're still playing that game and you're only getting one out of the
+two um so the one of the next that was done as well was add this new service
+called the notification servers or not servers that will start pinging the clients will actually start pushing down
+notifications to them and uh and the the server was split
+into two web servers one running in managed hosting and one running in AWS
+where the one in AWS is hosting all the file content and accepting all the uploads
+uh and the one in manag hosting is doing all the metadata calls uh so they they
+were called meta server and block server because our file data API is based around file
+blocks um so this was early 2008 I think there are uh I guess roughly 50,000
+users at this time uh Dropbox was in private beta uh and I guess I'm not even going
+to I won't try to ask what's going to happen because because it's it's too hard to know what
+The Problems
+the exact things are that are that's going to happen I guess that's part of the point of this talk that um you know
+it's very hard to it's very easy to screw yourself by overbuilding
+because you don't even know what the things are that are going to fail it's hard to look at something like this and know that the particular problems I'm
+about to mention are the ones that you're going to run into um well maybe some of them are but
+you can't know that like that's exactly what's going to happen so the three things that had to change were that uh
+obviously it looks we still have one of each of the meta servers and block servers so we need to uh add more of
+those uh and that's a fairly standard operation uh the second is a little bit
+more involved you can see that the block servers are doing database queries directly to the database because we just
+took the routes that were in The Meta servers and moved them onto block servers and set them up to do database
+calls from AWS which was in Virginia which is in Virginia to uh our manag
+hosting cluster which was in uh Texas so you can imagine that doing a whole bunch
+of round trip calls over that distance eventually gets to be a bit of a latency
+bottleneck so uh instead of doing repeated roundtrip calls to do multiple
+database queries uh we changed it so that
+well I guess there's a bunch of things you can do you can make your my SQL usage a lot more sophisticated you can
+start using stored procedures you can write really complicated queries that
+like um embed control flow logic and stuff in them you can add more caching
+you can uh have a really complicated caching infrastructure but these things are all a lot of work and as a result
+the thing that was decided on was uh having the block servers do rpcs to The
+Meta servers because then meta server could sort of encapsulate all the logic
+of all the database calls that it needs to do so uh that was definitely the right way and the easiest way to handle
+that though maybe not the most sophisticated uh the third issue is we also only have one database in this
+context um and there's again a bunch of ways that you can handle this that are sort
+of the standard or right way to deal with it uh you can Shard it you can partition it um but it turns out that it
+was just so much easier to add mcache and just cash everything or not everything but start caching the easy
+things to cache and that just sort of let us avoid having uh having to deal
+with these really complicated database scaling issues so doing all those three things
+we ended up with uh roughly this architecture at launch where we uh added
+a bunch of meta servers and block servers put a load balancer in front of the meta servers and added a mcache tier
+and the block servers now do rpcs to the load balancers um and so after this point
+like the sort of Base architecture uh has been pretty stable the problems now
+are that uh there's still a bunch of things here that there's only one one
+shape and we need to get them to be Stacks like the others
+um so so actually our architecture today is basically the same but with those
+things filled out um and there's a lot of other stuff that's going on there's
+you know there their batch job running machines and stuff like that but our fundamental architecture for for
+providing sync is uh hasn't changed since uh that time though adding making
+all these into Stacks is actually relatively diff it looks easy on on the slide you just kind of add more but uh
+in practice it's actually very difficult like every one of them like even even
+mcash which you know it's designed to just you should you can just add more servers the way we use it um because we
+have these really high consistency requirements uh we can't use uh we had
+to modify the mcash library that we use because most mcash libraries when the
+server they try to hit is unavailable they just move on to the next one uh this is great for availability because
+if one mcash server dies you just start using another one but it's really bad for consistency because one one web
+server might think a mcash servers down but another one thinks it's up and so if you have any sort of complicated mcash
+protocols going on uh your servers are going to be cross talking and not seeing each other and you can get uh cash
+inconsistencies so we had to modify the mcash library for that um the load
+balancing tier again is also supposed to be easy but uh that's actually interesting that was tough because we
+use Python it seems like those two things are unrelated using Python and having difficulty scaling your M cach
+tier or your load balancing tier but uh there's actually this feature this
+feature uh of python called the global interpreter lock which means uh to First
+approxim that you can only run one python thread at a time you can have multiple threads
+but only one will be scheduled at a time mostly uh except for like I mean if one's doing IO then another one can come
+in but you can't actually get true parallelism that much uh so what this means is that for each web server we
+want there to be exactly one request at a time that adding a second request um
+makes each request only proceed at 60% of the speed as a as has a single request happening and that sort of 20%
+Improvement in throughput is just not worth it to us uh so we want our load balancing tier to respect this when you
+have one load balancer it's easy it just has all the state in it and you tell it only one connection per web server but
+when you have multiple what multiple load balancers you can't really tell them to max out at one connection across
+the entire load balancing Fleet uh I mean I guess you could but there's no load balancing software out there that
+actually does this uh so you know we had the option of either building our own
+load balancing software and we could add that feature if we wanted to or we could
+uh we could play some sort of complicated game or we could um we could allow just one load balancer to die and
+just lose a whole bunch of capacity uh which we did for a little while um but the the result we ended up
+with was we uh every load balancer now has a pair has a has a a hot uh hot
+backup so if the if the primary dies it within a few seconds switches over to the backup and this is done using some
+Network level tricks um and so this does mean that we have twice as many load balancers as we use but in terms of work
+involved it let us you know get this high availab high availability load balancing cluster uh much easier than
+for instance writing our own software for that uh scaling the database here is uh
+probably one of the more standard of the difficult things to do um
+that you can see a lot of uh a lot of discussion about how do you
+build a distributed database or how do you scale things or how do you Shard things well and there's a lot of talk
+about that but this was interesting that you know it wasn't just we started with
+nothing no code and had to design uh um in a vacuum some sort of sharding scheme
+it's people are actually using using the database tier and
+building in the assumption that there's exactly one database into the code and sometimes that's pretty obvious how they
+do that you know um putting in Joins it's obvious that they're like making the assumption that the two tables are
+in the same machine and joinable uh having foreign key constraints same deal but there are
+certain assumptions you can make about my SQL usage that that are not at all
+obvious that for instance that a single transaction is a single transaction
+uh in sorry I don't know uh but once you move to a shter
+environment your transaction model changes and it's not clear you can't just look at a single piece of code and
+tell whether or not that line that query is assuming that it's running in a
+single transaction with all the other queries that it expects to run with uh so this is this is a kind of case where
+it's actually remarkably difficult to like arrive at a solution that is much
+easier to build from scratch than to like evolve your current system into and we had to do a lot of work to like hunt
+down all these cases um where people had baked in these
+assumptions the uh the not server tier was uh also
+interesting I guess it wasn't so much in terms of had to evolve it but just because that system is so high
+throughput that there's um there are tens of millions of clients that are connected to the not servers at any
+point in time because we can't you can't just uh send a a message to anyone on
+the internet due to firewalls and stuff like that uh you have to let them connect to you and then you can send
+messages down that connection uh so the result is we have tens of millions of connections open to
+these not servers and we're sending um I don't know I forget the exact
+figure we're sending a lot of notifications out at the same time um so we actually had to add a a two-l
+hierarchy for Distributing all of this to all the not servers to then distribute to the clients because it was
+just too expensive to notify 100 not servers uh 100 not server processes that
+they had to notify their clients
+sorry so uh so this is where the as I said the high level architecture mostly
+stands today uh are there any questions before I move on yeah one of the things
+Questions
+that you seem to have a huge advantage of uh and without saying you're anything like mega upload because you don't want
+to get your company shut down but my files in general have nothing to do with your files which makes there a very
+natural way to be sharding all this stuff in depth is there something not obvious that's
+going on behind the scenes that that's not the case uh so in terms of the actual file data we do uh Block Level D
+Deduplication
+duplication so if you and I upload the same file on the back end uh in the
+storage tier of the back end uh it knows that they're the same and uh doesn't store more than one
+copy um and a lot of things are fairly easily shortable but a lot of some
+things are not um so shared folders makes it very hard because shared folders is something that cuts across
+users uh and is actually something that like we're actively trying to decide how we want to Shard because uh this is
+something um for instance the relationship table between users and um
+shared folders that they're in uh gets queried in both directions like both for a user you want to know all their shared
+folders and for a shared folder you want to know all the users and both of those are queried a lot and have to always be
+exactly right that uh for various technical reasons there's no there's no
+room there for getting a wrong answer um so this is currently not charted and we
+have to invest a fair amount of time once we do chart it to uh get it like exactly correct
+what does that mean like does it block a file or is it smaller than that uh so
+what we do is we take a file and we uh divide it up into four megabyte chunks
+and each chunk is a block in terms of duplication um so we take the hash of the chunk and if two hashes are the same
+then they get like mapped to the same object in
+S3 uh uh jeez you
+know oh yeah okay I think it's shot 256
+Why megabyte chunks
+then why did you just choose four megabyte chunks um it's completely
+arbitrary worked pretty well so far not like we I don't know if we have
+the option to change it cool any other questions so what kind
+I D duplication are you are you seeing across your use how much of it how much D
+duplication um I think we've have we've ever determined this I think we've run
+it uh so you have to have another sort of reference to which you're comparing
+to measure how much you're saving uh and depending on where you set that reference in terms of like only D
+duplicating within a single account for instance uh
+I believe it's double digit percentage but I'm not 100%
+sure any other questions all right you do any D
+Deduplication on subblocks
+duplication on the of subblocks on the upend to you do you send just Deltas to
+the block server or do you send the whole
+thing um so I believe that it is smart that if it believes that uh a file is
+only a small if the client believes that a file is only a small modification away from the old file we'll actually use
+like an rsync diff uh and upload that to the server um I'm not fully aware of all
+those details though how how often does a client pull
+the Ser servers uh well it used to be I think once a minute but now that we have the not servers uh um and also now that
+we have tens of millions of clients uh polling would just crush us
+uh which is actually funny because sometimes we didn't used to have good like back offs so when the site would go
+down the clients would Doos us uh but that's we've improved that a lot but now
+now they don't pull at all um because they disc connect to the not servers so they just keep a connection
+open all the time yeah yeah they long pull the not servers and then when we have a notification for
+them it uh it sends that down what what kind of connection count are you going to go not server these days um I believe
+a single not server machine we were we were running them at 1 million
+connections per machine uh they started was
+memory memory well we didn't actually hit a limit they started failing uh
+because we hit a a kernel bug which U if I have time I can talk about
+yeah um but uh so it's at least a million
+we're not really sure where it is these things are not fun to like push super hard because um even though a single
+machine can have a million connections open it can't open a million Connections in any reasonable amount of time so uh
+so once they go down they're very hard to bring back up uh and we don't want to like push them too close to the Limit is
+Deduplication on media
+your duping on a per user basis or say in a media case do you have a media file
+that many users may have in there uh so at the storage level it's globally
+across the uh entire servers um there are that doesn't mean that if you put a
+file in your Dropbox and that it will necessarily instantly upload given that it's already on Dropbox so there are
+other things involved in deciding that
+Joint hosting
+see some servers on Amazon and some servers are managed hosting how do you decide what to put Amazon what to put with your own hosting sure so at this
+point um it's basically anything that has to touch the actual file data lives
+in Amazon and otherwise it lives on our own servers that uh it's I mean it's
+great to collocate our servers with the actual data when it needs it but otherwise it's more it's more cost
+efficient it's easier manage and all of that when it's like our own Hardware that we're actually running um because
+all our all our ec2 instances are on 24/7 uh so we're sort of missing out on
+some of the best features of ec2 uh so it makes more sense to just kind of run them
+ourselves at this point it's uh I think it's only block servers every now and
+then we do certain analyses of certain like subsets of data and that will also run in ec2
+Operations
+do you have estimates for how much it costs you to run on Amazon as compared to doing it yourself
+um more I think that's probably all I'm I I should
+say uh but I mean you can see that we're still on Amazon um and we haven't yet
+made the decision to move off with them how many operations people do you have for your side of the line
+uh have pagers there are I think it's one six of
+us yeah six of us um well I guess we also have a network guy so I guess that
+would make seven is your customer base worldwide or
+Customer base
+is in mostly the United States and the real question is are you using Amazon distributed cloud or you got it all in Virginia's doofer uh everything is in
+Virginia um I don't know the exact percentage that's International but I think just the majority is international
+at this point 65 65% International usage um so yes we do uh we do serve all
+the data out of Virginia we do serve all the metadata out of um San Jose
+now uh and I guess this is another another point that you know obvious we
+we obviously know that you know if you want better performance you go International and you figure that out but
+um one thing that we've been able to get away with is uh since the client
+behavior is all asynchronous and sort of user invisible um it's not hugely performance
+sensitive uh not that we sort of just neglect performance but uh it's not been
+something we're not quite under the same uh Spectre of performance that like a
+webon site would be where I forget what the numbers are but you I we all see the
+like stats that if you increase page load Time by x% your whatever return rate goes up but um so we get we get to
+be a little bit more candid a little bit more relaxed about that how how many copies of data do you
+store for user in we just store uh Amazon takes care of the
+replication and all of that so we just upload it once um you would have to ask them about what
+they do internally you get hammered by that recent Amazon
+Amazon
+problem or did it affect your Ser the S3 went down uh yeah yeah I'm
+sure we would um you oh
+sorry uh yeah I mean it's interesting we do see uh I mean at this scale you do see
+interesting things happening on Amazon side side um I mean they're they're
+pretty competent over there but uh it's just interesting to watch it from our side do you have a feel for what
+fraction of the S3 usage you are I I wish I knew um they only
+released one St public you should say it what I actually have a pretty good sense of it from some stuff but oh okay in
+terms of public when theera yeah when the camera goes off that's good when cameras off okay we
+might do that then SP talk for a few minutes about your evolution of instrumentation what
+Top
+did you do when you were two guys two guys in boxers and what do you have now yeah so um okay so at this point uh
+instrumentation and debugging and monitoring is pretty easy it's this great tool that's already written it's
+called top you uh you go to the server you run top uh and that got that got us
+to here maybe actually actually a little
+bit later uh and I mean the service is pretty regular and it's like you build up a
+good intuition about what's going wrong when certain things happen um but it was
+basically uh we went for a long time without building out like graphing um and
+trending of metrics and stuff like that uh and we have all that now so it's like much better but uh you know it worked
+without it for quite a while what what do you have now what what what metrics do you watch what metrics do do monitor
+yeah um we watch all the servers load we watch um how many requests are happening
+from all the different channels per second uh we watched the breakdown for
+um for important requests uh what's the breakdown in time that went into that request so if it takes 100 milliseconds
+to uh to commit new files that's you know
+40 milliseconds of CPU time on the web server that's 30 milliseconds talking to
+uh the metadata server that's 20 milliseconds like dealing with mcache or
+something uh so we can see over time how that how that varies if one of them spikes with a code push then we know
+that uh that's something to look into if it uh if you know the site goes down and
+we see that that those things are changing that gives us a lot of good uh insight into what's going wrong um we
+track bandwidth as measured by users
+uh there there's a ton I
+Security
+guess yeah what are you doing for uh security and encryption just like to
+make sure that like if you type in a random password you can't read everyone's files
+I mean I feel like that was not a super specific question in general I mean like
+what have you done to like like there was this problem with Dropbox a while ago like what if you like what were you
+What have you done too late
+doing then that didn't work and what have you done now to like keep that sort of thing from like like where are things
+encrypted and decrypted sure so I mean I can't what's the risk uh I can't talk too much about any specific uh thing
+that has happened um though I can say that just in general we take security and privacy
+very seriously and respond very aggressively whenever something does happen
+um in general uh yeah I guess there's sorry there's
+not a whole lot I can go into right now uh but we can maybe talk afterwards or
+something cool uh I'm going to go on to the next example um so the next example is going
+Next example
+to be diving a little bit deeper into one of the uh aspects of the system uh
+the database tier and in particular uh diving into how we store all the
+metadata about your Dropbox so uh the way we the way we
+Server File Journal
+store um what the metadata for what you have in your Dropbox is as a log of all
+the edits that has happened to it uh so whenever you your client notices changes
+it uploads those changes to the meta servers which record them in this log uh
+and this is called the server file Journal I believe there's also a a client side version of this as well
+which is why it's called the server file Journal um
+so this is a a bridged schema of server file Journal this is the original one
+that we started with uh or the earliest one that I could find at least um and
+it's only including the sort of interesting fields in it so uh
+it's has an ID field which is just the index in the log it has the file name
+something called case path that I don't know what it is um latest which means is
+it like is it the latest entry in the log for that file uh and nsid which
+stands for namespace ID where namespace is either your your Dropbox or a shared
+folder so that every uh every namespace has its own log associated with
+it um the one interesting thing is the primary key is the
+ID um we're using my SQL and in particular INB here so what this means
+is that uh on disk things are ordered by ID that's that's what uh the primary key
+means so it's very fast to scan things in ID order uh any other order is not as
+fast even if you have an index on it um and writing thing appending things in ID
+order is extremely fast uh appending in any other order is not as fast though in
+this case uh it's in this case everything was being appended in ID
+order um so there's a bunch of things that change over time I don't even uh
+know why this change was made but one of the first things that was done was getting rid of case path um I I think
+originally there's to deal with some case sensitivity issues and then the um
+the protocol or the sort of the interface between the client and server was changed so that uh my guess is that
+the clients now take care of any case sensitivity issues rather than the server um or or that logic is is not put
+in my SQL and we're not storing that anymore so this is a case of our requirements changing over time or just
+like you know iterating on what we started out with uh the next
+thing see this the next thing that happened was um my guess I wasn't here at the time my
+guess is that they didn't used to have we didn't used to have the feature of you could click on a file and see all
+the past revisions of it uh this is actually with this schema kind kind of expensive to do you have to search the
+entire F the entire log of everyone's dropboxes uh looking for the right nsid
+and file name and then you can list those as a uh as a list of revisions uh
+so to make this faster because this was a new feature that we wanted to make more efficient we added a new field
+called prev rev which I believe points to the ID of the previous entry that of
+that file uh so this was added because we added a new
+feature the next thing was um the performance of the system started
+to get pretty bad that you know it was all on one machine and this log was
+getting very big that it works fine if you have like a small number of users but after a while it doesn't make any
+sense to mix everyone's updates together it's not very efficient to find a single
+person's uh a single person's updates so the primary key was changed to this uh so
+what this means is first things are sorted by nsid so everything within an nsid is grouped together then
+latest uh so that means that there's two sections of the log one that is sort of
+previous entries and one that is all your sort of current active state of your Dropbox and then ID to sort of sort it
+into essentially time stamp order uh and have a log log of
+that so this uh I think this was pretty good for a while um and at this point
+the uh the functionality was pretty much Set
+uh and the sort of Major Performance was done that you know I think this was
+uh roughly 2008 at this point not not 100% sure
+and at this and at this point it starts to make sense to sort of go over this very carefully and make some careful
+optimizations to it so the next thing that was done was file name was changed
+from a 260 length string to a 255 um it seems like a kind of random
+thing to do that if you don't you don't know anything less than
+a lot of about my SQL uh it might it's not cleared out why this would happen
+but it turns out that actually my SQL stores bar chars uh with size at most
+255 more efficiently than with a size larger than that uh because with 255 you
+only need one bite for the length and I'm not sure what it does if it's greater than 255 but it uses more bytes
+to store the length um so this was a pretty easy win in terms of I mean it
+was easy in terms of once you know that you had to do it uh it was easy but it
+was just one of those like reading the manual taking the time to actually do that taking time away from building
+features actually started to make sense I think around the same time um all these fields were declared not null
+because that also saves another bite per uh per field uh the next thing that was done
+was a little bit more subtle and that was getting rid of latest in the
+in the primary key so instead of having two sections of the log one that is the active files and one that is inactive
+they're all mixed together uh this makes it the reason
+that it was originally in the primary key is because that makes it more efficient for writing or for reading
+because all the files that you're interested in are together you don't have to skip over deleted entries uh to
+get to the ones that you're actually interested in but this means that when you write new things to your Dropbox you
+have to shuffle things around in your log a lot so this was so this
+change uh it's subtle in that it optimizes for rights at the expense of
+reads and given that we do so many rights that's actually a very good thing for us because
+um I don't know it's somewhat people say and you can take their word for it or
+not that writes are harder to scale than reads and especially that we have because we have so many this is an
+interesting tradeoff for us to be making um and at this
+point I think this is mostly where the uh the schema lies
+today cool so are there any questions comments about
+ID Size
+this yeah when when you you know say I really want to delete something is there
+any kind of compaction or just guarding old data or anything involved with this or do they just grow
+um in normal usage they just grow I'm not sure if there's any times that we uh
+I I don't know about like otherwise though
+but did you have to change the size of ID at some point uh no be well now that IDs are per
+user or per namespace uh we haven't had an issue that we do have more than uh 4 billion
+entries so if that wasn't true then yes we would have had to increase that um but it's per it's per name space so it's
+not an issue they went for being unique to not unique at one point in the history of
+the system so do you have a test bed where you can go measure these things and see
+Testbed
+if it poos change actually makes a difference uh it's actually extremely hard to test
+these kinds of things um I mean you can test that it's correct but it's very
+hard to generate realistic workloads on these kinds of things um there's some simple things we can do uh where we can
+actually run a production workload on a production box uh it's still hard to
+like make that work um I think these changes all happened a while ago so I'm
+not 100% sure what went into them uh
+uh yeah these days really the only way to if you really want good Precision on
+whether or not a change will be helpful is to uh test it in
+prod and it's just too hard to sort of generate uh realistic data
+workflows do you do a testing when bring up the new build the canary and take
+AB Testing
+some part of the load watch then migrate over into uh yeah we do uh we're increasing
+our usage of stage roll outs and uh AB testing and all that kind of
+stuff that's the only way to find out yeah unfortunately you can't really
+stage roll out something like this uh at least not very easily uh we're sort of
+increasing our ability to do operation AAL changes incrementally uh but at least on a
+single table it's kind of all or nothing whether or not you do this uh I mean so from a product standpoint we can do that
+but from a from a database it's very
+hard I think the um the interesting things about this evolution is that
+we've seen especially with the primary key changes we've seen massive changes in the performance character istics of
+this table over time with uh what is a very small amount of text to uh change
+the primary key I mean my SQL has to do a lot of work and you have to be careful about telling my SQL to do it but uh con
+conceptually it's not very much work to you to actually go and make a very fundamental change in how this is
+architected um so so personally when it comes to the MySQL versus nosql debate
+I'm very much glad that we have stuck with my squel because we can sort of pivot on on the Fly and change the
+performance characteristics without having to like completely rear protect our usage of a certain table or anything
+like that not that it's not hard with my SQL but something that's not necessarily
+even possible with other Solutions cool so um those are the two
+main examples that I had um and just quickly to to close this up um I think
+one of the main themes that I've definitely noticed and hopefully was evident in the two examples is how
+valuable it is to sort of use your time effectively that that's sort of the key
+constraint here that you know if we had 10,000 engineers then yes we would just
+build Google's infrastructure and go with that or whatever build an improved version of it uh but we don't and that's
+that's why we had to make all these changes that we did or all these choices that we did we always know that there's
+something better that we could be doing uh and and it's interesting because you can
+trade your time for other things fairly easily you can trade it for more users
+you can trade it for money you can trade it for future time by recruiting but you can't really trade other things back for
+time that easily you can like not make your room you can clean your room you
+can uh not do your laundry um I think some of our co-founders are big fans of
+those two things um but once you do those things there's only a limit to how much you can like not do those things
+and at some point you know your time is just the constraint that you have to decide how you want to turn it into other things um and hopefully some of
+this sort of showed that to you and the other reason why um I brought all these
+things up and wanted to do this talk is because this isn't just a talk about our
+history this is like still our mentality this is still where we are we're still fast growing we're still having to make
+all these tradeoffs that we know all these things that we could be building but we know that we have fewer people than we want uh and so here these are
+just some examples of decisions that we're currently going through that like exhibit some of the same properties that
+we want to have some sort of batch processing infrastructure that can um run jobs over our metadata and you know
+if you if you just sit down and think about what's the best way to do it you could say oh let's import it into Hadoop
+and then run some sort of like automated batch job system on top of that and then have some sort of web service that like
+displays the results and emails you and stuff like that um but this can get you know that's a lot of work to set that
+all up uh instead some of the things that we can do we found a much more elegant way and
+simpler way of including a lot of that inside the request workflow um that you know we didn't have
+to add any additional architecture for that and we're getting a lot of the benefits with a lot less
+work a similar thing is uh you know server file Journal um is currently
+stored on SAS hard drives so they're kind of I think they're the fastest hard drives that you can get that are
+actually discs that are spinning uh but now there's ssds and SSD
+prices are plummeting not plummeting but they're decreasing over time and it's no longer sort of a slam dunk that if you
+have a lot of data you have to put it on spinning media so uh maybe the next evolution of server file Journal rather
+than like we architecting it at a MySQL level will just be we buy a whole bunch of ssds and put it on that instead if we
+can save you know months and months of engineer Time by doing that then maybe that makes sense so these are both
+things that we haven't done yet but sort of but show the same kinds of decisions
+being made and the rest of the talk was sort of um background for how we think
+about these things in general so uh that's it for uh what I
+have prepared and if you guys have any more questions I can take those now yeah as you look
+forward what are the next things that you're thinking are going to be your
+biggest challenges since data doesn't have any Predators really it's going to
+keep getting bigger and bigger um you mean as a company as opposed to like for instance as a back
+end um so I mean we want to just we always want to be get bigger we want to
+appeal to more people we want more people to be happy to be using us all the time um that's always a goal we can
+always like have more people be using us um but the ultimate goal is that you
+know your you don't have to think about where your data is um I shouldn't have
+had to think about the fact that the data was on this laptop for the presentation and if I couldn't get this
+laptop to work with the projector system then it just wasn't going to work um it should just be that's my data that's my
+presentation and anywhere that can present it I can just hook up to my Dropbox account and have it like show
+that presentation uh I should be able to take pictures with my phone and I guess
+wouldn't be putting them on the projector but maybe like at home on my TV I could just get them on there um so
+these things like this is how technology should work but it doesn't currently so
+we want to start building all this stuff out um in the near term that means like
+uh better mobile clients uh more API usage and stuff like
+that you guys have anything that you want to add to that
+are you discouraging people from using the service actually as a backup like against carbon night or something like
+that I mean it's really a data service right now documents range but you could back up system yeah uh probably people
+do I don't know if we have any information about how many people do but uh I'm personally at least happy that
+people have found a productive way to use
+Dropbox kind of the flip side if they're actually sharing folders and making public documents there's a a risk they
+using it for copyright infringement and certain authorities frown upon that um
+how do you I mean to some extent some of the services have been shut down do exactly the same thing how are you as a
+business defending against becoming sort of a transporter or whatever you want to
+call it yeah so I mean I don't have all the information on that um but
+I mean we do have in our uh we do sort of explicitly I think
+prohibit uh this kind of stuff I mean whatever I'm sure all the the legal
+sites do as well but um and then we also do you know
+um we do follow the whole DMC takedown stuff that we have to
+uh I guess I haven't fully like kept track
+with like what's going on so I don't want to like say anything for fear of like being wrong here uh but I do know
+that like we do take that stuff very seriously people are paying for this or
+is it ad supported uh I think it's almost all user subscriptions okay you
+get a small account for free but if you want to really use it you pay typically $100 gives you two great advantages one
+is that you don't have this great privacy fight because you're not selling
+my SE my information to advertisers and the other is that the the
+spammers aren't going to pay for an account when they can find a free one someplace else yeah yeah um that doesn't
+stop them from trying but uh but we do have system in place to try
+to like detect sort of abuse and all of that stuff um I work with a Consulting
+operation we have about seven different locations in United States and we're always using Dropbox to move
+files between the different PowerPoint presentations you've got business accounts too where you get a large
+amount of space yeah I don't know what we my account costs $100 a year I don't
+know how much room I have on it yeah we have a Enterprise product that uh again
+I don't know a whole lot about what it offers but I know it does offer some features that like are more appealing to
+the Enterprise Market the only frustrating thing I'll be on the phone to the guy say oh I just dropped in the drop box I said still not there still
+not there can't you email it well it's 50
+Megs we're working on increasing the speed of light but it's taking a while want buy some used
+neutrinos yeah actually that brings up something I was thinking about way here is that if I'm in Japan Korea something
+like that I've got like 100 megabits in my house it must be a very different user experience for me I mean I upload
+my family photos and it's like tomorrow I'll go get them some out whereas there
+I would expect this almost instantaneous behavior and we and you're shipping it to Virginia is that yeah so um we don't
+have a whole lot of uh metrics in terms of breaking down by geography like what
+the bandwidth speeds are um one interesting thing as I mentioned client behavior is a little bit more tolerant
+of latency right um but those countries also are the ones that have a lot of smartphone usage and
+that um is on demand as opposed to a sinking Behavior so we're seeing this like change in requirements on the back
+end that rather than being uh latency tolerant is becoming I guess less
+latency tolerant over
+time Co I don't remember uh who are you uh who are the main
+competitors of your company and uh how do you think about like box.com
+um yeah so so box.net uh is currently in the
+Enterprise space um and I mean as a whole our strategy is to build the best
+product that we can and best services that we can um and not get distracted
+too much by what other people are doing uh but yes I mean other people are doing what we're doing and interested in doing
+it if they're not already um and there's not you know there's not a whole lot we
+can do other than just like continuing to move fast and build the best things we
+can I think we're all waiting to do the camera off and do the cool stuff sure
+all right I don't know how to do that I guess let's turn it on and fade
+the black fade the black and do the and uh talk about stuff we can't talk about online
+right wait for that to go away okay for more please visit us at
+stanford.edu
+
