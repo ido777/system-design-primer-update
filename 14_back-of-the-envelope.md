@@ -4,17 +4,20 @@ You'll sometimes be asked to do 'back-of-the-envelope' estimates.  For example, 
 
 ### Powers of two table
 
+
 ```
-Power           Exact Value         Approx Value        Bytes
----------------------------------------------------------------
+Power           Exact Value         Approx Value    Short Name       Full Name    Decimal
+---------------------------------------------------------------------------------------------
 7                             128
 8                             256
-10                           1024   1 thousand           1 KB
-16                         65,536                       64 KB
-20                      1,048,576   1 million            1 MB
-30                  1,073,741,824   1 billion            1 GB
-32                  4,294,967,296                        4 GB
-40              1,099,511,627,776   1 trillion           1 TB
+10                           1024   1 thousand           1 KB       1 Kilobyte   10^3
+16                         65,536                       64 KB        
+20                      1,048,576   1 million            1 MB       1 Megabyte   10^6
+30                  1,073,741,824   1 billion            1 GB       1 Gigabyte   10^9
+32                  4,294,967,296                        4 GB      
+40              1,099,511,627,776   1 trillion           1 TB       1 Terabyte   10^12
+50          1,125,899,906,842,624   1 quadrillion        1 PB       1 Petabyte   10^15
+60      1,152,921,504,606,846,976   1 quintillion        1 EB       1 Exabyte    10^18
 ```
 
 #### Source(s) and further reading
@@ -24,14 +27,14 @@ Power           Exact Value         Approx Value        Bytes
 ### Latency numbers every programmer should know
 
 ```
-Latency Comparison Numbers
+Latency Comparison Numbers (~2020 based on colin-scott interactive latency numbers)
 --------------------------
-L1 cache reference                           0.5 ns
-Branch mispredict                            5   ns
-L2 cache reference                           7   ns                      14x L1 cache
-Mutex lock/unlock                           25   ns
+L1 cache reference                           1   ns
+Branch mispredict                            3   ns
+L2 cache reference                           4   ns                      4x L1 cache
+Mutex lock/unlock                           17   ns
 Main memory reference                      100   ns                      20x L2 cache, 200x L1 cache
-Compress 1K bytes with Zippy            10,000   ns       10 us
+Compress 1K bytes with Zippy             2,000   ns        2 us
 Send 1 KB bytes over 1 Gbps network     10,000   ns       10 us
 Read 4 KB randomly from SSD*           150,000   ns      150 us          ~1GB/sec SSD
 Read 1 MB sequentially from memory     250,000   ns      250 us
@@ -58,9 +61,9 @@ Handy metrics based on numbers above:
 * 6-7 world-wide round trips per second
 * 2,000 round trips per second within a data center
 
-#### Latency numbers visualized
+#### Latency numbers visualized (you can play with the years to get the values for different years)
 
-![](https://camo.githubusercontent.com/77f72259e1eb58596b564d1ad823af1853bc60a3/687474703a2f2f692e696d6775722e636f6d2f6b307431652e706e67)
+![](https://colin-scott.github.io/personal_website/research/interactive_latency.html)
 
 #### Source(s) and further reading
 
