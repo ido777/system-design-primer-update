@@ -1,7 +1,7 @@
 ## Application layer
 
 <p align="center">
-  <img src="assets/images/yB5SYwm.png">
+  <img src="images/yB5SYwm.png">
   <br/>
   <i><a href=http://lethain.com/introduction-to-architecting-systems-for-scale/#platform_layer>Source: Intro to architecting systems for scale</a></i>
 </p>

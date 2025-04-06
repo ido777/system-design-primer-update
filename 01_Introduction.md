@@ -47,12 +47,12 @@ See our **[Guide to Using Anki Decks](anki_guide.md)** for instructions on how t
 Great for use while on-the-go, 
 
 
-### Coding Resource: Interactive Coding Challenges
+#### Coding Resource: Interactive Coding Challenges
 
 Looking for resources to help you prep for the [**Coding Interview**](https://github.com/donnemartin/interactive-coding-challenges)?
 
 
-Check out the sister repo [**Interactive Coding Challenges**](https://github.com/donnemartin/interactive-coding-challenges), which contains an additional Anki deck:
+Check out the original sister repo [**Interactive Coding Challenges**](https://github.com/donnemartin/interactive-coding-challenges), which contains an additional Anki deck:
 
 * [Coding deck](https://github.com/donnemartin/interactive-coding-challenges/tree/master/anki_cards/Coding.apkg)
 
@@ -70,3 +70,10 @@ Feel free to submit pull requests to help:
 Content that needs some polishing is placed [under development](17_under_development.md#under-development).
 
 Review the [Contributing Guidelines](../CONTRIBUTING.md).
+
+## System Design Architecture Example
+
+<p align="center">
+  <img src="images/jj3A5N8.png">
+  <br/>
+</p>

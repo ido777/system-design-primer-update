@@ -1,7 +1,7 @@
 ## Load balancer
 
 <p align="center">
-  <img src="assets/images/h81n9iK.png">
+  <img src="images/h81n9iK.png">
   <br/>
   <i><a href=http://horicky.blogspot.com/2010/10/scalable-system-design-patterns.html>Source: Scalable system design patterns</a></i>
 </p>
