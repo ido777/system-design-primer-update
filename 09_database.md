@@ -1,7 +1,7 @@
 ## Database
 
 <p align="center">
-  <img src="assets/images/Xkm5CXz.png">
+  <img src="images/Xkm5CXz.png">
   <br/>
   <i><a href=https://www.youtube.com/watch?v=kKjm4ehYiMs>Source: Scaling up to your first 10 million users</a></i>
 </p>
@@ -24,7 +24,7 @@ There are many techniques to scale a relational database: **master-slave replica
 The master serves reads and writes, replicating writes to one or more slaves, which serve only reads.  Slaves can also replicate to additional slaves in a tree-like fashion.  If the master goes offline, the system can continue to operate in read-only mode until a slave is promoted to a master or a new master is provisioned.
 
 <p align="center">
-  <img src="assets/images/C9ioGtn.png">
+  <img src="images/C9ioGtn.png">
   <br/>
   <i><a href=http://www.slideshare.net/jboner/scalability-availability-stability-patterns/>Source: Scalability, availability, stability, patterns</a></i>
 </p>
@@ -39,7 +39,7 @@ The master serves reads and writes, replicating writes to one or more slaves, wh
 Both masters serve reads and writes and coordinate with each other on writes.  If either master goes down, the system can continue to operate with both reads and writes.
 
 <p align="center">
-  <img src="assets/images/krAHLGg.png">
+  <img src="images/krAHLGg.png">
   <br/>
   <i><a href=http://www.slideshare.net/jboner/scalability-availability-stability-patterns/>Source: Scalability, availability, stability, patterns</a></i>
 </p>
@@ -67,7 +67,7 @@ Both masters serve reads and writes and coordinate with each other on writes.  I
 #### Federation
 
 <p align="center">
-  <img src="assets/images/U3qV33e.png">
+  <img src="images/U3qV33e.png">
   <br/>
   <i><a href=https://www.youtube.com/watch?v=kKjm4ehYiMs>Source: Scaling up to your first 10 million users</a></i>
 </p>
@@ -88,7 +88,7 @@ Federation (or functional partitioning) splits up databases by function.  For ex
 #### Sharding
 
 <p align="center">
-  <img src="assets/images/wU8x5Id.png">
+  <img src="images/wU8x5Id.png">
   <br/>
   <i><a href=http://www.slideshare.net/jboner/scalability-availability-stability-patterns/>Source: Scalability, availability, stability, patterns</a></i>
 </p>
@@ -232,7 +232,7 @@ Document stores provide high flexibility and are often used for working with occ
 #### Wide column store
 
 <p align="center">
-  <img src="assets/images/n16iOGk.png">
+  <img src="images/n16iOGk.png">
   <br/>
   <i><a href=http://blog.grio.com/2015/11/sql-nosql-a-brief-history.html>Source: SQL & NoSQL, a brief history</a></i>
 </p>
@@ -255,7 +255,7 @@ Wide column stores offer high availability and high scalability.  They are often
 #### Graph database
 
 <p align="center">
-  <img src="assets/images/fNcl65g.png">
+  <img src="images/fNcl65g.png">
   <br/>
   <i><a href=https://en.wikipedia.org/wiki/File:GraphDatabase_PropertyGraph.png>Source: Graph database</a></i>
 </p>
@@ -283,7 +283,7 @@ Graphs databases offer high performance for data models with complex relationshi
 ### SQL or NoSQL
 
 <p align="center">
-  <img src="assets/images/wXGqG5f.png">
+  <img src="images/wXGqG5f.png">
   <br/>
   <i><a href=https://www.infoq.com/articles/Transition-RDBMS-NoSQL/>Source: Transitioning from RDBMS to NoSQL</a></i>
 </p>

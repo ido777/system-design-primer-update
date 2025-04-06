@@ -1,7 +1,7 @@
 ## Domain name system
 
 <p align="center">
-  <img src="assets/images/IOyLj4i.jpg">
+  <img src="images/IOyLj4i.jpg">
   <br/>
   <i><a href=http://www.slideshare.net/srikrupa5/dns-security-presentation-issa>Source: DNS security presentation</a></i>
 </p>

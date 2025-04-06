@@ -34,7 +34,7 @@
 > Articles on how real world systems are designed.
 
 <p align="center">
-  <img src="assets/images/TcUo2fw.png">
+  <img src="images/TcUo2fw.png">
   <br/>
   <i><a href=https://www.infoq.com/presentations/Twitter-Timeline-Scalability>Source: Twitter timelines at scale</a></i>
 </p>
