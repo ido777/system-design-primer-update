@@ -1568,7 +1568,7 @@ Security is a broad topic.  Unless you have considerable experience, a security 
 * Use parameterized queries to prevent SQL injection.
 * Use the principle of [least privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege).
 * Threat Model with [STRIDE from Microsoft](https://learn.microsoft.com/en-us/azure/security/develop/threat-modeling-tool-threats)
-* Rate Limit Requests to mitigate service distruption and [DDOS](https://catalog.us-east-1.prod.workshops.aws/workshops/4d0b27bc-9f48-4356-8242-d13ca057fff2/en-US/application-layer-defense/rate-based-rules#:~:text=You%20are%20able%20to%20set,the%20protection%20from%20HTTP%20floods).
+* Rate Limit Requests to mitigate service disruption and [DDOS](https://catalog.us-east-1.prod.workshops.aws/workshops/4d0b27bc-9f48-4356-8242-d13ca057fff2/en-US/application-layer-defense/rate-based-rules#:~:text=You%20are%20able%20to%20set,the%20protection%20from%20HTTP%20floods).
 * Implement a [Web Application Firewall to protect web applications from Exploits](https://aws.amazon.com/waf/)
 * If Service A trusts Service B and B Trusts Service C: Service A should not explicitly trust Service A
 * Implement a Silo, Pool or Bridge model for [Multi-Tenancy SaaS Applications](https://docs.aws.amazon.com/whitepapers/latest/saas-architecture-fundamentals/tenant-isolation.html)
