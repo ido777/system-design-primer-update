@@ -1,4 +1,4 @@
-*[English](README.md) ∙ [日本語](README-ja.md) ∙ [简体中文](README-zh-Hans.md) ∙ [繁體中文](README-zh-TW.md) | [العَرَبِيَّة‎](https://github.com/donnemartin/system-design-primer/issues/170) ∙ [বাংলা](https://github.com/donnemartin/system-design-primer/issues/220) ∙ [Português do Brasil](https://github.com/donnemartin/system-design-primer/issues/40) ∙ [Deutsch](https://github.com/donnemartin/system-design-primer/issues/186) ∙ [ελληνικά](https://github.com/donnemartin/system-design-primer/issues/130) ∙ [עברית](https://github.com/donnemartin/system-design-primer/issues/272) ∙ [Italiano](https://github.com/donnemartin/system-design-primer/issues/104) ∙ [한국어](https://github.com/donnemartin/system-design-primer/issues/102) ∙ [فارسی](https://github.com/donnemartin/system-design-primer/issues/110) ∙ [Polski](https://github.com/donnemartin/system-design-primer/issues/68) ∙ [русский язык](https://github.com/donnemartin/system-design-primer/issues/87) ∙ [Español](https://github.com/donnemartin/system-design-primer/issues/136) ∙ [ภาษาไทย](https://github.com/donnemartin/system-design-primer/issues/187) ∙ [Türkçe](https://github.com/donnemartin/system-design-primer/issues/39) ∙ [tiếng Việt](https://github.com/donnemartin/system-design-primer/issues/127) ∙ [Français](https://github.com/donnemartin/system-design-primer/issues/250) | [Add Translation](https://github.com/donnemartin/system-design-primer/issues/28)*
+*[English](README.md) ∙ [日本語](README-ja.md) ∙ [简体中文](README-zh-Hans.md) ∙ [繁體中文](README-zh-TW.md) ∙ [العَرَبِيَّة‎](README-ar.md) ∙ [বাংলা](https://github.com/donnemartin/system-design-primer/issues/220) ∙ [Português do Brasil](https://github.com/donnemartin/system-design-primer/issues/40) ∙ [Deutsch](https://github.com/donnemartin/system-design-primer/issues/186) ∙ [ελληνικά](https://github.com/donnemartin/system-design-primer/issues/130) ∙ [עברית](https://github.com/donnemartin/system-design-primer/issues/272) ∙ [Italiano](https://github.com/donnemartin/system-design-primer/issues/104) ∙ [한국어](https://github.com/donnemartin/system-design-primer/issues/102) ∙ [فارسی](https://github.com/donnemartin/system-design-primer/issues/110) ∙ [Polski](https://github.com/donnemartin/system-design-primer/issues/68) ∙ [русский язык](https://github.com/donnemartin/system-design-primer/issues/87) ∙ [Español](https://github.com/donnemartin/system-design-primer/issues/136) ∙ [ภาษาไทย](https://github.com/donnemartin/system-design-primer/issues/187) ∙ [Türkçe](https://github.com/donnemartin/system-design-primer/issues/39) ∙ [tiếng Việt](https://github.com/donnemartin/system-design-primer/issues/127) ∙ [Français](https://github.com/donnemartin/system-design-primer/issues/250) | [Add Translation](https://github.com/donnemartin/system-design-primer/issues/28)*
 
 # 系統設計入門
 
@@ -384,13 +384,13 @@
 
 ### 第二步：複習關於可擴展性的文章
 
-[可擴展性](http://www.lecloud.net/tagged/scalability/chrono)
+[可擴展性](https://lecloud.tumblr.com/tagged/scalability)
 
 * 包含以下主題：
-    * [複製](http://www.lecloud.net/post/7295452622/scalability-for-dummies-part-1-clones)
-    * [資料庫](http://www.lecloud.net/post/7994751381/scalability-for-dummies-part-2-database)
-    * [快取](http://www.lecloud.net/post/9246290032/scalability-for-dummies-part-3-cache)
-    * [非同步](http://www.lecloud.net/post/9699762917/scalability-for-dummies-part-4-asynchronism)
+    * [複製](https://lecloud.tumblr.com/post/7295452622/scalability-for-dummies-part-1-clones)
+    * [資料庫](https://lecloud.tumblr.com/post/7994751381/scalability-for-dummies-part-2-database)
+    * [快取](https://lecloud.tumblr.com/post/9246290032/scalability-for-dummies-part-3-cache)
+    * [非同步](https://lecloud.tumblr.com/post/9699762917/scalability-for-dummies-part-4-asynchronism)
 
 ### 下一步
 
@@ -545,7 +545,7 @@ DNS 是階層式的架構，一部分的 DNS 伺服器位於頂層，當查詢�
 
 [CloudFlare](https://www.cloudflare.com/dns/) 和 [Route 53](https://aws.amazon.com/route53/) 提供了 DNS 的服務。而這些 DNS 服務商透過以下幾種方式來決定流量如何被分派：
 
-* [加權輪詢](http://g33kinfo.com/info/archives/2657)
+* [加權輪詢](https://www.jscape.com/blog/load-balancing-algorithms)
     * 防止流量進入正在維修中的伺服器
     * 在不同大小的集群中進行負載平衡
     * A/B 測試
@@ -572,7 +572,7 @@ DNS 是階層式的架構，一部分的 DNS 伺服器位於頂層，當查詢�
   <i><a href=https://www.creative-artworks.eu/why-use-a-content-delivery-network-cdn/>來源：為什麼要使用 CDN</a></i>
 </p>
 
-內容傳遞網路(CDN)是一種全球性的分散式代理伺服器，它透過靠近使用者的伺服器來提供檔案。通常 HTML/CSS/JS、圖片或影片等檔案會靜態檔案會透過 CDN 來提供，儘管 Amazon 的 CloudFront 也支援了動態內容的 CDN 服務。而 CDN 的 DNS 服務會告知使用者要連接哪一台伺服器。
+內容傳遞網路(CDN)是一種全球性的分散式代理伺服器，它透過靠近使用者的伺服器來提供檔案。通常 HTML/CSS/JS、圖片、影片或靜態檔案等......會透過 CDN 來提供，儘管 Amazon 的 CloudFront 也支援了動態內容的 CDN 服務。而 CDN 的 DNS 服務會告知使用者要連接哪一台伺服器。
 
 透過 CDN 來取得檔案可以大幅度地增加請求的效率，因為：
 
@@ -669,7 +669,7 @@ DNS 是階層式的架構，一部分的 DNS 伺服器位於頂層，當查詢�
 
 * [NGINX 架構](https://www.nginx.com/blog/inside-nginx-how-we-designed-for-performance-scale/)
 * [HAProxy 架構指南](http://www.haproxy.org/download/1.2/doc/architecture.txt)
-* [可擴展性](http://www.lecloud.net/post/7295452622/scalability-for-dummies-part-1-clones)
+* [可擴展性](https://lecloud.tumblr.com/post/7295452622/scalability-for-dummies-part-1-clones)
 * [維基百科](https://en.wikipedia.org/wiki/Load_balancing_(computing))
 * [第四層負載平衡](https://www.nginx.com/resources/glossary/layer-4-load-balancing/)
 * [第七層負載平衡](https://www.nginx.com/resources/glossary/layer-7-load-balancing/)
@@ -1035,7 +1035,7 @@ Google 發表了第一個列儲存型資料庫 [Bigtable](http://www.read.seas.h
 
 * [資料庫術語解釋](http://stackoverflow.com/questions/3342497/explanation-of-base-terminology)
 * [NoSQL 資料庫：調查與決策指南](https://medium.com/baqend-blog/nosql-databases-a-survey-and-decision-guidance-ea7823a822d#.wskogqenq)
-* [可擴展性](http://www.lecloud.net/post/7994751381/scalability-for-dummies-part-2-database)
+* [可擴展性](https://lecloud.tumblr.com/post/7994751381/scalability-for-dummies-part-2-database)
 * [NoSQL 介紹](https://www.youtube.com/watch?v=qI_g07C_Q5I)
 * [NoSQL 模式](http://horicky.blogspot.com/2009/11/nosql-patterns.html)
 
@@ -1269,7 +1269,7 @@ def set_user(user_id, values):
 * [可擴展的系統設計模式](http://horicky.blogspot.com/2010/10/scalable-system-design-patterns.html)
 * [可擴展的系統架構介紹](http://lethain.com/introduction-to-architecting-systems-for-scale/)
 * [可擴展性、可用性、穩定性與模式](http://www.slideshare.net/jboner/scalability-availability-stability-patterns/)
-* [可擴展性](http://www.lecloud.net/post/9246290032/scalability-for-dummies-part-3-cache)
+* [可擴展性](https://lecloud.tumblr.com/post/9246290032/scalability-for-dummies-part-3-cache)
 * [AWS ElastiCache 策略](http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/Strategies.html)
 * [維基百科](https://en.wikipedia.org/wiki/Cache_(computing))
 
@@ -1451,7 +1451,7 @@ RPC 專注於揭露行為，它通常用來處理內部通訊的效能問題，�
 * RPC 的客戶端會變得和伺服器的實作綁得更死
 * 一個新的 API 必須在每個操作或使用案例中進行定義
 * RPC 很難抓錯誤
-* 你很難方便的修改現有的技術，舉例來說，如果你希望在 [Squid](http://www.squid-cache.org/) 這樣的快取伺服器上確保 [RPC 呼叫被正確的快取](http://etherealbits.com/2012/12/debunking-the-myths-of-rpc-rest/)，你可以需要多費額外的努力了。
+* 你很難方便的修改現有的技術，舉例來說，如果你希望在 [Squid](http://www.squid-cache.org/) 這樣的快取伺服器上確保 [RPC 呼叫被正確的快取](https://web.archive.org/web/20170608193645/http://etherealbits.com/2012/12/debunking-the-myths-of-rpc-rest/)，你可以需要多費額外的努力了。
 
 ### 具象狀態轉移 (REST)
 
@@ -1503,7 +1503,7 @@ REST 關注於揭露資料，減少客戶端/伺服器之間耦合的程度，�
 * [你真的知道為什麼你更喜歡 REST 而不是 RPC 嗎？](https://apihandyman.io/do-you-really-know-why-you-prefer-rest-over-rpc/)
 * [什麼時候 RPC 比 REST 更適合](http://programmers.stackexchange.com/a/181186)
 * [REST 和 JSON-RPC](http://stackoverflow.com/questions/15056878/rest-vs-json-rpc)
-* [揭開 RPC 和 REST 的神秘面紗](http://etherealbits.com/2012/12/debunking-the-myths-of-rpc-rest/)
+* [揭開 RPC 和 REST 的神秘面紗](https://web.archive.org/web/20170608193645/http://etherealbits.com/2012/12/debunking-the-myths-of-rpc-rest/)
 * [使用 REST 的缺點](https://www.quora.com/What-are-the-drawbacks-of-using-RESTful-APIs)
 * [破解系統設計面試](http://www.puncsky.com/blog/2016-02-13-crack-the-system-design-interview)
 * [Thrift](https://code.facebook.com/posts/1468950976659943/)
@@ -1587,7 +1587,7 @@ Notes
 
 #### 視覺化延遲數
 
-![](https://camo.githubusercontent.com/77f72259e1eb58596b564d1ad823af1853bc60a3/687474703a2f2f692e696d6775722e636f6d2f6b307431652e706e67)
+![](https://web.archive.org/web/20200702021143im_/https://camo.githubusercontent.com/77f72259e1eb58596b564d1ad823af1853bc60a3/687474703a2f2f692e696d6775722e636f6d2f6b307431652e706e67)
 
 #### 來源及延伸閱讀
 
@@ -1733,6 +1733,7 @@ Notes
 * [Salesforce Engineering Blog](https://developer.salesforce.com/blogs/engineering/)
 * [Slack Engineering Blog](https://slack.engineering/)
 * [Spotify Labs](https://labs.spotify.com/)
+* [Stripe Engineering Blog](https://stripe.com/blog/engineering)
 * [Twilio Engineering Blog](http://www.twilio.com/engineering)
 * [Twitter Engineering](https://engineering.twitter.com/)
 * [Uber Engineering Blog](http://eng.uber.com/)
