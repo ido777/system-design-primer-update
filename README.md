@@ -1570,7 +1570,7 @@ Security is a broad topic.  Unless you have considerable experience, a security 
 * Threat Model with [STRIDE from Microsoft](https://learn.microsoft.com/en-us/azure/security/develop/threat-modeling-tool-threats)
 * Rate Limit Requests to mitigate service disruption and [DDOS](https://catalog.us-east-1.prod.workshops.aws/workshops/4d0b27bc-9f48-4356-8242-d13ca057fff2/en-US/application-layer-defense/rate-based-rules#:~:text=You%20are%20able%20to%20set,the%20protection%20from%20HTTP%20floods).
 * Implement a [Web Application Firewall to protect web applications from Exploits](https://aws.amazon.com/waf/)
-* If Service A trusts Service B and B Trusts Service C: Service A should not explicitly trust Service A
+* If Service A trusts Service B and B Trusts Service C: Service A should not explicitly trust Service C
 * Implement a Silo, Pool or Bridge model for [Multi-Tenancy SaaS Applications](https://docs.aws.amazon.com/whitepapers/latest/saas-architecture-fundamentals/tenant-isolation.html)
 * Security by Obscurity is Okay and Good but it should not be counted on ex: [Port Knocking](https://en.wikipedia.org/wiki/Port_knocking)
 * [Security Architecture Design Principles](https://www.youtube.com/watch?v=443KZj-qjI8&t=756s)
