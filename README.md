@@ -466,6 +466,7 @@ Generally, you should aim for **maximal throughput** with **acceptable latency**
 
 ## Availability vs consistency
 
+
 ### CAP theorem
 
 <p align="center">
