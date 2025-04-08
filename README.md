@@ -352,7 +352,7 @@ You can practice a few sample questions and discuss solutions with the community
 
 ### Design the data structures for a social network
 
-[View exercise and solution](solutions/system_design/social_graph/README.md)
+[View exercise and solution](  ocial_graph/README.md)
 
 ![Imgur](images/cdCv5g7.png)
 
@@ -449,7 +449,7 @@ Another way to look at performance vs scalability:
 
 * [A short masterclass on Scalability](https://open.substack.com/pub/devdesigndigest/p/scalability)
 * [A word on scalability](http://www.allthingsdistributed.com/2006/03/a_word_on_scalability.html)
-* [Scalability, availability, stability, patterns](http://www.slideshare.net/jboner/scalability-availability-stability-patterns/)
+* [Scalability, availability, stability, patterns](http://www.slideshare.net/jboner/scalability-availability-stability-patterns/) [presentation here] (system-design-primer/resources/documents/)[and video here](https://www.youtube.com/watch?v=DihXpZ9xR8E)  
 
 ## Latency vs throughput
 
