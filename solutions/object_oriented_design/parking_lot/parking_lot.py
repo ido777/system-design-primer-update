@@ -1,4 +1,5 @@
 from abc import ABCMeta, abstractmethod
+from enum import Enum
 
 
 class VehicleSize(Enum):
@@ -13,7 +14,7 @@ class Vehicle(metaclass=ABCMeta):
     def __init__(self, vehicle_size, license_plate, spot_size):
         self.vehicle_size = vehicle_size
         self.license_plate = license_plate
-        self.spot_size
+        self.spot_size = spot_size
         self.spots_taken = []
 
     def clear_spots(self):
@@ -32,7 +33,7 @@ class Vehicle(metaclass=ABCMeta):
 class Motorcycle(Vehicle):
 
     def __init__(self, license_plate):
-        super(Motorcycle, self).__init__(VehicleSize.MOTORCYCLE, license_plate, spot_size=1)
+        super().__init__(VehicleSize.MOTORCYCLE, license_plate, spot_size=1)
 
     def can_fit_in_spot(self, spot):
         return True
@@ -41,19 +42,19 @@ class Motorcycle(Vehicle):
 class Car(Vehicle):
 
     def __init__(self, license_plate):
-        super(Car, self).__init__(VehicleSize.COMPACT, license_plate, spot_size=1)
+        super().__init__(VehicleSize.COMPACT, license_plate, spot_size=1)
 
     def can_fit_in_spot(self, spot):
-        return True if (spot.size == LARGE or spot.size == COMPACT) else False
+        return spot.size in (VehicleSize.LARGE, VehicleSize.COMPACT)
 
 
 class Bus(Vehicle):
 
     def __init__(self, license_plate):
-        super(Bus, self).__init__(VehicleSize.LARGE, license_plate, spot_size=5)
+        super().__init__(VehicleSize.LARGE, license_plate, spot_size=5)
 
     def can_fit_in_spot(self, spot):
-        return True if spot.size == LARGE else False
+        return spot.size == VehicleSize.LARGE
 
 
 class ParkingLot(object):
@@ -63,7 +64,7 @@ class ParkingLot(object):
         self.levels = []  # List of Levels
 
     def park_vehicle(self, vehicle):
-        for level in levels:
+        for level in self.levels:
             if level.park_vehicle(vehicle):
                 return True
         return False
@@ -92,11 +93,11 @@ class Level(object):
 
     def _find_available_spot(self, vehicle):
         """Find an available spot where vehicle can fit, or return None"""
-        # ...
+        pass
 
     def _park_starting_at_spot(self, spot, vehicle):
         """Occupy starting at spot.spot_number to vehicle.spot_size."""
-        # ...
+        pass
 
 
 class ParkingSpot(object):
@@ -110,12 +111,15 @@ class ParkingSpot(object):
         self.vehicle = None
 
     def is_available(self):
-        return True if self.vehicle is None else False
+        return self.vehicle == None 
 
     def can_fit_vehicle(self, vehicle):
         if self.vehicle is not None:
             return False
         return vehicle.can_fit_in_spot(self)
 
-    def park_vehicle(self, vehicle):  # ...
-    def remove_vehicle(self):  # ...
+    def park_vehicle(self, vehicle):
+        pass
+
+    def remove_vehicle(self):
+        pass
