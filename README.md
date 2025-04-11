@@ -1407,8 +1407,9 @@ The user is not blocked and the job is processed in the background.  During this
 
 ### Task queues
 
-Tasks queues receive tasks and their related data, run them, then deliver their results. They can support scheduling, and can be used to run computationally-intensive jobs in the background.
-**[Celery](https://docs.celeryproject.org/en/stable/)** has support for scheduling and primarily has python support.
+Tasks queues receive tasks and their related data, runs them in background, then delivers their results.  They can support scheduling and can be used to run computationally-intensive jobs in the background.
+
+**[Celery](http://www.celeryproject.org/)** has support for scheduling and primarily has python support.
 
 ### Back pressure
 
