@@ -77,7 +77,7 @@ Handy conversion guide:
 
 ### Use case: Service crawls a list of urls
 
-We'll assume we have an initial list of `links_to_crawl` ranked initially based on overall site popularity.  If this is not a reasonable assumption, we can seed the crawler with popular sites that link to outside content such as [Yahoo](https://www.yahoo.com/), [DMOZ](http://www.dmoz.org/), etc
+We'll assume we have an initial list of `links_to_crawl` ranked initially based on overall site popularity.  If this is not a reasonable assumption, we can seed the crawler with popular sites that link to outside content such as [Yahoo](https://www.yahoo.com/), [DMOZ](http://www.dmoz.org/), etc.
 
 We'll use a table `crawled_links` to store processed links and their page signatures.
 
@@ -103,7 +103,7 @@ We could store `links_to_crawl` and `crawled_links` in a key-value **NoSQL Datab
 ```python
 class PagesDataStore(object):
 
-    def __init__(self, db);
+    def __init__(self, db):
         self.db = db
         ...
 
@@ -115,7 +115,7 @@ class PagesDataStore(object):
         """Remove the given link from `links_to_crawl`."""
         ...
 
-    def reduce_priority_link_to_crawl(self, url)
+    def reduce_priority_link_to_crawl(self, url):
         """Reduce the priority of a link in `links_to_crawl` to avoid cycles."""
         ...
 
@@ -282,7 +282,7 @@ Some searches are very popular, while others are only executed once.  Popular qu
 
 Below are a few other optimizations to the **Crawling Service**:
 
-* To handle the data size and request load, the **Reverse Index Service** and **Document Service** will likely need to make heavy use sharding and replication.
+* To handle the data size and request load, the **Reverse Index Service** and **Document Service** will likely need to make heavy use sharding and federation.
 * DNS lookup can be a bottleneck, the **Crawler Service** can keep its own DNS lookup that is refreshed periodically
 * The **Crawler Service** can improve performance and reduce memory usage by keeping many open connections at a time, referred to as [connection pooling](https://en.wikipedia.org/wiki/Connection_pool)
     * Switching to [UDP](https://github.com/donnemartin/system-design-primer#user-datagram-protocol-udp) could also boost performance
