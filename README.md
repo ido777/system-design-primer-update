@@ -1345,7 +1345,7 @@ Write-through is a slow overall operation due to the write operation, but subseq
 In write-behind, the application does the following:
 
 * Add/update entry in cache
-* Asynchronously write entry to the data store, improving write performance
+* Cache asynchronously writes entry to the data store, improving write performance
 
 ##### Disadvantage(s): write-behind
 
