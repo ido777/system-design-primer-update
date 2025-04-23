@@ -1839,7 +1839,7 @@ Start with an overview of the architectures of well-known big tech companies: [S
 > Questions you encounter might be from the same domain.
 
 * [Airbnb Engineering](http://nerds.airbnb.com/)
-* [Atlassian Developers](https://developer.atlassian.com/blog/)
+* [Atlassian Developers](https://www.atlassian.com/blog/atlassian-engineering)
 * [AWS Blog](https://aws.amazon.com/blogs/aws/)
 * [Bitly Engineering Blog](http://word.bitly.com/)
 * [Box Blogs](https://blog.box.com/blog/category/engineering)
