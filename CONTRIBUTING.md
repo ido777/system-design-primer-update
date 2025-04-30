@@ -49,4 +49,3 @@ In addition the english version is now going through a major upgrade so for now 
 
 1) We want to build a better process for translations, with the help of genAI tools and a community process that is easy to maintain.
 2) It is not clear if the translations are used by many people or really needed.
-

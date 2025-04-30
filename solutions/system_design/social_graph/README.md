@@ -1,6 +1,6 @@
 # Design the data structures for a social network
 
-*Note: This document links directly to relevant areas found in the [system design topics](https://github.com/ido777/system-design-primer-update.git#index-of-system-design-topics) to avoid duplication.  Refer to the linked content for general talking points, tradeoffs, and alternatives.*
+*Note: This document links directly to relevant areas found in the [system design topics](https://github.com/ido777/system-design-primer-update#index-of-system-design-topics) to avoid duplication.  Refer to the linked content for general talking points, tradeoffs, and alternatives.*
 
 ## Step 1: Outline use cases and constraints
 
@@ -99,9 +99,9 @@ class Graph(Graph):
         return None
 ```
 
-We won't be able to fit all users on the same machine, we'll need to [shard](https://github.com/ido777/system-design-primer-update.git#sharding) users across **Person Servers** and access them with a **Lookup Service**.
+We won't be able to fit all users on the same machine, we'll need to [shard](https://github.com/ido777/system-design-primer-update#sharding) users across **Person Servers** and access them with a **Lookup Service**.
 
-* The **Client** sends a request to the **Web Server**, running as a [reverse proxy](https://github.com/ido777/system-design-primer-update.git#reverse-proxy-web-server)
+* The **Client** sends a request to the **Web Server**, running as a [reverse proxy](https://github.com/ido777/system-design-primer-update#reverse-proxy-web-server)
 * The **Web Server** forwards the request to the **Search API** server
 * The **Search API** server forwards the request to the **User Graph Service**
 * The **User Graph Service** does the following:
@@ -218,7 +218,7 @@ class UserGraphService(object):
         return None
 ```
 
-We'll use a public [**REST API**](https://github.com/ido777/system-design-primer-update.git#representational-state-transfer-rest):
+We'll use a public [**REST API**](https://github.com/ido777/system-design-primer-update#representational-state-transfer-rest):
 
 ```
 $ curl https://social.com/api/v1/friend_search?person_id=1234
@@ -244,7 +244,7 @@ Response:
 },
 ```
 
-For internal communications, we could use [Remote Procedure Calls](https://github.com/ido777/system-design-primer-update.git#remote-procedure-call-rpc).
+For internal communications, we could use [Remote Procedure Calls](https://github.com/ido777/system-design-primer-update#remote-procedure-call-rpc).
 
 ## Step 4: Scale the design
 
@@ -260,25 +260,25 @@ It's important to discuss what bottlenecks you might encounter with the initial 
 
 We'll introduce some components to complete the design and to address scalability issues.  Internal load balancers are not shown to reduce clutter.
 
-*To avoid repeating discussions*, refer to the following [system design topics](https://github.com/ido777/system-design-primer-update.git#index-of-system-design-topics) for main talking points, tradeoffs, and alternatives:
+*To avoid repeating discussions*, refer to the following [system design topics](https://github.com/ido777/system-design-primer-update#index-of-system-design-topics) for main talking points, tradeoffs, and alternatives:
 
-* [DNS](https://github.com/ido777/system-design-primer-update.git#domain-name-system)
-* [Load balancer](https://github.com/ido777/system-design-primer-update.git#load-balancer)
-* [Horizontal scaling](https://github.com/ido777/system-design-primer-update.git#horizontal-scaling)
-* [Web server (reverse proxy)](https://github.com/ido777/system-design-primer-update.git#reverse-proxy-web-server)
-* [API server (application layer)](https://github.com/ido777/system-design-primer-update.git#application-layer)
-* [Cache](https://github.com/ido777/system-design-primer-update.git#cache)
-* [Consistency patterns](https://github.com/ido777/system-design-primer-update.git#consistency-patterns)
-* [Availability patterns](https://github.com/ido777/system-design-primer-update.git#availability-patterns)
+* [DNS](https://github.com/ido777/system-design-primer-update#domain-name-system)
+* [Load balancer](https://github.com/ido777/system-design-primer-update#load-balancer)
+* [Horizontal scaling](https://github.com/ido777/system-design-primer-update#horizontal-scaling)
+* [Web server (reverse proxy)](https://github.com/ido777/system-design-primer-update#reverse-proxy-web-server)
+* [API server (application layer)](https://github.com/ido777/system-design-primer-update#application-layer)
+* [Cache](https://github.com/ido777/system-design-primer-update#cache)
+* [Consistency patterns](https://github.com/ido777/system-design-primer-update#consistency-patterns)
+* [Availability patterns](https://github.com/ido777/system-design-primer-update#availability-patterns)
 
-To address the constraint of 400 *average* read requests per second (higher at peak), person data can be served from a **Memory Cache** such as Redis or Memcached to reduce response times and to reduce traffic to downstream services.  This could be especially useful for people who do multiple searches in succession and for people who are well-connected.  Reading 1 MB sequentially from memory takes about 250 microseconds, while reading from SSD takes 4x and from disk takes 80x longer.<sup><a href=https://github.com/ido777/system-design-primer-update.git#latency-numbers-every-programmer-should-know>1</a></sup>
+To address the constraint of 400 *average* read requests per second (higher at peak), person data can be served from a **Memory Cache** such as Redis or Memcached to reduce response times and to reduce traffic to downstream services.  This could be especially useful for people who do multiple searches in succession and for people who are well-connected.  Reading 1 MB sequentially from memory takes about 250 microseconds, while reading from SSD takes 4x and from disk takes 80x longer.<sup><a href=https://github.com/ido777/system-design-primer-update#latency-numbers-every-programmer-should-know>1</a></sup>
 
 Below are further optimizations:
 
 * Store complete or partial BFS traversals to speed up subsequent lookups in the **Memory Cache**
 * Batch compute offline then store complete or partial BFS traversals to speed up subsequent lookups in a **NoSQL Database**
 * Reduce machine jumps by batching together friend lookups hosted on the same **Person Server**
-    * [Shard](https://github.com/ido777/system-design-primer-update.git#sharding) **Person Servers** by location to further improve this, as friends generally live closer to each other
+    * [Shard](https://github.com/ido777/system-design-primer-update#sharding) **Person Servers** by location to further improve this, as friends generally live closer to each other
 * Do two BFS searches at the same time, one starting from the source, and one from the destination, then merge the two paths
 * Start the BFS search from people with large numbers of friends, as they are more likely to reduce the number of [degrees of separation](https://en.wikipedia.org/wiki/Six_degrees_of_separation) between the current user and the search target
 * Set a limit based on time or number of hops before asking the user if they want to continue searching, as searching could take a considerable amount of time in some cases
@@ -290,58 +290,58 @@ Below are further optimizations:
 
 ### SQL scaling patterns
 
-* [Read replicas](https://github.com/ido777/system-design-primer-update.git#master-slave-replication)
-* [Federation](https://github.com/ido777/system-design-primer-update.git#federation)
-* [Sharding](https://github.com/ido777/system-design-primer-update.git#sharding)
-* [Denormalization](https://github.com/ido777/system-design-primer-update.git#denormalization)
-* [SQL Tuning](https://github.com/ido777/system-design-primer-update.git#sql-tuning)
+* [Read replicas](https://github.com/ido777/system-design-primer-update#master-slave-replication)
+* [Federation](https://github.com/ido777/system-design-primer-update#federation)
+* [Sharding](https://github.com/ido777/system-design-primer-update#sharding)
+* [Denormalization](https://github.com/ido777/system-design-primer-update#denormalization)
+* [SQL Tuning](https://github.com/ido777/system-design-primer-update#sql-tuning)
 
 #### NoSQL
 
-* [Key-value store](https://github.com/ido777/system-design-primer-update.git#key-value-store)
-* [Document store](https://github.com/ido777/system-design-primer-update.git#document-store)
-* [Wide column store](https://github.com/ido777/system-design-primer-update.git#wide-column-store)
-* [Graph database](https://github.com/ido777/system-design-primer-update.git#graph-database)
-* [SQL vs NoSQL](https://github.com/ido777/system-design-primer-update.git#sql-or-nosql)
+* [Key-value store](https://github.com/ido777/system-design-primer-update#key-value-store)
+* [Document store](https://github.com/ido777/system-design-primer-update#document-store)
+* [Wide column store](https://github.com/ido777/system-design-primer-update#wide-column-store)
+* [Graph database](https://github.com/ido777/system-design-primer-update#graph-database)
+* [SQL vs NoSQL](https://github.com/ido777/system-design-primer-update#sql-or-nosql)
 
 ### Caching
 
 * Where to cache
-    * [Client caching](https://github.com/ido777/system-design-primer-update.git#client-caching)
-    * [CDN caching](https://github.com/ido777/system-design-primer-update.git#cdn-caching)
-    * [Web server caching](https://github.com/ido777/system-design-primer-update.git#web-server-caching)
-    * [Database caching](https://github.com/ido777/system-design-primer-update.git#database-caching)
-    * [Application caching](https://github.com/ido777/system-design-primer-update.git#application-caching)
+    * [Client caching](https://github.com/ido777/system-design-primer-update#client-caching)
+    * [CDN caching](https://github.com/ido777/system-design-primer-update#cdn-caching)
+    * [Web server caching](https://github.com/ido777/system-design-primer-update#web-server-caching)
+    * [Database caching](https://github.com/ido777/system-design-primer-update#database-caching)
+    * [Application caching](https://github.com/ido777/system-design-primer-update#application-caching)
 * What to cache
-    * [Caching at the database query level](https://github.com/ido777/system-design-primer-update.git#caching-at-the-database-query-level)
-    * [Caching at the object level](https://github.com/ido777/system-design-primer-update.git#caching-at-the-object-level)
+    * [Caching at the database query level](https://github.com/ido777/system-design-primer-update#caching-at-the-database-query-level)
+    * [Caching at the object level](https://github.com/ido777/system-design-primer-update#caching-at-the-object-level)
 * When to update the cache
-    * [Cache-aside](https://github.com/ido777/system-design-primer-update.git#cache-aside)
-    * [Write-through](https://github.com/ido777/system-design-primer-update.git#write-through)
-    * [Write-behind (write-back)](https://github.com/ido777/system-design-primer-update.git#write-behind-write-back)
-    * [Refresh ahead](https://github.com/ido777/system-design-primer-update.git#refresh-ahead)
+    * [Cache-aside](https://github.com/ido777/system-design-primer-update#cache-aside)
+    * [Write-through](https://github.com/ido777/system-design-primer-update#write-through)
+    * [Write-behind (write-back)](https://github.com/ido777/system-design-primer-update#write-behind-write-back)
+    * [Refresh ahead](https://github.com/ido777/system-design-primer-update#refresh-ahead)
 
 ### Asynchronism and microservices
 
-* [Message queues](https://github.com/ido777/system-design-primer-update.git#message-queues)
-* [Task queues](https://github.com/ido777/system-design-primer-update.git#task-queues)
-* [Back pressure](https://github.com/ido777/system-design-primer-update.git#back-pressure)
-* [Microservices](https://github.com/ido777/system-design-primer-update.git#microservices)
+* [Message queues](https://github.com/ido777/system-design-primer-update#message-queues)
+* [Task queues](https://github.com/ido777/system-design-primer-update#task-queues)
+* [Back pressure](https://github.com/ido777/system-design-primer-update#back-pressure)
+* [Microservices](https://github.com/ido777/system-design-primer-update#microservices)
 
 ### Communications
 
 * Discuss tradeoffs:
-    * External communication with clients - [HTTP APIs following REST](https://github.com/ido777/system-design-primer-update.git#representational-state-transfer-rest)
-    * Internal communications - [RPC](https://github.com/ido777/system-design-primer-update.git#remote-procedure-call-rpc)
-* [Service discovery](https://github.com/ido777/system-design-primer-update.git#service-discovery)
+    * External communication with clients - [HTTP APIs following REST](https://github.com/ido777/system-design-primer-update#representational-state-transfer-rest)
+    * Internal communications - [RPC](https://github.com/ido777/system-design-primer-update#remote-procedure-call-rpc)
+* [Service discovery](https://github.com/ido777/system-design-primer-update#service-discovery)
 
 ### Security
 
-Refer to the [security section](https://github.com/ido777/system-design-primer-update.git#security).
+Refer to the [security section](https://github.com/ido777/system-design-primer-update#security).
 
 ### Latency numbers
 
-See [Latency numbers every programmer should know](https://github.com/ido777/system-design-primer-update.git#latency-numbers-every-programmer-should-know).
+See [Latency numbers every programmer should know](https://github.com/ido777/system-design-primer-update#latency-numbers-every-programmer-should-know).
 
 ### Ongoing
 
