@@ -1,0 +1,119 @@
+# The System Design Primer Update index
+
+
+* [The System Design Primer Update repo README](../../README.md)
+* [System design interview Introduction](./01_Introduction.md#01_Introduction.md)
+
+## Start here
+* [Study Guide](#study_guide.md)
+
+## System design
+* [System design introduction](#system-design-introduction)
+* [Foundations of system design](02_foundations_of_system_design.md)
+    * [Scalability and Security](02_foundations_of_system_design.md#deployment-and-scaling)
+
+* [Tradeoffs](03_tradeoffs.md)
+    * [Everything is a trade-off](03_tradeoffs.md#tradeoffs-introduction)
+    * [Performance vs scalability](03_tradeoffs.md#performance-vs-scalability)
+    * [Latency vs throughput](03_tradeoffs.md#latency-vs-throughput)
+    * [Availability vs consistency](03_tradeoffs.md#availability-vs-consistency)
+    * [CAP theorem](03_tradeoffs.md#cap-theorem)
+        * [CP - consistency and partition tolerance](03_tradeoffs.md#cp---consistency-and-partition-tolerance)
+        * [AP - availability and partition tolerance](03_tradeoffs.md#ap---availability-and-partition-tolerance)
+    * [Consistency patterns](03_tradeoffs.md#consistency-patterns)
+        * [Weak consistency](03_tradeoffs.md#weak-consistency)
+        * [Eventual consistency](03_tradeoffs.md#eventual-consistency)
+        * [Strong consistency](03_tradeoffs.md#strong-consistency)
+    * [Availability patterns](03_tradeoffs.md#availability-patterns)
+        * [Fail-over](03_tradeoffs.md#fail-over)
+        * [Replication](03_tradeoffs.md#replication)
+        * [Availability in numbers](03_tradeoffs.md#availability-in-numbers)
+
+## Network
+* [Communication](12_rest.md#introduction-osi-7-layer-model)
+    * [Transmission control protocol (TCP)](12_rest.md#transmission-control-protocol-tcp)
+    * [User datagram protocol (UDP)](12_rest.md#user-datagram-protocol-udp)
+    * [Remote procedure call (RPC)](12_rest.md#remote-procedure-call-rpc)
+    * [Representational state transfer (REST)](12_rest.md#representational-state-transfer-rest)
+* [Domain name system](04_dns.md#domain-name-system)
+* [Content delivery network](05_cdn.md#content-delivery-network)
+    * [Push CDNs](05_cdn.md#push-cdns)
+    * [Pull CDNs](05_cdn.md#pull-cdns)
+* [Load balancer](06_load_balancer.md#load-balancer)
+    * [Active-passive](03_tradeoffs.md#active-passive)
+    * [Active-active](03_tradeoffs.md#active-active)
+    * [Layer 4 load balancing](06_load_balancer.md#layer-4-load-balancing)
+    * [Layer 7 load balancing](06_load_balancer.md#layer-7-load-balancing)
+    * [Horizontal scaling](06_load_balancer.md#horizontal-scaling)
+* [Reverse proxy (web server)](07_reverse_proxy.md#reverse-proxy-web-server)
+    * [Load balancer vs reverse proxy](07_reverse_proxy.md#load-balancer-vs-reverse-proxy)
+
+#### Asynchronism
+* [Asynchronism](11_asynchronous.md#asynchronism)
+    * [Message queues](11_asynchronous.md#message-queues)
+    * [Task queues](11_asynchronous.md#task-queues)
+    * [Back pressure](11_asynchronous.md#back-pressure)
+
+## Distributed systems
+* [Distributed systems](08_distributed_systems.md#application-layer)
+    * [Microservices](08_distributed_systems.md#microservices)
+    * [Service discovery](08_distributed_systems.md#service-discovery)
+
+## Database
+* [Database](09_database.md#database)
+    * [Relational database management system (RDBMS)](09_database.md#relational-database-management-system-rdbms)
+        * [Master-slave replication](09_database.md#master-slave-replication)
+        * [Master-master replication](09_database.md#master-master-replication)
+        * [Federation](09_database.md#federation)
+        * [Sharding](09_database.md#sharding)
+        * [Denormalization](09_database.md#denormalization)
+        * [SQL tuning](09_database.md#sql-tuning)
+    * [NoSQL](09_database.md#nosql)
+        * [Key-value store](09_database.md#key-value-store)
+        * [Document store](09_database.md#document-store)
+        * [Wide column store](09_database.md#wide-column-store)
+        * [Graph Database](09_database.md#graph-database)
+    * [SQL or NoSQL](09_database.md#sql-or-nosql)
+* [Cache](10_cache.md#cache)
+    * [Client caching](10_cache.md#client-caching)
+    * [CDN caching](10_cache.md#cdn-caching)
+    * [Web server caching](10_cache.md#web-server-caching)
+    * [Database caching](10_cache.md#database-caching)
+    * [Application caching](10_cache.md#application-caching)
+    * [Caching at the database query level](10_cache.md#caching-at-the-database-query-level)
+    * [Caching at the object level](10_cache.md#caching-at-the-object-level)
+    * [When to update the cache](10_cache.md#when-to-update-the-cache)
+        * [Cache-aside](10_cache.md#cache-aside)
+        * [Write-through](10_cache.md#write-through)
+        * [Write-behind (write-back)](10_cache.md#write-behind-write-back)
+        * [Refresh-ahead](10_cache.md#refresh-ahead)
+
+## Security
+* [Security](13_security.md#security)
+    * [Authentication](13_security.md#authentication)
+    * [Authorization](13_security.md#authorization)
+    * [Data protection](13_security.md#data-protection)
+    * [Data integrity](13_security.md#data-integrity)
+    * [Data privacy](13_security.md#data-privacy)
+    * [Data encryption](13_security.md#data-encryption)
+
+## Appendix
+* [Appendix](14_back-of-the-envelope.md#appendix)
+    * [Powers of two table](14_back-of-the-envelope.md#powers-of-two-table)
+    * [Latency numbers every programmer should know](14_back-of-the-envelope.md#latency-numbers-every-programmer-should-know)
+* [Additional system design interview questions](15_interview_questions.md#system_design_interview_questions)
+* [Real world architectures](16_real_world_architectures.md#real-world-architectures)
+    * [Company architectures](16_real_world_architectures.md#company-architectures)
+    * [Company engineering blogs](16_real_world_architectures.md#company-engineering-blogs)
+* [Roadmap](17_under_development.md#under-development)
+* [Under development](17_under_development.md#under-development)
+
+* [Credits](18_credits.md#credits)
+* [Contact info](../README.md#contact-info)
+* [License](/LICENSE.md)
+
+
+Old content that calls for updates:
+
+* [Scalability for Dummies (2011 site)](02_foundations_of_system_design.md#scalability-for-dummies-article)
+* [How to use Anki flashcards](anki_guide.md)

@@ -1,4 +1,4 @@
-# Design a system that scales to millions of users on AWS
+# Design a system that scales to millions of users (on AWS)
 
 *Note: This document links directly to relevant areas found in the [system design topics](https://github.com/ido777/system-design-primer-update.git#index-of-system-design-topics) to avoid duplication.  Refer to the linked content for general talking points, tradeoffs, and alternatives.*
 
@@ -8,13 +8,23 @@
 > Ask questions to clarify use cases and constraints.
 > Discuss assumptions.
 
-Without an interviewer to address clarifying questions, we'll define some use cases and constraints.
+The scaling problem is a common one, and the solutions follow a pattern.
+This solution knowledge is therefore needed for almost every system design interview.
+Read this solution first to gain experience with scaling problems and their solutions.
+Once you've read this solution, you'll be able to apply the same techniques to other scaling problems.
+
+So let's start with a basic use case and focus on scaling the solution iteratively.
 
 ### Use cases
 
-Solving this problem takes an iterative approach of: 1) **Benchmark/Load Test**, 2) **Profile** for bottlenecks 3) address bottlenecks while evaluating alternatives and trade-offs, and 4) repeat, which is good pattern for evolving basic designs to scalable designs.
+Solving this problem takes an iterative approach of: 
+1) **Benchmark/Load Test**, 
+2) **Profile** for bottlenecks 
+3) address bottlenecks while evaluating alternatives and trade-offs, and 
+4) repeat, which is good pattern for evolving basic designs to scalable designs.
 
-Unless you have a background in AWS or are applying for a position that requires AWS knowledge, AWS-specific details are not a requirement.  However, **much of the principles discussed in this exercise can apply more generally outside of the AWS ecosystem.**
+Unless you have a background in AWS or are applying for a position that requires AWS knowledge, AWS-specific details are not a requirement.
+However, **much of the principles discussed in this exercise can apply more generally outside of the AWS ecosystem.**
 
 #### We'll scope the problem to handle only the following use cases
 
