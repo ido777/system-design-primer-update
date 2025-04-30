@@ -1,16 +1,90 @@
-# Design Pastebin.com (or Bit.ly)
+# Design Text snippet sharer (e.g. GitHub Gist, Pastebin.com)
 
 *Note: This document links directly to relevant areas found in the [system design topics](https://github.com/ido777/system-design-primer-update.git#index-of-system-design-topics) to avoid duplication.  Refer to the linked content for general talking points, tradeoffs, and alternatives.*
 
-**Design Bit.ly** - is a similar question, except pastebin requires storing the paste contents instead of the original unshortened url.
+In this exercise, we'll design a text snippet sharer, e.g. GitHub Gist, Pastebin.com.
+We will focus only on the core functionality.
 
-## Step 1: Outline use cases and constraints
+[Design A URL shortener](../url_shortener/README.md)  - e.g. [TinyURL](https://tinyurl.com/), [bit.ly](https://bit.ly/) is a related question, since pastebin requires storing the paste contents instead of the original unshortened url. However, the URL shortener question is more focused on the shortlink generation and redirection, while the pastebin question is more focused on the storage and retrieval of the paste contents.
 
-> Gather requirements and scope the problem.
+## Step 1: Investigate the problem, use cases and constraints and establish design scope
+
+> Gather main functional requirements and scope the problem.
 > Ask questions to clarify use cases and constraints.
 > Discuss assumptions.
 
-Without an interviewer to address clarifying questions, we'll define some use cases and constraints.
+
+Adding clarifying questions is the first step in the process.
+Remember your goal is to understand the problem and establish the design scope.
+
+### What questions should you ask to clarify the problem?
+
+
+Here is an example of the dialog you could have with the interviewer:
+interviewer: Design Pastebin.com.
+candidate: Could you please remind me what Pastebin.com does at a high level?
+interviewer: Do you happen to know GitHub Gist? It is similar to Pastebin.com.
+
+## 📝 Pastebin.com Overview
+
+**Pastebin** is a straightforward web-based tool designed for quickly sharing plain text or code snippets.
+
+### Key Features:
+
+- **User Access**: Allows anonymous pastes; registration enables management of pastes.
+- **Paste Visibility**: Options include public, unlisted, and private pastes.
+- **Expiration Settings**: Set pastes to expire after a specific time or view count.
+- **Syntax Highlighting**: Supports various programming and markup languages.
+- **PRO Account Benefits**:
+  - Create pastes up to 10 MB (free users limited to 500 KB).
+  - Unlimited private and unlisted pastes.
+  - Increased daily paste limits (250 per 24 hours).
+  - Ad-free browsing and additional alert features.  
+
+### Ideal Use Cases:
+
+- Quickly sharing logs, error messages, or configuration files.
+- Temporary storage of text for collaboration or troubleshooting.
+- Situations where simplicity and speed are paramount. 
+
+candidate: Got it. Since Pastebin can be quite complex, can we focus on just the core features first?  
+interviewer: Sure—what would you target?  
+candidate: The main requirement is that the user pastes text and immediately receives a shareable link. Correct?  
+interviewer: Can you elaborate on the link?  
+candidate: A randomly generated, unique link.  
+interviewer: Does it expire?  
+candidate: No.  
+interviewer: Never?  
+candidate: (_Oops, she doesn’t like that we don’t have expiration._) We can add a timed expiration—user can set the expiration.  
+interviewer: Sounds good.  
+candidate: Cool. Let me summarize.
+
+Conclusion:
+- Use cases
+  • User enters a block of text and gets a randomly generated link
+- Expiration
+  • Default setting does not expire
+  • Can optionally set a timed expiration
+
+candidate: Mobile or desktop client?
+interviewer: Both.
+candidate: Is user authentication or account registration required to view or create pastes?
+interviewer: No registration is needed; it’s anonymous.
+candidate: Great. Do we need to track usage statistics or analytics for these pastes?
+interviewer: We will record monthly visit stats.
+candidate: Should expired pastes be removed automatically?
+interviewer: Yes, the service deletes expired pastes.
+candidate: What availability SLA do we expect?
+interviewer: High availability is a requirement.
+candidate: For this exercise phase, I would like to suggest that we don't need user accounts, login, or custom shortlinks.
+interviewer: ok, Those are out of scope for now.
+candidate: For capacity planning, can you confirm traffic patterns and volumes?
+interviewer: Traffic is unevenly distributed; we target 10M users, 10M writes/month, and 100M reads/month.
+candidate: Understood. And are pastes text only, with low-latency URL resolution?
+interviewer: Correct.
+candidate: Finally, any rough numbers on storage and throughput?
+interviewer: I'll leave that to you.
+candidate: ok. So here is the scope of the problem:
 
 ### Use cases
 
@@ -52,6 +126,7 @@ Without an interviewer to address clarifying questions, we'll define some use ca
 #### Calculate usage
 
 **Clarify with your interviewer if you should run back-of-the-envelope usage calculations.**
+**if** you need to calculate usage, here is calculation example:
 
 * Size per paste
     * 1 KB content per paste
@@ -75,11 +150,76 @@ Handy conversion guide:
 * 40 requests per second = 100 million requests per month
 * 400 requests per second = 1 billion requests per month
 
-## Step 2: Create a high level design
+## Step 2: Create a high level design & Get buy-in
 
 > Outline a high level design with all important components.
 
-![Imgur](http://i.imgur.com/BKsBnmG.png)
+```mermaid
+%%{init: { "flowchart": { "htmlLabels": true } }}%%
+
+flowchart TB
+  %% Client Layer
+  subgraph Client["**Client**"]
+    direction LR
+    WebClient[Web Client]
+    MobileClient[Mobile Client]
+  end
+
+  %% Web Server Layer
+  subgraph WebServer["**Web Server - (Reverse Proxy)**"]
+    direction LR
+    WriteAPI[Write API]
+    ReadAPI[Read API]
+    Analytics[Analytics]
+  end
+
+  %% Storage Layer
+  subgraph Storage["**Storage**"]
+    direction LR
+    SQLDB[SQL Database]
+    ObjectStore[Object Store]
+  end
+
+  %% Data Flow
+  WebClient --> WriteAPI
+  MobileClient --> WriteAPI
+  WebClient --> ReadAPI
+  MobileClient --> ReadAPI
+
+  WriteAPI --> SQLDB
+  WriteAPI --> ObjectStore
+  ReadAPI --> SQLDB
+  ReadAPI --> ObjectStore
+  Analytics --> SQLDB
+  Analytics --> ObjectStore
+
+  %% Styling Nodes
+  style WebClient fill:#FFCCCC,stroke:#CC0000,stroke-width:2px,rx:6,ry:6
+  style MobileClient fill:#FFD580,stroke:#AA6600,stroke-width:2px,rx:6,ry:6
+  style WriteAPI fill:#CCE5FF,stroke:#004085,stroke-width:2px,rx:6,ry:6
+  style ReadAPI fill:#CCE5FF,stroke:#004085,stroke-width:2px,rx:6,ry:6
+  style Analytics fill:#D4EDDA,stroke:#155724,stroke-width:2px,rx:6,ry:6
+  style SQLDB fill:#E2E3E5,stroke:#6C757D,stroke-width:2px,rx:6,ry:6
+  style ObjectStore fill:#E2E3E5,stroke:#6C757D,stroke-width:2px,rx:6,ry:6
+
+```
+
+### Get buy-in
+
+✅ Why This Breakdown?
+
+Rather than diving into implementation, this diagram tells a story:
+
+It reflects usage patterns (10:1 read/write). This is why we have different components for write and read.
+
+It separates latency-sensitive vs. async processing. Analytics is async processing so it gets its own component.
+
+It shows readiness for growth without premature optimization. Write with load balancer, read with cache.
+
+It creates a solid skeleton that supports further discussion on reverse proxy, caching, sharding, CDN integration, or even queueing systems for analytics—all while staying grounded in the problem as scoped.
+
+You should ask for a feedback after you present the diagram, and get buy-in and some initial ideas about areas to dive into, based on the feedback.
+
 
 ## Step 3: Design core components
 
@@ -104,7 +244,7 @@ An alternative to a relational database acting as a large hash table, we could u
     * Saves the paste data to the **Object Store**
     * Returns the url
 
-**Clarify with your interviewer how much code you are expected to write**.
+**Clarify with your interviewer the expected amount, style, and purpose of the code you should write**.
 
 The `pastes` table could have the following structure:
 
@@ -116,12 +256,12 @@ paste_path varchar(255) NOT NULL
 PRIMARY KEY(shortlink)
 ```
 
-Setting the primary key to be based on the `shortlink` column creates an [index](https://github.com/ido777/system-design-primer-update.git#use-good-indices) that the database uses to enforce uniqueness. We'll create an additional index on `created_at` to speed up lookups (log-time instead of scanning the entire table) and to keep the data in memory.  Reading 1 MB sequentially from memory takes about 250 microseconds, while reading from SSD takes 4x and from disk takes 80x longer.<sup><a href=https://github.com/ido777/system-design-primer-update.git#latency-numbers-every-programmer-should-know>1</a></sup>
+Setting the primary key to be based on the `shortlink` column creates an [index](https://github.com/ido777/system-design-primer-update.git#use-good-indices) that the database uses to enforce uniqueness. We create an additional index on `created_at` so the database can locate pastes created within a time range without full table scans. Since indexes are typically implemented with B-trees, index lookup is O(log n) instead of O(n). Frequently accessed indexes (like by recent timestamps) are often cached automatically in RAM by the database’s internal cache and since the indexes are smaller, they are likely to stay in memory. Reading 1 MB sequentially from memory takes about 250 microseconds, while reading from SSD takes 4x and from disk takes 80x longer.<sup><a href=https://github.com/ido777/system-design-primer-update.git#latency-numbers-every-programmer-should-know>1</a></sup>
 
 To generate the unique url, we could:
 
 * Take the [**MD5**](https://en.wikipedia.org/wiki/MD5) hash of the user's ip_address + timestamp
-    * MD5 is a widely used hashing function that produces a 128-bit hash value
+    * MD5 is a widely used hashing function that produces a 128-bit (16 bytes) hash value
     * MD5 is uniformly distributed
     * Alternatively, we could also take the MD5 hash of randomly-generated data
 * [**Base 62**](https://www.kerstner.at/2012/07/shortening-strings-using-base-62-encoding/) encode the MD5 hash
@@ -130,7 +270,7 @@ To generate the unique url, we could:
     * Base 64 is another popular encoding but provides issues for urls because of the additional `+` and `/` characters
     * The following [Base 62 pseudocode](http://stackoverflow.com/questions/742013/how-to-code-a-url-shortener) runs in O(k) time where k is the number of digits = 7:
 
-```python
+```text
 def base_encode(num, base=62):
     digits = []
     while num > 0
@@ -140,14 +280,57 @@ def base_encode(num, base=62):
     digits = digits.reverse
 ```
 
+Here is python example implementation:
+```python
+def base_encode(num, base=62):
+    characters = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    if num == 0:
+        return characters[0]
+    
+    digits = []
+    while num > 0:
+        remainder = num % base
+        digits.append(characters[remainder])
+        num //= base  # Integer division
+
+    digits.reverse()
+    return ''.join(digits)
+```
+
 * Take the first 7 characters of the output, which results in 62^7 possible values and should be sufficient to handle our constraint of 360 million shortlinks in 3 years:
 
-```python
+```text
 url = base_encode(md5(ip_address+timestamp))[:URL_LENGTH]
 ```
 
+python example implementation:
+```python
+import hashlib
+
+def generate_shortlink(ip_address: str, timestamp: str, url_length=7) -> str:
+    # Step 1: Create MD5 hash
+    raw = f"{ip_address}{timestamp}".encode('utf-8')
+    md5_hash = hashlib.md5(raw).digest()
+    
+    # Step 2: Convert hash to an integer
+    num = int.from_bytes(md5_hash, byteorder='big')
+    
+    # Step 3: Base62 encode the integer
+    base62_encoded = base_encode(num)
+    
+    # Step 4: Take the first `url_length` characters
+    return base62_encoded[:url_length]
+
+# Example usage
+shortlink = generate_shortlink("192.168.0.1", "2025-04-28T15:30:00Z")
+print(shortlink)  # Example output: "4F9dQ2b"
+
+```
+#### REST API
+
 We'll use a public [**REST API**](https://github.com/ido777/system-design-primer-update.git#representational-state-transfer-rest):
 
+##### Write API - Create a paste 
 ```
 $ curl -X POST --data '{ "expiration_length_in_minutes": "60", \
     "paste_contents": "Hello World!" }' https://pastebin.com/api/v1/paste
@@ -161,8 +344,6 @@ Response:
 }
 ```
 
-For internal communications, we could use [Remote Procedure Calls](https://github.com/ido777/system-design-primer-update.git#remote-procedure-call-rpc).
-
 ### Use case: User enters a paste's url and views the contents
 
 * The **Client** sends a get paste request to the **Web Server**
@@ -172,8 +353,9 @@ For internal communications, we could use [Remote Procedure Calls](https://githu
         * If the url is in the **SQL Database**, fetch the paste contents from the **Object Store**
         * Else, return an error message for the user
 
-REST API:
+#### REST API
 
+##### Read API - Get a paste
 ```
 $ curl https://pastebin.com/api/v1/paste?shortlink=foobar
 ```
@@ -191,47 +373,92 @@ Response:
 ### Use case: Service tracks analytics of pages
 
 Since realtime analytics are not a requirement, we could simply **MapReduce** the **Web Server** logs to generate hit counts.
+While traditional MapReduce jobs are rarely written manually today, the underlying pattern — mapping, grouping, and reducing data — is still everywhere. For website analytics, we typically use SQL engines like BigQuery or Athena for batch queries, or streaming frameworks like Flink for real-time aggregation, depending on data freshness needs and scale.
 
-**Clarify with your interviewer how much code you are expected to write**.
+
+**Clarify with your interviewer the expected amount, style, and purpose of the code you should write**.
+
+#### Modern "MapReduce" today looks like:
+
+1. If you have logs (e.g., nginx, access logs):
+* **Store them** in an object store like:
+  * AWS S3
+  * Google Cloud Storage
+
+* **Organize them** by time (e.g., `/logs/yyyy/mm/dd/` partition folders).
+
+* **Query them** using **Athena** or **BigQuery** with **SQL**.
+
+You might run a query like:
+
+```sql
+SELECT
+  DATE(timestamp) as day,
+  url,
+  COUNT(*) as hits
+FROM
+  logs
+WHERE
+  timestamp BETWEEN '2025-04-01' AND '2025-04-30'
+GROUP BY
+  day, url
+ORDER BY
+  hits DESC;
+```
+
+⚡ And this is **MapReduce under the hood**:
+
+* SQL SELECT → Map
+* GROUP BY → Reduce
+
+But you don’t manage the "mapping" and "reducing" manually — the cloud service **optimizes** and **parallelizes** it for you.
+
+
+#### Example of Local MapReduce Simulation for Testing:
+
+
+For educational purposes and small local testing, we can simulate MapReduce logic using Python. This is **not how production systems work today**, but it is useful for **understanding the concepts**.
 
 ```python
-class HitCounts(MRJob):
+from collections import defaultdict
 
-    def extract_url(self, line):
-        """Extract the generated url from the log line."""
-        ...
+# Example raw log lines
+logs = [
+    '2025-04-01 12:00:00 /home',
+    '2025-04-01 12:05:00 /about',
+    '2025-04-01 12:10:00 /home',
+    '2025-04-02 13:00:00 /contact',
+]
 
-    def extract_year_month(self, line):
-        """Return the year and month portions of the timestamp."""
-        ...
+# Map Step
+mapped = []
+for line in logs:
+    timestamp, url = line.split()
+    day = timestamp.split('T')[0] if 'T' in timestamp else timestamp.split()[0]
+    mapped.append(((day, url), 1))
 
-    def mapper(self, _, line):
-        """Parse each log line, extract and transform relevant lines.
+# Shuffle & Group Step
+grouped = defaultdict(list)
+for key, value in mapped:
+    grouped[key].append(value)
 
-        Emit key value pairs of the form:
+# Reduce Step
+reduced = {}
+for key, values in grouped.items():
+    reduced[key] = sum(values)
 
-        (2016-01, url0), 1
-        (2016-01, url0), 1
-        (2016-01, url1), 1
-        """
-        url = self.extract_url(line)
-        period = self.extract_year_month(line)
-        yield (period, url), 1
-
-    def reducer(self, key, values):
-        """Sum values for each key.
-
-        (2016-01, url0), 2
-        (2016-01, url1), 1
-        """
-        yield key, sum(values)
+# Output
+for key, count in reduced.items():
+    print(f"{key}: {count}")
 ```
+
+
 
 ### Use case: Service deletes expired pastes
 
 To delete expired pastes, we could just scan the **SQL Database** for all entries whose expiration timestamp are older than the current timestamp.  All expired entries would then be deleted (or  marked as expired) from the table.
 
-## Step 4: Scale the design
+## Tradeoffs and Scaling the design
 
 > Identify and address bottlenecks, given the constraints.
 
@@ -239,9 +466,20 @@ To delete expired pastes, we could just scan the **SQL Database** for all entrie
 
 **Important: Do not simply jump right into the final design from the initial design!**
 
-State you would do this iteratively: 1) **Benchmark/Load Test**, 2) **Profile** for bottlenecks 3) address bottlenecks while evaluating alternatives and trade-offs, and 4) repeat.  See [Design a system that scales to millions of users on AWS](../scaling_aws/README.md) as a sample on how to iteratively scale the initial design.
+State you would do this iteratively: 
+1) **Benchmark/Load Test**, 
+2) **Profile** for bottlenecks 
+3) address bottlenecks while evaluating alternatives and trade-offs, and 
+4) repeat.  
 
-It's important to discuss what bottlenecks you might encounter with the initial design and how you might address each of them.  For example, what issues are addressed by adding a **Load Balancer** with multiple **Web Servers**?  **CDN**?  **Master-Slave Replicas**?  What are the alternatives and **Trade-Offs** for each?
+See [Design a system that scales to millions of users on AWS](../scaling_aws/README.md) as a sample on how to iteratively scale the initial design.
+
+It's important to discuss what bottlenecks you might encounter with the initial design and how you might address each of them.  
+For example, what issues are addressed by adding 
+ - a **Load Balancer** with multiple **Web Servers**?
+ -  **CDN**?  
+ - **Master-Slave Replicas**?
+ - What are the alternatives and **Trade-Offs** for each?
 
 We'll introduce some components to complete the design and to address scalability issues.  Internal load balancers are not shown to reduce clutter.
 
