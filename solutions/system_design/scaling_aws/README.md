@@ -1,5 +1,109 @@
 # Design a system that scales to millions of users on AWS
 
+scaling guies 
+Let's examine potential bottlenecks and solutions:
+
+### Bottleneck: Processing Speed
+
+The MapReduce jobs processing transaction logs could become a bottleneck as data volume grows.
+
+Solutions:
+* Partition data by time windows
+* Process different time periods in parallel
+* Use stream processing for near real-time updates
+* Consider using Apache Spark for faster in-memory processing
+
+### Bottleneck: Database Load
+
+With 40,000 read requests per second, the database could become overwhelmed.
+
+Solutions:
+* Add Memory Cache layer
+  - Cache popular category rankings
+  - Use LRU eviction policy
+  - Set TTL based on update frequency
+* Add Read Replicas
+  - Scale horizontally for read-heavy workload
+  - Place replicas in different regions
+* Consider Database Sharding
+  - Shard by category_id
+  - Allows parallel processing
+  - Reduces load per shard
+
+### Bottleneck: Storage Growth
+
+Raw transaction logs grow by 40GB per month.
+
+Solutions:
+* Implement data retention policies
+  - Keep recent data (e.g., 3 months) in hot storage
+  - Archive older data to cold storage
+  - Delete or heavily compress very old data
+* Use appropriate storage tiers
+  - Hot data: SSD-backed databases
+  - Warm data: Object Store (S3)
+  - Cold data: Archive storage (Glacier)
+
+### Bottleneck: API Scalability
+
+The web tier needs to handle 40,000 requests per second.
+
+Solutions:
+* Add Load Balancers
+  - Distribute traffic across API servers
+  - Health checking and failover
+* Implement CDN
+  - Cache static content
+  - Reduce latency for global users
+* Rate Limiting
+  - Protect against abuse
+  - Ensure fair resource usage
+
+### Additional Considerations
+
+* **Monitoring & Alerting**
+  - Track key metrics (latency, error rates, queue depth)
+  - Set up alerts for anomalies
+  - Monitor data pipeline health
+
+* **Fault Tolerance**
+  - Design for component failures
+  - Implement retry mechanisms
+  - Set up fallback options
+
+* **Data Consistency**
+  - Choose appropriate consistency model
+  - Handle eventual consistency in caching layer
+  - Implement validation and error checking
+
+## Step 5: Wrap up
+
+To summarize, we've designed a scalable system for tracking and displaying product rankings by category. The key points are:
+
+1. **Data Processing**
+   - MapReduce for batch processing
+   - Consideration for stream processing
+   - Efficient storage strategy
+
+2. **Scalability**
+   - Caching layer for hot data
+   - Database replication
+   - Load balancing
+
+3. **Monitoring**
+   - Performance metrics
+   - Error tracking
+   - Health checks
+
+Next steps could include:
+* Implementing A/B testing framework
+* Adding analytics capabilities
+* Enhancing security measures
+
+Ask if the interviewer has any questions about the design or would like to explore any area in more detail.
+
+
+
 *Note: This document links directly to relevant areas found in the [system design topics](https://github.com/ido777/system-design-primer-update#index-of-system-design-topics) to avoid duplication.  Refer to the linked content for general talking points, tradeoffs, and alternatives.*
 
 ## Step 1: Outline use cases and constraints

@@ -20,7 +20,8 @@ Remember your goal is to understand the problem and establish the design scope.
 ### What questions should you ask to clarify the problem?
 
 
-Here is an example of the dialog you could have with the **Interviewer**:
+Here is an example of the dialog you could have with the Interviewer:
+
 **Interviewer**: Design Pastebin.com.
 **Candidate**: Could you please remind me what Pastebin.com does at a high level?
 **Interviewer**: Do you happen to know GitHub Gist? It is similar to Pastebin.com.

@@ -2,30 +2,69 @@
 
 *Note: This document links directly to relevant areas found in the [system design topics](https://github.com/ido777/system-design-primer-update#index-of-system-design-topics) to avoid duplication.  Refer to the linked content for general talking points, tradeoffs, and alternatives.*
 
-## Step 1: Outline use cases and constraints
+## Step 1: Investigate the problem, use cases and constraints and establish design scope
 
-> Gather requirements and scope the problem.
+> Gather main functional requirements and scope the problem.
 > Ask questions to clarify use cases and constraints.
 > Discuss assumptions.
 
-Without an interviewer to address clarifying questions, we'll define some use cases and constraints.
+Adding clarifying questions is the first step in the process.
+Remember your goal is to understand the problem and establish the design scope.
 
-### Use cases
+### What questions should you ask to clarify the problem?
+
+
+Here is an example of the dialog you could have with the Interviewer:
+
+**Candidate:** Could you describe what exactly we need to design? Is this similar to Amazon's "Best Sellers" feature?
+**Interviewer:** Yes, we want to design a system that tracks product sales and displays rankings by category, similar to Amazon's Best Sellers. The system should update rankings periodically based on sales data.
+**Candidate:** I'd like to ask some questions about the scope and requirements:
+1. What time period should we consider for the rankings?
+2. How frequently do we need to update the rankings?
+3. What's the scale we need to handle in terms of products and transactions?
+4. Do we need real-time updates or is some delay acceptable?
+**Interviewer:** Good questions.
+- We want to track sales for the past week
+- Rankings should update hourly
+- We have about 10 million products across 1000 categories
+- 1 billion transactions per month
+- 100 billion read requests per month
+**Candidate:** A few more questions:
+1. Do we need to store historical rankings?
+2. Should we consider seasonal trends or just raw sales numbers?
+3. Are there any specific latency requirements for reading rankings?
+**Interviewer:** 
+- Historical rankings aren't required for now
+- Just focus on raw sales numbers for now
+- Rankings should be returned within 100ms
+
+### Use Cases
+
+Based on our discussion, here are the key use cases:
 
 #### We'll scope the problem to handle only the following use case
 
-* **Service** calculates the past week's most popular products by category
-* **User** views the past week's most popular products by category
-* **Service** has high availability
+1. **Service processes sales data**
+    * Aggregate sales data by product and category
+    * Update product rankings hourly
+    * Track sales over a rolling 7-day window
+2. **User requests product rank**
+    * Get past week's top N products in a category
+   
+3. **Service has high availability**
 
 #### Out of scope
 
 * The general e-commerce site
     * Design components only for calculating sales rank
+    * Historical rankings
+    * Seasonal adjustments
+    * Fraud detection
+    * Product reviews/ratings integration
 
-### Constraints and assumptions
+### Constraints and Assumptions
 
-#### State assumptions
+#### State Assumptions
 
 * Traffic is not evenly distributed
 * Items can be in multiple categories
@@ -33,13 +72,15 @@ Without an interviewer to address clarifying questions, we'll define some use ca
 * There are no subcategories ie `foo/bar/baz`
 * Results must be updated hourly
     * More popular products might need to be updated more frequently
+
+
 * 10 million products
 * 1000 categories
 * 1 billion transactions per month
 * 100 billion read requests per month
 * 100:1 read to write ratio
 
-#### Calculate usage
+#### Calculate Usage
 
 **Clarify with your interviewer if you should run back-of-the-envelope usage calculations.**
 
@@ -66,11 +107,78 @@ Handy conversion guide:
 * 40 requests per second = 100 million requests per month
 * 400 requests per second = 1 billion requests per month
 
-## Step 2: Create a high level design
+## Step 2: Create a high level design & Get buy-in
 
-> Outline a high level design with all important components.
+> Outline a high-level design with all important components.
 
 ![Imgur](http://i.imgur.com/vwMa1Qu.png)
+
+
+Here's our high-level design:
+
+```mermaid
+%%{init: { "flowchart": { "htmlLabels": true } }}%%
+
+flowchart TB
+  %% Client Layer
+  subgraph Client["**Client**"]
+    direction TB
+    WebClient[Web Client]
+    MobileClient[Mobile Client]
+  end
+
+  %% Web Server Layer
+  subgraph WebServer["**Web Server - (Reverse Proxy)**"]
+    direction LR
+    SalesAPI[Sales API]
+    ReadAPI[Read API]
+    SalesRankService[Sales Rank Service]
+  end
+
+  %% Storage Layer
+  subgraph Storage["**Storage**"]
+    direction LR
+    SQLDB[(SQL Database)]
+    ObjectStore[(Object Store)]
+  end
+
+  %% Data Flow
+  Client --> WebServer
+
+
+  SalesAPI --> SQLDB
+  SalesAPI --> ObjectStore
+  ReadAPI --> SQLDB
+
+  SalesRankService --> SQLDB
+  SalesRankService --> ObjectStore
+
+  %% Styling Nodes
+  style WebClient fill:#FFCCCC,stroke:#CC0000,stroke-width:2px,rx:6,ry:6
+  style MobileClient fill:#FFD580,stroke:#AA6600,stroke-width:2px,rx:6,ry:6
+  style SalesAPI fill:#CCE5FF,stroke:#004085,stroke-width:2px,rx:6,ry:6
+  style ReadAPI fill:#CCE5FF,stroke:#004085,stroke-width:2px,rx:6,ry:6
+  style SalesRankService fill:#D4EDDA,stroke:#155724,stroke-width:2px,rx:6,ry:6
+  style SQLDB fill:#E2E3E5,stroke:#6C757D,stroke-width:2px,rx:6,ry:6
+  style ObjectStore fill:#E2E3E5,stroke:#6C757D,stroke-width:2px,rx:6,ry:6
+
+```
+
+### Get buy-in
+
+✅ Why This Breakdown?
+
+Rather than diving into implementation, this diagram tells a story:
+
+* It reflects usage patterns (100:1 read/write). This is why we have different components for write and read.
+* It separates latency-sensitive vs. async processing. **Sales Rank Service** is async processing so it gets its own component.
+* It shows readiness for growth without premature optimization. Write with load balancer, read with cache.
+
+It creates a solid skeleton that supports further discussion on reverse proxy, caching, sharding, CDN integration, or even queueing systems for analytics—all while staying grounded in the problem as scoped.
+
+You should ask for a feedback after you present the diagram, and get buy-in and some initial ideas about areas to dive into, based on the feedback.
+
+
 
 ## Step 3: Design core components
 
@@ -78,29 +186,40 @@ Handy conversion guide:
 
 ### Use case: Service calculates the past week's most popular products by category
 
-We could store the raw **Sales API** server log files on a managed **Object Store** such as Amazon S3, rather than managing our own distributed file system.
-
 **Clarify with your interviewer the expected amount, style, and purpose of the code you should write**.
 
-We'll assume this is a sample log entry, tab delimited:
+We might discuss the [use cases and tradeoffs between choosing SQL or NoSQL](https://github.com/ido777/system-design-primer-update#sql-or-nosql). However we will use SQL for this design.
 
-```
-timestamp   product_id  category_id    qty     total_price   seller_id    buyer_id
-t1          product1    category1      2       20.00         1            1
-t2          product1    category2      2       20.00         2            2
-t2          product1    category2      1       10.00         2            3
-t3          product2    category1      3        7.00         3            4
-t4          product3    category2      7        2.00         4            5
-t5          product4    category1      1        5.00         5            6
-...
-```
 
-The **Sales Rank Service** could use **MapReduce**, using the **Sales API** server log files as input and writing the results to an aggregate table `sales_rank` in a **SQL Database**.  We should discuss the [use cases and tradeoffs between choosing SQL or NoSQL](https://github.com/ido777/system-design-primer-update#sql-or-nosql).
+The core of our sales rank service is processing transaction data to generate rankings. Let's break down how this works:
 
-We'll use a multi-step **MapReduce**:
+#### Data Flow
 
-* **Step 1** - Transform the data to `(category, product_id), sum(quantity)`
-* **Step 2** - Perform a distributed sort
+1. **Transaction Ingestion**
+   - Raw transaction logs are stored in the **Object Store** (like Amazon S3)
+   - This is more cost-effective than managing our own distributed file system
+   - Logs provide an immutable history we can reprocess if needed
+
+2. **Log Format**
+   Each log entry is tab-delimited with the following fields:
+   ```
+   timestamp   product_id  category_id    qty     total_price   seller_id    buyer_id
+   t1          product1    category1      2       20.00         1            1
+   t2          product1    category2      2       20.00         2            2
+   t2          product1    category2      1       10.00         2            3
+   t3          product2    category1      3        7.00         3            4
+   t4          product3    category2      7        2.00         4            5
+   t5          product4    category1      1        5.00         5            6
+   ```
+
+3. **Processing Pipeline**
+   The **Sales Rank Service** uses **MapReduce** to process these logs and update the `sales_rank` table in the **SQL Database**. Here's how:
+
+   - **Step 1: Map** - Transform raw logs into `(category, product), quantity` pairs
+   - **Step 2: Reduce** - Sum quantities by category and product to get `(category, product_id), sum(quantity)`
+   - **Step 3: Sort** - Sort products within each category by total quantity
+
+Here's the implementation of our MapReduce job:
 
 ```python
 class SalesRanker(MRJob):
@@ -113,7 +232,6 @@ class SalesRanker(MRJob):
         """Parse each log line, extract and transform relevant lines.
 
         Emit key value pairs of the form:
-
         (category1, product1), 2
         (category2, product1), 2
         (category2, product1), 1
@@ -138,10 +256,16 @@ class SalesRanker(MRJob):
         yield key, sum(values)
 
     def mapper_sort(self, key, value):
-        """Construct key to ensure proper sorting.
+        """
+        Input:
+            key   = (category_id, product_id)
+            value = quantity
 
+        Output (emitted):
+            (category_id, quantity), product_id        
+        
+        Construct key to ensure proper sorting.
         Transform key and value to the form:
-
         (category1, 2), product1
         (category2, 3), product1
         (category1, 3), product2
@@ -150,7 +274,6 @@ class SalesRanker(MRJob):
 
         The shuffle/sort step of MapReduce will then do a
         distributed sort on the keys, resulting in:
-
         (category1, 1), product4
         (category1, 2), product1
         (category1, 3), product2
@@ -159,6 +282,9 @@ class SalesRanker(MRJob):
         """
         category_id, product_id = key
         quantity = value
+        # Emit a composite key so that:
+        #   1. records are first grouped/sorted by category_id
+        #   2. within each category, by ascending quantity        
         yield (category_id, quantity), product_id
 
     def reducer_identity(self, key, value):
@@ -174,7 +300,7 @@ class SalesRanker(MRJob):
         ]
 ```
 
-The result would be the following sorted list, which we could insert into the `sales_rank` table:
+The result would be the following sorted list:
 
 ```
 (category1, 1), product4
@@ -184,102 +310,160 @@ The result would be the following sorted list, which we could insert into the `s
 (category2, 7), product3
 ```
 
-The `sales_rank` table could have the following structure:
+
+
+
+4. **Data Storage**
+   The results are stored in a `sales_rank` table with the following schema:
+
+```sql
+CREATE TABLE sales_rank (
+    id INT NOT NULL AUTO_INCREMENT,
+    category_id INT NOT NULL,
+    product_id INT NOT NULL,
+    total_sold INT NOT NULL,
+    PRIMARY KEY(id),
+    FOREIGN KEY(category_id) REFERENCES Categories(id),
+    FOREIGN KEY(product_id) REFERENCES Products(id)
+);
 
 ```
-id int NOT NULL AUTO_INCREMENT
-category_id int NOT NULL
-total_sold int NOT NULL
-product_id int NOT NULL
-PRIMARY KEY(id)
-FOREIGN KEY(category_id) REFERENCES Categories(id)
-FOREIGN KEY(product_id) REFERENCES Products(id)
-```
+We'll create an [index](https://github.com/ido777/system-design-primer-update#use-good-indices) on `total_sold`, `category_id`, and `product_id`. Since indexes are typically implemented with B-trees, index lookup is O(log n) instead of O(n). Frequently accessed indexes (like by recent timestamps) are often cached automatically in RAM by the database's internal cache and since the indexes are smaller, they are likely to stay in memory. Reading 1 MB sequentially from memory takes about 250 microseconds, while reading from SSD takes 4x and from disk takes 80x longer.<sup><a href=https://github.com/ido777/system-design-primer-update.git#latency-numbers-every-programmer-should-know>1</a></sup>
 
-We'll create an [index](https://github.com/ido777/system-design-primer-update#use-good-indices) on `id `, `category_id`, and `product_id` to speed up lookups (log-time instead of scanning the entire table) and to keep the data in memory.  Reading 1 MB sequentially from memory takes about 250 microseconds, while reading from SSD takes 4x and from disk takes 80x longer.<sup><a href=https://github.com/ido777/system-design-primer-update#latency-numbers-every-programmer-should-know>1</a></sup>
+
 
 ### Use case: User views the past week's most popular products by category
 
-* The **Client** sends a request to the **Web Server**, running as a [reverse proxy](https://github.com/ido777/system-design-primer-update#reverse-proxy-web-server)
-* The **Web Server** forwards the request to the **Read API** server
-* The **Read API** server reads from the **SQL Database** `sales_rank` table
+When users want to view rankings, the flow is:
 
-We'll use a public [**REST API**](https://github.com/ido777/system-design-primer-update#representational-state-transfer-rest):
+1. **Client Request**
+   - **Client** sends request to **Web Server** (running as [reverse proxy](https://github.com/ido777/system-design-primer-update#reverse-proxy-web-server))
+   - **Web Server** forwards to **Read API** server
 
-```
-$ curl https://amazon.com/api/v1/popular?category_id=1234
-```
+2. **Data Retrieval**
+   - **Read API** server queries the `sales_rank` table
+   - Results are returned in ranked order
 
-Response:
+3. **API Interface**
+   We expose a REST API for external clients:
 
-```
-{
-    "id": "100",
-    "category_id": "1234",
-    "total_sold": "100000",
-    "product_id": "50",
-},
-{
-    "id": "53",
-    "category_id": "1234",
-    "total_sold": "90000",
-    "product_id": "200",
-},
-{
-    "id": "75",
-    "category_id": "1234",
-    "total_sold": "80000",
-    "product_id": "3",
-},
-```
+   ```
+   GET /api/v1/popular?category_id=1234
+   ```
+
+   Response:
+   ```json
+   [
+       {
+           "id": "100",
+           "category_id": "1234",
+           "total_sold": "100000",
+           "product_id": "50"
+       },
+       {
+           "id": "53",
+           "category_id": "1234",
+           "total_sold": "90000",
+           "product_id": "200"
+       },
+       {
+           "id": "75",
+           "category_id": "1234",
+           "total_sold": "80000",
+           "product_id": "3"
+       }
+   ]
+   ```
 
 For internal communications, we could use [Remote Procedure Calls](https://github.com/ido777/system-design-primer-update#remote-procedure-call-rpc).
 
-## Step 4: Scale the design
+## Scale the design
 
 > Identify and address bottlenecks, given the constraints.
 
+<!-- Original image for reference: ![Imgur](http://i.imgur.com/MzExP06.png) -->
+
 ![Imgur](http://i.imgur.com/MzExP06.png)
+
+```mermaid
+graph LR
+    subgraph Client Layer
+        client[Client]
+    end
+
+    subgraph CDN / Load Balancing
+        cdn[CDN]
+        lb[Load Balancer]
+    end
+
+    subgraph Web Tier
+        web1[Web Server]
+        web2[Web Server]
+        web3[Web Server]
+    end
+
+    subgraph Service Layer
+        api1[API Server]
+        api2[API Server]
+        api3[API Server]
+    end
+
+    subgraph Cache Layer
+        mc[(Memory Cache)]
+    end
+
+    subgraph Database Layer
+        master[(SQL Write Master)]
+        slave1[(SQL Read Replica)]
+        slave2[(SQL Read Replica)]
+        slave3[(SQL Read Replica)]
+    end
+
+    subgraph Analytics Layer
+        mr[MapReduce Service]
+        adb[(Analytics DB)]
+        objstore[(Object Store)]
+    end
+
+    client --> cdn
+    cdn --> lb
+    lb --> web1
+    lb --> web2
+    lb --> web3
+    
+    web1 & web2 & web3 --> api1 & api2 & api3
+    
+    api1 & api2 & api3 --> mc
+    api1 & api2 & api3 --> master
+    api1 & api2 & api3 --> slave1 & slave2 & slave3
+    
+    master --> slave1 & slave2 & slave3
+    
+    objstore --> mr
+    mr --> adb
+    
+    style client fill:#f9f,stroke:#333,stroke-width:2px
+    style cdn fill:#bbf,stroke:#333,stroke-width:2px
+    style lb fill:#bbf,stroke:#333,stroke-width:2px
+    style web1,web2,web3 fill:#bfb,stroke:#333,stroke-width:2px
+    style api1,api2,api3 fill:#fbf,stroke:#333,stroke-width:2px
+    style mc fill:#ff9,stroke:#333,stroke-width:2px
+    style master,slave1,slave2,slave3 fill:#f99,stroke:#333,stroke-width:2px
+    style mr fill:#9ff,stroke:#333,stroke-width:2px
+    style adb fill:#f99,stroke:#333,stroke-width:2px
+    style objstore fill:#ff9,stroke:#333,stroke-width:2px
+```
 
 **Important: Do not simply jump right into the final design from the initial design!**
 
-State you would 1) **Benchmark/Load Test**, 2) **Profile** for bottlenecks 3) address bottlenecks while evaluating alternatives and trade-offs, and 4) repeat.  See [Design a system that scales to millions of users on AWS](../scaling_aws/README.md) as a sample on how to iteratively scale the initial design.
+State you would:
+1) **Benchmark/Load Test** - Identify bottlenecks
+2) **Profile** - Get detailed performance data
+3) **Address bottlenecks** - Propose and evaluate solutions
+4) **Repeat** - The process is iterative
+See [Design a system that scales to millions of users on AWS](../scaling_aws/README.md) as a sample on how to iteratively scale the initial design.
 
-It's important to discuss what bottlenecks you might encounter with the initial design and how you might address each of them.  For example, what issues are addressed by adding a **Load Balancer** with multiple **Web Servers**?  **CDN**?  **Master-Slave Replicas**?  What are the alternatives and **Trade-Offs** for each?
 
-We'll introduce some components to complete the design and to address scalability issues.  Internal load balancers are not shown to reduce clutter.
-
-*To avoid repeating discussions*, refer to the following [system design topics](https://github.com/ido777/system-design-primer-update#index-of-system-design-topics) for main talking points, tradeoffs, and alternatives:
-
-* [DNS](https://github.com/ido777/system-design-primer-update#domain-name-system)
-* [CDN](https://github.com/ido777/system-design-primer-update#content-delivery-network)
-* [Load balancer](https://github.com/ido777/system-design-primer-update#load-balancer)
-* [Horizontal scaling](https://github.com/ido777/system-design-primer-update#horizontal-scaling)
-* [Web server (reverse proxy)](https://github.com/ido777/system-design-primer-update#reverse-proxy-web-server)
-* [API server (application layer)](https://github.com/ido777/system-design-primer-update#application-layer)
-* [Cache](https://github.com/ido777/system-design-primer-update#cache)
-* [Relational database management system (RDBMS)](https://github.com/ido777/system-design-primer-update#relational-database-management-system-rdbms)
-* [SQL write master-slave failover](https://github.com/ido777/system-design-primer-update#fail-over)
-* [Master-slave replication](https://github.com/ido777/system-design-primer-update#master-slave-replication)
-* [Consistency patterns](https://github.com/ido777/system-design-primer-update#consistency-patterns)
-* [Availability patterns](https://github.com/ido777/system-design-primer-update#availability-patterns)
-
-The **Analytics Database** could use a data warehousing solution such as Amazon Redshift or Google BigQuery.
-
-We might only want to store a limited time period of data in the database, while storing the rest in a data warehouse or in an **Object Store**.  An **Object Store** such as Amazon S3 can comfortably handle the constraint of 40 GB of new content per month.
-
-To address the 40,000 *average* read requests per second (higher at peak), traffic for popular content (and their sales rank) should be handled by the **Memory Cache** instead of the database.  The **Memory Cache** is also useful for handling the unevenly distributed traffic and traffic spikes.  With the large volume of reads, the **SQL Read Replicas** might not be able to handle the cache misses.  We'll probably need to employ additional SQL scaling patterns.
-
-400 *average* writes per second (higher at peak) might be tough for a single **SQL Write Master-Slave**, also pointing to a need for additional scaling techniques.
-
-SQL scaling patterns include:
-
-* [Federation](https://github.com/ido777/system-design-primer-update#federation)
-* [Sharding](https://github.com/ido777/system-design-primer-update#sharding)
-* [Denormalization](https://github.com/ido777/system-design-primer-update#denormalization)
-* [SQL Tuning](https://github.com/ido777/system-design-primer-update#sql-tuning)
-
-We should also consider moving some data to a **NoSQL Database**.
 
 ## Additional talking points
 

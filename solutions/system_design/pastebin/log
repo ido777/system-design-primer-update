@@ -1,0 +1,2874 @@
+commit bfe1ac10e07fba1d052339ee6142e8cbe44506d9
+Author: Ido777 <ophir.ido@gmail.com>
+Date:   Wed Apr 30 11:18:28 2025 +0300
+
+    Update the solutions notebooks and README files to reflect new GitHub repository links for source, ensuring consistency across the documentation.
+
+commit e50f17f88dbfbec7d55df8b76e1ca73a37e2dd86
+Author: Ido777 <ophir.ido@gmail.com>
+Date:   Wed Apr 30 10:51:06 2025 +0300
+
+    Update epub-metadata.yaml to reflect new title, contributors, language, rights, publisher, and publication date.
+
+commit 5b98e7fb0d5300577e20f2c01a329dffa3327320
+Author: Ido777 <ophir.ido@gmail.com>
+Date:   Wed Apr 30 08:47:20 2025 +0300
+
+    Created a new _config.yml file
+
+commit 136192ceeb977ac54bd4caf821b64ab02be0c1eb
+Author: Ido777 <ophir.ido@gmail.com>
+Date:   Wed Apr 30 08:45:26 2025 +0300
+
+    Move the main file and  translations to docs
+
+commit 8ad96c556b25b2ca63e31ea0165e85c56fac653f
+Author: Ido777 <ophir.ido@gmail.com>
+Date:   Wed Apr 30 08:15:01 2025 +0300
+
+    Replace LICENSE.txt with LICENSE.md to clarify licensing terms and provide attribution for the project based on the System Design Primer. The new LICENSE.md includes details on usage rights and modifications under the Creative Commons Attribution 4.0 International License.
+
+commit 1375ce055cf4cefb69757a2feacfd4cb5482b772
+Author: Ido777 <ophir.ido@gmail.com>
+Date:   Wed Apr 30 08:12:54 2025 +0300
+
+    update contributing guidelines to reflect new repository changes and pause on translation efforts
+
+commit d9d9aec275d21f2472809ac03548380996a896d1
+Author: Ido777 <ophir.ido@gmail.com>
+Date:   Wed Apr 30 07:59:33 2025 +0300
+
+    Update .gitignore to include .env and .venv directories
+
+commit cdd1f6c517cd577610bd98430fb98166ccb22ddb
+Author: Ido777 <ophir.ido@gmail.com>
+Date:   Wed Apr 30 07:58:14 2025 +0300
+
+    Update PULL_REQUEST_TEMPLATE.md to reflect new contributing guidelines and pause on translation work
+
+commit 489a25e01eb5bf2f691aba4b37abf4cd5d12e85d
+Author: Ido Ophir <ophir.ido@gmail.com>
+Date:   Tue Apr 22 11:18:43 2025 +0300
+
+    [Imported] ja: Update some translations, Fix dead links (#432)
+    
+    * ja-Translation: Follows #433
+    
+    * ja-Translation: Follows #350
+    
+    * ja-Translation: Follows #348
+    
+    * ja-Translation: Follows #439
+    
+    * ja-Translation: Follows #351
+    
+    * ja-Translation: Follows #411
+    
+    * ja-Translation: Follows #328
+    
+    * ja-Translation: Follows #441, #108
+    
+    * ja-Translation: Follows #400
+    
+    * ja-Translation: Follows #321
+    
+    * Update README-ja.md
+    
+    ---------
+    
+    Co-authored-by: Ryo Shibayama <j02521@gmail.com>
+
+commit e2b23cfcb71c80fd362613e924ec867e839ec625
+Author: Ido Ophir <ophir.ido@gmail.com>
+Date:   Mon Apr 21 09:36:27 2025 +0300
+
+    Added Resources for Low-Level System Design (#427)
+    
+    Added resources for the Low-level design (LLD) in the readme (interview prep).
+    
+    Co-authored-by: Prasad Mangesh Gujar <prasadgujar16@gmail.com>
+
+commit 7958e09723fdacbe225dcc6d375c6a4f20284909
+Author: lemonez <36384768+lemonez@users.noreply.github.com>
+Date:   Wed Aug 18 22:48:56 2021 -0700
+
+    Update README.md
+    
+    fix typos/grammar related to load balancers
+
+commit cc5c9da8bd27b64a7853b832aad0f302503b426f
+Author: Ido Ophir <ophir.ido@gmail.com>
+Date:   Sat Apr 19 19:25:09 2025 +0300
+
+    Add cab booking low level design solution (#419)
+    
+    Co-authored-by: Udit Agarwal <hello@uditagarwal.com>
+
+commit 540077d29b0584e925b70931580da9f8dfad2f7a
+Author: Ido Ophir <ophir.ido@gmail.com>
+Date:   Fri Apr 18 10:06:25 2025 +0300
+
+    [Imported] Easy and Beginner friendly video links (#437)
+    
+    * Create CDN
+    
+    * Create DNS
+    
+    * Create Load Balancer
+    
+    * Create Web Server
+    
+    * Create API
+    
+    * Create Service Workers
+    
+    * Create Memory Cache
+    
+    ---------
+    
+    Co-authored-by: PritomDas <das.pritom175@gmail.com>
+
+commit 57f9098327c6d23f4a973112b08e48fba10e6819
+Author: Ido Ophir <ophir.ido@gmail.com>
+Date:   Thu Apr 17 09:14:20 2025 +0300
+
+    Used the correct property names for a call object (#431)
+    
+    Used 'rank' instead of 'level' to maintain uniformity with other portions of the code
+    
+    Co-authored-by: Prab <prab.missier@gmail.com>
+
+commit 7c00e7eccccf81bae6e2341c6d047f3adae829b6
+Author: Ido Ophir <ophir.ido@gmail.com>
+Date:   Mon Apr 14 08:42:10 2025 +0300
+
+    Added an important point on failover (#438)
+    
+    Honestly, active-passive stateful systems are terrible. Never have found one that worked, there's always too much data incongruency or other random errors. Stateless applications, like routers, are great. But not your Jenkins master.
+    
+    Co-authored-by: bowiz2 <bowiz1@gmail.com>
+    Co-authored-by: Anandha Krishnan S <anandajith@gmail.com>
+
+commit 9a8838867d68f743f570130e711ee5bb49bc81fb
+Author: Ido Ophir <ophir.ido@gmail.com>
+Date:   Thu Apr 10 10:18:58 2025 +0300
+
+    Added scale cube (#439)
+    
+    Co-authored-by: Vamsee Lakamsani <vamsee@tiapea.local>
+    Co-authored-by: Anandha Krishnan S <anandajith@gmail.com>
+
+commit 9238c9e29c946bcb3feab18870c8b22529a12a42
+Author: Ido Ophir <ophir.ido@gmail.com>
+Date:   Wed Apr 9 08:20:02 2025 +0300
+
+    added youtube link for designing scalable web crawler (#449)
+    
+    Co-authored-by: Suresh Kumar <sureshdsk91@gmail.com>
+    Co-authored-by: Anandha Krishnan S <anandajith@gmail.com>
+
+commit 0e81ed4aafc441403a27db20c1b773ed6a610e37
+Author: Ido Ophir <ophir.ido@gmail.com>
+Date:   Tue Apr 8 17:20:58 2025 +0300
+
+    updated API Gateways another pro\benefit (#459)
+    
+    Co-authored-by: riturajsacademic <rituraj.s.academic@gmail.com>
+
+commit 4b6e80aa442da33879b84c48d5294165f2c976c1
+Author: Ido Ophir <ophir.ido@gmail.com>
+Date:   Tue Apr 8 17:12:45 2025 +0300
+
+    [Imported] Add dns reference (#463)
+    
+    * Added Reference in DNS section regarding what happens when you type an URL in the browser and press enter.
+    
+    ---------
+    
+    Co-authored-by: Donne Martin <donne.martin@gmail.com>
+    Co-authored-by: Rex Zhang <rzhang@redapt.com>
+    Co-authored-by: RexHZhang <rex.zhang.haoyu@gmail.com>
+
+commit c4f5cd53b0640271e7ccaf2ef234e762f6179b31
+Author: Ido Ophir <ophir.ido@gmail.com>
+Date:   Tue Apr 8 15:30:41 2025 +0300
+
+    [Imported] Cleanup obsolete CHAR vs VARCHAR note (#466)
+    
+    * based on old PR to the original REPO Cleanup obsolete CHAR vs VARCHAR note #466
+    
+    ---------
+    
+    Co-authored-by: Slam <3lnc.slam@gmail.com>
+
+commit c6e509546f9bc1cd0b2d6396bf9382696d0f022f
+Author: Ido Ophir <ophir.ido@gmail.com>
+Date:   Tue Apr 8 13:41:35 2025 +0300
+
+    Update README.md
+    
+     imported-pr-131 branch
+
+commit c77591125e6641a2667d569930738944cbe3d600
+Author: Benny Nguyen <binhnguyennus@users.noreply.github.com>
+Date:   Fri Feb 9 18:54:07 2018 +0800
+
+    Update README.md
+    
+    Update a repository of scalable back-end design in categorizations.
+
+commit 6a0ef794058851cc91967eb9ce2c72b25da5c054
+Author: Akash Jain <akashjain971@gmail.com>
+Date:   Sun Sep 6 12:30:49 2020 +0530
+
+    Add Dgraph to graph database list
+
+commit 124c33680f9d946f7e7eda9316f7e8682b8b099d
+Author: vfdev <vfdev.5@gmail.com>
+Date:   Sun Feb 6 15:11:47 2022 +0100
+
+    typos
+
+commit 9826eacfa8b940bf7a05bdd9d9dd8a56557a0b48
+Author: Boris <bschauerte@users.noreply.github.com>
+Date:   Sat Apr 16 14:13:51 2022 +0200
+
+    Update README.md
+    
+    Added a link to a cheatsheet for system design numbers (latencies, ...) and approximations
+
+commit 355e85eac0ada2b1339aafdbde38fdd1226c5641
+Author: Jeremy Hu <jrmh96@gmail.com>
+Date:   Wed Oct 26 23:27:42 2022 -0400
+
+    Movie tickets Java OOP
+
+commit 75bcb029dce96ea516cecade0d9ccb2b1eeeb092
+Author: Jeremy Hu <jrmh96@gmail.com>
+Date:   Wed Oct 26 23:26:10 2022 -0400
+
+    Movie tickets program Java
+
+commit 4c5700ad391cd200969de3a9d926267305b36ce7
+Author: Ido Ophir <ophir.ido@gmail.com>
+Date:   Mon Apr 7 15:20:53 2025 +0300
+
+    Update README.md
+    
+    Co-authored-by: Copilot <175728472+Copilot@users.noreply.github.com>
+
+commit 90304dbf070a930b1b76b198598b6c4d1b4581b6
+Author: pirasalbe <alberto98.piras@gmail.com>
+Date:   Sat May 28 13:53:38 2022 +0200
+
+    Fix typos
+
+commit 845b6292e0fb0970c5fcae24815285b3a6cc54dc
+Author: Ido Ophir <ophir.ido@gmail.com>
+Date:   Mon Apr 7 15:16:59 2025 +0300
+
+    Update README.md
+    
+    typo
+    
+    Co-authored-by: Copilot <175728472+Copilot@users.noreply.github.com>
+
+commit 6dd4efa4f58f0b424b4ec724cd73e8cb2c1c9678
+Author: Siarhei <siarhei.krukau@gmail.com>
+Date:   Mon Jun 6 11:11:06 2022 +0200
+
+    Add a link to "System Design And Recommendation Algorithm Of 20 Big Companies"
+
+commit a3891a1c39b6e9887a0576e2302b8899081a7f17
+Author: Sonia M <98415819+letscode-17@users.noreply.github.com>
+Date:   Mon Jun 13 11:17:02 2022 +0530
+
+    Added a Useful System Design Interview Resource
+
+commit cf6ffa1ec178af3ce221beade019b02d4965e0bf
+Author: Prakhar Khandelwal <prakharcs01@gmail.com>
+Date:   Tue Jul 5 23:34:04 2022 +0530
+
+    Added additional sources for Denormalization
+
+commit ecdc369c5175c21241c69672655a7cb39f6d643a
+Author: moeyui1 <894immyk@gmail.com>
+Date:   Wed Jul 20 22:24:54 2022 +0800
+
+    fix lexical errors in translation
+
+commit 8fdbfad337b663803fb6f24839982535afd60b36
+Author: Ido Ophir <ophir.ido@gmail.com>
+Date:   Mon Apr 7 15:06:41 2025 +0300
+
+    Add link for HTTP in Communication section, Fix grammar (#339)
+    
+    Co-authored-by: Abhinav Nath <abhinavnath@ymail.com>
+
+commit bb903eb1bcf7c81ac572b9d42606bb161ff40b18
+Author: Samuel Berthe <dev@samuel-berthe.fr>
+Date:   Thu Dec 8 15:48:25 2022 +0100
+
+    adding raft + consensus algo
+
+commit 5f52a8b9dc9b819a123eedcc8b5155a1525ca3f3
+Author: Samuel Berthe <dev@samuel-berthe.fr>
+Date:   Thu Dec 8 15:56:18 2022 +0100
+
+    adding dremel paper
+
+commit cb856fe48e145e712480ac3d23130005c9a32ea0
+Author: Rajat Agrawal <rrajatagarwal@gmail.com>
+Date:   Mon Jan 2 10:53:55 2023 +0000
+
+    Update foursquare developer blog's dead link
+
+commit a268a9ad5ca5c92da3b71b8759240d8d7f0a4b91
+Author: Kartikay Jainwal <kartikayjainwal@gmail.com>
+Date:   Sat Jan 21 16:20:19 2023 +0000
+
+    Update Typo in code snippet
+    
+    Added missing : in function declaration.
+
+commit 22132364a99a061168b93fc6cc881a6fd9216566
+Author: Itamar Friedman <itamar.f@codium.ai>
+Date:   Mon Feb 6 13:00:50 2023 +0200
+
+    Fixed two issues and add sanity tests. Issue #1: super now calls the right class, #2: decoupled the initiatlization of call_center and employee.
+
+commit 629ad9e68b71be2b6aba32b5a6557c222dba05a0
+Author: akothari-godaddy <103447980+akothari-godaddy@users.noreply.github.com>
+Date:   Thu Feb 23 14:29:03 2023 -0800
+
+    Update README.md
+
+commit 1bbde535b30de83dda646292685471c1c0d0f6ed
+Author: Yuvraj Shekhawat <56301121+yuvraj9@users.noreply.github.com>
+Date:   Sun Feb 26 13:39:55 2023 +0530
+
+    Adding a new article on how DNS works
+
+commit f1d4b06f1902b9f310248d167a888b0fb45d1fb1
+Author: stelakmetic <127410881+stelakmetic@users.noreply.github.com>
+Date:   Thu Mar 9 15:21:48 2023 +0100
+
+    Update README.md
+    
+    Since the old lecture is from 2012, I suggest changing it with the new one from 2021 (also from Harvard, with the same person working on it).
+
+commit 1a27f560f449a1b815457fdb70bcfa4a7277cbbd
+Author: Sagar Jain <sagarjain0907@gmail.com>
+Date:   Wed Mar 15 00:42:40 2023 +0530
+
+    Added link to a practice platform.
+    
+    Disclaimer: I am the creator of the practice platform.
+
+commit 356950396345304143cedc25c89fb69340e22d9f
+Author: Akshitha Kumbam <69581478+Akshi22@users.noreply.github.com>
+Date:   Wed Mar 15 21:20:41 2023 +0530
+
+    Update parking_lot.py
+    
+    Updated [return True if {boolean expression} else False] --> {boolean expression}
+
+commit 238d6b9c8c7613b38b7b4c7bc1e78b9d51e4af7d
+Author: Ido Ophir <ophir.ido@gmail.com>
+Date:   Mon Apr 7 14:04:26 2025 +0300
+
+    [Imported] zh-TW: small spell problem in README-zh-TW.md (#314)
+    
+    * fix: small spell problem in README-zh-TW.md
+    
+    * fix: small spell problem and revert folder name to origin in README-zh-TW.md
+    
+    ---------
+    
+    Co-authored-by: liuliu <liuliugit@gmail.com>
+
+commit ca6d7c2511ab617745458dc3c9d2c7fcce7daf9b
+Author: Ido Ophir <ophir.ido@gmail.com>
+Date:   Mon Apr 7 14:02:08 2025 +0300
+
+    replace the already 404 link with a newer link (#313)
+    
+    Co-authored-by: Charlie <yrjie0@gmail.com>
+
+commit 82f4df7e3f6659b90580a7fd79da079b2e427dfa
+Author: Farhim Ferdous <37705070+AluBhorta@users.noreply.github.com>
+Date:   Tue Mar 28 13:08:00 2023 +0600
+
+    Add TCP & UDP use case conditions
+    
+    Add use cases of when to choose TCP over UDP or vice versa that can help others make a better decision. The proposed changes are based on guaranteed & ordered data delivery that TCP provides.
+
+commit a691f2980cc43c63516d69bba912f8a8d9eb9c53
+Author: jamesatmeetapro <126988910+jamesatmeetapro@users.noreply.github.com>
+Date:   Wed Apr 5 22:29:00 2023 -0700
+
+    Add a useful mock interview website for system design prep
+
+commit 80e2a1f870204c1d4eed1fd003561a9266d48c37
+Author: Sunil <36989363+Ysunil016@users.noreply.github.com>
+Date:   Sat Apr 8 10:47:14 2023 +0530
+
+    add akamai cdn resource for further reading
+
+commit db0f6bac7772085f9c93a8f0ca8b2defd3778193
+Author: Abraão Állysson dos Santos Honório <abraaohonoriopb@gmail.com>
+Date:   Wed May 10 18:16:18 2023 -0300
+
+    [refactor]: improve code about strategy cache
+
+commit d65fca464453b4f184514bf243d997f5ab1af485
+Author: Ido Ophir <ophir.ido@gmail.com>
+Date:   Mon Apr 7 13:35:19 2025 +0300
+
+    Update solutions/object_oriented_design/parking_lot/parking_lot.py
+    
+    Copilot
+    
+    Co-authored-by: Copilot <175728472+Copilot@users.noreply.github.com>
+
+commit 1edf1696f09a41e1ff44df2ad43cae2eadd73887
+Author: shivral <79295827+shivral@users.noreply.github.com>
+Date:   Thu Jun 15 10:17:20 2023 +0530
+
+    Update parking_lot.py
+    
+    Fixed the typo where spot size was not being assigned and cleaned up the supers
+
+commit 992787f176ad5e3eede434eb6970eba86a3ea9aa
+Author: Balanagireddy M <iammudiam@gmail.com>
+Date:   Mon Jun 26 21:44:33 2023 -0700
+
+    Minor comments
+
+commit 414972fb762cdbfa13fc5e7d7d7379abda41cc3d
+Author: Talal <118025717+taloulonghub@users.noreply.github.com>
+Date:   Fri Aug 18 17:10:43 2023 +0100
+
+    Update generate-epub.sh
+    
+    In the optimized version of the script, I removed a total of 11 lines compared to the original script. The original script was 44 lines long, and the optimized version is 33 lines long.
+
+commit 430f0a35e77c09066f81da5e03a4b4d4a83e6b11
+Author: Harsha Raghu <narnindi.raghu@gmail.com>
+Date:   Tue Jul 11 13:12:45 2023 +0530
+
+    Update README.md
+
+commit f20c944e40ab97b25ad7950229c023e360b7c53b
+Author: Chuck Dingxuan Chen <cdxcharles@gmail.com>
+Date:   Wed Sep 20 11:11:26 2023 -0700
+
+    Availability fact check (four 9s downtime per week is off) and roundings
+
+commit 568933bfd286bd1923cdb67c86cc52af5d27581e
+Author: asuzukii <asuzuki.swe@gmail.com>
+Date:   Mon Nov 6 20:57:14 2023 -0800
+
+    some grammar fixes
+
+commit f6363337e6d07200c1ee996c5a5acd14eddb4771
+Author: Ido Ophir <ophir.ido@gmail.com>
+Date:   Mon Apr 7 12:31:24 2025 +0300
+
+    Fix RPC description (results->request) (#290)
+    
+    authored-by: greghvk <mrgreg557@gmail.com>
+
+commit 89e0253bc0c4932f833ee7be7c122f59fd377839
+Author: Ido Ophir <ophir.ido@gmail.com>
+Date:   Mon Apr 7 12:27:56 2025 +0300
+
+    Update to a URL (#289)
+    
+    Updated URL for Elasticache caching strategies
+    
+    Co-authored-by: Ansh Saxena <92105954+anshsaxena1703@users.noreply.github.com>
+
+commit dcd96b2106773ab00a73cca4171f07fce867cd7b
+Author: vivekmaru36 <110764790+vivekmaru36@users.noreply.github.com>
+Date:   Sun Dec 31 22:17:06 2023 +0530
+
+    Implement user addition in UserService online_chat.py
+
+commit 3c817b672b716917f2e7cbad1f6eb6495367ebee
+Author: Ido Ophir <ophir.ido@gmail.com>
+Date:   Mon Apr 7 12:07:44 2025 +0300
+
+    Update README.md
+    
+    Copilot fix
+    
+    Co-authored-by: Copilot <175728472+Copilot@users.noreply.github.com>
+
+commit 1dd1e9f55bf3cb3adaa39c0cd64a51e67bf9c602
+Author: eylon.basirtman <eylon.basirtman@tipalti.com>
+Date:   Sat Jan 6 10:31:59 2024 +0200
+
+    feat: add cache write-behind disadvantage
+
+commit b4840dcdbc2439f62106aed3ff4a42c0cebcd64d
+Author: Selin Cosar <scosar.cs@gmail.com>
+Date:   Sat Jan 13 14:24:42 2024 +0100
+
+    Add Turkish translation
+
+commit 547b4f149bfb39fbc84f9811c6b51ba2d2c40dea
+Author: Selin Cosar <scosar.cs@gmail.com>
+Date:   Mon Jan 8 01:10:42 2024 +0100
+
+    add README-tr.md
+
+commit a91f30b783a822c614648f510c8d2f2b8b9e88b5
+Author: Ido Ophir <ophir.ido@gmail.com>
+Date:   Mon Apr 7 11:57:17 2025 +0300
+
+    Update README.md (#282)
+    
+    adding a point in lecture Scalability Harvard
+    
+    authored-by: samy-soliman <42540697+samy-soliman@users.noreply.github.com>
+
+commit 9be7b1a2c6d521593dc09176184ea34d0be10858
+Author: JSon <xwxtwd@gmail.com>
+Date:   Mon Feb 26 13:16:36 2024 +0800
+
+    Use allowlisted instead of whitelisted.
+    Use blocklist instead of blacklist.
+
+commit b2de8b839b2640465850392514d5fc70eb769893
+Author: Albert <87888006+MustCodeAl@users.noreply.github.com>
+Date:   Fri Mar 8 23:31:45 2024 -0600
+
+    Update README.md
+    
+    Add video resources
+
+commit 5344565910e246ebfbfee81706390c4cc21bd59d
+Author: Dev Patel <entrepreneurdev1901@gmail.com>
+Date:   Sat Apr 6 18:05:56 2024 +0530
+
+    Change the link name for AWS article
+
+commit e9fedd2d71ce40b057ea51c8efd3cf233e0939be
+Author: Dev Patel <entrepreneurdev1901@gmail.com>
+Date:   Sat Apr 6 17:36:47 2024 +0530
+
+    Add extra links for performance v/s scalability and latency v/s throughput topic
+
+commit 4f076f0fc08211b8ce5095ea72f69c395d6297db
+Author: Ido Ophir <ophir.ido@gmail.com>
+Date:   Mon Apr 7 11:43:12 2025 +0300
+
+    Fix Table of Contents order (#276)
+    
+    Co-authored-by: Volume999 <Volume99917@gmail.com>
+
+commit 2d50abb8ffc996899c39ea04def0fbf756f239ff
+Author: Mark Qian <kunqian@live.ca>
+Date:   Fri May 10 15:56:59 2024 -0400
+
+    Update README.md to include solution for task scheduler
+
+commit bdb57f6c835c2631849e999d6ba99efa19c74d42
+Author: Abhijeet Antin <abhijeet14antin@yahoo.com>
+Date:   Sun May 26 23:29:20 2024 -0400
+
+    Add circular array code
+
+commit a3233bc8fe01edc2943fb71241cfbb3ad2bd5e8a
+Author: Ido Ophir <ophir.ido@gmail.com>
+Date:   Mon Apr 7 11:29:50 2025 +0300
+
+    [Imported] Grammar issues in README.md (#482)
+    
+    * Grammar issues in README.md
+    
+    "terminates" --> "terminate"
+    "a new API results" --> "new API results"
+    
+    * Update README.md
+    
+    ---------
+    
+    Co-authored-by: CL123123 <clairclair628@gmail.com>
+    Co-authored-by: Anandha Krishnan S <anandajith@gmail.com>
+
+commit 8f1987fa27bc5159775667d8747cff029f74fca3
+Author: Ido Ophir <ophir.ido@gmail.com>
+Date:   Mon Apr 7 11:23:25 2025 +0300
+
+    [Imported] Fix broken link in "How to ace a systems design interview" (#1031) (#483)
+    
+    * Fix broken link in "How to ace a systems design interview" (#1031)
+    
+    * Update README.md
+    
+    ---------
+    
+    Co-authored-by: Samuel Richardson <toolbax@gmail.com>
+
+commit 1cee61a45558ef19d6de5b398a8194c5d2a3ca04
+Author: Ben Meehan <benmeehan111@gmail.com>
+Date:   Mon Jan 13 14:16:06 2025 +0530
+
+    Add transactional messaging section with Outbox Pattern explanation
+
+commit fbbd0b54b47d8df265b24d212160395ca2dd8d87
+Author: MayureshMore <m_more1@u.pacific.edu>
+Date:   Thu Feb 13 08:47:00 2025 -0800
+
+    [Edited] Fix minor bug in the main function
+
+commit 52334b337b869318b73ce6c3f658ba6f99faf33c
+Author: YTeyddie22 <teyddie@gmail.com>
+Date:   Tue Feb 25 16:37:04 2025 +0300
+
+    Update the Redis Architecture Link under NoSQL
+
+commit b7f5187b69f1b139752b067b4891cbd45f1100a7
+Author: Devansh Agarwal <thedevanshagarwal@gmail.com>
+Date:   Tue Jun 4 21:26:51 2024 -0400
+
+    Update README.md
+    
+    Updated the link for Handshake wiki to https://en.wikipedia.org/wiki/Handshake_(computing).
+
+commit 2a65b3c703d38f8e4a3e95038618f8aaae2f1b86
+Author: henry.liu <henry.liu@hytechc.com>
+Date:   Mon Jun 17 17:22:11 2024 +0800
+
+    fix: A plain english introduction to CAP theorem url
+    
+    Remove unnecessary url path slash
+
+commit 26d4a1001d168d731c1611e5087d70e9a4fa10ed
+Author: HP (Hetav) <60848863+pandyah5@users.noreply.github.com>
+Date:   Mon Jun 17 22:10:00 2024 -0700
+
+    Update NAT Link in README-zh-TW.md
+
+commit 19fd27e7cb5793db24b7af1fd237768c27218ca5
+Author: HP (Hetav) <60848863+pandyah5@users.noreply.github.com>
+Date:   Mon Jun 17 22:09:10 2024 -0700
+
+    Update NAT link in README-zh-Hans.md
+
+commit ed30eee3da78b8ff5265094d46cd6454cd486af8
+Author: HP (Hetav) <60848863+pandyah5@users.noreply.github.com>
+Date:   Mon Jun 17 22:08:22 2024 -0700
+
+    Update NAT link in README-ja.md
+
+commit 8f32dae6bc4a550b2c3886af2561e4bfdabe401f
+Author: HP (Hetav) <60848863+pandyah5@users.noreply.github.com>
+Date:   Mon Jun 17 22:07:10 2024 -0700
+
+    Update NAT link in README.md
+
+commit 85db888a8ac1d44e6e10f86eed4f7fe3c2aed226
+Author: pallav sharma <pallavsharma@pallavs-MacBook-Pro.local>
+Date:   Fri Jun 28 15:46:50 2024 +0530
+
+    Fixing Markdown Lint-related issues in readme.md file.
+    
+    Using a markdown-lint extension to highlight lint-related issues.
+    
+    eg:
+    MD028 - Blank line inside blockquote
+    MD046 - Code block style
+    MD001 - Heading levels should only increment by one level at a time
+    MD040 - Fenced code blocks should have a language specified
+    MD033 - Inline HTML
+
+commit 4fc7ef241e58ec083dc09ae67b21c8b1baf9e4a7
+Author: Ido Ophir <ophir.ido@gmail.com>
+Date:   Mon Apr 7 10:32:00 2025 +0300
+
+    Delete .idea/.gitignore
+    
+    specific
+
+commit 13c0260fa51717dd296250f241fe7a4ae0c6b4f6
+Author: Shafaq Arshad <arshad.shafaq15@gmail.com>
+Date:   Sat Jul 13 15:18:05 2024 +0100
+
+    fix weighted round-robin link in TW
+
+commit a4aff4e186de32a3510f452686abaf140dfb1099
+Author: Shafaq Arshad <arshad.shafaq15@gmail.com>
+Date:   Sun Jul 14 17:00:03 2024 +0100
+
+    Add Consistent Hashing Session
+
+commit 2464f71db3824edfb98780a97785a246c73cac61
+Author: Shivam Ardeshna <94053627+ArSenic04@users.noreply.github.com>
+Date:   Sun Apr 6 22:32:37 2025 +0530
+
+    Updated README.md by adding required link
+
+commit bd5d427a934056015e0fea5efa0deed0ac4eba74
+Author: Shivam Ardeshna <94053627+ArSenic04@users.noreply.github.com>
+Date:   Tue Aug 27 20:22:50 2024 +0530
+
+    added one image and GIF in README.md
+
+commit 09d40b14d7458639777a0817ef94c95c04a74a0f
+Author: Shivam Ardeshna <94053627+ArSenic04@users.noreply.github.com>
+Date:   Tue Aug 27 20:21:25 2024 +0530
+
+    Add files via upload
+
+commit 58160388cb100c2e39bef99ad6c79d0f00770463
+Author: Shino 吳宗諺 <42535879+as200188@users.noreply.github.com>
+Date:   Mon Sep 9 17:10:57 2024 +0800
+
+    Fix typo of README-zh-TW.md
+
+commit 3333b5abecb002bbaa243774425c84d02507d01c
+Author: Toddneal Stallworth <toddnealstallworth@gmail.com>
+Date:   Fri Oct 4 20:12:10 2024 -0700
+
+    fixed spelling mistake
+
+commit fa593e0483e5849236b82ff1708094d3995351c1
+Author: Qiao Qiao <asurinsaka2022@gmail.com>
+Date:   Sat Oct 5 14:54:22 2024 -0500
+
+    fix picture for twitter solution
+
+commit 2c5008d4af48739c835c91f43bddf1a5259d464a
+Author: Kerem Yilmaz <keremyilmazcs@gmail.com>
+Date:   Mon Oct 21 11:56:54 2024 -0700
+
+    Update the lecloud links for translations
+
+commit 3011032ce21b1ee881180c41b73e4865fc4715d7
+Author: Kerem Yilmaz <keremyilmazcs@gmail.com>
+Date:   Mon Oct 21 11:52:09 2024 -0700
+
+    Replace broken lecloud links from web archive
+
+commit 7cf2d80bcc713d20cad98e22373eef3d0dcf99ca
+Author: Aditi <aditirathore7518@gmail.com>
+Date:   Wed Oct 23 10:51:05 2024 +0530
+
+    git'n a system-desgin-primer
+
+commit 9f28e4e5d321d3f4b8f44b1f59c6284a9de6c8a0
+Author: Steven Basart <xksteven@users.noreply.github.com>
+Date:   Sun Oct 27 03:00:27 2024 -0400
+
+    Fixes How to ace a systems design interview link
+    
+    Fixes How to ace a systems design interview link by linking to Web archive instead.
+
+commit 99a2a201bd3485efc396e55adc588390884dad5a
+Author: doquy2003 <lquy946@gmail.com>
+Date:   Thu Oct 31 17:09:36 2024 +0700
+
+    Create SECURITY.md
+    
+    fgyfds/8r7
+
+commit 70f2c94c5b727648bfc363779f8783f1e502d967
+Author: Andrey Chugunov <andrey@chugunov.me>
+Date:   Tue Dec 3 17:39:00 2024 +0400
+
+    Fix broken Latency numbers visualized link
+
+commit f13ba9d6f89cf1d5a330601a69e8862ae58eb070
+Author: Mahak Shah <55366357+ms5914@users.noreply.github.com>
+Date:   Sat Dec 7 00:49:49 2024 -0800
+
+    Removing unused path parameter
+    
+    The path parameter is not used in the function.
+
+commit 0aa7644cd2ea281c4496c553da674489cf4ce842
+Author: DizzyPanoss <147717361+DizzyPanoss@users.noreply.github.com>
+Date:   Sat Jan 11 14:02:27 2025 +0200
+
+    Updated typo in README.md
+
+commit 3cf948b0a82bce6e3f220e380095704e0c0f0c55
+Author: Shay Molcho <152275799+shaymolcho@users.noreply.github.com>
+Date:   Thu Jan 23 12:05:51 2025 +0200
+
+    Improve punctuation and formatting in README
+    
+    Enhanced punctuation and formatting in the README.
+    These changes enhance the document’s clarity and maintain a uniform structure.
+
+commit cd0abe1529194d29e18e9c227069adddac06423c
+Author: MohamedMetwalli5 <mohamedmetwalli5@gmail.com>
+Date:   Wed Feb 26 17:06:17 2025 +0200
+
+    Add Arabic Translation
+
+commit 0efc7278406d5eaf6ab97740168e32fdc926e7d5
+Author: Nicholas Wilson <sufssl03@gmail.com>
+Date:   Fri Mar 7 13:23:23 2025 -0600
+
+    Update README-ja.md
+    
+    replace invalid URLs with updated links
+
+commit fe3a3b61fd237ef27d5669cf2b5fab4f46823f56
+Author: Ido777 <ophir.ido@gmail.com>
+Date:   Tue Apr 1 22:49:06 2025 +0300
+
+    Update CAP theorem image and source link in README.md
+
+commit 40d5d2edccd00b4a66fb0e24d887d8b1a0d7ea0e
+Author: Satya Vinay <satyavinay2@gmail.com>
+Date:   Mon Dec 2 06:40:39 2024 +0530
+
+    Add Stripe engineering blog (#592)
+
+commit 3df19b2e4f3c020a20962960c92808404b9811a3
+Author: bali <40886141+n-ae@users.noreply.github.com>
+Date:   Sat Jun 29 03:09:29 2024 +0300
+
+    Fix links to Debunking the myths of RPC and REST (#855)
+
+commit c0132a3f4c6043345840c85a25b3cc3829d9f885
+Author: Aditya Vishwakarma <86044019+aditya-vishwakarma-lab@users.noreply.github.com>
+Date:   Sun Jun 23 23:06:45 2024 +0530
+
+    Fix DNS routing hyperlinks (#872)
+
+commit a07e261677c012d37d26255de6e7b128a2643946
+Author: dgolant <dgolant@gmail.com>
+Date:   Thu Mar 16 05:58:19 2023 -0400
+
+    Fix Scalability Article links (#750)
+    
+    Linking to Wayback Machine since it seems the domain expired
+
+commit 2d8231663fd0800720d25b9ac82dec3cda7e5a89
+Author: Iheb Haboubi <iheb.haboubi56@gmail.com>
+Date:   Sun Dec 11 21:06:51 2022 +0100
+
+    Fix top k requests link (#717)
+
+commit e161b2a5164369a8168df422568552fb0643110f
+Author: Anand <4419096+Anandkarthick@users.noreply.github.com>
+Date:   Sun Nov 13 13:04:17 2022 -0800
+
+    Update latency vs throughput blog link (#716)
+
+commit 7e8f93e57db6c016906121b9a868d1d767dd5edb
+Author: Chetan Nair <93496359+ChetanNair@users.noreply.github.com>
+Date:   Sun Jul 31 09:44:43 2022 -0700
+
+    Fix typo (#694)
+
+commit 7a094cec63795a3ebbaacebdf9dc4294cd3179b2
+Author: Kian-Meng Ang <kianmeng.ang@gmail.com>
+Date:   Sat Apr 23 21:14:45 2022 +0800
+
+    Fix typos (#661)
+
+commit 79364dbbdcc305cf411719d0ea53345b5048d53c
+Author: mleers <mleers4@gmail.com>
+Date:   Tue Apr 19 17:37:02 2022 -0700
+
+    Fix # 650: Replace broken weighted round robin link (#651)
+
+commit 578e29cff8f0f6f94572727f3efd4fb4df64d202
+Author: Nnachevvv <44066540+Nnachevvv@users.noreply.github.com>
+Date:   Sun Feb 13 04:52:00 2022 +0200
+
+    Fix memcache architecture URL (#631)
+
+commit e8a867ee286d0848ba32a2709051b6f275214714
+Author: Lawrence Chou <lawrencechou1024@gmail.com>
+Date:   Wed Nov 17 20:26:08 2021 +0800
+
+    Update GitHub Engineering Blog link
+
+commit 4e70c54a5b7bddeb636ce22f7da041739b188ca3
+Author: ayyjohn <alecjohnson55@gmail.com>
+Date:   Sun May 9 11:20:50 2021 -0700
+
+    Fix capitalization of Dropbox (#511)
+
+commit 6984b4e956169cf967298897f9d8b1f12b28245b
+Author: Trần Tiến Đức <trantienduchn@gmail.com>
+Date:   Tue Feb 16 09:14:06 2021 +0700
+
+    Fix LRU cache link (#505)
+
+commit 9107b8a1a7d37d8ddb2ef8521143c1939d596f1a
+Merge: 478a7d7 ffc8123
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Mon Feb 15 21:10:03 2021 -0500
+
+    Fixing the indieflashblog address with archive.org since website has been discontinued (#500)
+    
+    @lerignoux thank you!
+
+commit ffc8123b4c5047b2dcb2282b187b17ce02d7fa21
+Author: Laurent Erignoux <lerignoux@gmail.com>
+Date:   Sun Jan 24 17:26:08 2021 +0800
+
+    Fixing the indieflashblog address with archive.org since website has been discontinued
+
+commit 478a7d76fb07eb249f98fd9d998eff15c1d75ebc
+Author: Abdalla Mohamed <sharpcodex@gmail.com>
+Date:   Tue Dec 29 05:51:32 2020 +0300
+
+    Fix Celery URL (#486)
+
+commit f103307ce39b280df3d955426efaff681445d701
+Author: Peter Yao <peteryao7@gmail.com>
+Date:   Thu Oct 29 18:14:45 2020 -0700
+
+    Update broken HBase architecture link (#481)
+
+commit 53c0cf7de874b4aeb3e45cf8674fe07a3370c0cb
+Author: Ryo Shibayama <j02521@gmail.com>
+Date:   Mon Aug 3 03:13:17 2020 +0900
+
+    Fix translations link in PR template (#451)
+
+commit b7f255e469d0274b4e5c21fb6234cb918d5b0bde
+Author: Isetty Ravi Teja Kumar <iravitejakumar@gmail.com>
+Date:   Sun Aug 2 23:40:22 2020 +0530
+
+    Fix #335: Update OSI image to Open Systems Interconnection (#447)
+
+commit 7d39c44293c08a931a3122125ccb406e43ad43ae
+Author: Daniel Julius Lasiman <dj.lasiman@gmail.com>
+Date:   Sat Jul 18 08:15:47 2020 +0700
+
+    Remove Imgur dependency by storing images locally (#168)
+
+commit 828014aaac217f66ef2183fc65655440c672cf9c
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sun Jul 12 12:02:44 2020 -0400
+
+    Remove extraneous __init__.py (#393)
+
+commit f471578b79f4568f8764956b53b47a71d04656b7
+Merge: b5173d6 aaa0acc
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sun Jul 12 12:00:04 2020 -0400
+
+    Resolve #281: Add design stock exchange links (#441)
+    
+    * Additional question, build an exchange
+    
+    fixes https://github.com/donnemartin/system-design-primer/issues/281
+    
+    * Update README.md
+    
+    Co-authored-by: Donne Martin <donne.martin@gmail.com>
+
+commit aaa0acc80d9c82d7433f75b536ba450b34186224
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sun Jul 12 11:58:35 2020 -0400
+
+    Update README.md
+
+commit b5173d60d5a287e66aab97129537ea897e02beb4
+Author: Adam Dobrawy <ad-m@users.noreply.github.com>
+Date:   Sat Jul 11 03:01:12 2020 +0200
+
+    Change disk to HDD for clarity (#295)
+
+commit cbaae481a54f949b5db4e3b7ea878f19ac0839eb
+Author: Noe Brito <n.o.brito@hotmail.com>
+Date:   Thu Jul 9 17:49:43 2020 -0700
+
+    Clarify CDN advantages (#310)
+
+commit ad5435ba0dcaa67773f45de945699788d9a47790
+Author: Varsha Muzumdar <varsha.vjm@gmail.com>
+Date:   Thu Jul 9 17:48:47 2020 -0700
+
+    Add links for latency based and geolocation based routing (#319)
+
+commit 78e2eb5df83a14c6569815a182c9aa9af682f3fb
+Author: Ganessh Kumar <rpganesshkumar@gmail.com>
+Date:   Thu Jul 9 05:40:16 2020 +0530
+
+    Update dead links (#321)
+
+commit 06b3ed2adc8336ba068b1673c42c6762528efe7a
+Author: Joilson Cisne <joilsoncisne@gmail.com>
+Date:   Tue Jul 7 21:56:05 2020 -0300
+
+    Fix loop bug in deck of cards exercise (#396)
+
+commit 0beb557e8f2f239e961b0948bbf75504f9bf03c4
+Author: Manas Gupta <guptamanas1998@gmail.com>
+Date:   Wed Jul 8 06:24:01 2020 +0530
+
+    Add CAP theorem video link (#400)
+
+commit 2fe45a93914b322d07c0815a6e7f10f405519fff
+Author: Harry Moreno <morenoh149@gmail.com>
+Date:   Mon Jul 6 23:53:01 2020 -0400
+
+    Additional question, build an exchange
+    
+    fixes https://github.com/donnemartin/system-design-primer/issues/281
+
+commit 727a2f8bba898010ee72a8d8405b16ef91630489
+Author: John Richardson <42470533+John-Richardson@users.noreply.github.com>
+Date:   Tue Jul 7 03:05:50 2020 +0200
+
+    Remove redundant SQL index in Pastebin exercise (#405)
+
+commit cc11a9b119799425879a935f5536b95e79f1b122
+Author: Vladimir Mikhaylov <38596482+vemikhaylov@users.noreply.github.com>
+Date:   Tue Jul 7 04:00:34 2020 +0300
+
+    Fix Mint exercise bugs and typos (#409)
+
+commit 6d700ab9e1b669d85e0ecdaacb701007b1cd3192
+Author: Youngchul Bang <youngchul@gmail.com>
+Date:   Sun Jul 5 23:57:57 2020 +0900
+
+    kr: Fix Korean translation link in language index (#340)
+
+commit d3b3e78966f15ee821697bbd48abd368c9a766c8
+Author: Rahil <rahilrshk@gmail.com>
+Date:   Sun Jul 5 20:23:28 2020 +0530
+
+    Add system design template link (#433)
+
+commit 793f47297021bbdc3b0505c3d97454e3a9addd30
+Author: Nachiket Acharya <nachiket.acharya@microsoft.com>
+Date:   Sun Jul 5 07:50:31 2020 -0700
+
+    Fix #313: Clarify availability patterns (#439)
+
+commit 2ac6512f6d9f4ef4c925b68eab14ad697e7308ab
+Author: Agade09 <n.sillitoe@gmail.com>
+Date:   Sun Jul 5 16:48:23 2020 +0200
+
+    Fix typos in Twitter and web crawler exercises (#438)
+
+commit 914736a29f2b1164c390b30bd8b53479f9ae8727
+Author: Kofi Forson <kofif7kofi@gmail.com>
+Date:   Sat Jul 4 07:55:42 2020 -0700
+
+    Update Twitter back-of-the-envelope calculations (#414)
+
+commit 5d4dac6bafe5e60d338e588f74426935c3efd949
+Author: Kevin Liu <kevinliu23@gmail.com>
+Date:   Sat Jul 4 10:53:56 2020 -0400
+
+    Fix typo: Change replication to federation (#418)
+
+commit 60202315cc646b587185faa697ce70c8399dcd2f
+Author: Sainadh Devireddy <sainadh976@gmail.com>
+Date:   Sat Jul 4 06:54:24 2020 +0530
+
+    Check dependencies in Ebook gen script (#406)
+
+commit d57b3d1f956a65fe5cfeeb0d8293ef006e5cff10
+Author: Neesara <neethums333@gmail.com>
+Date:   Sat Jul 4 06:52:02 2020 +0530
+
+    Resolve #164 - Fix phrasing with availability and partition tolerance (#350)
+
+commit fca96cafbb3b1e42ca263af3b430ad4b14342ebf
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Thu Jul 2 21:18:36 2020 -0400
+
+    Highlight translation request (#437)
+
+commit 661c029b574c0b419f0736a30e4e2e44adf4d1fd
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Thu Jul 2 21:11:07 2020 -0400
+
+    Add status of translations (#436)
+
+commit b199766f440ce1af6454c7a81c2b830716b71388
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Wed Jul 1 20:54:05 2020 -0400
+
+    Add pull request template (#435)
+
+commit b4a7a09db7b308f2d3b79b69fbc54f3f141f7611
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Wed Jul 1 20:48:43 2020 -0400
+
+    Update contributing guidelines for translations (#434)
+
+commit 42aa63b3c201f41048aa3380549848e77f2a9fc7
+Author: shiyujiucsb <16054786+shiyujiucsb@users.noreply.github.com>
+Date:   Tue Jun 30 17:56:55 2020 -0700
+
+    Fix layer 7 load balancers typo (#317)
+
+commit f2d7dd86f0835f5bf27f1a65dec032e013c4dd49
+Author: panguncle <54489480+panguncle@users.noreply.github.com>
+Date:   Wed Jul 1 08:42:24 2020 +0800
+
+    Fix single point of failure typo (#398)
+
+commit 9a0248063275daddc51a99e3787760249b6a5d0a
+Author: Alexander Teno <5354921+alexanderteno@users.noreply.github.com>
+Date:   Tue Jun 30 20:37:49 2020 -0400
+
+    Add missing comma in Mint solution (#399)
+
+commit b2fffe6fd40bd22e5dbf9bd0b398fa76fd11537b
+Author: userstartupideas <64709217+userstartupideas@users.noreply.github.com>
+Date:   Tue May 26 02:59:01 2020 +0100
+
+    Update "Scaling up to your first 10 million users" link (#411)
+
+commit 449dc27f33991fe558a83c6815eb28ae294428dd
+Author: 根号三 <imsqrtthree@gmail.com>
+Date:   Mon Mar 30 08:40:50 2020 +0800
+
+    zh-Hans: Translate solutions (#392)
+
+commit ac806e46cb63b1b7955d43bf55291f52b0d3eeae
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Mon Mar 9 21:46:02 2020 -0400
+
+    Revert "zh-cn: Sync with upstream to keep it up-to-date (#374)" (#391)
+    
+    This reverts commit 301b9d88e4aed1c34b3275301f18b14957c38c91.
+    
+    #374 overwrote the English version of the solutions
+
+commit 301b9d88e4aed1c34b3275301f18b14957c38c91
+Author: 根号三 <imsqrtthree@gmail.com>
+Date:   Tue Mar 10 09:34:18 2020 +0800
+
+    zh-cn: Sync with upstream to keep it up-to-date (#374)
+
+commit 8e9c89129bc842df6ed8604bf511d6981d4e7d05
+Author: Danny Jung <3496334+dannyjung90@users.noreply.github.com>
+Date:   Sun Feb 16 18:00:44 2020 -0800
+
+    Fix broken link in CAP theorem section (#348)
+
+commit fc563ca297a4667e12c17fa3c41c82949928c9ac
+Author: vyq <qvc246+github@gmail.com>
+Date:   Tue Jan 21 08:26:09 2020 +0800
+
+    Fix broken CAP theorem link (#355)
+
+commit 3b2264e5e87aa7907b86d521a266fda526a4042c
+Author: Dan Choi <ygdanchoi@gmail.com>
+Date:   Wed Jan 15 10:04:08 2020 -0500
+
+    Fix broken round robin links (#351)
+
+commit e50f26960dde9adce5614d8ead8be48ee47053e5
+Author: Christian Clauss <cclauss@me.com>
+Date:   Fri Dec 27 02:11:57 2019 +0100
+
+    Change raise NotImplemented to raise NotImplementedError (#345)
+
+commit eaa447cc39d124a52eb31cf0a22ef9b3c1d3bba4
+Author: SATO Yusuke <yusuke.sato.zz@gmail.com>
+Date:   Mon Dec 9 12:35:44 2019 +0900
+
+    ja: Fix mistranslation in SQL tuning section (#305)
+
+commit 3ea0b15b5088483d1e5d77196aacee1c15306cb6
+Author: Brandon <brandonJY@users.noreply.github.com>
+Date:   Mon Dec 9 11:34:17 2019 +0800
+
+    zh-Hans: Change translation in SQL tuning (#318)
+
+commit fdba2a2586a30b78249e5daba8a807ee532b0af9
+Author: Duy Nguyen Hoang <nhduy88@gmail.com>
+Date:   Sun Nov 3 17:56:24 2019 +0700
+
+    Add API security checklist (#328)
+
+commit 7d4a13d8a28bc52178f0e25819128fabd505d4bb
+Author: SATO Yusuke <yusuke.sato.zz@gmail.com>
+Date:   Wed Aug 14 08:51:20 2019 +0900
+
+    ja: Fix translation in Service Discovery section (#308)
+
+commit 3e55f5bd39811688cc1468afa194aea4797b0b08
+Author: SATO Yusuke <yusuke.sato.zz@gmail.com>
+Date:   Wed Aug 14 08:50:53 2019 +0900
+
+    ja: Fix translation in “Disadvantage(s): load balancer” (#307)
+
+commit 4bef27e60ad8379973b433fdae30d72ecd49e254
+Author: SATO Yusuke <yusuke.sato.zz@gmail.com>
+Date:   Wed Aug 14 08:50:09 2019 +0900
+
+    ja: Fix translation in "Anki flashcards" (#306)
+
+commit 9dc60cff3a44815bc2f22497b66d815378f21533
+Author: SATO Yusuke <yusuke.sato.zz@gmail.com>
+Date:   Mon Aug 5 09:30:53 2019 +0900
+
+    JA: Fix mistranslation in Federation section (#303)
+
+commit eef185e97e21eb969e5c2af9ccdf5c385296d5de
+Merge: 041c42f 109235b
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sat Aug 3 10:08:18 2019 -0400
+
+    Merge pull request #302 from satob/ReverseProxy
+
+commit 041c42f2e42987b9cccbdb8252a2121bc53d0f23
+Merge: edbe857 78d15fd
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sat Aug 3 10:07:59 2019 -0400
+
+    ja: Fix translation in horizontal scaling section (#301)
+    
+    * JA: Fix mistranslation in Horizontal scaling section
+    
+    - The Japanese translation is ambiguous about “vertical scaling” means scaling out or scaling up.
+    - The word “expensive” is missing in the Japanese translation.
+    
+    * ja: Fix mistranslation in "Horizontal scaling"
+
+commit edbe857b7b743425c1ea74f3cb294c558a551243
+Author: SATO Yusuke <yusuke.sato.zz@gmail.com>
+Date:   Sat Aug 3 23:07:34 2019 +0900
+
+    JA: Fix mistranslation in Push CDNs section (#300)
+
+commit b4135dd6b2f13ad24ec15349fec96559289f55c4
+Author: SATO Yusuke <yusuke.sato.zz@gmail.com>
+Date:   Sat Aug 3 23:06:57 2019 +0900
+
+    JA: Fix mistranslation in Weak consistency section (#299)
+
+commit 78d15fd16a75ea55d9071f7f038238db1668ba34
+Author: SATO Yusuke <yusuke.sato.zz@gmail.com>
+Date:   Sat Jul 27 00:22:56 2019 +0900
+
+    ja: Fix mistranslation in "Horizontal scaling"
+
+commit 109235b486ab5dac804d54d85e6b35eb35606a46
+Author: SATO Yusuke <yusuke.sato.zz@gmail.com>
+Date:   Thu Jul 11 00:13:11 2019 +0900
+
+    JA: Fix mistranslation in Reverse proxy (web server) section
+    
+    - Fix mistranslation of parallel structure. (not information/blacklist/limit, but hide/blacklist/limit)
+
+commit f78db9e5b0b4b3ddbb05d59541e24f642e0bedba
+Author: SATO Yusuke <yusuke.sato.zz@gmail.com>
+Date:   Tue Jul 9 00:57:34 2019 +0900
+
+    JA: Fix mistranslation in Horizontal scaling section
+    
+    - The Japanese translation is ambiguous about “vertical scaling” means scaling out or scaling up.
+    - The word “expensive” is missing in the Japanese translation.
+
+commit c65a721b41e79506656d8c6d0c1f9256606c0143
+Author: Yuya Ma'emichi <6386129+Wintus@users.noreply.github.com>
+Date:   Sun Jul 7 00:07:13 2019 +0900
+
+    ja: Fix typo of Big-O notation in KVS section (#292)
+
+commit 33431e61a9e6a636c902298fe3629da3a34c3c66
+Author: Kevin Xu <kevin.xu.v@gmail.com>
+Date:   Sun Jun 16 23:21:21 2019 +0800
+
+    zh-Hans: Translate Pastebin solution (#273)
+
+commit 9ce0e9d734213807364831743b8b498607b3e46a
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Thu May 30 20:25:26 2019 -0400
+
+    Add Hebrew translation link (#286)
+
+commit a95a2937bcd56569f8653ae71fb0b691d9a21481
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Mon May 13 18:56:36 2019 -0700
+
+    Update language lists in translations (#280)
+
+commit dd15249b65cdfe907706a4b87252af5a0737aab6
+Author: minhaz <minhazav@gmail.com>
+Date:   Sun May 12 16:49:23 2019 +0530
+
+    Add availability in numbers section (#237)
+
+commit 55d09f611d6c5ab1463365cb3079c35b13c5d700
+Author: Simon Knott <simoknott@gmail.com>
+Date:   Sun May 12 12:21:14 2019 +0200
+
+    Add Ebook generation script (#207)
+
+commit 0022c9708e752c92a1d6686a0f8352110e4fc40e
+Author: Sébastien Puyet <sebastien@puyet.fr>
+Date:   Sat May 11 18:42:58 2019 +0200
+
+    Translate language list (#252)
+
+commit 116634f5b34a6f5c7eae61188045b717e32233e2
+Author: Manas Karekar <manaskarekar@users.noreply.github.com>
+Date:   Tue May 7 06:24:41 2019 -0400
+
+    Enable syntax highlighting in all python code snippets (#268)
+
+commit 8b04d4d5fe64dfcd0bcf67b1f29b42477686737f
+Author: leontyr <leontyr@gmail.com>
+Date:   Tue May 7 18:22:12 2019 +0800
+
+    Update HDFS design link to the latest version (#275)
+
+commit 1a9eefe629c6cc14ddc7c45eabc18956dd3e75ac
+Merge: fda859e 8744c03
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Tue Apr 9 20:46:59 2019 -0400
+
+    Add article link: How Twitter Handles 3,000 Images/sec (#124)
+
+commit fda859e4a407ac6071f9856118be2c35331b5c2d
+Author: Sean Han <hanxiaobow@gmail.com>
+Date:   Sun Mar 17 17:55:19 2019 -0700
+
+    Fix broken SQL link in Scaling AWS exercise (#258)
+    
+    Fix broken SQL link in Scaling AWS exercise
+
+commit 82d80a08a0f6bbfe192eb0f4d26899658d869098
+Author: Manas Karekar <manaskarekar@users.noreply.github.com>
+Date:   Sun Mar 3 22:28:43 2019 -0500
+
+    Enable Python syntax highlighting in Pastebin sample code (#257)
+
+commit 38d18fb62b8608eb64d9d3409ac0645fbf7248a3
+Author: yiksanchan <evan.chanyiksan@gmail.com>
+Date:   Thu Feb 28 03:55:50 2019 -0800
+
+    Update document-store to document store (#255)
+
+commit e276822d72c95b555f8146a845bcff862d4b321a
+Author: glusa8 <glusa8@berkeley.edu>
+Date:   Mon Feb 11 02:48:36 2019 -0800
+
+    Fix typo in Twitter timeline and search solution (#251)
+
+commit 970d006ff5fe8976849fb575cb07266a0f92a29e
+Author: glusa8 <glusa8@berkeley.edu>
+Date:   Sun Feb 3 04:35:24 2019 -0800
+
+    Fix grammar in document store section (#247)
+
+commit 1144b8ef4c441af73f7cbfd51f56b8eb62350a66
+Author: Guo <msn4399@163.com>
+Date:   Mon Jan 21 03:59:42 2019 +0800
+
+    zh-Hans: Fix typo (#246)
+
+commit 9843e649cf006e04120c532d045ab073901e3825
+Author: Juan Eugenio Abadie <juaneabadie@gmail.com>
+Date:   Sat Jan 5 14:20:17 2019 -0300
+
+    Add missing word in cache write through discussion (#245)
+
+commit 75298db50d39965748a251168b92547fdc08c8b1
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Thu Dec 27 19:39:11 2018 -0500
+
+    Add Bengali translation link (#242)
+
+commit 6a57d065a7524ec064afdf957592f500927a34e5
+Author: Saurav <40655135+saurav-2104@users.noreply.github.com>
+Date:   Wed Dec 19 07:47:00 2018 +0530
+
+    Fix #228: Address mutex latency discrepancy (#233)
+
+commit 02c0827a4e199498e268c6cbba27eb6fe5072d9c
+Author: Chang Liu <fluency03@users.noreply.github.com>
+Date:   Wed Nov 14 02:23:21 2018 +0100
+
+    Add Link: A 360 Degree View Of The Entire Netflix Stack (#229)
+
+commit 96ec8d5fc0f5f4d86df36796d4504427fa879168
+Author: reiscigit <44085121+reiscigit@users.noreply.github.com>
+Date:   Thu Nov 1 06:34:52 2018 +0800
+
+    zh-TW: Update index anchors (#227)
+
+commit 2269bf79946f41d77a4343999ffd5be65020f29a
+Author: Masao <41692876+masaodev@users.noreply.github.com>
+Date:   Fri Oct 26 09:20:26 2018 +0900
+
+    ja: Fix typo (#226)
+
+commit 9d0316ff6bf5aef916bc13b9d0216dfc0a0b50fc
+Author: Michael de Cardery <1446186+Xom@users.noreply.github.com>
+Date:   Thu Oct 11 01:13:42 2018 +0000
+
+    Update Scalability for Dummies link (#224)
+
+commit 8437d77565d3cc39c6661be5edda4549bf27e228
+Author: Pramod Gupta <gupta.pramod@live.com>
+Date:   Mon Oct 1 06:08:28 2018 +0530
+
+    Resolve #214: Add reference links to message queues section (#218)
+
+commit eb9107232c2f0cd6a9c3d82d531cad3725e02ffa
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sun Sep 23 20:12:12 2018 -0400
+
+    Update README intro (#216)
+
+commit 74e0e9b3709627f07eb61d3d7ea2936858954a2e
+Author: brunoffsp <brunoff@gmail.com>
+Date:   Tue Sep 18 21:10:26 2018 -0300
+
+    Update Cassandra architecture links (#213)
+
+commit c816b4137f69574de31975c87ca8db918d9dc399
+Author: dajiao007 <dajiao007007@163.com>
+Date:   Sun Sep 16 15:48:51 2018 +0800
+
+    zh-Hans: Update translation (#209)
+
+commit 203bc822d59c623ebab7c57dd2c27c396e8c9050
+Author: Xu <xulunfan@users.noreply.github.com>
+Date:   Sat Sep 15 15:29:03 2018 +0800
+
+    zh-Hans: Update translation (#212)
+
+commit b7037c02d7686a606b7c1af285ff4884514bee18
+Author: hi大头鬼hi <bruceinpeking@gmail.com>
+Date:   Sat Sep 15 05:10:39 2018 +0800
+
+    zh-Hans: Fix translation (#208)
+
+commit 4c37b06dda0645d4027fb91f0c6e89cddaf2df2d
+Author: Fabrizio Cucci <fabrizio.cucci@gmail.com>
+Date:   Sat Sep 8 01:47:43 2018 +0100
+
+    Fix typo in Design Pastebin.com exercise (#210)
+
+commit e472695b77fe35ced7e0925b8d62a5d83057fa06
+Author: dvanbrug <dirk.c.vanbruggen@gmail.com>
+Date:   Sun Sep 2 14:10:42 2018 -0400
+
+    Fix #126: Update link to Anki decks (#206)
+
+commit cac4d754ef74070d5c395c980443192df9ca83d6
+Author: Karoliina Oksanen <hkoksanen@gmail.com>
+Date:   Tue Aug 28 20:56:38 2018 -0400
+
+    Fix broken links (#204)
+
+commit cc5d862a87821dc27b1ce5b3ee0edb9d0fd4dd23
+Author: Varun <vakumar@mediamath.com>
+Date:   Fri Aug 24 01:24:59 2018 -0500
+
+    Fix typo in CAP theorem section (#205)
+
+commit ab5fbebd6a478e8b84e9c231433db22c95606155
+Author: Fabrizio Cucci <fabrizio.cucci@gmail.com>
+Date:   Mon Aug 20 06:38:43 2018 +0200
+
+    Update Twitter/Facebook exercise description (#202)
+
+commit 5a23f6b99261319db4c4bbd3bb206ca0dabb56c7
+Author: meteor <meteor199@qq.com>
+Date:   Tue Aug 14 10:32:16 2018 +0800
+
+    zh-Hans: Fix typo: 'Twitter' (#200)
+
+commit 1f939ec351014cbb84846cd5c9afc1531823f07a
+Author: Narendra Choudhary Legha <narenchoudhary@users.noreply.github.com>
+Date:   Mon Aug 13 06:19:30 2018 +0530
+
+    Resolve #195: Fix broken GitHub URLs (#199)
+
+commit ffbcd9a381ad812b3fcfc06a9deac6b14ba0e754
+Author: Ali <HasanAliKaraca@users.noreply.github.com>
+Date:   Thu Aug 9 15:01:27 2018 +0300
+
+    Fix wording in call center solution (#197)
+
+commit f5dde5faad2c057e2bc07f02257cf020fe533d5b
+Author: hekra01 <hekra@cisco.com>
+Date:   Tue Aug 7 03:24:59 2018 +0200
+
+    Fix error in Twitter timeline solution (#196)
+
+commit cd7ac6d2d0786f26e372befd5f3dcd4b1396f72d
+Author: Girish Raman <RGirish@users.noreply.github.com>
+Date:   Sun Aug 5 06:52:03 2018 -0700
+
+    Fix broken URL (#194)
+
+commit 9c4c603b8ff15289aa715d07dafdea3b7d2dc8cd
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Wed Aug 1 18:18:41 2018 -0400
+
+    Add Thai translation link (#190)
+
+commit c8392e3cb1a39217340f22e7a672343b2eed8c34
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sun Jul 29 22:05:41 2018 -0400
+
+    Add German translation link (#188)
+
+commit f350860cdc14c7dc7b3deb4e1144bd3fb805cf4e
+Author: Igor Zboichik <zboigor@gmail.com>
+Date:   Wed Jul 25 04:55:54 2018 +0300
+
+    Fix broken links (#180)
+
+commit 136c0b9e17f412d9451b874a6f5016e46d46cdbe
+Author: Kevin Vandenborne <veloxy@users.noreply.github.com>
+Date:   Mon Jul 23 08:13:03 2018 +0200
+
+    Fix typo in LRU cache solution (#182)
+
+commit bda2a5f93c9245204c6d039fd6a382589d641a01
+Author: Davis <d12e493@gmail.com>
+Date:   Fri Jul 20 12:46:35 2018 +0800
+
+    zh-TW: Improve translations (#176)
+
+commit 924570e4cbc80ea588d7206e2bc50b4aba2b20a9
+Author: cclauss <cclauss@bluewin.ch>
+Date:   Thu Jul 19 08:09:09 2018 +0200
+
+    Add newlines - PEP8 style (#173)
+
+commit 17530912ac8a944c593457a488b547d0ff0cf32f
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Tue Jul 17 21:58:14 2018 -0700
+
+    Add Arabic translation link (#177)
+
+commit e46d72a1203423d281f2cfaef1aefc0044a542e2
+Author: Yusuke Otsuka <mjhd-devlion@users.noreply.github.com>
+Date:   Sun Jul 15 09:05:15 2018 +0900
+
+    ja: Swap VARCHAR and CHAR translation error (#169)
+
+commit e116bd75fca589f0201fae062f94bf991298cd7b
+Author: cclauss <cclauss@bluewin.ch>
+Date:   Sun Jul 15 02:01:57 2018 +0200
+
+    Fix #148: Add State(Enum) to social_graph_snippets.py (#167)
+
+commit 9069993cc023cf3af333f1fe249b34e7505f0305
+Author: breakliu <slackcode@gmail.com>
+Date:   Fri Jul 13 19:32:14 2018 +0800
+
+    zh-Hans: Fix PostgreSQL typo (#166)
+
+commit d832db4ac26135bd979168f470906c8fefec3346
+Author: Nikolas Kanakis <nicolasmanic@gmail.com>
+Date:   Fri Jun 29 06:18:11 2018 +0300
+
+    Replace broken SQL tuning links (#163)
+
+commit 6f135048951378f083649bb3a09729124d31da51
+Author: yangyangyang <yangnianqiu@gmail.com>
+Date:   Sat Jun 16 13:30:42 2018 +0800
+
+    zh-Hans: Fix typo (#161)
+
+commit ad40b8e649e0db50959b7f6714536f7cba6189fe
+Author: cclauss <cclauss@bluewin.ch>
+Date:   Wed May 23 05:15:42 2018 +0200
+
+    Change variable seller to category in Mint solution (#159)
+
+commit a36048346e29a8ed866ff3dd79cabfbb1af3b692
+Author: cclauss <cclauss@bluewin.ch>
+Date:   Mon May 7 03:26:01 2018 +0200
+
+    Add missing enum imports (#157)
+
+commit 4a7d2e45251750c9c7a35f70f2bdba3410510695
+Author: cclauss <cclauss@bluewin.ch>
+Date:   Mon May 7 03:25:31 2018 +0200
+
+    Adding missing self variable (#158)
+
+commit a70a8f3a04c3b51cade0b8de2b43de545f6e9471
+Author: Anton Hulikau <contest.gulikov@gmail.com>
+Date:   Thu Apr 26 04:22:26 2018 +0300
+
+    Fix dict KeyError (#153)
+
+commit e50e2007f6442dc797088d6d6d283613226d406d
+Author: Anton Hulikau <contest.gulikov@gmail.com>
+Date:   Thu Apr 26 04:22:05 2018 +0300
+
+    Fix dict KeyError (#152)
+
+commit fb6624215ada772cc09ac549ab42f56f55453b8d
+Author: cclauss <cclauss@bluewin.ch>
+Date:   Wed Apr 25 19:19:04 2018 -0600
+
+    Fix coding errors (#149)
+
+commit bb49172d9235c426d3559972d9926a769b0ee093
+Author: KUAN Hsuan-Tso <kst920106@gmail.com>
+Date:   Wed Apr 11 08:28:15 2018 +0800
+
+    zh-TW: Fix comment format (#155)
+
+commit 1b339dbddeb1b3ec80d8d20a7f18f34cb268d15a
+Author: cclauss <cclauss@bluewin.ch>
+Date:   Mon Apr 9 02:25:11 2018 +0200
+
+    Change LARGE to VehicleSize.LARGE in parking lot solution (#146)
+
+commit ea262de564f8ab749e47960764a63a4cd7d48df4
+Author: cclauss <cclauss@bluewin.ch>
+Date:   Sun Mar 25 00:38:34 2018 +0100
+
+    Add deque import to Social Graph solution (#147)
+
+commit b156e48e4b1f515694f16bd29293ed6c28b8ad18
+Author: cclauss <cclauss@bluewin.ch>
+Date:   Sun Mar 18 14:21:52 2018 +0100
+
+    Add missing self variables to Deck of Cards solution (#145)
+
+commit 0178943013f08cfc2a5c083e5d39be70ba72bbdc
+Author: cclauss <cclauss@bluewin.ch>
+Date:   Sun Mar 18 14:19:08 2018 +0100
+
+    Add missing colons to class methods (#143)
+
+commit 38a93dc190092d20a95f7485fbe1d3735a53d716
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Wed Mar 7 20:38:49 2018 -0500
+
+    Add Spanish translation link (#142)
+
+commit e53b20b5e5a912d2c3cc65a92962fd050312fdd0
+Author: Robert <robertdingx@gmail.com>
+Date:   Thu Mar 8 09:37:45 2018 +0800
+
+    zh-Hans: Fix typos (#141)
+
+commit f099a0ad3f3e6ac16727bc29e77d1e3ac8d40e22
+Author: cclauss <cclauss@bluewin.ch>
+Date:   Wed Mar 7 01:37:46 2018 +0100
+
+    Convert all .py files to be valid Python (#98)
+
+commit 3ca1f1d0d2f3b7e1bb76209ed129969f281463e2
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Mon Mar 5 20:29:07 2018 -0500
+
+    Add Greek translation link (#140)
+
+commit b566126bab6a28bb6501b7b282100113659844db
+Author: kevingo <kevingo75@gmail.com>
+Date:   Mon Mar 5 03:14:45 2018 +0800
+
+    zh-TW: Add proper line break to links (#139)
+
+commit c3c59c93a122452ddb60b604022ff3c209f208f5
+Author: kevingo <kevingo75@gmail.com>
+Date:   Wed Feb 28 10:41:23 2018 +0800
+
+    Add Traditional Chinese translation (#133)
+
+commit 8744c037908dfe7c6b0ca784a8c738163c4795bc
+Merge: f4fed18 f952d6a
+Author: Chang Liu <fluency03@users.noreply.github.com>
+Date:   Tue Feb 27 11:45:52 2018 +0800
+
+    Merge branch 'master' into add-twitter
+
+commit f952d6addc44e0bb7edb2cdee84245d41d7de882
+Author: George Javakhidze <javakhidze.giorgi@gmail.com>
+Date:   Tue Feb 27 04:28:04 2018 +0200
+
+    Update re:Invent url (#137)
+
+commit 2e1627e0da0a8600ec0c67c9ba6861414cf1cbdf
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Thu Feb 22 22:49:17 2018 -0500
+
+    Update contributing guidelines - PR squash (#135)
+
+commit 8b29a8551027e8f4b70328a0f6dc5168f56a811e
+Author: Chang Liu <fluency03@users.noreply.github.com>
+Date:   Fri Feb 16 09:37:45 2018 +0800
+
+    Add Facebook Live Streams (#125)
+
+commit f6b7d3c8c07ead00388d3bb87d74811c04e2fe92
+Author: Christopher <cciollaro@localytics.com>
+Date:   Wed Feb 7 19:57:00 2018 -0500
+
+    Update master-slave section anchor (#129)
+
+commit ca674d8bb572db5344e323d4cb9c33502000c314
+Author: Chang Liu <fluency03@users.noreply.github.com>
+Date:   Sat Feb 3 00:08:50 2018 +0100
+
+    Add Scaling Uber in Company Architecture (#123)
+
+commit 017884eaf946d26e368882a7cb4a4bc9f2732484
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Tue Jan 23 21:26:59 2018 -0800
+
+    Add Vietnamese translation link (#128)
+
+commit 90b1bc4eaf67042be7d15ed2fa457f31c6cb536a
+Author: Chang Liu <fluency03@users.noreply.github.com>
+Date:   Sun Jan 21 17:54:59 2018 +0100
+
+    Add Netflix in Company Architectures (#122)
+
+commit f4fed1881432f98eb064ff541b2ec61777df8e0f
+Author: fluency03 <fluency.03@gmail.com>
+Date:   Sat Jan 6 13:06:49 2018 +0000
+
+    add Twitter Handles 3,000 Images Per Second
+
+commit 9481662a171eaa7701ed35f3704e5317bdcdede9
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Fri Jan 5 19:25:20 2018 -0500
+
+    Make some minor wording/formatting changes (#120)
+
+commit 7310acfbaee9e583a55bfd596f6ed52af22fff92
+Author: Koudai Sakabe <cs006061@gmail.com>
+Date:   Fri Dec 8 10:18:26 2017 +0900
+
+    ja: Fix typo (#119)
+
+commit 7bd31dcd1787299909229b7803afa5ff9e775807
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sun Dec 3 07:09:41 2017 -0500
+
+    Update Japanese translation link (#118)
+
+commit 7dfeae60acb2f6394dff00da0cf56bb6b154999c
+Author: yutaka kobayashi <yutaka.kobayashi@todai-dream-net.com>
+Date:   Sat Dec 2 10:15:57 2017 +0900
+
+    Add Japanese Translation (#114)
+
+commit d62b4990137ab0b063427941e548f87f7ee8839c
+Author: Tony Yao <tony@socedo.com>
+Date:   Wed Nov 29 17:12:15 2017 -0800
+
+    Correct Redis list structure in Twitter solution (#116)
+
+commit f631baaef3c2e1f50e929e11bf599bb82974c07d
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Thu Nov 2 20:03:29 2017 -0400
+
+    Add Persian translation link (#115)
+
+commit 6c4c2abe00b13a63a823f5137488b555a84c4642
+Author: Bryan Jennings <bryanjenningz@gmail.com>
+Date:   Tue Oct 24 18:05:59 2017 -0700
+
+    Simplify logic for is_ace and is_face_card in deck of cards solution (#113)
+
+commit 2aa2166b2abea9976f2c3326bd862236b37a4e7d
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Fri Oct 13 20:26:47 2017 -0400
+
+    Add Korean translation link (#111)
+
+commit a2d0a3dc5f69d43f10bcaede6dedd549f4f65cb0
+Author: Rishabh Maurya <rishabhmaurya.maurya@gmail.com>
+Date:   Mon Oct 9 06:22:44 2017 +0530
+
+    Add API rate limiter design link (#108)
+
+commit eb318fad5c728337d3b522482e2ef6c222b396f0
+Author: Samar Dhwoj Acharya <coolsamar207@gmail.com>
+Date:   Sat Oct 7 11:06:37 2017 -0500
+
+    Fix typo: considering to consider in scaling AWS solution (#109)
+
+commit 98cf88efea560515bfc3dd8a496d65a22bf7d02b
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sun Sep 24 07:43:54 2017 -0400
+
+    Add Italian translation link (#106)
+
+commit 9fca092d099774328528cf2dd28968c93e554743
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Tue Sep 19 19:30:44 2017 -0400
+
+    Add traditional Chinese translation link (#105)
+
+commit 7f9c998a03a91fa933a7bc16205e0a69d5d1ae3f
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Thu Sep 14 21:05:01 2017 -0400
+
+    Add Japanese translation link (#101)
+
+commit 2d94e2d99a3e081a3c35b984dba2bbf202f79497
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Tue Aug 29 20:13:02 2017 -0400
+
+    Treat solution subdirectories as containing Python packages (#99)
+
+commit 8fa019bd9c798a9c8a7a595945562067cf3deb4d
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sun Jul 23 12:07:36 2017 -0400
+
+    Add Russian translation link (#91)
+
+commit 982304ba7a8e6e6b0fa4ac676099def56d3d534d
+Author: Tay Yang Shun <tay.yang.shun@gmail.com>
+Date:   Tue Jul 18 10:29:28 2017 +0800
+
+    Add policy for adding new blogs to Company engineering blogs section (#96)
+
+commit 6914cd9160d98a6b4d592a493415ed30ff47ddf3
+Author: Olaf van der Spek <olafvdspek@gmail.com>
+Date:   Tue Jul 18 04:08:36 2017 +0200
+
+    Fix typo in denormalization section (#95)
+
+commit 708756a36d7bd4ded7f3fe5f5284d3483fe3beed
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sat Jul 1 12:07:08 2017 -0400
+
+    Add polish translation link (#89)
+
+commit cc480586625d463638e7e87bf3f7b2b06c167e7c
+Author: Arash Rouhani <miffoljud@gmail.com>
+Date:   Wed Jun 14 02:43:11 2017 +0200
+
+    Fix reducer argument in pastebin exercise (#85)
+
+commit 17e5fb7d32e02281f30e1b138b59a500e67a4e3c
+Author: Ian Park <asbear@gmail.com>
+Date:   Tue Jun 6 01:25:04 2017 +0100
+
+    Add prev to Node class (#82)
+    
+    For managing an LRU cache, we need to use a doubly linked list for move_to_front() operation.
+
+commit 4badddd78e4dcc098dfccfdeca51bb2eef32b9be
+Author: Ian Park <asbear@gmail.com>
+Date:   Tue May 30 01:55:32 2017 +0100
+
+    Init spot_size member in parking lot exercise (#83)
+
+commit e168c588f534f3e87a037b1e3ffc9a59578e25cb
+Author: CharlesSantiago <CharlesSantiago789@gmail.com>
+Date:   Fri May 26 20:32:45 2017 -0400
+
+    Fix typo (#75)
+
+commit 960bf1be64aa8c126f5192031d6360998485c5d6
+Author: Kangkai Tang <tangkangkai@gmail.com>
+Date:   Fri May 26 19:31:31 2017 -0500
+
+    Fix #79: Inaccuracy in Twitter timeline and search example (#81)
+
+commit d0f018ae0ff4dbda1e8a18345fc90ca3d94be8a0
+Author: Sergey Saiyan <sergey.sova42@gmail.com>
+Date:   Tue May 16 07:17:24 2017 +0300
+
+    Fix lowercase typo in Layer 7 load balancing title (#74)
+
+commit cbbb548c7de6045c3e2178e81c5e7703214eaa15
+Author: Larry Lv <larrylv1990@gmail.com>
+Date:   Mon May 15 21:10:51 2017 -0700
+
+    Fix asynchronism link in Mint README (#69)
+
+commit 019eaafe5b9ad79d9c1a0c9ba06db2dc6a05cfc2
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Thu May 11 21:49:37 2017 -0700
+
+    Add license disclaimer (#76)
+    
+    Clearly denote the repository license is from me, not my employer (Facebook).
+
+commit 5072dfe96c4428aac53db0500d713baac1986c60
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sun Apr 16 15:06:31 2017 -0700
+
+    Update translation links (#65)
+    
+    Move the list of completed and in-progress translations to the top of the README.  Add a translate link to the Contributing section.
+
+commit 5517013458814e8f7cdd66173a1292a2f2d0b2d0
+Author: 根号三 <sqrtthree@foxmail.com>
+Date:   Mon Apr 17 05:49:15 2017 +0800
+
+    zh-cn: Rename README-zh-Hant.md to README-zh-Hans.md (#64)
+
+commit 1ae841afba2ad7a3d34e98345d46044e72424f4b
+Author: 根号三 <sqrtthree@foxmail.com>
+Date:   Sat Apr 15 21:32:32 2017 +0800
+
+    zh-cn: Add Simplified Chinese translation v1.0 (#62)
+
+commit 95b4d92667ec841721bb5122292e80c68b3365ef
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Fri Apr 14 20:35:50 2017 -0400
+
+    Update translations section in contributing guidelines (#61)
+    
+    Add credits section.  Remove currently non-existent AUTHORS.md.  Fix maintainer copy/paste error.
+
+commit 2986f71025b046a1e66b4f4f2b8e5db549fab1fc
+Author: Iñaki Abete <inakiabt@users.noreply.github.com>
+Date:   Thu Apr 13 22:04:38 2017 -0300
+
+    Fix Coding deck broken link (#59)
+
+commit 99acefaa01e237aee7d00ef49d53e7b2936aabe8
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Mon Apr 10 07:04:43 2017 -0400
+
+    Update Translations section (#57)
+
+commit aecb070eb2bbc9ec4890de77cdbb6f9077b994df
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sun Apr 9 13:15:57 2017 -0400
+
+    Update system design flashcards (#56)
+
+commit 424c3465aded9d84b9518b6c98f523c1b40b577c
+Author: Ben Gadbois <bengadbois@users.noreply.github.com>
+Date:   Fri Apr 7 17:20:37 2017 -0700
+
+    Change Pull CDN wording for clarity (#55)
+
+commit 32a537b1ecb358cb4ca2ff997938c58f78afaffc
+Author: zanemayo <zanemayo@users.noreply.github.com>
+Date:   Tue Apr 4 10:56:38 2017 +0100
+
+    Change AP wording for clarity (#50)
+
+commit 8a263f99257922b8fc49dabc325748a01c00139d
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Mon Apr 3 06:41:00 2017 -0400
+
+    Add reference to interactive coding challenges repo (#49)
+
+commit 15fe159b4837ed30c49520bbf28f06a1b8067c48
+Merge: 7ac68aa 7f6d52e
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sun Apr 2 08:34:48 2017 -0400
+
+    Merge pull request #48 from donnemartin/develop
+    
+    Resolve #15: Add OmniGraffle template and diagrams
+
+commit 7f6d52e9fe0b89de5aaea337b3df3f46988cc71e
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sun Apr 2 08:26:33 2017 -0400
+
+    Add web crawler OmniGraffle diagrams
+
+commit 8fcd565377992e94c36c9ebd1ac25ac63397daf0
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sun Apr 2 08:26:21 2017 -0400
+
+    Add twitter OmniGraffle diagrams
+
+commit d84d3f52fb4163b753850abc7497c92c855852ad
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sun Apr 2 08:26:11 2017 -0400
+
+    Add social graph OmniGraffle diagrams
+
+commit 9d4bec434e216c3716dfc8849bab3969d814b568
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sun Apr 2 08:26:02 2017 -0400
+
+    Add scaling aws OmniGraffle diagram
+
+commit 3544e62d7b66eefa63a879ff933b983035e12e27
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sun Apr 2 08:25:47 2017 -0400
+
+    Add sales rank OmniGraffle diagrams
+
+commit 1f7d78ba3e3d4623d31588520e8a9231053b1e2b
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sun Apr 2 08:25:39 2017 -0400
+
+    Add query cache OmniGraffle diagrams
+
+commit 0c3a785a8d5ccf02135460ca48cbb7811495c715
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sun Apr 2 08:25:28 2017 -0400
+
+    Add pastebin OmniGraffle diagrams
+
+commit f8f32e91f2e641d36a1a97cd623c28b5a0f66df0
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sun Apr 2 08:24:47 2017 -0400
+
+    Add mint OmniGraffle diagrams
+
+commit 408a3f4aa5c1b197eb6e7581fd394724802ae19a
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sun Apr 2 08:22:42 2017 -0400
+
+    Add study guide OmniGraffle diagram and image
+
+commit 9a8a2fb47aac82960c9735b4e1c069c402c6a601
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sun Apr 2 08:21:37 2017 -0400
+
+    Add OmniGraffle base template
+
+commit 7ac68aa090ac0dec588dfdbb024cd8970e56a640
+Merge: 4d30304 591fa4f
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sun Apr 2 08:09:50 2017 -0400
+
+    Merge pull request #47 from donnemartin/develop
+    
+    Polish up HTTP, RPC, and intro sections
+
+commit 591fa4f6a2f9e4651239e2f737f5db3eee3a62db
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sun Apr 2 08:04:58 2017 -0400
+
+    Change large scale -> large-scale
+
+commit 8fc20e606d643124187b9ff165aacb32b3e58cc6
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sun Apr 2 08:02:03 2017 -0400
+
+    Fix caps and punctuation in RPC section
+
+commit d40ba34d64e9ced0ab76dcf8fcccfa1473adade9
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sun Apr 2 08:00:20 2017 -0400
+
+    Add sources and further reading to HTTP section
+
+commit 4d30304ef2967909bb4c6da141739fd6609452b5
+Author: JP <jp@jpcaparas.com>
+Date:   Wed Mar 29 23:19:14 2017 +1300
+
+    Explain difference between PUT & PATCH (#35)
+
+commit b9acf6a0631dee95ea7c258dbe5823ba56600485
+Merge: 53896a0 ea461bf
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Tue Mar 28 07:45:13 2017 -0400
+
+    Merge pull request #36 from donnemartin/mad01-change-zookeeper-as-sd
+    
+    Update service discovery section to include consul, etcd, and additional details
+
+commit 53896a0fdde34c082b14a07219b50a4f948bbad3
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Mon Mar 27 07:21:07 2017 -0400
+
+    Add translations to contributing guidelines (#37)
+
+commit ea461bf23a07f3f5a601fd36ddb63c7160d56661
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sun Mar 26 12:50:23 2017 -0400
+
+    Polish service discovery changes
+
+commit 619b5c97c106f4fd757be853ae82b2c3b665ce53
+Author: Alexander Brandstedt <alexanderbrandstedt@gmail.com>
+Date:   Fri Mar 24 12:30:09 2017 +0100
+
+    Change service discovery example to use consul/etcd
+
+commit 3021a3aed39ffbd083253739c126f3fb2917f078
+Author: Yadong Wen <ralphite@users.noreply.github.com>
+Date:   Thu Mar 23 22:42:02 2017 -0400
+
+    Fix typos (#33)
+
+commit 0c8be40660b7ed7262ad1073e2ea794d9d1cbb6d
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Wed Mar 22 23:20:57 2017 -0400
+
+    Add call for translations link (#30)
+
+commit ae13db3b6cdc6d84d53ea37e014831e4eb27c240
+Author: Yadong Wen <ralphite@users.noreply.github.com>
+Date:   Wed Mar 22 22:53:15 2017 -0400
+
+    Fix typo (#29)
+
+commit 40b5be2d9ce33e7beebacfbd330bfae977dbfcaa
+Author: Roxas Shadow <webmaster@giovannicapuano.net>
+Date:   Tue Mar 21 12:39:10 2017 +0100
+
+    Declare variable key in the get_user example (#26)
+
+commit f1ae855ad0611c160373de5d0c055e76ad2b5575
+Author: Jakub Janarek <jjanarek@gmail.com>
+Date:   Sun Mar 19 20:24:13 2017 +0100
+
+    Fix typo JSS -> JS (#25)
+
+commit e417324830eb56cbe9c07b44399a0efcb6e95d63
+Author: Federico Baldassarre <baldassarre.fe@gmail.com>
+Date:   Sun Mar 19 20:23:03 2017 +0100
+
+    Fix #6: Migrate links from exercises/solutions to use internal links (#23)
+
+commit eaed5dd016ebc0d2184207760e7f744e8a7f6320
+Author: Balki Kodarapu <bkodarapu@paytrace.com>
+Date:   Sat Mar 18 08:37:16 2017 -0700
+
+    Delete duplicate does in 3 design examples (#24)
+    
+    Delete duplicate word "does" in design exercises
+
+commit 5fa4136b58d359f17eb8fda32d586f2a90ef5534
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Wed Mar 15 06:59:28 2017 -0400
+
+    Add high scalability to credits (#22)
+
+commit 390d0d5b66865ddb64958f55ea1914f852160e78
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Mon Mar 13 06:42:35 2017 -0400
+
+    Update OO exercises index (#21)
+
+commit a071e4abc75d8b7fdb972a72bc564af0101f3783
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Mon Mar 13 06:40:02 2017 -0400
+
+    Update Study guide section (#20)
+
+commit e5df3f5adaa77d021be25f852d43b760d63a76f4
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sun Mar 12 17:17:29 2017 -0400
+
+    Update Motivation section (#19)
+
+commit eb2a6cb43c620fdb7fa610b1bab6beec89c6d2b3
+Author: Luis de Bethencourt <luis@debethencourt.com>
+Date:   Sat Mar 11 16:59:58 2017 +0000
+
+    Fix typo in RPC section (#17)
+
+commit 69d4e5a70b45cfe1867c1ccbe2a504cef3d4b90d
+Author: Sudarshan (Sid) <iamsidshetty@users.noreply.github.com>
+Date:   Fri Mar 10 20:07:50 2017 -0600
+
+    Add Dyn DDoS attack link (#13)
+
+commit 65c056f6a649a9b665d4c1d1cd9fb182477efb0d
+Author: Mostafa Gaafar <mgaafar@live.com>
+Date:   Sat Mar 11 06:06:34 2017 +0400
+
+    Fix multiple typos (#14)
+
+commit b34e167233e83a1441e3bce7c323f6366e28b669
+Author: Tay Yang Shun <tay.yang.shun@gmail.com>
+Date:   Fri Mar 10 08:40:12 2017 +0800
+
+    Add more disadvantages of REST (#9)
+
+commit aaecc59f6a22915ae3b4ce6918e682f9467d5ffb
+Author: James Hewitt <james.hewitt@gmail.com>
+Date:   Fri Mar 10 00:37:39 2017 +0000
+
+    Fix typo - lobsided -> lopsided (#11)
+
+commit 16651d57d9ba7e0b6fb80558e3363f689f3ab5ca
+Author: Luis de Bethencourt <luis@debethencourt.com>
+Date:   Fri Mar 10 00:36:11 2017 +0000
+
+    Fix typo in Study Guide section (#10)
+
+commit 684679f9a0b9dc25ce06ffdd6a22529b4db8bca7
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Wed Mar 8 23:31:08 2017 -0500
+
+    Fix #1: Update reverse proxy image (#8)
+
+commit 0889f04f0d8162b6513437d3171a8ebb9ef5e504
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Wed Mar 8 22:20:23 2017 -0500
+
+    Resolve #3: Fix broken links in exercises (#5)
+
+commit 7e9b9b265dad50bc208a6f7d1f6f5f6f940cb45b
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Wed Mar 8 06:00:32 2017 -0500
+
+    Update system design flashcards
+
+commit 6e1ef2356db6251b25282856f8ed9cbb3828595f
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Wed Mar 8 05:52:19 2017 -0800
+
+    Update header image
+
+commit 4fb0c677f40a4425cb91e17e3fc98753e694291d
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Wed Mar 8 05:51:02 2017 -0800
+
+    Update Anki flashcards section
+
+commit 1276c8a9f9e6ff03a1360d70b307d7227c6e7544
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Tue Mar 7 21:37:26 2017 -0800
+
+    Add Anki flashcards section
+
+commit 624e0c2ffe1eab6cb525bf6be1166e0cfcbc004f
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Tue Mar 7 21:37:11 2017 -0800
+
+    Simplify online chat solution
+
+commit 992cd5b1f60ee9e61a1207a7ce35b7bd7d941d8a
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Tue Mar 7 21:36:02 2017 -0800
+
+    Rework motivation and guide
+
+commit ed2d35ebb7e32bc82e1acca51795e929c1df019d
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Tue Mar 7 21:27:48 2017 -0800
+
+    Add Anki flashcards
+
+commit dc2b8f7e0ce65a68a7181324576a8b16bf71f66c
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Tue Mar 7 20:05:10 2017 -0800
+
+    Update Study Guide section
+
+commit 2c1329b4296f947fbbc4acbe9124fb882378af26
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Tue Mar 7 20:04:51 2017 -0800
+
+    Update Motivation section
+
+commit a9cc1c0cbb3f3eabeb55d5747f39ace444d26a3a
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Tue Mar 7 20:04:31 2017 -0800
+
+    Move several sections to Appendix
+
+commit 28137d38f07b0bbf02b1af4cb0dd87dd372ee90b
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Tue Mar 7 19:50:36 2017 -0800
+
+    Fix chat server solution link
+
+commit 18cb6ce1a7810d2446182ed12c188c051f8c657e
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Tue Mar 7 19:18:07 2017 -0800
+
+    Clean up under dev index
+
+commit 50d3d7ecb3df073cf95dc93d7e96ade2e61e274a
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Tue Mar 7 19:16:25 2017 -0800
+
+    Fix Remote procedure call (RPC) section header
+
+commit 43cd75f7bda804a368965e94c77478089f14a22b
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Tue Mar 7 19:15:39 2017 -0800
+
+    Add Master-master replication link
+
+commit dd618e263a8391b716af30fe6bc0607452ac375c
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Tue Mar 7 19:14:49 2017 -0800
+
+    Remove dead Scaling SQL link
+
+commit 419f29a8bcdddce9fd3b773ffa00290c6716d027
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Tue Mar 7 19:14:19 2017 -0800
+
+    Fix Relational database management system (RDBMS) link
+
+commit eaf8fda3d75cff4d660e374a65e403c29a72981d
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Tue Mar 7 19:13:44 2017 -0800
+
+    Fix availability and partition tolerance link
+
+commit 7027b8dc2a1149ac05e6233f33113a2e55967e4f
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Tue Mar 7 19:13:28 2017 -0800
+
+    Fix consistency and partition tolerance link
+
+commit 4f987a2e21430f53ecc0c58a19de03e2e62cee96
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sun Mar 5 19:30:00 2017 -0800
+
+    Add CONTRIBUTING.md
+
+commit 4c4c0d9b1c01162040c8711240aa8be694b673a9
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sun Mar 5 19:27:24 2017 -0800
+
+    Add LICENSE.txt
+
+commit 6d884cf3e76e3e63c535b803ddccb7a398a1ec1b
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sun Mar 5 19:25:59 2017 -0800
+
+    Add .gitignore
+
+commit 547db248d83d012fa58308237873a74f77f802b1
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sun Mar 5 19:25:43 2017 -0800
+
+    Add .gitattributes
+
+commit fab2df65faf223a5a624d5438acc93de09c3781f
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sat Mar 4 21:07:31 2017 -0800
+
+    Add Scaling AWS solution
+
+commit e60de1775e4c0b44b2a8608704b5196550488202
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sat Mar 4 21:06:58 2017 -0800
+
+    Add Web Crawler solution
+
+commit e577dda5d9c0fb95d087601faa42f4e907da7283
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sat Mar 4 21:06:40 2017 -0800
+
+    Add Twitter solution
+
+commit 66e4348db73139d03abc60f5baac8d11d5fef7c0
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sat Mar 4 21:06:28 2017 -0800
+
+    Add Social Graph solution
+
+commit edc404ec5cfede05ec116bd4f610d998e99bf12c
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sat Mar 4 21:06:17 2017 -0800
+
+    Add Sales Rank solution
+
+commit d484f80b1873ba0032ceec9a2c174cddfcbc34f4
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sat Mar 4 21:06:04 2017 -0800
+
+    Add Query Cache solution
+
+commit a2e92178d71ba2a904c953291b59bcdef0a59b66
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sat Mar 4 21:05:53 2017 -0800
+
+    Add Pastebin solution
+
+commit 7fb0ca889fed6b3bf383a45b906114162754441c
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sat Mar 4 21:05:31 2017 -0800
+
+    Add Mint solution
+
+commit 831906f96c4799e5b2f6f975ae090428b1947ce2
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Fri Mar 3 18:54:23 2017 -0800
+
+    Add Parking Lot Solution
+
+commit 616710f42ecce1f25f2c97e3ab10e7cc25f69465
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Fri Mar 3 18:54:08 2017 -0800
+
+    Add Online Chat solution
+
+commit ae9832c6b73629e9641f49dd7d2258affa767007
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Fri Mar 3 18:53:54 2017 -0800
+
+    Add LRU Cache solution
+
+commit 7595e2a4996e3061ad1c1352ff4a3a16d949f8f8
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Fri Mar 3 18:53:41 2017 -0800
+
+    Add Hash Table solution
+
+commit 0f517c709efcbad1643694189874f4f78fc32f00
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Fri Mar 3 18:51:00 2017 -0800
+
+    Add Deck of Cards solution
+
+commit 98819e2a06e113955773de28d6b0c17505270512
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Fri Mar 3 18:50:44 2017 -0800
+
+    Add Call Center solution
+
+commit 7eb69402aa41e85817622b92e990d47f8d69a7b2
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Thu Mar 2 19:49:59 2017 -0800
+
+    Add License section
+
+commit d4e48500f2ef951c520d928d33e66df3329ea028
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Thu Mar 2 19:49:38 2017 -0800
+
+    Add Contact info section
+
+commit cdcc34aa90545111ba035e07db7d8e75f24b3f41
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Thu Mar 2 19:49:19 2017 -0800
+
+    Add Credits section
+
+commit 51ef417d1c733828d519bd79a220f41aa6fc4042
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Thu Mar 2 19:49:03 2017 -0800
+
+    Add Under development section
+
+commit 4646b0942c421b91f40c6bfead9de4703cedabc6
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Thu Mar 2 19:48:45 2017 -0800
+
+    Add Latency numbers every programmer should know section
+
+commit 1f30e7815388d476048cf10fcae6fa5073a17380
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Thu Mar 2 19:45:07 2017 -0800
+
+    Add Powers of two table
+
+commit 609a75aa00ab06ce35c732da182cd65efb33119f
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Thu Mar 2 19:44:33 2017 -0800
+
+    Add Security section
+
+commit 1721a84af4936374834992011b5f9eccbfcc7232
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Thu Mar 2 19:42:54 2017 -0800
+
+    Add RPC and REST calls comparison section
+
+commit 33d26b8032d18ffc45668ecfd7ed4489004fe846
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Thu Mar 2 19:42:25 2017 -0800
+
+    Add Representational state transfer (REST) section
+
+commit 9d9cd8c4e332825e5fc1a23ac23164e2a65e8631
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Thu Mar 2 19:31:16 2017 -0800
+
+    Add Remote procedural call (RPC) section
+
+commit 9a3a2c4940d30b5cbf1e88c3a85cf25c1a81e304
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Wed Mar 1 20:44:42 2017 -0800
+
+    Add User datagram protocol (UDP) section
+
+commit d93918dc3a4118e43bb56e38f0a0a9d622e92573
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Wed Mar 1 20:44:16 2017 -0800
+
+    Add Transmission control protocol (TCP) section
+
+commit 297af21b07a4aa8f25527d469f460a22e6199bab
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Wed Mar 1 20:44:00 2017 -0800
+
+    Add Hypertext transfer protocol (HTTP) section
+
+commit 81756229afdc26fc0beff281f5cca5c00ac8ffdf
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Wed Mar 1 20:43:44 2017 -0800
+
+    Add Communication intro image
+
+commit 09963c0f77ded40da8164c1a57d0056d2a9354f9
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Wed Mar 1 20:42:55 2017 -0800
+
+    Add Async disadvantages and further reading sections
+
+commit 492a2be89146fe294d6951e0f143394852e51d8d
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Wed Mar 1 20:42:13 2017 -0800
+
+    Add Back pressure section
+
+commit fcb619502d15afcf03c999aad88be280fbf7b226
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Wed Mar 1 20:41:48 2017 -0800
+
+    Add Task queues section
+
+commit c931a8544c10b8f9d029a2f68515b37e17c3290e
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Wed Mar 1 20:41:24 2017 -0800
+
+    Add Message queues section
+
+commit 87c4fafccb9072b3034cf034290b2ba6268ce268
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Wed Mar 1 20:40:25 2017 -0800
+
+    Add Asynchronism intro section
+
+commit 8b974768f1c73205a571525c69df15611cfdbe4c
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Wed Mar 1 20:39:10 2017 -0800
+
+    Add cache disadvantages and further reading sections
+
+commit 03ceca8500cbf02d7a0820966071b812f5c62c68
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Wed Mar 1 20:38:45 2017 -0800
+
+    Add Refresh-ahead section
+
+commit 4b1cde229d291257da7d9b7772ac38c8b928b161
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Wed Mar 1 20:38:17 2017 -0800
+
+    Add Write-behind (write-back) section
+
+commit 09ee77980dfe07cf0b0b3d0092cbcafd557f36da
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Wed Mar 1 20:37:59 2017 -0800
+
+    Add Write-through section
+
+commit adda68c28b2c52df0a5e0c382f7f4e89badfbe53
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Wed Mar 1 20:37:36 2017 -0800
+
+    Add Cache-aside section
+
+commit 1945024e5bccc581d39143b1400051f5e0ae204f
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Wed Mar 1 20:37:12 2017 -0800
+
+    Add Caching at the database query level vs obj level sections
+
+commit e161b29eb1c61878ea17f1e1cb034610104ac0e4
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Wed Mar 1 20:36:47 2017 -0800
+
+    Add Application caching section
+
+commit 707163811ed7586b6f9d5f261f69fc4b34bd6fbc
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Wed Mar 1 20:36:29 2017 -0800
+
+    Add client, CDN, web server, and DB caching sections
+
+commit 0d0814fa58dc82071e054394ad71078800f49ee8
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Tue Feb 28 05:08:07 2017 -0800
+
+    Add Cache intro section
+
+commit e32821de48d91764252b40f8aa68b5820fc8ddc3
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Tue Feb 28 05:06:59 2017 -0800
+
+    Add SQL or NoSQL section
+
+commit 016665e9b7a0f4bcbabf974e03c0918a1617f4f5
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Tue Feb 28 05:06:42 2017 -0800
+
+    Add Graph database section
+
+commit 52713ec309242352c3998c4eb0e665cb5b075d65
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Tue Feb 28 05:06:15 2017 -0800
+
+    Add Wide column store section
+
+commit b5f0815ffaf3468ded24493d591d0158a8fce26c
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Tue Feb 28 05:06:00 2017 -0800
+
+    Add Document store section
+
+commit c6ac09f0fc0d2ff1dafb1bbf035ee47f107ccddf
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Tue Feb 28 05:04:37 2017 -0800
+
+    Add Key-value store section
+
+commit c83d146def3008e18d6cd5d7e1fa8dd04ffcb893
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Tue Feb 28 05:04:09 2017 -0800
+
+    Add NoSQL intro section
+
+commit b549ea49ca5bedbda693c7719439e88a3365d9fd
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Tue Feb 28 05:03:48 2017 -0800
+
+    Add SQL tuning section
+
+commit 4efe7fbc84425a70af45ce915eb399d675b050b8
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Tue Feb 28 05:03:29 2017 -0800
+
+    Add Denormalization section
+
+commit c361ea12a51df6f789cc6788cae34a992d20068b
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Tue Feb 28 05:03:08 2017 -0800
+
+    Add Sharding section
+
+commit 18611be86cc3d11e3fa1f498e9a9e84c76b787ec
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Tue Feb 28 05:02:44 2017 -0800
+
+    Add Federation section
+
+commit d753508b060329b7e2fae66e058ed5a7a0c6f546
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Tue Feb 28 05:02:21 2017 -0800
+
+    Add Master-master replication section
+
+commit c4dc4b0f889a90beb75a687b1254223171b8188e
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Tue Feb 28 05:01:54 2017 -0800
+
+    Add Master-slave replication section
+
+commit e596fd90394857b7a9cfe04b94e38ce1d57e279c
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Tue Feb 28 05:01:31 2017 -0800
+
+    Add Relational database management system section
+
+commit 94aea1576c7707cf4d02e94a0add4894081e9c95
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Tue Feb 28 05:01:15 2017 -0800
+
+    Add Application layer section
+
+commit 173e4f661d33828941747b360b85a382d365e4ee
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Mon Feb 27 05:21:05 2017 -0800
+
+    Add Reverse proxy section
+
+commit 4358539492f61fed03860dcb0858b4092d2597ac
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Mon Feb 27 05:20:25 2017 -0800
+
+    Add Load balancer section
+
+commit 47359dbea1a05de29f23ab5f60564d689cad7af7
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Mon Feb 27 05:19:59 2017 -0800
+
+    Add Content delivery network section
+
+commit 001c5c8a5b6f1b34cb4365545e32a96f48adac71
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Mon Feb 27 05:19:33 2017 -0800
+
+    Add Domain name system section
+
+commit 801d52ba8defe2860c7ed5b66dad5d03ad23c4a1
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Mon Feb 27 05:19:11 2017 -0800
+
+    Add Availability patterns section
+
+commit 156ddb11b7f31fab37f87869e5425784e02241b6
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Mon Feb 27 05:18:05 2017 -0800
+
+    Add Consistency patterns section
+
+commit 3f20a5fafb7005b97eaabe0f99fab3209585d4c6
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Mon Feb 27 05:16:55 2017 -0800
+
+    Add Availability vs consistency section
+
+commit 8abdbf677f774f5047d983a6938ee637239315c2
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Mon Feb 27 05:06:28 2017 -0800
+
+    Add Latency vs throughput section
+
+commit 116851d1e9728d27cec40c6639d8e3717f1b8edc
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Mon Feb 27 05:06:10 2017 -0800
+
+    Add Performance vs scalability section
+
+commit 9aee5ed72c2a574633163b5daf4263adee4616d9
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Mon Feb 27 05:05:53 2017 -0800
+
+    Add System design topics: start here section
+
+commit 8c46ed37fd6e85c50ed6245cb5b80b901bfafc35
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Mon Feb 27 05:05:23 2017 -0800
+
+    Add Company engineering blogs section
+
+commit a71b3a2462243bfa9ab87089fc9f5a7411400a71
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Mon Feb 27 05:04:53 2017 -0800
+
+    Add Company architectures section
+
+commit d45c499836d0f5a87f0e5273f4f9f62769cce602
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Mon Feb 27 05:04:21 2017 -0800
+
+    Add Real world architectures section
+
+commit 074d5d2cb5cb7dfa42b7ff69ecddc3048b3d9ddc
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Mon Feb 27 05:03:46 2017 -0800
+
+    Add Additional system design interview questions section
+
+commit 102bcc5bbec910107de746ae87d0ae623a75ee2f
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Mon Feb 27 05:02:50 2017 -0800
+
+    Add Object-oriented design interview questions with solutions section
+
+commit 42368768a67b09f22d39ee601cf84efb23b880db
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Mon Feb 27 05:02:16 2017 -0800
+
+    Update repo links to reflect repo rename
+
+commit 0468b8cf31c5cb5effdbae50b03b4926e518322f
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sun Feb 26 05:22:40 2017 -0800
+
+    Add Design a system that scales to millions of users on AWS image
+
+commit be5e6940a8f56c563501ddc6301ec35afff7847c
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sun Feb 26 05:22:20 2017 -0800
+
+    Add Design Amazon's sales ranking by category feature image
+
+commit 068480aa55da1fa38709ad4c12909dd84d5df92c
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sun Feb 26 05:21:16 2017 -0800
+
+    Add Design a key-value store for a search engine image
+
+commit 70cd43cf0bc19f9b32b5c9eccb55748897a3bc44
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sun Feb 26 05:20:43 2017 -0800
+
+    Add Design the data structures for a social network image
+
+commit 494cd2a1ea44fde7b100f49e9acb024ecf227c73
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sun Feb 26 05:19:59 2017 -0800
+
+    Add Design Mint.com image
+
+commit 9663417770389e0ecfb6afd8ce5b694170e0bc5c
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sun Feb 26 05:19:35 2017 -0800
+
+    Add Design a web crawler image
+
+commit 5dcf504e819335d154779f95e47398dcdcca8323
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sun Feb 26 05:19:05 2017 -0800
+
+    Add Design the Twitter timeline and search image
+
+commit decb9165eb17e95434efc347309ab06a78c1d505
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sun Feb 26 05:18:17 2017 -0800
+
+    Add Design Pastebin.com image
+
+commit fc97ef98a61aca8513a62ab40545349e714ac5a9
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sun Feb 26 05:16:05 2017 -0800
+
+    Add system design interview questions with solutions section
+
+commit c0bbd9d912a8b534d400d5ca8a15a62c8180c303
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sun Feb 26 05:12:28 2017 -0800
+
+    Add how to approach a system design interview question section
+
+commit 37990f0aa1a7e6ebba0da8626d37b72ed86e653c
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sun Feb 26 05:11:32 2017 -0800
+
+    Add study guide section
+
+commit 5e9e21c675fe7e6bf4b466ccbd454b2616379704
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sun Feb 26 05:11:11 2017 -0800
+
+    Add index section
+
+commit 3bfedf4269c2c107a701d5dba8abe8f1d0d699d7
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sun Feb 26 05:10:48 2017 -0800
+
+    Add contributing section
+
+commit 35f22bb85a40a94c657824919255ef13d25b7168
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sun Feb 26 05:10:29 2017 -0800
+
+    Add design interview prep discussion
+
+commit 0782047336cccd731281abe7605d5bf95496dadb
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sun Feb 26 05:10:03 2017 -0800
+
+    Add motivation section
+
+commit ee6227a2a558281b37fe23ef1c627d5f95c331a6
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sun Feb 26 05:09:37 2017 -0800
+
+    Add header image
+
+commit 976d90f37fc2a87eff4fba93db2db30788f67d83
+Author: Donne Martin <donne.martin@gmail.com>
+Date:   Sun Feb 26 05:08:55 2017 -0800
+
+    Initial commit

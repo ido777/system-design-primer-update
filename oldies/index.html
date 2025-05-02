@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Latency Visualization</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/themes/smoothness/jquery-ui.css">
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+</head>
+<body class="container py-4">
+
+<h2 class="mb-4">Latency Numbers Every Programmer Should Know</h2>
+<p>This interactive visualization illustrates how latency values of different computing components have changed over time, highlighting performance relationships among cache, memory, SSD, disk, and network.</p>
+
+<div class="mb-4">
+    <label for="year-slider" class="form-label"><strong>Select Year:</strong> <span id="year-label"></span></label>
+    <div id="year-slider"></div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h4>Component Latencies (Normalized to Cache)</h4>
+        <p>Select a year to see how much slower other components are compared to the cache.</p>
+        <div id="relative-chart"></div>
+    </div>
+
+    <div class="col-md-6">
+        <h4>Latency Evolution Over Time</h4>
+        <p>Explore how the latency of various components has improved over the years. Latencies are normalized to their current performance.</p>
+        <div id="evolution-chart"></div>
+    </div>
+</div>
+
+<footer class="mt-4">
+    <small>Original data and inspiration by <a href="https://colin-scott.github.io/personal_website/research/interactive_latency.html" target="_blank">Colin Scott</a> and <a href="http://norvig.com/21-days.html#answers" target="_blank">Peter Norvig</a>.</small>
+</footer>
+
+<script>
+$(function() {
+    var year = new Date().getFullYear();
+
+    $( "#year-slider" ).slider({
+        value: year,
+        min: 1990,
+        max: 2020,
+        step: 1,
+        slide: function(event, ui) {
+            $("#year-label").text(ui.value);
+            year = ui.value;
+            render();
+        }
+    });
+    $("#year-label").text(year);
+
+    function render() {
+        var metrics = getMetrics();
+        drawRelativeChart(metrics);
+        drawEvolutionChart(metrics);
+    }
+
+    function drawRelativeChart(metrics) {
+        $("#relative-chart").empty();
+        var cacheLatency = metrics[1].ns;
+        metrics.forEach(function(metric) {
+            var factor = (metric.ns / cacheLatency).toFixed(2);
+            $("#relative-chart").append(`<div>${metric.displayString.split(':')[0]}: <strong>${factor}× cache latency</strong></div>`);
+        });
+    }
+
+    function drawEvolutionChart(metrics) {
+        $("#evolution-chart").empty();
+        metrics.forEach(function(metric) {
+            $("#evolution-chart").append(`<div>${metric.displayString}</div>`);
+        });
+    }
+
+    render();
+});
+
+// Include original JS functions here
+</script>
+
+</body>
+</html>

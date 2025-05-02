@@ -12,13 +12,13 @@ The world of software development has evolved dramatically since 2017. Today, sy
 
 ### 2. Why We Need an Updated Edition
 
-- **Outdated Core Content**: The majority of the original material dates back to 2017. Foundational chapters on scaling, fault tolerance, and microservices were written before Kubernetes became ubiquitous.
+- **Outdated Core Content**: The majority of the original material dates back to 2017. Foundational chapters on scaling, fault tolerance, and microservices were written before Kubernetes became ubiquitous, most solutions are talking about MapReduce that were popular in 2017. There are excellent resources for system interview such as Alex Xu book that we can learn from. 
 - **Generative AI Impact**: Emerging AI-driven patterns—from inference pipelines to LLM-powered observability—are not covered in the legacy primer. Incorporating these topics will keep the guide relevant.
 - **Stagnant Maintenance**: Even minor fixes—typo corrections, link updates, and broken URL patches—have gone unaddressed for at least two years. Examples include [is this awesome repo no longer been updated?](https://github.com/donnemartin/system-design-primer/issues/840) that was opened at **Feb 2024** or [Indieflashblog link is dead](https://github.com/donnemartin/system-design-primer/issues/501) that was opened at **Jan 2021**.
 
 ### 3. Community Call to Action
 
-The original repo served countless learners and interview candidates, but its current lack of maintenance makes it effectively obsolete. If you find value in revitalizing this resource:
+The original repo served countless learners and interview candidates, but its current lack of up-to-date knowledge and maintenance makes it effectively obsolete. If you find value in revitalizing this resource:
 
 - ⭐ **Star this fork** so it gains visibility
 - 📝 **Contribute fixes** for typos, link repairs, and outdated examples
