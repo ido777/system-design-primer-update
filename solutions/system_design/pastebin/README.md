@@ -274,11 +274,11 @@ To generate the unique url, we could:
 ```text
 def base_encode(num, base=62):
     digits = []
-    while num > 0
-      remainder = modulo(num, base)
-      digits.push(remainder)
-      num = divide(num, base)
-    digits = digits.reverse
+    while num > 0:
+        num, remainder = divmod(num, base)
+        digits.append(remainder)
+    digits.reverse()
+    return digits
 ```
 
 Here is python example implementation:
