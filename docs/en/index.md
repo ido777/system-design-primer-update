@@ -26,6 +26,7 @@ Together, we can create a state-of-the-art primer that reflects the realities of
 
 ## What's New?
 
+## Overview
 
 See [CHANGELOG](https://github.com/ido777/system-design-primer-update/blob/main/CHANGELOG.md) for a comprehensive list of changes.
 
