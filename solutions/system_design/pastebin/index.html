@@ -996,30 +996,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#step-1-investigate-the-problem-use-cases-and-constraints-and-establish-design-scope" class="md-nav__link">
-    <span class="md-ellipsis">
-      Step 1: Investigate the problem, use cases and constraints and establish design scope
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Step 1: Investigate the problem, use cases and constraints and establish design scope">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#what-questions-should-you-ask-to-clarify-the-problem" class="md-nav__link">
-    <span class="md-ellipsis">
-      What questions should you ask to clarify the problem?
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#pastebincom-overview" class="md-nav__link">
     <span class="md-ellipsis">
       📝 Pastebin.com Overview
@@ -1047,8 +1023,95 @@
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-investigate-the-problem-use-cases-and-constraints-and-establish-design-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Investigate the problem, use cases and constraints and establish design scope
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 1: Investigate the problem, use cases and constraints and establish design scope">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-questions-should-you-ask-to-clarify-the-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      What questions should you ask to clarify the problem?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-dialogue-pastebin" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔍 Example Dialogue (Pastebin)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-breakdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔍 Example Breakdown
+    </span>
+  </a>
+  
+</li>
+        
           <li class="md-nav__item">
   <a href="#use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use cases
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#background-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Background tasks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#non-functional-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Non functional requirements
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#out-of-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      Out of scope
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-considerations-we-need-to-think-about-later-on" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other considerations we need to think about (Later on)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-cases_1" class="md-nav__link">
     <span class="md-ellipsis">
       Use cases
     </span>
@@ -1067,7 +1130,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#out-of-scope" class="md-nav__link">
+  <a href="#out-of-scope_1" class="md-nav__link">
     <span class="md-ellipsis">
       Out of scope
     </span>
@@ -1241,18 +1304,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#modern-mapreduce-today-looks-like" class="md-nav__link">
+  <a href="#example-of-mapreduce-concept" class="md-nav__link">
     <span class="md-ellipsis">
-      Modern "MapReduce" today looks like:
+      Example of MapReduce Concept
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#example-of-local-mapreduce-simulation-for-testing" class="md-nav__link">
+  <a href="#modern-mapreduce-today-looks-like" class="md-nav__link">
     <span class="md-ellipsis">
-      Example of Local MapReduce Simulation for Testing:
+      Modern "MapReduce" today looks like:
     </span>
   </a>
   
@@ -1394,19 +1457,6 @@
 <p>In this exercise, we'll design a text snippet sharer, e.g. GitHub Gist, Pastebin.com.
 We will focus only on the core functionality.</p>
 <p><a href="../url_shortener/">Design A URL shortener</a>  - e.g. <a href="https://tinyurl.com/">TinyURL</a>, <a href="https://bit.ly/">bit.ly</a> is a related question, since pastebin requires storing the paste contents instead of the original unshortened url. However, the URL shortener question is more focused on the shortlink generation and redirection, while the pastebin question is more focused on the storage and retrieval of the paste contents.</p>
-<h2 id="step-1-investigate-the-problem-use-cases-and-constraints-and-establish-design-scope">Step 1: Investigate the problem, use cases and constraints and establish design scope<a class="headerlink" href="#step-1-investigate-the-problem-use-cases-and-constraints-and-establish-design-scope" title="Permanent link">&para;</a></h2>
-<blockquote>
-<p>Gather main functional requirements and scope the problem.
-Ask questions to clarify use cases and constraints.
-Discuss assumptions.</p>
-</blockquote>
-<p>Adding clarifying questions is the first step in the process.
-Remember your goal is to understand the problem and establish the design scope.</p>
-<h3 id="what-questions-should-you-ask-to-clarify-the-problem">What questions should you ask to clarify the problem?<a class="headerlink" href="#what-questions-should-you-ask-to-clarify-the-problem" title="Permanent link">&para;</a></h3>
-<p>Here is an example of the dialog you could have with the <strong>Interviewer</strong>:
-<strong>Interviewer</strong>: Design Pastebin.com.
-<strong>Candidate</strong>: Could you please remind me what Pastebin.com does at a high level?
-<strong>Interviewer</strong>: Do you happen to know GitHub Gist? It is similar to Pastebin.com.</p>
 <h2 id="pastebincom-overview">📝 Pastebin.com Overview<a class="headerlink" href="#pastebincom-overview" title="Permanent link">&para;</a></h2>
 <p><strong>Pastebin</strong> is a straightforward web-based tool designed for quickly sharing plain text or code snippets.</p>
 <h3 id="key-features">Key Features:<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h3>
@@ -1427,43 +1477,83 @@ Remember your goal is to understand the problem and establish the design scope.<
 <li>Temporary storage of text for collaboration or troubleshooting.</li>
 <li>Situations where simplicity and speed are paramount. </li>
 </ul>
-<p><strong>Candidate</strong>: Got it. Since Pastebin can be quite complex, can we focus on just the core features first?<br />
-<strong>Interviewer</strong>: Sure—what would you target?<br />
-<strong>Candidate</strong>: The main requirement is that the user pastes text and immediately receives a shareable link. Correct?<br />
-<strong>Interviewer</strong>: Can you elaborate on the link?<br />
-<strong>Candidate</strong>: A randomly generated, unique link.<br />
-<strong>Interviewer</strong>: Does it expire?<br />
-<strong>Candidate</strong>: No.<br />
-<strong>Interviewer</strong>: Never?<br />
-<strong>Candidate</strong>: (<em>Oops, she doesn’t like that we don’t have expiration.</em>) We can add a timed expiration—user can set the expiration.<br />
-<strong>Interviewer</strong>: Sounds good.<br />
-<strong>Candidate</strong>: Cool. Let me summarize.</p>
-<p>Conclusion:
-- Use cases
-  • User enters a block of text and gets a randomly generated link
-- Expiration
-  • Default setting does not expire
-  • Can optionally set a timed expiration</p>
-<p><strong>Candidate</strong>: Mobile or desktop client?
-<strong>Interviewer</strong>: Both.
-<strong>Candidate</strong>: Is user authentication or account registration required to view or create pastes?
-<strong>Interviewer</strong>: No registration is needed; it’s anonymous.
-<strong>Candidate</strong>: Great. Do we need to track usage statistics or analytics for these pastes?
-<strong>Interviewer</strong>: We will record monthly visit stats.
-<strong>Candidate</strong>: Should expired pastes be removed automatically?
-<strong>Interviewer</strong>: Yes, the service deletes expired pastes.
-<strong>Candidate</strong>: What availability SLA do we expect?
-<strong>Interviewer</strong>: High availability is a requirement.
-<strong>Candidate</strong>: For this exercise phase, I would like to suggest that we don't need user accounts, login, or custom shortlinks.
-<strong>Interviewer</strong>: ok, Those are out of scope for now.
-<strong>Candidate</strong>: For capacity planning, can you confirm traffic patterns and volumes?
-<strong>Interviewer</strong>: Traffic is unevenly distributed; we target 10M users, 10M writes/month, and 100M reads/month.
-<strong>Candidate</strong>: Understood. And are pastes text only, with low-latency URL resolution?
-<strong>Interviewer</strong>: Correct.
-<strong>Candidate</strong>: Finally, any rough numbers on storage and throughput?
-<strong>Interviewer</strong>: I'll leave that to you.
-<strong>Candidate</strong>: ok. So here is the scope of the problem:</p>
+<h2 id="step-1-investigate-the-problem-use-cases-and-constraints-and-establish-design-scope">Step 1: Investigate the problem, use cases and constraints and establish design scope<a class="headerlink" href="#step-1-investigate-the-problem-use-cases-and-constraints-and-establish-design-scope" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>Gather main functional requirements and scope the problem.
+Ask questions to clarify use cases and constraints.
+Discuss assumptions.</p>
+</blockquote>
+<p>Adding clarifying questions is the first step in the process.
+Remember your goal is to understand the problem and establish the design scope.</p>
+<h3 id="what-questions-should-you-ask-to-clarify-the-problem">What questions should you ask to clarify the problem?<a class="headerlink" href="#what-questions-should-you-ask-to-clarify-the-problem" title="Permanent link">&para;</a></h3>
+<p>Here is an example of the dialog you could have with the <strong>Interviewer</strong>:</p>
+<h3 id="example-dialogue-pastebin">🔍 Example Dialogue (Pastebin)<a class="headerlink" href="#example-dialogue-pastebin" title="Permanent link">&para;</a></h3>
+<p><strong>Interviewer</strong>: Design Pastebin.com.</p>
+<p><strong>Candidate</strong>: To clarify and understand the scope, may I start with a few quick questions?</p>
+<p><strong>Interviewer</strong>: Yes, please.</p>
+<p><strong>Candidate</strong>: What are the <strong>main features, users, and use cases</strong> of the system?</p>
+<p><strong>Interviewer</strong>: Pastebin is a simple site to share plain text. Users paste content and get a short link to share. Pastebin includes anonymous users as well as logged in users.</p>
+<p><strong>Candidate</strong>: Great. So <strong>can we scope the problem to 2 main flows</strong>:
+1. User creates a paste and gets a link to share.
+2. User accesses a paste using the link.</p>
+<p><strong>Interviewer</strong>: Yes, that's a good start.</p>
+<p><strong>Candidate</strong>: What are the <strong>other</strong> important topics we need to consider for the basic <strong>MVP</strong> functionality?</p>
+<p><strong>Interviewer</strong>: Pastebin supports two types of users:
+* Anonymous users - who can create and share content without an account
+* Authenticated users - who can create content and customize their sharing links (e.g., custom URLs, expiration dates, access controls).</p>
+<p><strong>Candidate</strong>: Understood. For this phase, can we <strong>focus</strong> on Anonymous users?</p>
+<p><strong>Interviewer</strong>: You mean that we should ignore the requirements for authenticated users?</p>
+<p><strong>Candidate</strong>: No, I want to <strong>clarify</strong>. I am suggesting and <strong>asking</strong> your confirmation - to be effective I think we can start dealing with the main flows of the system. We will bear in mind the authenticated requirement and <strong>deal with them later on</strong>. </p>
+<p><strong>Interviewer</strong>: Later on in the interview, or later on in the product life cycle?</p>
+<p><strong>Candidate</strong>: Both. Let me explain. Let's for now assume that we will use REST API to write and read the content. We can have 2 different api endpoints for anonymous and authenticated users, and we can have shared functions that can be used by both. This way we can <strong>focus</strong> on the main flows of the system. On the other hand we can talk about the authenticated requirements now, such as <a href="https://oauth.net/2/">OAuth 2.0</a> of <a href="https://jwt.io/">JWT</a>.</p>
+<p><strong>Interviewer</strong>: Ok.</p>
+<p><strong>Candidate</strong>: So for now, is it ok to focus on the anonymous users?</p>
+<p><strong>Interviewer</strong>: Yes.</p>
+<p><strong>Candidate</strong>: What are the <em>other</em> important topics we need to consider? What about traffic assumptions / load?</p>
+<p><strong>Interviewer</strong>: 10M writes per month, 100M reads. </p>
+<p><strong>Candidate</strong>: Got it. High read-to-write ratio. Any <em>other</em> specific requirements, assumptions or constraints, data flows?</p>
+<p><strong>Interviewer</strong>: We do track monthly stats. Links can have optional expiration. Expired pastes are auto-deleted.</p>
+<p><strong>Candidate</strong>: Is there <strong>anything more</strong> we should discuss in terms of latency, availability, or other non-functional constraints?</p>
+<p><strong>Interviewer</strong>: Reads should be low-latency. High availability is expected. </p>
+<p><strong>Candidate</strong>: Cost efficiency, scaling and security matter, but I <strong>suggest</strong> to digest those in the next phases.</p>
+<p><strong>Interviewer</strong>: Ok.</p>
+<p><strong>Candidate</strong>: Thanks — that's clear and helps scope my design. Let's me summarize the scope as i understood it and the assumptions to make sure we are on the <strong>same page</strong>.</p>
+<p><strong>Interviewer</strong>: Ok.</p>
+<h3 id="example-breakdown">🔍 Example Breakdown<a class="headerlink" href="#example-breakdown" title="Permanent link">&para;</a></h3>
+<p><strong>Candidate</strong>: ok, here a reflection of what I understood from the requirements, I will write it down here</p>
+<blockquote>
 <h3 id="use-cases">Use cases<a class="headerlink" href="#use-cases" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>User</strong> enters a block of text and gets a randomly generated link</li>
+<li><strong>User</strong> enters a paste's url and views the contents</li>
+<li><strong>User</strong> is anonymous</li>
+</ul>
+<h3 id="background-tasks">Background tasks<a class="headerlink" href="#background-tasks" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Service</strong> tracks analytics of pages<ul>
+<li>Monthly visit stats</li>
+</ul>
+</li>
+<li><strong>Service</strong> deletes expired pastes</li>
+</ul>
+<h3 id="non-functional-requirements">Non functional requirements<a class="headerlink" href="#non-functional-requirements" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Service</strong> has high availability</li>
+</ul>
+<h3 id="out-of-scope">Out of scope<a class="headerlink" href="#out-of-scope" title="Permanent link">&para;</a></h3>
+<ul>
+<li>All authenticated users features</li>
+<li>Any other requirements</li>
+</ul>
+<h3 id="other-considerations-we-need-to-think-about-later-on">Other considerations we need to think about (Later on)<a class="headerlink" href="#other-considerations-we-need-to-think-about-later-on" title="Permanent link">&para;</a></h3>
+<ul>
+<li>System Quality Attributes (Reliability, Scalability, Security &amp; Privacy, Operational Aspects, etc.)</li>
+<li>System life cycle (Deployment, Monitoring, Logging, Automation, CI/CD, etc.)</li>
+</ul>
+</blockquote>
+<p>Does it look good?  Did I miss anything? Any thing else we should cover at this stage?</p>
+<p><strong>Interviewer</strong>: Yes, it looks good.</p>
+<h3 id="use-cases_1">Use cases<a class="headerlink" href="#use-cases_1" title="Permanent link">&para;</a></h3>
 <h4 id="well-scope-the-problem-to-handle-only-the-following-use-cases">We'll scope the problem to handle only the following use cases<a class="headerlink" href="#well-scope-the-problem-to-handle-only-the-following-use-cases" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>User</strong> enters a block of text and gets a randomly generated link<ul>
@@ -1483,7 +1573,7 @@ Remember your goal is to understand the problem and establish the design scope.<
 <li><strong>Service</strong> deletes expired pastes</li>
 <li><strong>Service</strong> has high availability</li>
 </ul>
-<h4 id="out-of-scope">Out of scope<a class="headerlink" href="#out-of-scope" title="Permanent link">&para;</a></h4>
+<h4 id="out-of-scope_1">Out of scope<a class="headerlink" href="#out-of-scope_1" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>User</strong> registers for an account<ul>
 <li><strong>User</strong> verifies email</li>
@@ -1734,6 +1824,39 @@ PRIMARY KEY(shortlink)
 <p>Since realtime analytics are not a requirement, we could simply <strong>MapReduce</strong> the <strong>Web Server</strong> logs to generate hit counts.
 While traditional MapReduce jobs are rarely written manually today, the underlying pattern — mapping, grouping, and reducing data — is still everywhere. For website analytics, we typically use SQL engines like BigQuery or Athena for batch queries, or streaming frameworks like Flink for real-time aggregation, depending on data freshness needs and scale.</p>
 <p><strong>Clarify with your interviewer the expected amount, style, and purpose of the code you should write</strong>.</p>
+<h4 id="example-of-mapreduce-concept">Example of MapReduce Concept<a class="headerlink" href="#example-of-mapreduce-concept" title="Permanent link">&para;</a></h4>
+<p>For educational purposes and small local testing, we can simulate MapReduce logic using Python. This is <strong>not how production systems work today</strong>, but it is useful for <strong>understanding the concepts</strong> and explaining it to the interviewer.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span>
+
+<span class="c1"># Example raw log lines</span>
+<span class="n">logs</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;2025-04-01 12:00:00 /home&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;2025-04-01 12:05:00 /about&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;2025-04-01 12:10:00 /home&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;2025-04-02 13:00:00 /contact&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="c1"># Map Step</span>
+<span class="n">mapped</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">logs</span><span class="p">:</span>
+    <span class="n">timestamp</span><span class="p">,</span> <span class="n">url</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+    <span class="n">day</span> <span class="o">=</span> <span class="n">timestamp</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;T&#39;</span> <span class="ow">in</span> <span class="n">timestamp</span> <span class="k">else</span> <span class="n">timestamp</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">mapped</span><span class="o">.</span><span class="n">append</span><span class="p">(((</span><span class="n">day</span><span class="p">,</span> <span class="n">url</span><span class="p">),</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="c1"># Shuffle &amp; Group Step</span>
+<span class="n">grouped</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">mapped</span><span class="p">:</span>
+    <span class="n">grouped</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+<span class="c1"># Reduce Step</span>
+<span class="n">reduced</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">values</span> <span class="ow">in</span> <span class="n">grouped</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">reduced</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+
+<span class="c1"># Output</span>
+<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">reduced</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
 <h4 id="modern-mapreduce-today-looks-like">Modern "MapReduce" today looks like:<a class="headerlink" href="#modern-mapreduce-today-looks-like" title="Permanent link">&para;</a></h4>
 <ol>
 <li>If you have logs (e.g., nginx, access logs):</li>
@@ -1769,52 +1892,19 @@ While traditional MapReduce jobs are rarely written manually today, the underlyi
 <li>GROUP BY → Reduce</li>
 </ul>
 <p>But you don’t manage the "mapping" and "reducing" manually — the cloud service <strong>optimizes</strong> and <strong>parallelizes</strong> it for you.</p>
-<h4 id="example-of-local-mapreduce-simulation-for-testing">Example of Local MapReduce Simulation for Testing:<a class="headerlink" href="#example-of-local-mapreduce-simulation-for-testing" title="Permanent link">&para;</a></h4>
-<p>For educational purposes and small local testing, we can simulate MapReduce logic using Python. This is <strong>not how production systems work today</strong>, but it is useful for <strong>understanding the concepts</strong>.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span>
-
-<span class="c1"># Example raw log lines</span>
-<span class="n">logs</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s1">&#39;2025-04-01 12:00:00 /home&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;2025-04-01 12:05:00 /about&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;2025-04-01 12:10:00 /home&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;2025-04-02 13:00:00 /contact&#39;</span><span class="p">,</span>
-<span class="p">]</span>
-
-<span class="c1"># Map Step</span>
-<span class="n">mapped</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">logs</span><span class="p">:</span>
-    <span class="n">timestamp</span><span class="p">,</span> <span class="n">url</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
-    <span class="n">day</span> <span class="o">=</span> <span class="n">timestamp</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;T&#39;</span> <span class="ow">in</span> <span class="n">timestamp</span> <span class="k">else</span> <span class="n">timestamp</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">mapped</span><span class="o">.</span><span class="n">append</span><span class="p">(((</span><span class="n">day</span><span class="p">,</span> <span class="n">url</span><span class="p">),</span> <span class="mi">1</span><span class="p">))</span>
-
-<span class="c1"># Shuffle &amp; Group Step</span>
-<span class="n">grouped</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">mapped</span><span class="p">:</span>
-    <span class="n">grouped</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
-
-<span class="c1"># Reduce Step</span>
-<span class="n">reduced</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">values</span> <span class="ow">in</span> <span class="n">grouped</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-    <span class="n">reduced</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
-
-<span class="c1"># Output</span>
-<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">reduced</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</code></pre></div>
 <h3 id="use-case-service-deletes-expired-pastes">Use case: Service deletes expired pastes<a class="headerlink" href="#use-case-service-deletes-expired-pastes" title="Permanent link">&para;</a></h3>
 <p>To delete expired pastes, we could just scan the <strong>SQL Database</strong> for all entries whose expiration timestamp are older than the current timestamp.  All expired entries would then be deleted (or  marked as expired) from the table.</p>
 <h3 id="tradeoffs-and-scaling-the-design">Tradeoffs and Scaling the design<a class="headerlink" href="#tradeoffs-and-scaling-the-design" title="Permanent link">&para;</a></h3>
 <blockquote>
 <p>Identify and address bottlenecks, given the constraints.</p>
 </blockquote>
-<p><img alt="Imgur" src="http://i.imgur.com/4edXG0T.png" /></p>
+<p><img alt="Imgur" src="../../../images/4edXG0T.png" /></p>
 <p><strong>Important: Do not simply jump right into the final design from the initial design!</strong></p>
-<p>State you would do this iteratively: 
-1) <strong>Benchmark/Load Test</strong>, 
-2) <strong>Profile</strong> for bottlenecks 
-3) address bottlenecks while evaluating alternatives and trade-offs, and 
-4) repeat.  </p>
+<p>State you would do this iteratively: </p>
+<p>1) <strong>Benchmark/Load Test</strong></p>
+<p>2) <strong>Profile</strong> for bottlenecks </p>
+<p>3) address bottlenecks while evaluating alternatives and trade-offs, and </p>
+<p>4) repeat.  </p>
 <p>See <a href="../scaling_aws/">Design a system that scales to millions of users on AWS</a> as a sample on how to iteratively scale the initial design.</p>
 <p>It's important to discuss what bottlenecks you might encounter with the initial design and how you might address each of them.<br />
 For example, what issues are addressed by adding 

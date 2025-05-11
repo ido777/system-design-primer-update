@@ -1302,12 +1302,14 @@ Discuss assumptions.</p>
 Remember your goal is to understand the problem and establish the design scope.</p>
 <h3 id="what-questions-should-you-ask-to-clarify-the-problem">What questions should you ask to clarify the problem?<a class="headerlink" href="#what-questions-should-you-ask-to-clarify-the-problem" title="Permanent link">&para;</a></h3>
 <p>Here is an example of the dialog you could have with the <strong>Interviewer</strong>:
-<strong>Interviewer</strong>: Design a key-value cache to save the results of the most recent web server queries.
-<strong>Candidate</strong>: ok, do you mean deploy Redis as docker or building Redis like?
-<strong>Interviewer</strong>: I mean building Redis like.
-<strong>Candidate</strong>: ok, can you please explain the traffic assumptions? 
-<strong>Interviewer</strong>: Yes, the cache should be able to handle 10 million users, 10 billion queries per month.
-<strong>Candidate</strong>: ok. So here is the scope of the problem:</p>
+<strong>Interviewer</strong>: Design a key-value cache to save the results of the most recent web server queries.</p>
+<p><strong>Candidate</strong>: ok, do you mean deploy Redis as docker or building Redis like?</p>
+<p><strong>Interviewer</strong>: I mean building Redis like.</p>
+<p><strong>Candidate</strong>: To clarify and understand the scope, may I start with a few quick questions?</p>
+<p><strong>Interviewer</strong>: Yes, please.</p>
+<p><strong>Candidate</strong>: What are the <strong>main features, users, and use cases</strong> of the system?</p>
+<p><strong>Interviewer</strong>: Yes, the cache should be able to handle 10 million users, 10 billion queries per month.</p>
+<p><strong>Candidate</strong>: ok. So here is the scope of the problem:</p>
 <h3 id="use-cases">Use cases<a class="headerlink" href="#use-cases" title="Permanent link">&para;</a></h3>
 <h4 id="well-scope-the-problem-to-handle-only-the-following-use-cases">We'll scope the problem to handle only the following use cases<a class="headerlink" href="#well-scope-the-problem-to-handle-only-the-following-use-cases" title="Permanent link">&para;</a></h4>
 <ul>
@@ -1363,7 +1365,7 @@ Remember your goal is to understand the problem and establish the design scope.<
 </blockquote>
 <!-- Old image for reference ![Imgur](http://i.imgur.com/KqZ3dSx.png) -->
 
-<p><img alt="Imgur" src="http://i.imgur.com/KqZ3dSx.png" /> </p>
+<p><img alt="Imgur" src="../../../images/KqZ3dSx.png" /> </p>
 <pre class="mermaid"><code>%%{init: { "flowchart": { "htmlLabels": true } }}%%
 
 flowchart TB

@@ -996,16 +996,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#step-1-outline-use-cases-and-constraints" class="md-nav__link">
+  <a href="#what-questions-should-you-ask-to-clarify-the-problem" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 1: Outline use cases and constraints
+      What questions should you ask to clarify the problem?
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Step 1: Outline use cases and constraints">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
   <a href="#use-cases" class="md-nav__link">
     <span class="md-ellipsis">
       Use cases
@@ -1037,8 +1036,8 @@
     </nav>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#constraints-and-assumptions" class="md-nav__link">
     <span class="md-ellipsis">
       Constraints and assumptions
@@ -1063,11 +1062,6 @@
       Calculate usage
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -1223,13 +1217,22 @@
 
 <h1 id="design-amazons-sales-rank-by-category-feature">Design Amazon's sales rank by category feature<a class="headerlink" href="#design-amazons-sales-rank-by-category-feature" title="Permanent link">&para;</a></h1>
 <p><em>Note: This document links directly to relevant areas found in the <a href="https://github.com/ido777/system-design-primer-update#index-of-system-design-topics">system design topics</a> to avoid duplication.  Refer to the linked content for general talking points, tradeoffs, and alternatives.</em></p>
-<h2 id="step-1-outline-use-cases-and-constraints">Step 1: Outline use cases and constraints<a class="headerlink" href="#step-1-outline-use-cases-and-constraints" title="Permanent link">&para;</a></h2>
-<blockquote>
-<p>Gather requirements and scope the problem.
-Ask questions to clarify use cases and constraints.
-Discuss assumptions.</p>
-</blockquote>
-<p>Without an interviewer to address clarifying questions, we'll define some use cases and constraints.</p>
+<p>Adding clarifying questions is the first step in the process.
+Remember your goal is to understand the problem and establish the design scope.</p>
+<h3 id="what-questions-should-you-ask-to-clarify-the-problem">What questions should you ask to clarify the problem?<a class="headerlink" href="#what-questions-should-you-ask-to-clarify-the-problem" title="Permanent link">&para;</a></h3>
+<p>Here is an example of the dialog you could have with the interviewer:</p>
+<p><strong>Example dialog with your interviewer:</strong></p>
+<p><strong>Interviewer</strong>: Design Amazon's sales rank by category feature</p>
+<p><strong>Candidate</strong>: To clarify and understand the scope, may I start with a few quick questions?</p>
+<p><strong>Interviewer</strong>: Yes, please.</p>
+<p><strong>Candidate</strong>: What are the <strong>main features, users, and use cases</strong> of the system?</p>
+<p><strong>Interviewer</strong>: The system will calculate the sales rank of products by category.  Users will be able to view the sales rank of products by category.</p>
+<p><strong>Candidate</strong>: What is the <strong>expected traffic</strong>?</p>
+<p><strong>Interviewer</strong>: The system will be able to handle 100 million requests per day.</p>
+<p><strong>Candidate</strong>: What is the <strong>expected read/write ratio</strong>?</p>
+<p><strong>Interviewer</strong>: The system will be able to handle 100:1 read/write ratio.</p>
+<p><strong>Candidate</strong>: What is the <strong>expected data size</strong>?</p>
+<p><strong>Interviewer</strong>: The system will be able to handle 100 million products.</p>
 <h3 id="use-cases">Use cases<a class="headerlink" href="#use-cases" title="Permanent link">&para;</a></h3>
 <h4 id="well-scope-the-problem-to-handle-only-the-following-use-case">We'll scope the problem to handle only the following use case<a class="headerlink" href="#well-scope-the-problem-to-handle-only-the-following-use-case" title="Permanent link">&para;</a></h4>
 <ul>

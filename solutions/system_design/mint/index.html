@@ -1021,13 +1021,21 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Use cases">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
-  <a href="#well-scope-the-problem-to-handle-only-the-following-use-cases" class="md-nav__link">
+  <a href="#background-tasks" class="md-nav__link">
     <span class="md-ellipsis">
-      We'll scope the problem to handle only the following use cases
+      Background tasks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#non-functional-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Non functional requirements
     </span>
   </a>
   
@@ -1042,8 +1050,12 @@
   
 </li>
         
-      </ul>
-    </nav>
+          <li class="md-nav__item">
+  <a href="#other-considerations-we-need-to-think-about-later-on" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other considerations we need to think about (Later on)
+    </span>
+  </a>
   
 </li>
         
@@ -1336,25 +1348,33 @@ Remember your goal is to understand the problem and establish the design scope.<
 <h3 id="what-questions-should-you-ask-to-clarify-the-problem">What questions should you ask to clarify the problem?<a class="headerlink" href="#what-questions-should-you-ask-to-clarify-the-problem" title="Permanent link">&para;</a></h3>
 <p>Here is an example of the dialog you could have with the interviewer:</p>
 <p><strong>Example dialog with your interviewer:</strong></p>
-<p><strong>Interviewer</strong>: Design Mint.com.
-<strong>Candidate</strong>: Sure—could you remind me what the core value proposition of Mint.com is?
-<strong>Interviewer</strong>: It aggregates users’ financial accounts, categorizes transactions, and helps them budget.
-<strong>Candidate</strong>: Got it. How do we get the data from the financial accounts?
-<strong>Interviewer</strong>: connects to a financial account.
-<strong>Candidate</strong>: Should we focus on real-time updates or would a daily refresh suffice?
-<strong>Interviewer</strong>: Daily is fine.
-<strong>Candidate</strong>: How should categorization work?
-<strong>Interviewer</strong>: Auto-categorize based on merchant, but allow manual overrides. No re-categorization once set.
-<strong>Candidate</strong>: Understood. What budget features are needed?
-<strong>Interviewer</strong>: Recommend budgets by category, allow manual budgets, and notify when users approach or exceed them.
-<strong>Candidate</strong>: Any non-functional requirements?
-<strong>Interviewer</strong>: High availability is a must; budget alerts don’t need millisecond latency.
-<strong>Candidate</strong>: Great. And scale?
-<strong>Interviewer</strong>: Target ~10 M users, ~30 M linked accounts, ~5 B transactions/mo, with ~500 M reads/mo.</p>
+<p><strong>Interviewer</strong>: Design personal budget tracking app (Mint.com).</p>
+<p><strong>Candidate</strong>: To clarify and understand the scope, may I start with a few quick questions?</p>
+<p><strong>Interviewer</strong>: Yes, please.</p>
+<p><strong>Candidate</strong>: What are the <strong>main features, users, and use cases</strong> of the system?</p>
+<p><strong>Interviewer</strong>: It aggregates users’ financial accounts, categorizes transactions, and helps them budget.</p>
+<p><strong>Candidate</strong>: Got it. How do we get the data from the financial accounts?</p>
+<p><strong>Interviewer</strong>: connects to a financial account.</p>
+<p><strong>Candidate</strong>: Should we focus on real-time updates or would a daily refresh suffice?</p>
+<p><strong>Interviewer</strong>: Daily is fine.</p>
+<p><strong>Candidate</strong>: How should categorization work?</p>
+<p><strong>Interviewer</strong>: Auto-categorize based on merchant, but allow manual overrides. No re-categorization once set.</p>
+<p><strong>Candidate</strong>: Understood. What budget features are needed?</p>
+<p><strong>Interviewer</strong>: Recommend budgets by category, allow manual budgets, and notify when users approach or exceed them.</p>
+<p><strong>Candidate</strong>: Any non-functional requirements?</p>
+<p><strong>Interviewer</strong>: High availability is a must; budget alerts don’t need millisecond latency.</p>
+<p><strong>Candidate</strong>: Great. And scale?</p>
+<p><strong>Interviewer</strong>: Target ~10 M users, ~30 M linked accounts, ~5 B transactions/mo, with ~500 M reads/mo.</p>
+<p><strong>Candidate</strong>: Thanks — that's clear and helps scope my design. Let's me summarize the scope as i understood it and the assumptions to make sure we are on the <strong>same page</strong>.</p>
+<p><strong>Interviewer</strong>: Ok.</p>
+<p><strong>Candidate</strong>: ok, here a reflection of what I understood from the requirements, I will write it down here</p>
+<blockquote>
 <h3 id="use-cases">Use cases<a class="headerlink" href="#use-cases" title="Permanent link">&para;</a></h3>
-<h4 id="well-scope-the-problem-to-handle-only-the-following-use-cases">We'll scope the problem to handle only the following use cases<a class="headerlink" href="#well-scope-the-problem-to-handle-only-the-following-use-cases" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>User</strong> connects to one or more financial accounts (bank, credit card, investment).  </li>
+</ul>
+<h3 id="background-tasks">Background tasks<a class="headerlink" href="#background-tasks" title="Permanent link">&para;</a></h3>
+<ul>
 <li><strong>Service</strong> extracts transactions from the account<ul>
 <li>Daily batch updates for active users (last 30 days). </li>
 <li>Categorizes transactions<ul>
@@ -1373,12 +1393,23 @@ Remember your goal is to understand the problem and establish the design scope.<
 <li>Send notifications when spending approaches/exceeds budget. </li>
 </ul>
 </li>
+</ul>
+<h3 id="non-functional-requirements">Non functional requirements<a class="headerlink" href="#non-functional-requirements" title="Permanent link">&para;</a></h3>
+<ul>
 <li><strong>Service</strong> has high availability</li>
 </ul>
-<h4 id="out-of-scope">Out of scope<a class="headerlink" href="#out-of-scope" title="Permanent link">&para;</a></h4>
+<h3 id="out-of-scope">Out of scope<a class="headerlink" href="#out-of-scope" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Service</strong> performs additional logging and analytics</li>
+<li>All authenticated users features</li>
+<li>Any other requirements</li>
 </ul>
+<h3 id="other-considerations-we-need-to-think-about-later-on">Other considerations we need to think about (Later on)<a class="headerlink" href="#other-considerations-we-need-to-think-about-later-on" title="Permanent link">&para;</a></h3>
+<ul>
+<li>System Quality Attributes (Reliability, Scalability, Security &amp; Privacy, Operational Aspects, etc.)</li>
+<li>System life cycle (Deployment, Monitoring, Logging, Automation, CI/CD, etc.)</li>
+</ul>
+</blockquote>
 <h3 id="constraints-assumptions">Constraints &amp; assumptions<a class="headerlink" href="#constraints-assumptions" title="Permanent link">&para;</a></h3>
 <h4 id="state-assumptions">State assumptions<a class="headerlink" href="#state-assumptions" title="Permanent link">&para;</a></h4>
 <ul>
@@ -1765,7 +1796,7 @@ Heap queues are not designed to handle multiple threads writing the data at the 
 <blockquote>
 <p>Identify and address bottlenecks, given the constraints.</p>
 </blockquote>
-<p><img alt="Imgur" src="http://i.imgur.com/V5q57vU.png" /></p>
+<p><img alt="Imgur" src="../../../images/V5q57vU.png" /></p>
 <p><strong>Important: Do not simply jump right into the final design from the initial design!</strong></p>
 <p>State you would 
 1) <strong>Benchmark/Load Test</strong>, 
