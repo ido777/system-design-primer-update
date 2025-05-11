@@ -43,3 +43,4 @@ See [System Design at a Glance]([./design-glance.md](https://github.com/ido777/s
 
 
 If you're interested in contributing or translating, check out the [contribution guidelines](https://github.com/ido777/system-design-primer-update/blob/main/CONTRIBUTING.md).
+
