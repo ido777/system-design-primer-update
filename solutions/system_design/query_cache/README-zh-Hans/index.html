@@ -1,0 +1,1613 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.13">
+    
+    
+      
+        <title>设计一个键-值缓存来存储最近 web 服务查询的结果 - System Design Primer Update</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.342714a4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#-web" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="System Design Primer Update" class="md-header__button md-logo" aria-label="System Design Primer Update" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            System Design Primer Update
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              设计一个键-值缓存来存储最近 web 服务查询的结果
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../en/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://github.com/ido777/system-design-primer-update/blob/main/README.md" class="md-tabs__link">
+        
+  
+  
+    
+  
+  About
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://github.com/ido777/system-design-primer-update/blob/main/CONTRIBUTING.md" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Contributing
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://github.com/ido777/system-design-primer-update/blob/main/LICENSE.md" class="md-tabs__link">
+        
+  
+  
+    
+  
+  License
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://github.com/ido777/system-design-primer-update/blob/main/CHANGELOG.md" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Changelog
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../en/" class="md-tabs__link">
+          
+  
+  
+  English
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../zh/design-glance/" class="md-tabs__link">
+          
+  
+  
+  简体中文 (Simplified Chinese)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../zh-Hant/design-glance/" class="md-tabs__link">
+          
+  
+  
+  繁體中文 (Traditional Chinese)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../ar/design-glance/" class="md-tabs__link">
+          
+  
+  
+  العربية (Arabic)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../ja/design-glance/" class="md-tabs__link">
+          
+  
+  
+  日本語 (Japanese)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../tr/design-glance/" class="md-tabs__link">
+          
+  
+  
+  Türkçe (Turkish)
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="System Design Primer Update" class="md-nav__button md-logo" aria-label="System Design Primer Update" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    System Design Primer Update
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../en/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/ido777/system-design-primer-update/blob/main/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/ido777/system-design-primer-update/blob/main/CONTRIBUTING.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Contributing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/ido777/system-design-primer-update/blob/main/LICENSE.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    License
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/ido777/system-design-primer-update/blob/main/CHANGELOG.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Changelog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    English
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            English
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../en/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../en/study_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Start Here
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../en/design-glance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    System Design at a Glance
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    简体中文 (Simplified Chinese)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            简体中文 (Simplified Chinese)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../zh/design-glance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    简体中文主页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    繁體中文 (Traditional Chinese)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            繁體中文 (Traditional Chinese)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../zh-Hant/design-glance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    繁體中文首頁
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    العربية (Arabic)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            العربية (Arabic)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../ar/design-glance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    الصفحة الرئيسية
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    日本語 (Japanese)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            日本語 (Japanese)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../ja/design-glance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    日本語のホーム
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Türkçe (Turkish)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            Türkçe (Turkish)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tr/design-glance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Türkçe Anasayfa
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      第一步：简述用例与约束条件
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第一步：简述用例与约束条件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      用例
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="用例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      我们将把问题限定在仅处理以下用例的范围中
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      限制条件与假设
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="限制条件与假设">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      提出假设
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      计算用量
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      第二步：概要设计
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      第三步：设计核心组件
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第三步：设计核心组件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      用例：用户发送了一次请求，命中了缓存
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="用例：用户发送了一次请求，命中了缓存">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      缓存的实现
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      何时更新缓存
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      第四步：架构扩展
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第四步：架构扩展">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      将内存缓存扩大到多台机器
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      其它要点
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="其它要点">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      SQL 缩放模式
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SQL 缩放模式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nosql" class="md-nav__link">
+    <span class="md-ellipsis">
+      NoSQL
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      缓存
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      异步与微服务
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      通信
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      安全性
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      延迟数值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      持续探讨
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="-web">设计一个键-值缓存来存储最近 web 服务查询的结果<a class="headerlink" href="#-web" title="Permanent link">&para;</a></h1>
+<p><strong>注意：这个文档中的链接会直接指向<a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#系统设计主题的索引">系统设计主题索引</a>中的有关部分，以避免重复的内容。你可以参考链接的相关内容，来了解其总的要点、方案的权衡取舍以及可选的替代方案。</strong></p>
+<h2 id="_1">第一步：简述用例与约束条件<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>搜集需求与问题的范围。
+提出问题来明确用例与约束条件。
+讨论假设。</p>
+</blockquote>
+<p>我们将在没有面试官明确说明问题的情况下，自己定义一些用例以及限制条件。</p>
+<h3 id="_2">用例<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<h4 id="_3">我们将把问题限定在仅处理以下用例的范围中<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>用户</strong>发送一个搜索请求，命中缓存</li>
+<li><strong>用户</strong>发送一个搜索请求，未命中缓存</li>
+<li><strong>服务</strong>有着高可用性</li>
+</ul>
+<h3 id="_4">限制条件与假设<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<h4 id="_5">提出假设<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
+<ul>
+<li>网络流量不是均匀分布的<ul>
+<li>经常被查询的内容应该一直存于缓存中</li>
+<li>需要确定如何规定缓存过期、缓存刷新规则</li>
+</ul>
+</li>
+<li>缓存提供的服务查询速度要快</li>
+<li>机器间延迟较低</li>
+<li>缓存有内存限制<ul>
+<li>需要决定缓存什么、移除什么</li>
+<li>需要缓存百万级的查询</li>
+</ul>
+</li>
+<li>1000 万用户</li>
+<li>每个月 100 亿次查询</li>
+</ul>
+<h4 id="_6">计算用量<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
+<p><strong>如果你需要进行粗略的用量计算，请向你的面试官说明。</strong></p>
+<ul>
+<li>缓存存储的是键值对有序表，键为 <code>query</code>（查询），值为 <code>results</code>（结果）。<ul>
+<li><code>query</code> - 50 字节</li>
+<li><code>title</code> - 20 字节</li>
+<li><code>snippet</code> - 200 字节</li>
+<li>总计：270 字节</li>
+</ul>
+</li>
+<li>假如 100 亿次查询都是不同的，且全部需要存储，那么每个月需要 2.7 TB 的缓存空间<ul>
+<li>单次查询 270 字节 * 每月查询 100 亿次</li>
+<li>假设内存大小有限制，需要决定如何制定缓存过期规则</li>
+</ul>
+</li>
+<li>每秒 4,000 次请求</li>
+</ul>
+<p>便利换算指南：</p>
+<ul>
+<li>每个月有 250 万秒</li>
+<li>每秒一个请求 = 每个月 250 万次请求</li>
+<li>每秒 40 个请求 = 每个月 1 亿次请求</li>
+<li>每秒 400 个请求 = 每个月 10 亿次请求</li>
+</ul>
+<h2 id="_7">第二步：概要设计<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>列出所有重要组件以规划概要设计。</p>
+</blockquote>
+<p><img alt="Imgur" src="http://i.imgur.com/KqZ3dSx.png" /></p>
+<h2 id="_8">第三步：设计核心组件<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>深入每个核心组件的细节。</p>
+</blockquote>
+<h3 id="_9">用例：用户发送了一次请求，命中了缓存<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p>常用的查询可以由例如 Redis 或者 Memcached 之类的<strong>内存缓存</strong>提供支持，以减少数据读取延迟，并且避免<strong>反向索引服务</strong>以及<strong>文档服务</strong>的过载。从内存读取 1 MB 连续数据大约要花 250 微秒，而从 SSD 读取同样大小的数据要花费 4 倍的时间，从机械硬盘读取需要花费 80 倍以上的时间。<sup><a href=https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#每个程序员都应该知道的延迟数>1</a></sup></p>
+<p>由于缓存容量有限，我们将使用 LRU（近期最少使用算法）来控制缓存的过期。</p>
+<ul>
+<li><strong>客户端</strong>向运行<a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#反向代理web-服务器">反向代理</a>的 <strong>Web 服务器</strong>发送一个请求</li>
+<li>这个 <strong>Web 服务器</strong>将请求转发给<strong>查询 API</strong> 服务</li>
+<li><strong>查询 API</strong> 服务将会做这些事情：<ul>
+<li>分析查询<ul>
+<li>移除多余的内容</li>
+<li>将文本分割成词组</li>
+<li>修正拼写错误</li>
+<li>规范化字母的大小写</li>
+<li>将查询转换为布尔运算</li>
+</ul>
+</li>
+<li>检测<strong>内存缓存</strong>是否有匹配查询的内容<ul>
+<li>如果命中<strong>内存缓存</strong>，<strong>内存缓存</strong>将会做以下事情：<ul>
+<li>将缓存入口的位置指向 LRU 链表的头部</li>
+<li>返回缓存内容</li>
+</ul>
+</li>
+<li>否则，<strong>查询 API</strong> 将会做以下事情：<ul>
+<li>使用<strong>反向索引服务</strong>来查找匹配查询的文档<ul>
+<li><strong>反向索引服务</strong>对匹配到的结果进行排名，然后返回最符合的结果</li>
+</ul>
+</li>
+<li>使用<strong>文档服务</strong>返回文章标题与片段</li>
+<li>更新<strong>内存缓存</strong>，存入内容，将<strong>内存缓存</strong>入口位置指向 LRU 链表的头部</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="_10">缓存的实现<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h4>
+<p>缓存可以使用双向链表实现：新元素将会在头结点加入，过期的元素将会在尾节点被删除。我们使用哈希表以便能够快速查找每个链表节点。</p>
+<p><strong>向你的面试官告知你准备写多少代码</strong>。</p>
+<p>实现<strong>查询 API 服务</strong>：</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">QueryApi</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">memory_cache</span><span class="p">,</span> <span class="n">reverse_index_service</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">memory_cache</span> <span class="o">=</span> <span class="n">memory_cache</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reverse_index_service</span> <span class="o">=</span> <span class="n">reverse_index_service</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">parse_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;移除多余内容，将文本分割成词组，修复拼写错误，</span>
+<span class="sd">        规范化字母大小写，转换布尔运算。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="o">...</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">process_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parse_query</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">memory_cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">results</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reverse_index_service</span><span class="o">.</span><span class="n">process_search</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">memory_cache</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">results</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">results</span>
+</code></pre></div>
+<p>实现<strong>节点</strong>：</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Node</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">query</span> <span class="o">=</span> <span class="n">query</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="n">results</span>
+</code></pre></div>
+<p>实现<strong>链表</strong>：</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">LinkedList</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tail</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">move_to_front</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
+        <span class="o">...</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">append_to_front</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
+        <span class="o">...</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">remove_from_tail</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="o">...</span>
+</code></pre></div>
+<p>实现<strong>缓存</strong>：</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Cache</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">MAX_SIZE</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">MAX_SIZE</span> <span class="o">=</span> <span class="n">MAX_SIZE</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lookup</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># key: query, value: node</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">linked_list</span> <span class="o">=</span> <span class="n">LinkedList</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">)</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;从缓存取得存储的内容</span>
+
+<span class="sd">        将入口节点位置更新为 LRU 链表的头部。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lookup</span><span class="p">[</span><span class="n">query</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">linked_list</span><span class="o">.</span><span class="n">move_to_front</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">node</span><span class="o">.</span><span class="n">results</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;将所给查询键的结果存在缓存中。</span>
+
+<span class="sd">        当更新缓存记录的时候，将它的位置指向 LRU 链表的头部。</span>
+<span class="sd">        如果这个记录是新的记录，并且缓存空间已满，应该在加入新记录前</span>
+<span class="sd">        删除最老的记录。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lookup</span><span class="p">[</span><span class="n">query</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># 键存在于缓存中，更新它对应的值</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="n">results</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">linked_list</span><span class="o">.</span><span class="n">move_to_front</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># 键不存在于缓存中</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">MAX_SIZE</span><span class="p">:</span>
+                <span class="c1"># 在链表中查找并删除最老的记录</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">lookup</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">linked_list</span><span class="o">.</span><span class="n">tail</span><span class="o">.</span><span class="n">query</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">linked_list</span><span class="o">.</span><span class="n">remove_from_tail</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="c1"># 添加新的键值对</span>
+            <span class="n">new_node</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">results</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">linked_list</span><span class="o">.</span><span class="n">append_to_front</span><span class="p">(</span><span class="n">new_node</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">lookup</span><span class="p">[</span><span class="n">query</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_node</span>
+</code></pre></div>
+<h4 id="_11">何时更新缓存<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h4>
+<p>缓存将会在以下几种情况更新：</p>
+<ul>
+<li>页面内容发生变化</li>
+<li>页面被移除或者加入了新页面</li>
+<li>页面的权值发生变动</li>
+</ul>
+<p>解决这些问题的最直接的方法，就是为缓存记录设置一个它在被更新前能留在缓存中的最长时间，这个时间简称为存活时间（TTL）。</p>
+<p>参考 <a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#何时更新缓存">「何时更新缓存」</a>来了解其权衡取舍及替代方案。以上方法在<a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#缓存模式">缓存模式</a>一章中详细地进行了描述。</p>
+<h2 id="_12">第四步：架构扩展<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>根据限制条件，找到并解决瓶颈。</p>
+</blockquote>
+<p><img alt="Imgur" src="http://i.imgur.com/4j99mhe.png" /></p>
+<p><strong>重要提示：不要从最初设计直接跳到最终设计中！</strong></p>
+<p>现在你要 1) <strong>基准测试、负载测试</strong>。2) <strong>分析、描述</strong>性能瓶颈。3) 在解决瓶颈问题的同时，评估替代方案、权衡利弊。4) 重复以上步骤。请阅读<a href="../../scaling_aws/">「设计一个系统，并将其扩大到为数以百万计的 AWS 用户服务」</a> 来了解如何逐步扩大初始设计。</p>
+<p>讨论初始设计可能遇到的瓶颈及相关解决方案是很重要的。例如加上一个配置多台 <strong>Web 服务器</strong>的<strong>负载均衡器</strong>是否能够解决问题？<strong>CDN</strong>呢？<strong>主从复制</strong>呢？它们各自的替代方案和需要<strong>权衡</strong>的利弊又有什么呢？</p>
+<p>我们将会介绍一些组件来完成设计，并解决架构扩张问题。内置的负载均衡器将不做讨论以节省篇幅。</p>
+<p><strong>为了避免重复讨论</strong>，请参考<a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#系统设计主题的索引">系统设计主题索引</a>相关部分来了解其要点、方案的权衡取舍以及可选的替代方案。</p>
+<ul>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#域名系统">DNS</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#负载均衡器">负载均衡器</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#水平扩展">水平拓展</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#反向代理web-服务器">反向代理（web 服务器）</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#应用层">API 服务（应用层）</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#缓存">缓存</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#一致性模式">一致性模式</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#可用性模式">可用性模式</a></li>
+</ul>
+<h3 id="_13">将内存缓存扩大到多台机器<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<p>为了解决庞大的请求负载以及巨大的内存需求，我们将要对架构进行水平拓展。如何在我们的<strong>内存缓存</strong>集群中存储数据呢？我们有以下三个主要可选方案：</p>
+<ul>
+<li><strong>缓存集群中的每一台机器都有自己的缓存</strong> - 简单，但是它会降低缓存命中率。</li>
+<li><strong>缓存集群中的每一台机器都有缓存的拷贝</strong> - 简单，但是它的内存使用效率太低了。</li>
+<li><strong>对缓存进行<a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#分片">分片</a>，分别部署在缓存集群中的所有机器中</strong> - 更加复杂，但是它是最佳的选择。我们可以使用哈希，用查询语句 <code>machine = hash(query)</code> 来确定哪台机器有需要缓存。当然我们也可以使用<a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#正在完善中">一致性哈希</a>。</li>
+</ul>
+<h2 id="_14">其它要点<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>是否深入这些额外的主题，取决于你的问题范围和剩下的时间。</p>
+</blockquote>
+<h3 id="sql">SQL 缩放模式<a class="headerlink" href="#sql" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#主从复制">读取复制</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#联合">联合</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#分片">分片</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#非规范化">非规范化</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#sql-调优">SQL 调优</a></li>
+</ul>
+<h4 id="nosql">NoSQL<a class="headerlink" href="#nosql" title="Permanent link">&para;</a></h4>
+<ul>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#键-值存储">键-值存储</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#文档类型存储">文档类型存储</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#列型存储">列型存储</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#图数据库">图数据库</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#sql-还是-nosql">SQL vs NoSQL</a></li>
+</ul>
+<h3 id="_15">缓存<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<ul>
+<li>在哪缓存<ul>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#客户端缓存">客户端缓存</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#cdn-缓存">CDN 缓存</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#web-服务器缓存">Web 服务器缓存</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#数据库缓存">数据库缓存</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#应用缓存">应用缓存</a></li>
+</ul>
+</li>
+<li>什么需要缓存<ul>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#数据库查询级别的缓存">数据库查询级别的缓存</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#对象级别的缓存">对象级别的缓存</a></li>
+</ul>
+</li>
+<li>何时更新缓存<ul>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#缓存模式">缓存模式</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#直写模式">直写模式</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#回写模式">回写模式</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#刷新">刷新</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="_16">异步与微服务<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#消息队列">消息队列</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#任务队列">任务队列</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#背压">背压</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#微服务">微服务</a></li>
+</ul>
+<h3 id="_17">通信<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h3>
+<ul>
+<li>可权衡选择的方案：<ul>
+<li>与客户端的外部通信 - <a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#表述性状态转移rest">使用 REST 作为 HTTP API</a></li>
+<li>服务器内部通信 - <a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#远程过程调用协议rpc">RPC</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#服务发现">服务发现</a></li>
+</ul>
+<h3 id="_18">安全性<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h3>
+<p>请参阅<a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#安全">「安全」</a>一章。</p>
+<h3 id="_19">延迟数值<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h3>
+<p>请参阅<a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#每个程序员都应该知道的延迟数">「每个程序员都应该知道的延迟数」</a>。</p>
+<h3 id="_20">持续探讨<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h3>
+<ul>
+<li>持续进行基准测试并监控你的系统，以解决他们提出的瓶颈问题。</li>
+<li>架构拓展是一个迭代的过程。</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../../..", "features": ["content.code.annotate", "content.tabs.link", "navigation.sections", "navigation.tabs", "navigation.top", "search.highlight", "search.suggest"], "search": "../../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>
