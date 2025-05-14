@@ -2070,20 +2070,21 @@ flowchart TB
   style Assess fill:#FFF0F5,stroke:#993366,stroke-width:4px,rx:6,ry:6</code></pre>
 <h2 id="understand-what-a-system-design-interview-is-really-about">Understand What a System Design Interview Is <em>Really</em> About<a class="headerlink" href="#understand-what-a-system-design-interview-is-really-about" title="Permanent link">&para;</a></h2>
 <p>No one can build a system from scratch in 45 minutes, but no one excepts it from you. 
-Actually, the system design interview is a misleading title, it is not about <strong>designing</strong> a system it is about <strong>explaining</strong> a system to the interviewer. Even worse, most of the "questions" the interviewer thinks about are NOT asked as a direct question, but are inferred from your talk, sometimes inferred wrongly because you didn't touch the explanation the interviewer looks for at this specific moment.</p>
-<p>Here is an example:</p>
+In fact, “system design interview” is a misnomer—it’s not about <strong>designing</strong> a system, but about <strong>explaining</strong> one to your interviewer. Even more challenging, most of the questions the interviewer has in mind aren’t stated outright; they’re inferred from your explanation—sometimes incorrectly—when you miss the precise detail they’re looking for.</p>
+<p><strong>Example</strong>
+While you’re describing the read flow in your design, the interviewer might ask:</p>
+<blockquote>
+<p>“Does the read flow <em>really</em> go from the client all the way to the web server?”</p>
+</blockquote>
+<p>Since many system design discussions focus on scaling, this prompt likely hints that you should mention DNS, load balancers, or CDNs. Just because you discussed those components moments earlier—and the interviewer didn’t follow up—doesn’t mean they aren’t testing your knowledge now.</p>
+<p>What should you do?</p>
 <ul>
-<li>While you are explaining the details of the flow of read in your design, the interviewer ask you "does the flow of read goes <em>really</em> from the client to the web server?"</li>
+<li>Stop explaining the read flow and switch to an overview of DNS, load balancers, or CDNs?</li>
+<li>Continue describing the read flow while integrating those components?</li>
+<li>Dive into the CDN’s cache hit and miss mechanisms?</li>
 </ul>
-<p>Since many of the system design topics are about scaling this question is probably an hint that maybe you should add DNS, Load Balancer or CDN to your explanation. The fact that a moment ago you were talking about all the above and said that we need to add those and the interviewer didn't asked anything about it, does not mean that he does not want to check your knowledge on the subject, at this moment. 
-Ok, but should you 
-- stop talking about the read flow and jump over to the DNS, Load Balancer or CDN?
-- or you should continue talking about the read flow and add those to your explanation?
-- or should you dive in about CDN hit and miss mechanism?</p>
-<p>The answer is: You should <strong>ASK</strong> the interviewer, and try to uncover the hidden question - what does she want you to explain - now. Ask open question so if the interviewer intended to ask you something else, she will tell you.</p>
-<p>The system design interview is a ceremony with per defined rules and <strong>you can’t win the game if you don’t understand the rules of the game</strong>.
-Many interviewees fail the system design interview—not for lack of technical knowledge, or preparation but for misunderstanding what it's <strong>really</strong> about.
-Many candidates focus on memorizing architectures instead of engaging in a collaborative design <strong>discussion</strong>. In reality, interviewers want to see how you <strong>lead</strong> a targeted conversation to solve a <strong>scoped problem</strong>, not how fast you can sketch an entire production system... and it is your responsibility to understand the interviewer's hidden questions.</p>
+<p>The answer: <strong>ASK</strong>. Seek to uncover the hidden question. Open-ended questions help the interviewer clarify what they really want you to explain at that moment.</p>
+<p>A system design interview is a ceremonial rite governed by strict, unspoken rules.<strong>You can’t win the game if you don’t understand those rules</strong>. Many candidates fail—not for lack of technical skill or preparation, but because they misunderstand the interview’s true purpose. Rather than memorizing architectures, focus on driving a collaborative design <strong>discussion</strong>. Interviewers want to see how you <strong>lead</strong> a targeted conversation around a <strong>scoped problem</strong>, not how quickly you can draft an entire production system. Ultimately, it’s your responsibility to identify and address the interviewer’s hidden questions at any moment.</p>
 <hr />
 <blockquote>
 <p><em>A well-structured system design interview isn't about blurting out the “right” design—it's about owning the conversation. 
