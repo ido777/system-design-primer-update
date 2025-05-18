@@ -39,6 +39,7 @@ extra_javascript:
   - js/client-debug.js
   - js/giscus-debug.js
 
+
 markdown_extensions:
   - admonition
   - pymdownx.superfences:
