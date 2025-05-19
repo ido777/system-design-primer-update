@@ -4,7 +4,7 @@ site_url: https://ido777.github.io/system-design-primer-update/en/study_guide/
 repo_url: https://github.com/ido777/system-design-primer-update
 repo_name: ido777/system-design-primer-update
 
-# use_directory_urls: true
+use_directory_urls: true
 
 theme:
   name: material
