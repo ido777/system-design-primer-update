@@ -4,7 +4,7 @@ site_url: https://ido777.github.io/system-design-primer-update/en/study_guide/
 repo_url: https://github.com/ido777/system-design-primer-update
 repo_name: ido777/system-design-primer-update
 
-use_directory_urls: true
+# use_directory_urls: true
 
 theme:
   name: material
@@ -66,7 +66,7 @@ plugins:
       repository: ido777/system-design-primer-update
       branch: main
   - meta
-  - offline
+  # - offline
   # - htmlproofer
 
 extra:
@@ -125,10 +125,10 @@ markdown_extensions:
 
 nav:
   - Home: en/index.md
-  - About: https://github.com/ido777/system-design-primer-update/blob/main/README.md
-  - Contributing: https://github.com/ido777/system-design-primer-update/blob/main/CONTRIBUTING.md
-  - License: https://github.com/ido777/system-design-primer-update/blob/main/LICENSE.md
-  - Changelog: https://github.com/ido777/system-design-primer-update/blob/main/CHANGELOG.md
+  - About: about.md
+  - Contributing: CONTRIBUTING.md
+  - License: LICENSE.md
+  - Changelog: CHANGELOG.md
   - English:
       - Overview: en/index.md
       - Study Guide Start Here: en/study_guide.md
