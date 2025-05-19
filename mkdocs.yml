@@ -66,7 +66,7 @@ plugins:
       repository: ido777/system-design-primer-update
       branch: main
   - meta
-  # - offline
+  - offline
   # - htmlproofer
 
 extra:
