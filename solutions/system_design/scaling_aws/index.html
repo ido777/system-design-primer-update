@@ -1,0 +1,3359 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://ido777.github.io/system-design-primer-update/en/study_guide/solutions/system_design/scaling_aws/index.html">
+      
+      
+        <link rel="prev" href="../web_crawler/index.html">
+      
+      
+        <link rel="next" href="../social_graph/index.html">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Scaling AWS - System Design Primer Update</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+        <script src="https://unpkg.com/iframe-worker/shim"></script>
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/default.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","UA-210436000-1"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","UA-210436000-1",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=UA-210436000-1",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#design-a-system-that-scales-to-millions-of-users-on-aws" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="System Design Primer Update" class="md-header__button md-logo" aria-label="System Design Primer Update" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            System Design Primer Update
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Scaling AWS
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ido777/system-design-primer-update" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ido777/system-design-primer-update
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../en/index.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../about.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  About
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../CONTRIBUTING.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Contributing
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../LICENSE.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  License
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../CHANGELOG.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Changelog
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../en/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  English
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../zh/design-glance.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Translations (Not up to date)
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="System Design Primer Update" class="md-nav__button md-logo" aria-label="System Design Primer Update" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    System Design Primer Update
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ido777/system-design-primer-update" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ido777/system-design-primer-update
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../en/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CONTRIBUTING.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Contributing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../LICENSE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    License
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CHANGELOG.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Changelog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../en/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    English
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            English
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../en/study_guide.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Study Guide Start Here
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../en/practice.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    System Design Interview Questions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../en/design-glance.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    System Design at a Glance
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../pastebin/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    System Design Solutions
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6_5" id="__nav_6_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6_5">
+            <span class="md-nav__icon md-icon"></span>
+            System Design Solutions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../query_cache/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Query Cache
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mint/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Mint
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sales_rank/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sales Rank
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../url_shortener/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    URL Shortener
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../web_crawler/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Web Crawler
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Scaling AWS
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="index.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Scaling AWS
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-outline-use-cases-and-constraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Outline use cases and constraints
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 1: Outline use cases and constraints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use cases
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Use cases">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#well-scope-the-problem-to-handle-only-the-following-use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      We'll scope the problem to handle only the following use cases
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constraints-and-assumptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constraints and assumptions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Constraints and assumptions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#state-assumptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      State assumptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#calculate-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Calculate usage
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-create-a-high-level-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Create a high level design
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-design-core-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Design core components
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 3: Design core components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#use-case-user-makes-a-read-or-write-request" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use case: User makes a read or write request
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Use case: User makes a read or write request">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      Goals
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#start-with-a-single-box" class="md-nav__link">
+    <span class="md-ellipsis">
+      Start with a single box
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#start-with-sql-consider-nosql" class="md-nav__link">
+    <span class="md-ellipsis">
+      Start with SQL, consider NoSQL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assign-a-public-static-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      Assign a public static IP
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-a-dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use a DNS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secure-the-web-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Secure the web server
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-scale-the-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4: Scale the design
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 4: Scale the design">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#users" class="md-nav__link">
+    <span class="md-ellipsis">
+      Users+
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Users+">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#assumptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Assumptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#goals_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Goals
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#store-static-content-separately" class="md-nav__link">
+    <span class="md-ellipsis">
+      Store static content separately
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#move-the-mysql-database-to-a-separate-box" class="md-nav__link">
+    <span class="md-ellipsis">
+      Move the MySQL database to a separate box
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secure-the-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      Secure the system
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#users_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Users++
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Users++">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#assumptions_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Assumptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#goals_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Goals
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#users_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Users+++
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Users+++">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#assumptions_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Assumptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#goals_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Goals
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-mysql-read-replicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add MySQL read replicas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#users_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Users++++
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Users++++">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#assumptions_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Assumptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#goals_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Goals
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-autoscaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add autoscaling
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#users_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Users+++++
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Users+++++">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#assumptions_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Assumptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#goals_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Goals
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-talking-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      Additional talking points
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Additional talking points">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sql-scaling-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      SQL scaling patterns
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SQL scaling patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nosql" class="md-nav__link">
+    <span class="md-ellipsis">
+      NoSQL
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      Caching
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asynchronism-and-microservices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Asynchronism and microservices
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#communications" class="md-nav__link">
+    <span class="md-ellipsis">
+      Communications
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latency-numbers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Latency numbers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ongoing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ongoing
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../social_graph/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Social Graph
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../twitter/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Twitter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../object_oriented_design/movie_tickets/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Object-Oriented Design Solutions
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6_6" id="__nav_6_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_6">
+            <span class="md-nav__icon md-icon"></span>
+            Object-Oriented Design Solutions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../object_oriented_design/call_center/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Call Center
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../object_oriented_design/circular_array/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Circular Array
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../object_oriented_design/deck_of_cards/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deck of Cards
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../object_oriented_design/hash_table/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Hash Table
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../object_oriented_design/lru_cache/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    LRU Cache
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../object_oriented_design/online_chat/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Online Chat
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../object_oriented_design/parking_lot/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Parking Lot
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Translations (Not up to date)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Translations (Not up to date)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_1" id="__nav_7_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    简体中文 (Simplified Chinese)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_1">
+            <span class="md-nav__icon md-icon"></span>
+            简体中文 (Simplified Chinese)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../zh/design-glance.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    简体中文主页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    繁體中文 (Traditional Chinese)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            繁體中文 (Traditional Chinese)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../zh-Hant/design-glance.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    繁體中文首頁
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    العربية (Arabic)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            العربية (Arabic)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ar/design-glance.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    الصفحة الرئيسية
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    日本語 (Japanese)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            日本語 (Japanese)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ja/design-glance.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    日本語のホーム
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_5" id="__nav_7_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Türkçe (Turkish)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_5">
+            <span class="md-nav__icon md-icon"></span>
+            Türkçe (Turkish)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tr/design-glance.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Türkçe Anasayfa
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-outline-use-cases-and-constraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Outline use cases and constraints
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 1: Outline use cases and constraints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use cases
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Use cases">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#well-scope-the-problem-to-handle-only-the-following-use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      We'll scope the problem to handle only the following use cases
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constraints-and-assumptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constraints and assumptions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Constraints and assumptions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#state-assumptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      State assumptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#calculate-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Calculate usage
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-create-a-high-level-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Create a high level design
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-design-core-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Design core components
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 3: Design core components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#use-case-user-makes-a-read-or-write-request" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use case: User makes a read or write request
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Use case: User makes a read or write request">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      Goals
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#start-with-a-single-box" class="md-nav__link">
+    <span class="md-ellipsis">
+      Start with a single box
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#start-with-sql-consider-nosql" class="md-nav__link">
+    <span class="md-ellipsis">
+      Start with SQL, consider NoSQL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assign-a-public-static-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      Assign a public static IP
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-a-dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use a DNS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secure-the-web-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Secure the web server
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-scale-the-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4: Scale the design
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 4: Scale the design">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#users" class="md-nav__link">
+    <span class="md-ellipsis">
+      Users+
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Users+">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#assumptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Assumptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#goals_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Goals
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#store-static-content-separately" class="md-nav__link">
+    <span class="md-ellipsis">
+      Store static content separately
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#move-the-mysql-database-to-a-separate-box" class="md-nav__link">
+    <span class="md-ellipsis">
+      Move the MySQL database to a separate box
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secure-the-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      Secure the system
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#users_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Users++
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Users++">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#assumptions_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Assumptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#goals_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Goals
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#users_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Users+++
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Users+++">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#assumptions_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Assumptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#goals_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Goals
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-mysql-read-replicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add MySQL read replicas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#users_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Users++++
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Users++++">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#assumptions_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Assumptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#goals_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Goals
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-autoscaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add autoscaling
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#users_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Users+++++
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Users+++++">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#assumptions_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Assumptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#goals_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Goals
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-talking-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      Additional talking points
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Additional talking points">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sql-scaling-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      SQL scaling patterns
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SQL scaling patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nosql" class="md-nav__link">
+    <span class="md-ellipsis">
+      NoSQL
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      Caching
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asynchronism-and-microservices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Asynchronism and microservices
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#communications" class="md-nav__link">
+    <span class="md-ellipsis">
+      Communications
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latency-numbers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Latency numbers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ongoing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ongoing
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="design-a-system-that-scales-to-millions-of-users-on-aws">Design a system that scales to millions of users on AWS<a class="headerlink" href="#design-a-system-that-scales-to-millions-of-users-on-aws" title="Permanent link">&para;</a></h1>
+<p><em>Note: This document links directly to relevant areas found in the <a href="https://github.com/ido777/system-design-primer-update#index-of-system-design-topics">system design topics</a> to avoid duplication.  Refer to the linked content for general talking points, tradeoffs, and alternatives.</em></p>
+<h2 id="step-1-outline-use-cases-and-constraints">Step 1: Outline use cases and constraints<a class="headerlink" href="#step-1-outline-use-cases-and-constraints" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>Gather requirements and scope the problem.
+Ask questions to clarify use cases and constraints.
+Discuss assumptions.</p>
+</blockquote>
+<p>Without an interviewer to address clarifying questions, we'll define some use cases and constraints.</p>
+<h3 id="use-cases">Use cases<a class="headerlink" href="#use-cases" title="Permanent link">&para;</a></h3>
+<p>Solving this problem takes an iterative approach of: 1) <strong>Benchmark/Load Test</strong>, 2) <strong>Profile</strong> for bottlenecks 3) address bottlenecks while evaluating alternatives and trade-offs, and 4) repeat, which is good pattern for evolving basic designs to scalable designs.</p>
+<p>Unless you have a background in AWS or are applying for a position that requires AWS knowledge, AWS-specific details are not a requirement.  However, <strong>much of the principles discussed in this exercise can apply more generally outside of the AWS ecosystem.</strong></p>
+<h4 id="well-scope-the-problem-to-handle-only-the-following-use-cases">We'll scope the problem to handle only the following use cases<a class="headerlink" href="#well-scope-the-problem-to-handle-only-the-following-use-cases" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>User</strong> makes a read or write request<ul>
+<li><strong>Service</strong> does processing, stores user data, then returns the results</li>
+</ul>
+</li>
+<li><strong>Service</strong> needs to evolve from serving a small amount of users to millions of users<ul>
+<li>Discuss general scaling patterns as we evolve an architecture to handle a large number of users and requests</li>
+</ul>
+</li>
+<li><strong>Service</strong> has high availability</li>
+</ul>
+<h3 id="constraints-and-assumptions">Constraints and assumptions<a class="headerlink" href="#constraints-and-assumptions" title="Permanent link">&para;</a></h3>
+<h4 id="state-assumptions">State assumptions<a class="headerlink" href="#state-assumptions" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Traffic is not evenly distributed</li>
+<li>Need for relational data</li>
+<li>Scale from 1 user to tens of millions of users<ul>
+<li>Denote increase of users as:<ul>
+<li>Users+</li>
+<li>Users++</li>
+<li>Users+++</li>
+<li>...</li>
+</ul>
+</li>
+<li>10 million users</li>
+<li>1 billion writes per month</li>
+<li>100 billion reads per month</li>
+<li>100:1 read to write ratio</li>
+<li>1 KB content per write</li>
+</ul>
+</li>
+</ul>
+<h4 id="calculate-usage">Calculate usage<a class="headerlink" href="#calculate-usage" title="Permanent link">&para;</a></h4>
+<p><strong>Clarify with your interviewer if you should run back-of-the-envelope usage calculations.</strong></p>
+<ul>
+<li>1 TB of new content per month<ul>
+<li>1 KB per write * 1 billion writes per month</li>
+<li>36 TB of new content in 3 years</li>
+<li>Assume most writes are from new content instead of updates to existing ones</li>
+</ul>
+</li>
+<li>400 writes per second on average</li>
+<li>40,000 reads per second on average</li>
+</ul>
+<p>Handy conversion guide:</p>
+<ul>
+<li>2.5 million seconds per month</li>
+<li>1 request per second = 2.5 million requests per month</li>
+<li>40 requests per second = 100 million requests per month</li>
+<li>400 requests per second = 1 billion requests per month</li>
+</ul>
+<h2 id="step-2-create-a-high-level-design">Step 2: Create a high level design<a class="headerlink" href="#step-2-create-a-high-level-design" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>Outline a high level design with all important components.</p>
+</blockquote>
+<p><img alt="Imgur" src="http://i.imgur.com/B8LDKD7.png" /></p>
+<h2 id="step-3-design-core-components">Step 3: Design core components<a class="headerlink" href="#step-3-design-core-components" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>Dive into details for each core component.</p>
+</blockquote>
+<h3 id="use-case-user-makes-a-read-or-write-request">Use case: User makes a read or write request<a class="headerlink" href="#use-case-user-makes-a-read-or-write-request" title="Permanent link">&para;</a></h3>
+<h4 id="goals">Goals<a class="headerlink" href="#goals" title="Permanent link">&para;</a></h4>
+<ul>
+<li>With only 1-2 users, you only need a basic setup<ul>
+<li>Single box for simplicity</li>
+<li>Vertical scaling when needed</li>
+<li>Monitor to determine bottlenecks</li>
+</ul>
+</li>
+</ul>
+<h4 id="start-with-a-single-box">Start with a single box<a class="headerlink" href="#start-with-a-single-box" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Web server</strong> on EC2<ul>
+<li>Storage for user data</li>
+<li><a href="https://github.com/ido777/system-design-primer-update#relational-database-management-system-rdbms"><strong>MySQL Database</strong></a></li>
+</ul>
+</li>
+</ul>
+<p>Use <strong>Vertical Scaling</strong>:</p>
+<ul>
+<li>Simply choose a bigger box</li>
+<li>Keep an eye on metrics to determine how to scale up<ul>
+<li>Use basic monitoring to determine bottlenecks: CPU, memory, IO, network, etc</li>
+<li>CloudWatch, top, nagios, statsd, graphite, etc</li>
+</ul>
+</li>
+<li>Scaling vertically can get very expensive</li>
+<li>No redundancy/failover</li>
+</ul>
+<p><em>Trade-offs, alternatives, and additional details:</em></p>
+<ul>
+<li>The alternative to <strong>Vertical Scaling</strong> is <a href="https://github.com/ido777/system-design-primer-update#horizontal-scaling"><strong>Horizontal scaling</strong></a></li>
+</ul>
+<h4 id="start-with-sql-consider-nosql">Start with SQL, consider NoSQL<a class="headerlink" href="#start-with-sql-consider-nosql" title="Permanent link">&para;</a></h4>
+<p>The constraints assume there is a need for relational data.  We can start off using a <strong>MySQL Database</strong> on the single box.</p>
+<p><em>Trade-offs, alternatives, and additional details:</em></p>
+<ul>
+<li>See the <a href="https://github.com/ido777/system-design-primer-update#relational-database-management-system-rdbms">Relational database management system (RDBMS)</a> section</li>
+<li>Discuss reasons to use <a href="https://github.com/ido777/system-design-primer-update#sql-or-nosql">SQL or NoSQL</a></li>
+</ul>
+<h4 id="assign-a-public-static-ip">Assign a public static IP<a class="headerlink" href="#assign-a-public-static-ip" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Elastic IPs provide a public endpoint whose IP doesn't change on reboot</li>
+<li>Helps with failover, just point the domain to a new IP</li>
+</ul>
+<h4 id="use-a-dns">Use a DNS<a class="headerlink" href="#use-a-dns" title="Permanent link">&para;</a></h4>
+<p>Add a <strong>DNS</strong> such as Route 53 to map the domain to the instance's public IP.</p>
+<p><em>Trade-offs, alternatives, and additional details:</em></p>
+<ul>
+<li>See the <a href="https://github.com/ido777/system-design-primer-update#domain-name-system">Domain name system</a> section</li>
+</ul>
+<h4 id="secure-the-web-server">Secure the web server<a class="headerlink" href="#secure-the-web-server" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Open up only necessary ports<ul>
+<li>Allow the web server to respond to incoming requests from:<ul>
+<li>80 for HTTP</li>
+<li>443 for HTTPS</li>
+<li>22 for SSH to only allowlisted IPs</li>
+</ul>
+</li>
+<li>Prevent the web server from initiating outbound connections</li>
+</ul>
+</li>
+</ul>
+<p><em>Trade-offs, alternatives, and additional details:</em></p>
+<ul>
+<li>See the <a href="https://github.com/ido777/system-design-primer-update#security">Security</a> section</li>
+</ul>
+<h2 id="step-4-scale-the-design">Step 4: Scale the design<a class="headerlink" href="#step-4-scale-the-design" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>Identify and address bottlenecks, given the constraints.</p>
+</blockquote>
+<h3 id="users">Users+<a class="headerlink" href="#users" title="Permanent link">&para;</a></h3>
+<p><img alt="Imgur" src="http://i.imgur.com/rrfjMXB.png" /></p>
+<h4 id="assumptions">Assumptions<a class="headerlink" href="#assumptions" title="Permanent link">&para;</a></h4>
+<p>Our user count is starting to pick up and the load is increasing on our single box.  Our <strong>Benchmarks/Load Tests</strong> and <strong>Profiling</strong> are pointing to the <strong>MySQL Database</strong> taking up more and more memory and CPU resources, while the user content is filling up disk space.</p>
+<p>We've been able to address these issues with <strong>Vertical Scaling</strong> so far.  Unfortunately, this has become quite expensive and it doesn't allow for independent scaling of the <strong>MySQL Database</strong> and <strong>Web Server</strong>.</p>
+<h4 id="goals_1">Goals<a class="headerlink" href="#goals_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Lighten load on the single box and allow for independent scaling<ul>
+<li>Store static content separately in an <strong>Object Store</strong></li>
+<li>Move the <strong>MySQL Database</strong> to a separate box</li>
+</ul>
+</li>
+<li>Disadvantages<ul>
+<li>These changes would increase complexity and would require changes to the <strong>Web Server</strong> to point to the <strong>Object Store</strong> and the <strong>MySQL Database</strong></li>
+<li>Additional security measures must be taken to secure the new components</li>
+<li>AWS costs could also increase, but should be weighed with the costs of managing similar systems on your own</li>
+</ul>
+</li>
+</ul>
+<h4 id="store-static-content-separately">Store static content separately<a class="headerlink" href="#store-static-content-separately" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Consider using a managed <strong>Object Store</strong> like S3 to store static content<ul>
+<li>Highly scalable and reliable</li>
+<li>Server side encryption</li>
+</ul>
+</li>
+<li>Move static content to S3<ul>
+<li>User files</li>
+<li>JS</li>
+<li>CSS</li>
+<li>Images</li>
+<li>Videos</li>
+</ul>
+</li>
+</ul>
+<h4 id="move-the-mysql-database-to-a-separate-box">Move the MySQL database to a separate box<a class="headerlink" href="#move-the-mysql-database-to-a-separate-box" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Consider using a service like RDS to manage the <strong>MySQL Database</strong><ul>
+<li>Simple to administer, scale</li>
+<li>Multiple availability zones</li>
+<li>Encryption at rest</li>
+</ul>
+</li>
+</ul>
+<h4 id="secure-the-system">Secure the system<a class="headerlink" href="#secure-the-system" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Encrypt data in transit and at rest</li>
+<li>Use a Virtual Private Cloud<ul>
+<li>Create a public subnet for the single <strong>Web Server</strong> so it can send and receive traffic from the internet</li>
+<li>Create a private subnet for everything else, preventing outside access</li>
+<li>Only open ports from allowlisted IPs for each component</li>
+</ul>
+</li>
+<li>These same patterns should be implemented for new components in the remainder of the exercise</li>
+</ul>
+<p><em>Trade-offs, alternatives, and additional details:</em></p>
+<ul>
+<li>See the <a href="https://github.com/ido777/system-design-primer-update#security">Security</a> section</li>
+</ul>
+<h3 id="users_1">Users++<a class="headerlink" href="#users_1" title="Permanent link">&para;</a></h3>
+<p><img alt="Imgur" src="http://i.imgur.com/raoFTXM.png" /></p>
+<h4 id="assumptions_1">Assumptions<a class="headerlink" href="#assumptions_1" title="Permanent link">&para;</a></h4>
+<p>Our <strong>Benchmarks/Load Tests</strong> and <strong>Profiling</strong> show that our single <strong>Web Server</strong> bottlenecks during peak hours, resulting in slow responses and in some cases, downtime.  As the service matures, we'd also like to move towards higher availability and redundancy.</p>
+<h4 id="goals_2">Goals<a class="headerlink" href="#goals_2" title="Permanent link">&para;</a></h4>
+<ul>
+<li>The following goals attempt to address the scaling issues with the <strong>Web Server</strong><ul>
+<li>Based on the <strong>Benchmarks/Load Tests</strong> and <strong>Profiling</strong>, you might only need to implement one or two of these techniques</li>
+</ul>
+</li>
+<li>Use <a href="https://github.com/ido777/system-design-primer-update#horizontal-scaling"><strong>Horizontal Scaling</strong></a> to handle increasing loads and to address single points of failure<ul>
+<li>Add a <a href="https://github.com/ido777/system-design-primer-update#load-balancer"><strong>Load Balancer</strong></a> such as Amazon's ELB or HAProxy<ul>
+<li>ELB is highly available</li>
+<li>If you are configuring your own <strong>Load Balancer</strong>, setting up multiple servers in <a href="https://github.com/ido777/system-design-primer-update#active-active">active-active</a> or <a href="https://github.com/ido777/system-design-primer-update#active-passive">active-passive</a> in multiple availability zones will improve availability</li>
+<li>Terminate SSL on the <strong>Load Balancer</strong> to reduce computational load on backend servers and to simplify certificate administration</li>
+</ul>
+</li>
+<li>Use multiple <strong>Web Servers</strong> spread out over multiple availability zones</li>
+<li>Use multiple <strong>MySQL</strong> instances in <a href="https://github.com/ido777/system-design-primer-update#master-slave-replication"><strong>Master-Slave Failover</strong></a> mode across multiple availability zones to improve redundancy</li>
+</ul>
+</li>
+<li>Separate out the <strong>Web Servers</strong> from the <a href="https://github.com/ido777/system-design-primer-update#application-layer"><strong>Application Servers</strong></a><ul>
+<li>Scale and configure both layers independently</li>
+<li><strong>Web Servers</strong> can run as a <a href="https://github.com/ido777/system-design-primer-update#reverse-proxy-web-server"><strong>Reverse Proxy</strong></a></li>
+<li>For example, you can add <strong>Application Servers</strong> handling <strong>Read APIs</strong> while others handle <strong>Write APIs</strong></li>
+</ul>
+</li>
+<li>Move static (and some dynamic) content to a <a href="https://github.com/ido777/system-design-primer-update#content-delivery-network"><strong>Content Delivery Network (CDN)</strong></a> such as CloudFront to reduce load and latency</li>
+</ul>
+<p><em>Trade-offs, alternatives, and additional details:</em></p>
+<ul>
+<li>See the linked content above for details</li>
+</ul>
+<h3 id="users_2">Users+++<a class="headerlink" href="#users_2" title="Permanent link">&para;</a></h3>
+<p><img alt="Imgur" src="http://i.imgur.com/OZCxJr0.png" /></p>
+<p><strong>Note:</strong> <strong>Internal Load Balancers</strong> not shown to reduce clutter</p>
+<h4 id="assumptions_2">Assumptions<a class="headerlink" href="#assumptions_2" title="Permanent link">&para;</a></h4>
+<p>Our <strong>Benchmarks/Load Tests</strong> and <strong>Profiling</strong> show that we are read-heavy (100:1 with writes) and our database is suffering from poor performance from the high read requests.</p>
+<h4 id="goals_3">Goals<a class="headerlink" href="#goals_3" title="Permanent link">&para;</a></h4>
+<ul>
+<li>The following goals attempt to address the scaling issues with the <strong>MySQL Database</strong><ul>
+<li>Based on the <strong>Benchmarks/Load Tests</strong> and <strong>Profiling</strong>, you might only need to implement one or two of these techniques</li>
+</ul>
+</li>
+<li>Move the following data to a <a href="https://github.com/ido777/system-design-primer-update#cache"><strong>Memory Cache</strong></a> such as Elasticache to reduce load and latency:<ul>
+<li>Frequently accessed content from <strong>MySQL</strong><ul>
+<li>First, try to configure the <strong>MySQL Database</strong> cache to see if that is sufficient to relieve the bottleneck before implementing a <strong>Memory Cache</strong></li>
+</ul>
+</li>
+<li>Session data from the <strong>Web Servers</strong><ul>
+<li>The <strong>Web Servers</strong> become stateless, allowing for <strong>Autoscaling</strong></li>
+</ul>
+</li>
+<li>Reading 1 MB sequentially from memory takes about 250 microseconds, while reading from SSD takes 4x and from disk takes 80x longer.<sup><a href=https://github.com/ido777/system-design-primer-update#latency-numbers-every-programmer-should-know>1</a></sup></li>
+</ul>
+</li>
+<li>Add <a href="https://github.com/ido777/system-design-primer-update#master-slave-replication"><strong>MySQL Read Replicas</strong></a> to reduce load on the write master</li>
+<li>Add more <strong>Web Servers</strong> and <strong>Application Servers</strong> to improve responsiveness</li>
+</ul>
+<p><em>Trade-offs, alternatives, and additional details:</em></p>
+<ul>
+<li>See the linked content above for details</li>
+</ul>
+<h4 id="add-mysql-read-replicas">Add MySQL read replicas<a class="headerlink" href="#add-mysql-read-replicas" title="Permanent link">&para;</a></h4>
+<ul>
+<li>In addition to adding and scaling a <strong>Memory Cache</strong>, <strong>MySQL Read Replicas</strong> can also help relieve load on the <strong>MySQL Write Master</strong></li>
+<li>Add logic to <strong>Web Server</strong> to separate out writes and reads</li>
+<li>Add <strong>Load Balancers</strong> in front of <strong>MySQL Read Replicas</strong> (not pictured to reduce clutter)</li>
+<li>Most services are read-heavy vs write-heavy</li>
+</ul>
+<p><em>Trade-offs, alternatives, and additional details:</em></p>
+<ul>
+<li>See the <a href="https://github.com/ido777/system-design-primer-update#relational-database-management-system-rdbms">Relational database management system (RDBMS)</a> section</li>
+</ul>
+<h3 id="users_3">Users++++<a class="headerlink" href="#users_3" title="Permanent link">&para;</a></h3>
+<p><img alt="Imgur" src="http://i.imgur.com/3X8nmdL.png" /></p>
+<h4 id="assumptions_3">Assumptions<a class="headerlink" href="#assumptions_3" title="Permanent link">&para;</a></h4>
+<p>Our <strong>Benchmarks/Load Tests</strong> and <strong>Profiling</strong> show that our traffic spikes during regular business hours in the U.S. and drop significantly when users leave the office.  We think we can cut costs by automatically spinning up and down servers based on actual load.  We're a small shop so we'd like to automate as much of the DevOps as possible for <strong>Autoscaling</strong> and for the general operations.</p>
+<h4 id="goals_4">Goals<a class="headerlink" href="#goals_4" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Add <strong>Autoscaling</strong> to provision capacity as needed<ul>
+<li>Keep up with traffic spikes</li>
+<li>Reduce costs by powering down unused instances</li>
+</ul>
+</li>
+<li>Automate DevOps<ul>
+<li>Chef, Puppet, Ansible, etc</li>
+</ul>
+</li>
+<li>Continue monitoring metrics to address bottlenecks<ul>
+<li><strong>Host level</strong> - Review a single EC2 instance</li>
+<li><strong>Aggregate level</strong> - Review load balancer stats</li>
+<li><strong>Log analysis</strong> - CloudWatch, CloudTrail, Loggly, Splunk, Sumo</li>
+<li><strong>External site performance</strong> - Pingdom or New Relic</li>
+<li><strong>Handle notifications and incidents</strong> - PagerDuty</li>
+<li><strong>Error Reporting</strong> - Sentry</li>
+</ul>
+</li>
+</ul>
+<h4 id="add-autoscaling">Add autoscaling<a class="headerlink" href="#add-autoscaling" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Consider a managed service such as AWS <strong>Autoscaling</strong><ul>
+<li>Create one group for each <strong>Web Server</strong> and one for each <strong>Application Server</strong> type, place each group in multiple availability zones</li>
+<li>Set a min and max number of instances</li>
+<li>Trigger to scale up and down through CloudWatch<ul>
+<li>Simple time of day metric for predictable loads or</li>
+<li>Metrics over a time period:<ul>
+<li>CPU load</li>
+<li>Latency</li>
+<li>Network traffic</li>
+<li>Custom metric</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Disadvantages<ul>
+<li>Autoscaling can introduce complexity</li>
+<li>It could take some time before a system appropriately scales up to meet increased demand, or to scale down when demand drops</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="users_4">Users+++++<a class="headerlink" href="#users_4" title="Permanent link">&para;</a></h3>
+<p><img alt="Imgur" src="http://i.imgur.com/jj3A5N8.png" /></p>
+<p><strong>Note:</strong> <strong>Autoscaling</strong> groups not shown to reduce clutter</p>
+<h4 id="assumptions_4">Assumptions<a class="headerlink" href="#assumptions_4" title="Permanent link">&para;</a></h4>
+<p>As the service continues to grow towards the figures outlined in the constraints, we iteratively run <strong>Benchmarks/Load Tests</strong> and <strong>Profiling</strong> to uncover and address new bottlenecks.</p>
+<h4 id="goals_5">Goals<a class="headerlink" href="#goals_5" title="Permanent link">&para;</a></h4>
+<p>We'll continue to address scaling issues due to the problem's constraints:</p>
+<ul>
+<li>If our <strong>MySQL Database</strong> starts to grow too large, we might consider only storing a limited time period of data in the database, while storing the rest in a data warehouse such as Redshift<ul>
+<li>A data warehouse such as Redshift can comfortably handle the constraint of 1 TB of new content per month</li>
+</ul>
+</li>
+<li>With 40,000 average read requests per second, read traffic for popular content can be addressed by scaling the <strong>Memory Cache</strong>, which is also useful for handling the unevenly distributed traffic and traffic spikes<ul>
+<li>The <strong>SQL Read Replicas</strong> might have trouble handling the cache misses, we'll probably need to employ additional SQL scaling patterns</li>
+</ul>
+</li>
+<li>400 average writes per second (with presumably significantly higher peaks) might be tough for a single <strong>SQL Write Master-Slave</strong>, also pointing to a need for additional scaling techniques</li>
+</ul>
+<p>SQL scaling patterns include:</p>
+<ul>
+<li><a href="https://github.com/ido777/system-design-primer-update#federation">Federation</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update#sharding">Sharding</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update#denormalization">Denormalization</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update#sql-tuning">SQL Tuning</a></li>
+</ul>
+<p>To further address the high read and write requests, we should also consider moving appropriate data to a <a href="https://github.com/ido777/system-design-primer-update#nosql"><strong>NoSQL Database</strong></a> such as DynamoDB.</p>
+<p>We can further separate out our <a href="https://github.com/ido777/system-design-primer-update#application-layer"><strong>Application Servers</strong></a> to allow for independent scaling.  Batch processes or computations that do not need to be done in real-time can be done <a href="https://github.com/ido777/system-design-primer-update#asynchronism"><strong>Asynchronously</strong></a> with <strong>Queues</strong> and <strong>Workers</strong>:</p>
+<ul>
+<li>For example, in a photo service, the photo upload and the thumbnail creation can be separated:<ul>
+<li><strong>Client</strong> uploads photo</li>
+<li><strong>Application Server</strong> puts a job in a <strong>Queue</strong> such as SQS</li>
+<li>The <strong>Worker Service</strong> on EC2 or Lambda pulls work off the <strong>Queue</strong> then:<ul>
+<li>Creates a thumbnail</li>
+<li>Updates a <strong>Database</strong></li>
+<li>Stores the thumbnail in the <strong>Object Store</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><em>Trade-offs, alternatives, and additional details:</em></p>
+<ul>
+<li>See the linked content above for details</li>
+</ul>
+<h2 id="additional-talking-points">Additional talking points<a class="headerlink" href="#additional-talking-points" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>Additional topics to dive into, depending on the problem scope and time remaining.</p>
+</blockquote>
+<h3 id="sql-scaling-patterns">SQL scaling patterns<a class="headerlink" href="#sql-scaling-patterns" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://github.com/ido777/system-design-primer-update#master-slave-replication">Read replicas</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update#federation">Federation</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update#sharding">Sharding</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update#denormalization">Denormalization</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update#sql-tuning">SQL Tuning</a></li>
+</ul>
+<h4 id="nosql">NoSQL<a class="headerlink" href="#nosql" title="Permanent link">&para;</a></h4>
+<ul>
+<li><a href="https://github.com/ido777/system-design-primer-update#key-value-store">Key-value store</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update#document-store">Document store</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update#wide-column-store">Wide column store</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update#graph-database">Graph database</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update#sql-or-nosql">SQL vs NoSQL</a></li>
+</ul>
+<h3 id="caching">Caching<a class="headerlink" href="#caching" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Where to cache<ul>
+<li><a href="https://github.com/ido777/system-design-primer-update#client-caching">Client caching</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update#cdn-caching">CDN caching</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update#web-server-caching">Web server caching</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update#database-caching">Database caching</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update#application-caching">Application caching</a></li>
+</ul>
+</li>
+<li>What to cache<ul>
+<li><a href="https://github.com/ido777/system-design-primer-update#caching-at-the-database-query-level">Caching at the database query level</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update#caching-at-the-object-level">Caching at the object level</a></li>
+</ul>
+</li>
+<li>When to update the cache<ul>
+<li><a href="https://github.com/ido777/system-design-primer-update#cache-aside">Cache-aside</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update#write-through">Write-through</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update#write-behind-write-back">Write-behind (write-back)</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update#refresh-ahead">Refresh ahead</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="asynchronism-and-microservices">Asynchronism and microservices<a class="headerlink" href="#asynchronism-and-microservices" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://github.com/ido777/system-design-primer-update#message-queues">Message queues</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update#task-queues">Task queues</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update#back-pressure">Back pressure</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update#microservices">Microservices</a></li>
+</ul>
+<h3 id="communications">Communications<a class="headerlink" href="#communications" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Discuss tradeoffs:<ul>
+<li>External communication with clients - <a href="https://github.com/ido777/system-design-primer-update#representational-state-transfer-rest">HTTP APIs following REST</a></li>
+<li>Internal communications - <a href="https://github.com/ido777/system-design-primer-update#remote-procedure-call-rpc">RPC</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/ido777/system-design-primer-update#service-discovery">Service discovery</a></li>
+</ul>
+<h3 id="security">Security<a class="headerlink" href="#security" title="Permanent link">&para;</a></h3>
+<p>Refer to the <a href="https://github.com/ido777/system-design-primer-update#security">security section</a>.</p>
+<h3 id="latency-numbers">Latency numbers<a class="headerlink" href="#latency-numbers" title="Permanent link">&para;</a></h3>
+<p>See <a href="https://github.com/ido777/system-design-primer-update#latency-numbers-every-programmer-should-know">Latency numbers every programmer should know</a>.</p>
+<h3 id="ongoing">Ongoing<a class="headerlink" href="#ongoing" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Continue benchmarking and monitoring your system to address bottlenecks as they come up</li>
+<li>Scaling is an iterative process</li>
+</ul>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="May 20, 2025 09:05:17">May 20, 2025</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Created">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="May 20, 2025 09:05:17">May 20, 2025</span>
+  </span>
+
+    
+    
+    
+      
+  <span class="md-source-file__fact">
+    
+      
+  <span class="md-icon" title="Contributors">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2"/></svg>
+  </span>
+  <span>GitHub</span>
+
+    
+    <nav>
+      
+        <a href="https://github.com/ido777" class="md-author" title="@ido777">
+          
+          <img src="https://avatars.githubusercontent.com/u/6554277?v=4&size=72" alt="ido777">
+        </a>
+      
+      
+      
+    </nav>
+  </span>
+
+    
+  </aside>
+
+
+  
+
+
+
+
+  <h2 id="__comments">Comments</h2>
+  <!-- Insert generated snippet here -->
+  <div id="comments" class="md-content">
+    <!-- Giscus widget -->
+    <div class="giscus-frame"></div>
+    <script
+      src="js/client-debug.js"
+      data-repo="ido777/system-design-primer-update"
+      data-repo-id="R_kgDOORdCfw"
+      data-category="Feedback by Page"
+      data-category-id="DIC_kwDOORdCf84CqLEY"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="bottom"
+      data-theme="light"
+      data-lang="en"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async>
+    </script>
+  </div>
+  <!-- Synchronize Giscus theme with palette -->
+  <script>
+    var giscus = document.querySelector("script[src*=giscus]")
+
+    // Set palette on initial load
+    var palette = __md_get("__palette")
+    if (palette && typeof palette.color === "object") {
+      var theme = palette.color.scheme === "slate"
+        ? "transparent_dark"
+        : "light"
+
+      // Instruct Giscus to set theme
+      giscus.setAttribute("data-theme", theme) 
+    }
+
+    // Register event handlers after documented loaded
+    document.addEventListener("DOMContentLoaded", function() {
+      var ref = document.querySelector("[data-md-component=palette]")
+      ref.addEventListener("change", function() {
+        var palette = __md_get("__palette")
+        if (palette && typeof palette.color === "object") {
+          var theme = palette.color.scheme === "slate"
+            ? "transparent_dark"
+            : "light"
+
+          // Instruct Giscus to change theme
+          var frame = document.querySelector(".giscus-frame")
+          frame.contentWindow.postMessage(
+            { giscus: { setConfig: { theme } } },
+            "https://giscus.app"
+          )
+        }
+      })
+    })
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../web_crawler/index.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Web Crawler">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Web Crawler
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../social_graph/index.html" class="md-footer__link md-footer__link--next" aria-label="Next: Social Graph">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Social Graph
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "navigation.path", "content.code.annotate", "content.tabs.link", "search.highlight", "search.suggest", "toc.follow"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="../../../javascripts/client-debug.js"></script>
+      
+        <script src="../../../javascripts/giscus-debug.js"></script>
+      
+    
+  </body>
+</html>

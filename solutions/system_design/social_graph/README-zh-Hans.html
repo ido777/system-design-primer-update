@@ -1,0 +1,2391 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://ido777.github.io/system-design-primer-update/en/study_guide/solutions/system_design/social_graph/README-zh-Hans.html">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>为社交网络设计数据结构 - System Design Primer Update</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+        <script src="https://unpkg.com/iframe-worker/shim"></script>
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/default.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","UA-210436000-1"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","UA-210436000-1",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=UA-210436000-1",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="System Design Primer Update" class="md-header__button md-logo" aria-label="System Design Primer Update" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            System Design Primer Update
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              为社交网络设计数据结构
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ido777/system-design-primer-update" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ido777/system-design-primer-update
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../en/index.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../about.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  About
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../CONTRIBUTING.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Contributing
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../LICENSE.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  License
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../CHANGELOG.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Changelog
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../en/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  English
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../zh/design-glance.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Translations (Not up to date)
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="System Design Primer Update" class="md-nav__button md-logo" aria-label="System Design Primer Update" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    System Design Primer Update
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ido777/system-design-primer-update" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ido777/system-design-primer-update
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../en/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CONTRIBUTING.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Contributing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../LICENSE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    License
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CHANGELOG.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Changelog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../en/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    English
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            English
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../en/study_guide.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Study Guide Start Here
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../en/practice.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    System Design Interview Questions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../en/design-glance.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    System Design at a Glance
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../pastebin/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    System Design Solutions
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6_5" id="__nav_6_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_5">
+            <span class="md-nav__icon md-icon"></span>
+            System Design Solutions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../query_cache/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Query Cache
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mint/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Mint
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sales_rank/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sales Rank
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../url_shortener/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    URL Shortener
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../web_crawler/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Web Crawler
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scaling_aws/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Scaling AWS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Social Graph
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../twitter/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Twitter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../object_oriented_design/movie_tickets/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Object-Oriented Design Solutions
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6_6" id="__nav_6_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_6">
+            <span class="md-nav__icon md-icon"></span>
+            Object-Oriented Design Solutions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../object_oriented_design/call_center/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Call Center
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../object_oriented_design/circular_array/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Circular Array
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../object_oriented_design/deck_of_cards/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deck of Cards
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../object_oriented_design/hash_table/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Hash Table
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../object_oriented_design/lru_cache/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    LRU Cache
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../object_oriented_design/online_chat/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Online Chat
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../object_oriented_design/parking_lot/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Parking Lot
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Translations (Not up to date)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Translations (Not up to date)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_1" id="__nav_7_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    简体中文 (Simplified Chinese)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_1">
+            <span class="md-nav__icon md-icon"></span>
+            简体中文 (Simplified Chinese)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../zh/design-glance.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    简体中文主页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    繁體中文 (Traditional Chinese)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            繁體中文 (Traditional Chinese)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../zh-Hant/design-glance.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    繁體中文首頁
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    العربية (Arabic)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            العربية (Arabic)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ar/design-glance.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    الصفحة الرئيسية
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    日本語 (Japanese)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            日本語 (Japanese)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ja/design-glance.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    日本語のホーム
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_5" id="__nav_7_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Türkçe (Turkish)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_5">
+            <span class="md-nav__icon md-icon"></span>
+            Türkçe (Turkish)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tr/design-glance.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Türkçe Anasayfa
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      第 1 步：用例和约束概要
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第 1 步：用例和约束概要">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      用例
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="用例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      我们就处理以下用例审视这一问题
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      约束和假设
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="约束和假设">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      状态假设
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      计算使用
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      第 2 步：创建高级设计方案
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      第 3 步：设计核心组件
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第 3 步：设计核心组件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      用例： 用户搜索某人并查看到被搜人的最短路径
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      第 4 步：扩展设计
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      额外的话题
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="额外的话题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      SQL 扩展模式
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SQL 扩展模式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nosql" class="md-nav__link">
+    <span class="md-ellipsis">
+      NoSQL
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      缓存
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      异步性和微服务
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      沟通
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      安全性
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      延迟数字指标
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      正在进行
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="_1">为社交网络设计数据结构<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p><strong>注释：为了避免重复，这篇文章的链接直接关联到 <a href="https://github.com/ido777/system-design-primer-update#index-of-system-design-topics">系统设计主题</a> 的相关章节。为一讨论要点、折中方案和可选方案做参考。</strong></p>
+<h2 id="1">第 1 步：用例和约束概要<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>收集需求并调查问题。
+通过提问清晰用例和约束。
+讨论假设。</p>
+</blockquote>
+<p>如果没有面试官提出明确的问题，我们将自己定义一些用例和约束条件。</p>
+<h3 id="_2">用例<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<h4 id="_3">我们就处理以下用例审视这一问题<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>用户</strong> 寻找某人并显示与被寻人之间的最短路径</li>
+<li><strong>服务</strong> 高可用</li>
+</ul>
+<h3 id="_4">约束和假设<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<h4 id="_5">状态假设<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
+<ul>
+<li>流量分布不均<ul>
+<li>某些搜索比别的更热门，同时某些搜索仅执行一次</li>
+</ul>
+</li>
+<li>图数据不适用单一机器</li>
+<li>图的边没有权重</li>
+<li>1 千万用户</li>
+<li>每个用户平均有 50 个朋友</li>
+<li>每月 10 亿次朋友搜索</li>
+</ul>
+<p>训练使用更传统的系统 - 别用图特有的解决方案例如 <a href="http://graphql.org/">GraphQL</a> 或图数据库如 <a href="https://neo4j.com/">Neo4j</a>。</p>
+<h4 id="_6">计算使用<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
+<p><strong>向你的面试官厘清你是否应该做粗略的使用计算</strong></p>
+<ul>
+<li>50 亿朋友关系<ul>
+<li>1 亿用户 * 平均每人 50 个朋友</li>
+</ul>
+</li>
+<li>每秒 400 次搜索请求</li>
+</ul>
+<p>便捷的转换指南：</p>
+<ul>
+<li>每月 250 万秒</li>
+<li>每秒 1 个请求 = 每月 250 万次请求</li>
+<li>每秒 40 个请求 = 每月 1 亿次请求</li>
+<li>每秒 400 个请求 = 每月 10 亿次请求</li>
+</ul>
+<h2 id="2">第 2 步：创建高级设计方案<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>用所有重要组件概述高水平设计</p>
+</blockquote>
+<p><img alt="Imgur" src="http://i.imgur.com/wxXyq2J.png" /></p>
+<h2 id="3">第 3 步：设计核心组件<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>深入每个核心组件的细节。</p>
+</blockquote>
+<h3 id="_7">用例： 用户搜索某人并查看到被搜人的最短路径<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p><strong>和你的面试官说清你期望的代码量</strong></p>
+<p>没有百万用户（点）的和十亿朋友关系（边）的限制，我们能够用一般 BFS 方法解决无权重最短路径任务：</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Graph</span><span class="p">(</span><span class="n">Graph</span><span class="p">):</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">shortest_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">dest</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">source</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">dest</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">source</span> <span class="ow">is</span> <span class="n">dest</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">source</span><span class="o">.</span><span class="n">key</span><span class="p">]</span>
+        <span class="n">prev_node_keys</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shortest_path</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">dest</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">prev_node_keys</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">path_ids</span> <span class="o">=</span> <span class="p">[</span><span class="n">dest</span><span class="o">.</span><span class="n">key</span><span class="p">]</span>
+            <span class="n">prev_node_key</span> <span class="o">=</span> <span class="n">prev_node_keys</span><span class="p">[</span><span class="n">dest</span><span class="o">.</span><span class="n">key</span><span class="p">]</span>
+            <span class="k">while</span> <span class="n">prev_node_key</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">path_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">prev_node_key</span><span class="p">)</span>
+                <span class="n">prev_node_key</span> <span class="o">=</span> <span class="n">prev_node_keys</span><span class="p">[</span><span class="n">prev_node_key</span><span class="p">]</span>
+            <span class="k">return</span> <span class="n">path_ids</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_shortest_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">dest</span><span class="p">):</span>
+        <span class="n">queue</span> <span class="o">=</span> <span class="n">deque</span><span class="p">()</span>
+        <span class="n">queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+        <span class="n">prev_node_keys</span> <span class="o">=</span> <span class="p">{</span><span class="n">source</span><span class="o">.</span><span class="n">key</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+        <span class="n">source</span><span class="o">.</span><span class="n">visit_state</span> <span class="o">=</span> <span class="n">State</span><span class="o">.</span><span class="n">visited</span>
+        <span class="k">while</span> <span class="n">queue</span><span class="p">:</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">popleft</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="n">dest</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">prev_node_keys</span>
+            <span class="n">prev_node</span> <span class="o">=</span> <span class="n">node</span>
+            <span class="k">for</span> <span class="n">adj_node</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">adj_nodes</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">adj_node</span><span class="o">.</span><span class="n">visit_state</span> <span class="o">==</span> <span class="n">State</span><span class="o">.</span><span class="n">unvisited</span><span class="p">:</span>
+                    <span class="n">queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">adj_node</span><span class="p">)</span>
+                    <span class="n">prev_node_keys</span><span class="p">[</span><span class="n">adj_node</span><span class="o">.</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">prev_node</span><span class="o">.</span><span class="n">key</span>
+                    <span class="n">adj_node</span><span class="o">.</span><span class="n">visit_state</span> <span class="o">=</span> <span class="n">State</span><span class="o">.</span><span class="n">visited</span>
+        <span class="k">return</span> <span class="kc">None</span>
+</code></pre></div>
+<p>我们不能在同一台机器上满足所有用户，我们需要通过 <strong>人员服务器</strong> <a href="https://github.com/ido777/system-design-primer-update#sharding">拆分</a> 用户并且通过 <strong>查询服务</strong> 访问。</p>
+<ul>
+<li><strong>客户端</strong> 向 <strong>服务器</strong> 发送请求，<strong>服务器</strong> 作为 <a href="https://github.com/ido777/system-design-primer-update#reverse-proxy-web-server">反向代理</a></li>
+<li><strong>搜索 API</strong> 服务器向 <strong>用户图服务</strong> 转发请求</li>
+<li><strong>用户图服务</strong> 有以下功能：<ul>
+<li>使用 <strong>查询服务</strong> 找到当前用户信息存储的 <strong>人员服务器</strong></li>
+<li>找到适当的 <strong>人员服务器</strong> 检索当前用户的 <code>friend_ids</code> 列表</li>
+<li>把当前用户作为 <code>source</code> 运行 BFS 搜索算法同时 当前用户的 <code>friend_ids</code> 作为每个 <code>adjacent_node</code> 的 ids</li>
+<li>给定 id 获取 <code>adjacent_node</code>:<ul>
+<li><strong>用户图服务</strong> 将 <strong>再次</strong> 和 <strong>查询服务</strong> 通讯，最后判断出和给定 id 相匹配的存储 <code>adjacent_node</code> 的 <strong>人员服务器</strong>（有待优化）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>和你的面试官说清你应该写的代码量</strong></p>
+<p><strong>注释</strong>：简易版错误处理执行如下。询问你是否需要编写适当的错误处理方法。</p>
+<p><strong>查询服务</strong> 实现：</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">LookupService</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lookup</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_init_lookup</span><span class="p">()</span>  <span class="c1"># key: person_id, value: person_server</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_init_lookup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="o">...</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">lookup_person_server</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">person_id</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">lookup</span><span class="p">[</span><span class="n">person_id</span><span class="p">]</span>
+</code></pre></div>
+<p><strong>人员服务器</strong> 实现：</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">PersonServer</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">people</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># key: person_id, value: person</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_person</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">person</span><span class="p">):</span>
+        <span class="o">...</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">people</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ids</span><span class="p">):</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">ids</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">people</span><span class="p">:</span>
+                <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">people</span><span class="p">[</span><span class="nb">id</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">results</span>
+</code></pre></div>
+<p><strong>用户</strong> 实现：</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Person</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">friend_ids</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">friend_ids</span> <span class="o">=</span> <span class="n">friend_ids</span>
+</code></pre></div>
+<p><strong>用户图服务</strong> 实现：</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">UserGraphService</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lookup_service</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lookup_service</span> <span class="o">=</span> <span class="n">lookup_service</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">person</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">person_id</span><span class="p">):</span>
+        <span class="n">person_server</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lookup_service</span><span class="o">.</span><span class="n">lookup_person_server</span><span class="p">(</span><span class="n">person_id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">person_server</span><span class="o">.</span><span class="n">people</span><span class="p">([</span><span class="n">person_id</span><span class="p">])</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">shortest_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source_key</span><span class="p">,</span> <span class="n">dest_key</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">source_key</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">dest_key</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">source_key</span> <span class="ow">is</span> <span class="n">dest_key</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">source_key</span><span class="p">]</span>
+        <span class="n">prev_node_keys</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shortest_path</span><span class="p">(</span><span class="n">source_key</span><span class="p">,</span> <span class="n">dest_key</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">prev_node_keys</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Iterate through the path_ids backwards, starting at dest_key</span>
+            <span class="n">path_ids</span> <span class="o">=</span> <span class="p">[</span><span class="n">dest_key</span><span class="p">]</span>
+            <span class="n">prev_node_key</span> <span class="o">=</span> <span class="n">prev_node_keys</span><span class="p">[</span><span class="n">dest_key</span><span class="p">]</span>
+            <span class="k">while</span> <span class="n">prev_node_key</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">path_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">prev_node_key</span><span class="p">)</span>
+                <span class="n">prev_node_key</span> <span class="o">=</span> <span class="n">prev_node_keys</span><span class="p">[</span><span class="n">prev_node_key</span><span class="p">]</span>
+            <span class="c1"># Reverse the list since we iterated backwards</span>
+            <span class="k">return</span> <span class="n">path_ids</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_shortest_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source_key</span><span class="p">,</span> <span class="n">dest_key</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="c1"># Use the id to get the Person</span>
+        <span class="n">source</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">person</span><span class="p">(</span><span class="n">source_key</span><span class="p">)</span>
+        <span class="c1"># Update our bfs queue</span>
+        <span class="n">queue</span> <span class="o">=</span> <span class="n">deque</span><span class="p">()</span>
+        <span class="n">queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+        <span class="c1"># prev_node_keys keeps track of each hop from</span>
+        <span class="c1"># the source_key to the dest_key</span>
+        <span class="n">prev_node_keys</span> <span class="o">=</span> <span class="p">{</span><span class="n">source_key</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+        <span class="c1"># We&#39;ll use visited_ids to keep track of which nodes we&#39;ve</span>
+        <span class="c1"># visited, which can be different from a typical bfs where</span>
+        <span class="c1"># this can be stored in the node itself</span>
+        <span class="n">visited_ids</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="n">visited_ids</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">source</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="k">while</span> <span class="n">queue</span><span class="p">:</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">popleft</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">key</span> <span class="ow">is</span> <span class="n">dest_key</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">prev_node_keys</span>
+            <span class="n">prev_node</span> <span class="o">=</span> <span class="n">node</span>
+            <span class="k">for</span> <span class="n">friend_id</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">friend_ids</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">friend_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">visited_ids</span><span class="p">:</span>
+                    <span class="n">friend_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">person</span><span class="p">(</span><span class="n">friend_id</span><span class="p">)</span>
+                    <span class="n">queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">friend_node</span><span class="p">)</span>
+                    <span class="n">prev_node_keys</span><span class="p">[</span><span class="n">friend_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">prev_node</span><span class="o">.</span><span class="n">key</span>
+                    <span class="n">visited_ids</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">friend_id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+</code></pre></div>
+<p>我们用的是公共的 <a href="https://github.com/ido777/system-design-primer-update#representational-state-transfer-rest"><strong>REST API</strong></a>：</p>
+<div class="highlight"><pre><span></span><code>$ curl https://social.com/api/v1/friend_search?person_id=1234
+</code></pre></div>
+<p>响应：</p>
+<div class="highlight"><pre><span></span><code>{
+    &quot;person_id&quot;: &quot;100&quot;,
+    &quot;name&quot;: &quot;foo&quot;,
+    &quot;link&quot;: &quot;https://social.com/foo&quot;,
+},
+{
+    &quot;person_id&quot;: &quot;53&quot;,
+    &quot;name&quot;: &quot;bar&quot;,
+    &quot;link&quot;: &quot;https://social.com/bar&quot;,
+},
+{
+    &quot;person_id&quot;: &quot;1234&quot;,
+    &quot;name&quot;: &quot;baz&quot;,
+    &quot;link&quot;: &quot;https://social.com/baz&quot;,
+},
+</code></pre></div>
+<p>内部通信使用 <a href="https://github.com/ido777/system-design-primer-update#remote-procedure-call-rpc">远端过程调用</a>。</p>
+<h2 id="4">第 4 步：扩展设计<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>在给定约束条件下，定义和确认瓶颈。</p>
+</blockquote>
+<p><img alt="Imgur" src="http://i.imgur.com/cdCv5g7.png" /></p>
+<p><strong>重要：别简化从最初设计到最终设计的过程！</strong></p>
+<p>你将要做的是：1) <strong>基准/负载 测试</strong>， 2) 瓶颈 <strong>概述</strong>， 3) 当评估可选和折中方案时定位瓶颈，4) 重复。以 <a href="../scaling_aws/index.html">在 AWS 上设计支持百万级到千万级用户的系统</a> 为参考迭代地扩展最初设计。</p>
+<p>讨论最初设计可能遇到的瓶颈和处理方法十分重要。例如，什么问题可以通过添加多台 <strong>Web 服务器</strong> 作为 <strong>负载均衡</strong> 解决？<strong>CDN</strong>？<strong>主从副本</strong>？每个问题都有哪些替代和 <strong>折中</strong> 方案？</p>
+<p>我们即将介绍一些组件来完成设计和解决扩展性问题。内部负载均衡不显示以减少混乱。</p>
+<p><strong>避免重复讨论</strong>，以下网址链接到 <a href="https://github.com/ido777/system-design-primer-update#index-of-system-design-topics">系统设计主题</a> 相关的主流方案、折中方案和替代方案。</p>
+<ul>
+<li><a href="https://github.com/ido777/system-design-primer-update#domain-name-system">DNS</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update#load-balancer">负载均衡</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update#horizontal-scaling">横向扩展</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update#reverse-proxy-web-server">Web 服务器（反向代理）</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update#application-layer">API 服务器（应用层）</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update#cache">缓存</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update#consistency-patterns">一致性模式</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update#availability-patterns">可用性模式</a></li>
+</ul>
+<p>解决 <strong>平均</strong> 每秒 400 次请求的限制（峰值），人员数据可以存在例如 Redis 或 Memcached 这样的 <strong>内存</strong> 中以减少响应次数和下游流量通信服务。这尤其在用户执行多次连续查询和查询哪些广泛连接的人时十分有用。从内存中读取 1MB 数据大约要 250 微秒，从 SSD 中读取同样大小的数据时间要长 4 倍，从硬盘要长 80 倍。<sup><a href=https://github.com/ido777/system-design-primer-update#latency-numbers-every-programmer-should-know>1</a></sup></p>
+<p>以下是进一步优化方案：</p>
+<ul>
+<li>在 <strong>内存</strong> 中存储完整的或部分的BFS遍历加快后续查找</li>
+<li>在 <strong>NoSQL 数据库</strong> 中批量离线计算并存储完整的或部分的BFS遍历加快后续查找</li>
+<li>在同一台 <strong>人员服务器</strong> 上托管批处理同一批朋友查找减少机器跳转<ul>
+<li>通过地理位置 <a href="https://github.com/ido777/system-design-primer-update#sharding">拆分</a> <strong>人员服务器</strong> 来进一步优化，因为朋友通常住得都比较近</li>
+</ul>
+</li>
+<li>同时进行两个 BFS 查找，一个从 source 开始，一个从 destination 开始，然后合并两个路径</li>
+<li>从有庞大朋友圈的人开始找起，这样更有可能减小当前用户和搜索目标之间的 <a href="https://en.wikipedia.org/wiki/Six_degrees_of_separation">离散度数</a></li>
+<li>在询问用户是否继续查询之前设置基于时间或跳跃数阈值，当在某些案例中搜索耗费时间过长时。</li>
+<li>使用类似 <a href="https://neo4j.com/">Neo4j</a> 的 <strong>图数据库</strong> 或图特定查询语法，例如 <a href="http://graphql.org/">GraphQL</a>（如果没有禁止使用 <strong>图数据库</strong> 的限制的话）</li>
+</ul>
+<h2 id="_8">额外的话题<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>根据问题的范围和剩余时间，还需要深入讨论其他问题。</p>
+</blockquote>
+<h3 id="sql">SQL 扩展模式<a class="headerlink" href="#sql" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://github.com/ido777/system-design-primer-update#master-slave-replication">读取副本</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update#federation">集合</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update#sharding">分区</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update#denormalization">反规范化</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update#sql-tuning">SQL 调优</a></li>
+</ul>
+<h4 id="nosql">NoSQL<a class="headerlink" href="#nosql" title="Permanent link">&para;</a></h4>
+<ul>
+<li><a href="https://github.com/ido777/system-design-primer-update#key-value-store">键值存储</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update#document-store">文档存储</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update#wide-column-store">宽表存储</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update#graph-database">图数据库</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update#sql-or-nosql">SQL vs NoSQL</a></li>
+</ul>
+<h3 id="_9">缓存<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<ul>
+<li>缓存到哪里<ul>
+<li><a href="https://github.com/ido777/system-design-primer-update#client-caching">客户端缓存</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update#cdn-caching">CDN 缓存</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update#web-server-caching">Web 服务缓存</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update#database-caching">数据库缓存</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update#application-caching">应用缓存</a></li>
+</ul>
+</li>
+<li>缓存什么<ul>
+<li><a href="https://github.com/ido777/system-design-primer-update#caching-at-the-database-query-level">数据库请求层缓存</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update#caching-at-the-object-level">对象层缓存</a></li>
+</ul>
+</li>
+<li>何时更新缓存<ul>
+<li><a href="https://github.com/ido777/system-design-primer-update#cache-aside">预留缓存</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update#write-through">完全写入</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update#write-behind-write-back">延迟写 (写回)</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update#refresh-ahead">事先更新</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="_10">异步性和微服务<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://github.com/ido777/system-design-primer-update#message-queues">消息队列</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update#task-queues">任务队列</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update#back-pressure">回退压力</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update#microservices">微服务</a></li>
+</ul>
+<h3 id="_11">沟通<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<ul>
+<li>关于折中方案的讨论:<ul>
+<li>客户端的外部通讯 - <a href="https://github.com/ido777/system-design-primer-update#representational-state-transfer-rest">遵循 REST 的 HTTP APIs</a></li>
+<li>内部通讯 - <a href="https://github.com/ido777/system-design-primer-update#remote-procedure-call-rpc">RPC</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/ido777/system-design-primer-update#service-discovery">服务探索</a></li>
+</ul>
+<h3 id="_12">安全性<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<p>参考 <a href="https://github.com/ido777/system-design-primer-update#security">安全章节</a></p>
+<h3 id="_13">延迟数字指标<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<p>查阅 <a href="https://github.com/ido777/system-design-primer-update#latency-numbers-every-programmer-should-know">每个程序员必懂的延迟数字</a></p>
+<h3 id="_14">正在进行<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<ul>
+<li>继续基准测试并监控你的系统以解决出现的瓶颈问题</li>
+<li>扩展是一个迭代的过程</li>
+</ul>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="May 20, 2025 09:05:17">May 20, 2025</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Created">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="May 20, 2025 09:05:17">May 20, 2025</span>
+  </span>
+
+    
+    
+    
+      
+  <span class="md-source-file__fact">
+    
+      
+  <span class="md-icon" title="Contributors">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2"/></svg>
+  </span>
+  <span>GitHub</span>
+
+    
+    <nav>
+      
+        <a href="https://github.com/ido777" class="md-author" title="@ido777">
+          
+          <img src="https://avatars.githubusercontent.com/u/6554277?v=4&size=72" alt="ido777">
+        </a>
+      
+      
+      
+    </nav>
+  </span>
+
+    
+  </aside>
+
+
+  
+
+
+
+
+  <h2 id="__comments">Comments</h2>
+  <!-- Insert generated snippet here -->
+  <div id="comments" class="md-content">
+    <!-- Giscus widget -->
+    <div class="giscus-frame"></div>
+    <script
+      src="js/client-debug.js"
+      data-repo="ido777/system-design-primer-update"
+      data-repo-id="R_kgDOORdCfw"
+      data-category="Feedback by Page"
+      data-category-id="DIC_kwDOORdCf84CqLEY"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="bottom"
+      data-theme="light"
+      data-lang="en"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async>
+    </script>
+  </div>
+  <!-- Synchronize Giscus theme with palette -->
+  <script>
+    var giscus = document.querySelector("script[src*=giscus]")
+
+    // Set palette on initial load
+    var palette = __md_get("__palette")
+    if (palette && typeof palette.color === "object") {
+      var theme = palette.color.scheme === "slate"
+        ? "transparent_dark"
+        : "light"
+
+      // Instruct Giscus to set theme
+      giscus.setAttribute("data-theme", theme) 
+    }
+
+    // Register event handlers after documented loaded
+    document.addEventListener("DOMContentLoaded", function() {
+      var ref = document.querySelector("[data-md-component=palette]")
+      ref.addEventListener("change", function() {
+        var palette = __md_get("__palette")
+        if (palette && typeof palette.color === "object") {
+          var theme = palette.color.scheme === "slate"
+            ? "transparent_dark"
+            : "light"
+
+          // Instruct Giscus to change theme
+          var frame = document.querySelector(".giscus-frame")
+          frame.contentWindow.postMessage(
+            { giscus: { setConfig: { theme } } },
+            "https://giscus.app"
+          )
+        }
+      })
+    })
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "navigation.path", "content.code.annotate", "content.tabs.link", "search.highlight", "search.suggest", "toc.follow"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="../../../javascripts/client-debug.js"></script>
+      
+        <script src="../../../javascripts/giscus-debug.js"></script>
+      
+    
+  </body>
+</html>

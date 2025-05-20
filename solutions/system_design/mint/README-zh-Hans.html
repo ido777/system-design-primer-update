@@ -1,0 +1,2513 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://ido777.github.io/system-design-primer-update/en/study_guide/solutions/system_design/mint/README-zh-Hans.html">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>设计 Mint.com - System Design Primer Update</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+        <script src="https://unpkg.com/iframe-worker/shim"></script>
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/default.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","UA-210436000-1"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","UA-210436000-1",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=UA-210436000-1",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#mintcom" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="System Design Primer Update" class="md-header__button md-logo" aria-label="System Design Primer Update" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            System Design Primer Update
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              设计 Mint.com
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ido777/system-design-primer-update" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ido777/system-design-primer-update
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../en/index.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../about.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  About
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../CONTRIBUTING.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Contributing
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../LICENSE.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  License
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../CHANGELOG.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Changelog
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../en/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  English
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../zh/design-glance.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Translations (Not up to date)
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="System Design Primer Update" class="md-nav__button md-logo" aria-label="System Design Primer Update" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    System Design Primer Update
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ido777/system-design-primer-update" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ido777/system-design-primer-update
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../en/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CONTRIBUTING.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Contributing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../LICENSE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    License
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CHANGELOG.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Changelog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../en/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    English
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            English
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../en/study_guide.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Study Guide Start Here
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../en/practice.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    System Design Interview Questions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../en/design-glance.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    System Design at a Glance
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../pastebin/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    System Design Solutions
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6_5" id="__nav_6_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_5">
+            <span class="md-nav__icon md-icon"></span>
+            System Design Solutions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../query_cache/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Query Cache
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Mint
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sales_rank/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sales Rank
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../url_shortener/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    URL Shortener
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../web_crawler/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Web Crawler
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scaling_aws/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Scaling AWS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../social_graph/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Social Graph
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../twitter/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Twitter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../object_oriented_design/movie_tickets/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Object-Oriented Design Solutions
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6_6" id="__nav_6_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_6">
+            <span class="md-nav__icon md-icon"></span>
+            Object-Oriented Design Solutions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../object_oriented_design/call_center/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Call Center
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../object_oriented_design/circular_array/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Circular Array
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../object_oriented_design/deck_of_cards/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deck of Cards
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../object_oriented_design/hash_table/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Hash Table
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../object_oriented_design/lru_cache/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    LRU Cache
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../object_oriented_design/online_chat/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Online Chat
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../object_oriented_design/parking_lot/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Parking Lot
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Translations (Not up to date)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Translations (Not up to date)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_1" id="__nav_7_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    简体中文 (Simplified Chinese)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_1">
+            <span class="md-nav__icon md-icon"></span>
+            简体中文 (Simplified Chinese)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../zh/design-glance.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    简体中文主页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    繁體中文 (Traditional Chinese)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            繁體中文 (Traditional Chinese)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../zh-Hant/design-glance.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    繁體中文首頁
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    العربية (Arabic)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            العربية (Arabic)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ar/design-glance.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    الصفحة الرئيسية
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    日本語 (Japanese)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            日本語 (Japanese)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ja/design-glance.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    日本語のホーム
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_5" id="__nav_7_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Türkçe (Turkish)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_5">
+            <span class="md-nav__icon md-icon"></span>
+            Türkçe (Turkish)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tr/design-glance.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Türkçe Anasayfa
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      第一步：简述用例与约束条件
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第一步：简述用例与约束条件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      用例
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="用例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      我们将把问题限定在仅处理以下用例的范围中
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      非用例范围
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      限制条件与假设
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="限制条件与假设">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      提出假设
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      计算用量
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      第二步：概要设计
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      第三步：设计核心组件
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第三步：设计核心组件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      用例：用户连接到一个财务账户
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      用例：服务从账户中提取交易
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="用例：服务从账户中提取交易">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      分类服务
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      用例：服务推荐预算
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      第四步：设计扩展
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      其它要点
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="其它要点">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nosql" class="md-nav__link">
+    <span class="md-ellipsis">
+      NoSQL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      缓存
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      异步与微服务
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      通信
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      安全性
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      延迟数值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      持续探讨
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="mintcom">设计 Mint.com<a class="headerlink" href="#mintcom" title="Permanent link">&para;</a></h1>
+<p><strong>注意：这个文档中的链接会直接指向<a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#系统设计主题索引">系统设计主题索引</a>中的有关部分，以避免重复的内容。您可以参考链接的相关内容，来了解其总的要点、方案的权衡取舍以及可选的替代方案。</strong></p>
+<h2 id="_1">第一步：简述用例与约束条件<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>搜集需求与问题的范围。
+提出问题来明确用例与约束条件。
+讨论假设。</p>
+</blockquote>
+<p>我们将在没有面试官明确说明问题的情况下，自己定义一些用例以及限制条件。</p>
+<h3 id="_2">用例<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<h4 id="_3">我们将把问题限定在仅处理以下用例的范围中<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>用户</strong> 连接到一个财务账户</li>
+<li><strong>服务</strong> 从账户中提取交易<ul>
+<li>每日更新</li>
+<li>分类交易<ul>
+<li>允许用户手动分类</li>
+<li>不自动重新分类</li>
+</ul>
+</li>
+<li>按类别分析每月支出</li>
+</ul>
+</li>
+<li><strong>服务</strong> 推荐预算<ul>
+<li>允许用户手动设置预算</li>
+<li>当接近或者超出预算时，发送通知</li>
+</ul>
+</li>
+<li><strong>服务</strong> 具有高可用性</li>
+</ul>
+<h4 id="_4">非用例范围<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>服务</strong> 执行附加的日志记录和分析</li>
+</ul>
+<h3 id="_5">限制条件与假设<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<h4 id="_6">提出假设<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
+<ul>
+<li>网络流量非均匀分布</li>
+<li>自动账户日更新只适用于 30 天内活跃的用户</li>
+<li>添加或者移除财务账户相对较少</li>
+<li>预算通知不需要及时</li>
+<li>1000 万用户<ul>
+<li>每个用户10个预算类别= 1亿个预算项</li>
+<li>示例类别:<ul>
+<li>Housing = $1,000</li>
+<li>Food = $200</li>
+<li>Gas = $100</li>
+</ul>
+</li>
+<li>卖方确定交易类别<ul>
+<li>50000 个卖方</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>3000 万财务账户</li>
+<li>每月 50 亿交易</li>
+<li>每月 5 亿读请求</li>
+<li>10:1 读写比<ul>
+<li>Write-heavy，用户每天都进行交易，但是每天很少访问该网站</li>
+</ul>
+</li>
+</ul>
+<h4 id="_7">计算用量<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h4>
+<p><strong>如果你需要进行粗略的用量计算，请向你的面试官说明。</strong></p>
+<ul>
+<li>每次交易的用量:<ul>
+<li><code>user_id</code> - 8 字节</li>
+<li><code>created_at</code> - 5 字节</li>
+<li><code>seller</code> - 32 字节</li>
+<li><code>amount</code> - 5 字节</li>
+<li>Total: ~50 字节</li>
+</ul>
+</li>
+<li>每月产生 250 GB 新的交易内容<ul>
+<li>每次交易 50 比特 * 50 亿交易每月</li>
+<li>3年内新的交易内容 9 TB</li>
+<li>Assume most are new transactions instead of updates to existing ones</li>
+</ul>
+</li>
+<li>平均每秒产生 2000 次交易</li>
+<li>平均每秒产生 200 读请求</li>
+</ul>
+<p>便利换算指南：</p>
+<ul>
+<li>每个月有 250 万秒</li>
+<li>每秒一个请求 = 每个月 250 万次请求</li>
+<li>每秒 40 个请求 = 每个月 1 亿次请求</li>
+<li>每秒 400 个请求 = 每个月 10 亿次请求</li>
+</ul>
+<h2 id="_8">第二步：概要设计<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>列出所有重要组件以规划概要设计。</p>
+</blockquote>
+<p><img alt="Imgur" src="http://i.imgur.com/E8klrBh.png" /></p>
+<h2 id="_9">第三步：设计核心组件<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>深入每个核心组件的细节。</p>
+</blockquote>
+<h3 id="_10">用例：用户连接到一个财务账户<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>我们可以将 1000 万用户的信息存储在一个<a href="https://github.com/ido777/system-design-primer-update#relational-database-management-system-rdbms">关系数据库</a>中。我们应该讨论一下<a href="https://github.com/ido777/system-design-primer-update#sql-or-nosql">选择SQL或NoSQL之间的用例和权衡</a>了。</p>
+<ul>
+<li><strong>客户端</strong> 作为一个<a href="https://github.com/ido777/system-design-primer-update#reverse-proxy-web-server">反向代理</a>，发送请求到 <strong>Web 服务器</strong></li>
+<li><strong>Web 服务器</strong> 转发请求到 <strong>账户API</strong> 服务器</li>
+<li><strong>账户API</strong> 服务器将新输入的账户信息更新到 <strong>SQL数据库</strong> 的<code>accounts</code>表</li>
+</ul>
+<p><strong>告知你的面试官你准备写多少代码</strong>。</p>
+<p><code>accounts</code>表应该具有如下结构：</p>
+<div class="highlight"><pre><span></span><code>id int NOT NULL AUTO_INCREMENT
+created_at datetime NOT NULL
+last_update datetime NOT NULL
+account_url varchar(255) NOT NULL
+account_login varchar(32) NOT NULL
+account_password_hash char(64) NOT NULL
+user_id int NOT NULL
+PRIMARY KEY(id)
+FOREIGN KEY(user_id) REFERENCES users(id)
+</code></pre></div>
+<p>我们将在<code>id</code>，<code>user_id</code>和<code>created_at</code>等字段上创建一个<a href="https://github.com/ido777/system-design-primer-update#use-good-indices">索引</a>以加速查找（对数时间而不是扫描整个表）并保持数据在内存中。从内存中顺序读取 1 MB数据花费大约250毫秒，而从SSD读取是其4倍，从磁盘读取是其80倍。<sup><a href=https://github.com/ido777/system-design-primer-update#latency-numbers-every-programmer-should-know>1</a></sup></p>
+<p>我们将使用公开的<a href="https://github.com/ido777/system-design-primer-update#representational-state-transfer-rest"><strong>REST API</strong></a>:</p>
+<div class="highlight"><pre><span></span><code>$ curl -X POST --data &#39;{ &quot;user_id&quot;: &quot;foo&quot;, &quot;account_url&quot;: &quot;bar&quot;, \
+    &quot;account_login&quot;: &quot;baz&quot;, &quot;account_password&quot;: &quot;qux&quot; }&#39; \
+    https://mint.com/api/v1/account
+</code></pre></div>
+<p>对于内部通信，我们可以使用<a href="https://github.com/ido777/system-design-primer-update#remote-procedure-call-rpc">远程过程调用</a>。</p>
+<p>接下来，服务从账户中提取交易。</p>
+<h3 id="_11">用例：服务从账户中提取交易<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<p>如下几种情况下，我们会想要从账户中提取信息：</p>
+<ul>
+<li>用户首次链接账户</li>
+<li>用户手动更新账户</li>
+<li>为过去 30 天内活跃的用户自动日更新</li>
+</ul>
+<p>数据流:</p>
+<ul>
+<li><strong>客户端</strong>向 <strong>Web服务器</strong> 发送请求</li>
+<li><strong>Web服务器</strong> 将请求转发到 <strong>帐户API</strong> 服务器</li>
+<li><strong>帐户API</strong> 服务器将job放在 <strong>队列</strong> 中，如 <a href="https://aws.amazon.com/sqs/">Amazon SQS</a> 或者 <a href="https://www.rabbitmq.com/">RabbitMQ</a><ul>
+<li>提取交易可能需要一段时间，我们可能希望<a href="https://github.com/ido777/system-design-primer-update#asynchronism">与队列异步</a>地来做，虽然这会引入额外的复杂度。</li>
+</ul>
+</li>
+<li><strong>交易提取服务</strong> 执行如下操作：<ul>
+<li>从 <strong>Queue</strong> 中拉取并从金融机构中提取给定用户的交易，将结果作为原始日志文件存储在 <strong>对象存储区</strong>。</li>
+<li>使用 <strong>分类服务</strong> 来分类每个交易</li>
+<li>使用 <strong>预算服务</strong> 来按类别计算每月总支出<ul>
+<li><strong>预算服务</strong> 使用 <strong>通知服务</strong> 让用户知道他们是否接近或者已经超出预算</li>
+</ul>
+</li>
+<li>更新具有分类交易的 <strong>SQL数据库</strong> 的<code>transactions</code>表</li>
+<li>按类别更新 <strong>SQL数据库</strong> <code>monthly_spending</code>表的每月总支出</li>
+<li>通过 <strong>通知服务</strong> 提醒用户交易完成<ul>
+<li>使用一个 <strong>队列</strong> (没有画出来) 来异步发送通知</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><code>transactions</code>表应该具有如下结构：</p>
+<div class="highlight"><pre><span></span><code>id int NOT NULL AUTO_INCREMENT
+created_at datetime NOT NULL
+seller varchar(32) NOT NULL
+amount decimal NOT NULL
+user_id int NOT NULL
+PRIMARY KEY(id)
+FOREIGN KEY(user_id) REFERENCES users(id)
+</code></pre></div>
+<p>我们将在 <code>id</code>，<code>user_id</code>，和 <code>created_at</code>字段上创建<a href="https://github.com/ido777/system-design-primer-update#use-good-indices">索引</a>。</p>
+<p><code>monthly_spending</code>表应该具有如下结构：</p>
+<div class="highlight"><pre><span></span><code>id int NOT NULL AUTO_INCREMENT
+month_year date NOT NULL
+category varchar(32)
+amount decimal NOT NULL
+user_id int NOT NULL
+PRIMARY KEY(id)
+FOREIGN KEY(user_id) REFERENCES users(id)
+</code></pre></div>
+<p>我们将在<code>id</code>，<code>user_id</code>字段上创建<a href="https://github.com/ido777/system-design-primer-update#use-good-indices">索引</a>。</p>
+<h4 id="_12">分类服务<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h4>
+<p>对于 <strong>分类服务</strong>，我们可以生成一个带有最受欢迎卖家的卖家-类别字典。如果我们估计 50000 个卖家，并估计每个条目占用不少于 255 个字节，该字典只需要大约 12 MB内存。</p>
+<p><strong>告知你的面试官你准备写多少代码</strong>。</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">DefaultCategories</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+
+    <span class="n">HOUSING</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">FOOD</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">GAS</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">SHOPPING</span> <span class="o">=</span> <span class="mi">3</span>
+    <span class="o">...</span>
+
+<span class="n">seller_category_map</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">seller_category_map</span><span class="p">[</span><span class="s1">&#39;Exxon&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">DefaultCategories</span><span class="o">.</span><span class="n">GAS</span>
+<span class="n">seller_category_map</span><span class="p">[</span><span class="s1">&#39;Target&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">DefaultCategories</span><span class="o">.</span><span class="n">SHOPPING</span>
+<span class="o">...</span>
+</code></pre></div>
+<p>对于一开始没有在映射中的卖家，我们可以通过评估用户提供的手动类别来进行众包。在 O(1) 时间内，我们可以用堆来快速查找每个卖家的顶端的手动覆盖。</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Categorizer</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seller_category_map</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">seller_category_crowd_overrides_map</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">seller_category_map</span> <span class="o">=</span> <span class="n">seller_category_map</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">seller_category_crowd_overrides_map</span> <span class="o">=</span> \
+            <span class="n">seller_category_crowd_overrides_map</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">categorize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transaction</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">transaction</span><span class="o">.</span><span class="n">seller</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">seller_category_map</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">seller_category_map</span><span class="p">[</span><span class="n">transaction</span><span class="o">.</span><span class="n">seller</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="n">transaction</span><span class="o">.</span><span class="n">seller</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">seller_category_crowd_overrides_map</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">seller_category_map</span><span class="p">[</span><span class="n">transaction</span><span class="o">.</span><span class="n">seller</span><span class="p">]</span> <span class="o">=</span> \
+                <span class="bp">self</span><span class="o">.</span><span class="n">seller_category_crowd_overrides_map</span><span class="p">[</span><span class="n">transaction</span><span class="o">.</span><span class="n">seller</span><span class="p">]</span><span class="o">.</span><span class="n">peek_min</span><span class="p">()</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">seller_category_map</span><span class="p">[</span><span class="n">transaction</span><span class="o">.</span><span class="n">seller</span><span class="p">]</span>
+        <span class="k">return</span> <span class="kc">None</span>
+</code></pre></div>
+<p>交易实现：</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Transaction</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">created_at</span><span class="p">,</span> <span class="n">seller</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">timestamp</span> <span class="o">=</span> <span class="n">timestamp</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">seller</span> <span class="o">=</span> <span class="n">seller</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">amount</span> <span class="o">=</span> <span class="n">amount</span>
+</code></pre></div>
+<h3 id="_13">用例：服务推荐预算<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<p>首先，我们可以使用根据收入等级分配每类别金额的通用预算模板。使用这种方法，我们不必存储在约束中标识的 1 亿个预算项目，只需存储用户覆盖的预算项目。如果用户覆盖预算类别，我们可以在
+<code>TABLE budget_overrides</code>中存储此覆盖。</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Budget</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">income</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">income</span> <span class="o">=</span> <span class="n">income</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">categories_to_budget_map</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_budget_template</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">create_budget_template</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s1">&#39;DefaultCategories.HOUSING&#39;</span><span class="p">:</span> <span class="n">income</span> <span class="o">*</span> <span class="mf">.4</span><span class="p">,</span>
+            <span class="s1">&#39;DefaultCategories.FOOD&#39;</span><span class="p">:</span> <span class="n">income</span> <span class="o">*</span> <span class="mf">.2</span>
+            <span class="s1">&#39;DefaultCategories.GAS&#39;</span><span class="p">:</span> <span class="n">income</span> <span class="o">*</span> <span class="mf">.1</span><span class="p">,</span>
+            <span class="s1">&#39;DefaultCategories.SHOPPING&#39;</span><span class="p">:</span> <span class="n">income</span> <span class="o">*</span> <span class="mf">.2</span>
+            <span class="o">...</span>
+        <span class="p">}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">override_category_budget</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">category</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">categories_to_budget_map</span><span class="p">[</span><span class="n">category</span><span class="p">]</span> <span class="o">=</span> <span class="n">amount</span>
+</code></pre></div>
+<p>对于 <strong>预算服务</strong> 而言，我们可以在<code>transactions</code>表上运行SQL查询以生成<code>monthly_spending</code>聚合表。由于用户通常每个月有很多交易，所以<code>monthly_spending</code>表的行数可能会少于总共50亿次交易的行数。</p>
+<p>作为替代，我们可以在原始交易文件上运行 <strong>MapReduce</strong> 作业来：</p>
+<ul>
+<li>分类每个交易</li>
+<li>按类别生成每月总支出</li>
+</ul>
+<p>对交易文件的运行分析可以显著减少数据库的负载。</p>
+<p>如果用户更新类别，我们可以调用 <strong>预算服务</strong> 重新运行分析。</p>
+<p><strong>告知你的面试官你准备写多少代码</strong>.</p>
+<p>日志文件格式样例，以tab分割：</p>
+<div class="highlight"><pre><span></span><code>user_id   timestamp   seller  amount
+</code></pre></div>
+<p><strong>MapReduce</strong> 实现:</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">SpendingByCategory</span><span class="p">(</span><span class="n">MRJob</span><span class="p">):</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">categorizer</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">categorizer</span> <span class="o">=</span> <span class="n">categorizer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_year_month</span> <span class="o">=</span> <span class="n">calc_current_year_month</span><span class="p">()</span>
+        <span class="o">...</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">calc_current_year_month</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;返回当前年月&quot;&quot;&quot;</span>
+        <span class="o">...</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">extract_year_month</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;返回时间戳的年，月部分&quot;&quot;&quot;</span>
+        <span class="o">...</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">handle_budget_notifications</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">total</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;如果接近或超出预算，调用通知API&quot;&quot;&quot;</span>
+        <span class="o">...</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">mapper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;解析每个日志行，提取和转换相关行。</span>
+
+<span class="sd">        参数行应为如下形式：</span>
+
+<span class="sd">        user_id   timestamp   seller  amount</span>
+
+<span class="sd">        使用分类器来将卖家转换成类别，生成如下形式的key-value对：</span>
+
+<span class="sd">        (user_id, 2016-01, shopping), 25</span>
+<span class="sd">        (user_id, 2016-01, shopping), 100</span>
+<span class="sd">        (user_id, 2016-01, gas), 50</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">user_id</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">,</span> <span class="n">seller</span><span class="p">,</span> <span class="n">amount</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">category</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">categorizer</span><span class="o">.</span><span class="n">categorize</span><span class="p">(</span><span class="n">seller</span><span class="p">)</span>
+        <span class="n">period</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">extract_year_month</span><span class="p">(</span><span class="n">timestamp</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">period</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_year_month</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="n">period</span><span class="p">,</span> <span class="n">category</span><span class="p">),</span> <span class="n">amount</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">reducer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;将每个key对应的值求和。</span>
+
+<span class="sd">        (user_id, 2016-01, shopping), 125</span>
+<span class="sd">        (user_id, 2016-01, gas), 50</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+        <span class="k">yield</span> <span class="n">key</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="_14">第四步：设计扩展<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>根据限制条件，找到并解决瓶颈。</p>
+</blockquote>
+<p><img alt="Imgur" src="http://i.imgur.com/V5q57vU.png" /></p>
+<p><strong>重要提示：不要从最初设计直接跳到最终设计中！</strong></p>
+<p>现在你要 1) <strong>基准测试、负载测试</strong>。2) <strong>分析、描述</strong>性能瓶颈。3) 在解决瓶颈问题的同时，评估替代方案、权衡利弊。4) 重复以上步骤。请阅读<a href="../scaling_aws/index.html">「设计一个系统，并将其扩大到为数以百万计的 AWS 用户服务」</a> 来了解如何逐步扩大初始设计。</p>
+<p>讨论初始设计可能遇到的瓶颈及相关解决方案是很重要的。例如加上一个配置多台 <strong>Web 服务器</strong>的<strong>负载均衡器</strong>是否能够解决问题？<strong>CDN</strong>呢？<strong>主从复制</strong>呢？它们各自的替代方案和需要<strong>权衡</strong>的利弊又有什么呢？</p>
+<p>我们将会介绍一些组件来完成设计，并解决架构扩张问题。内置的负载均衡器将不做讨论以节省篇幅。</p>
+<p><strong>为了避免重复讨论</strong>，请参考<a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#系统设计主题的索引">系统设计主题索引</a>相关部分来了解其要点、方案的权衡取舍以及可选的替代方案。</p>
+<ul>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#域名系统">DNS</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#负载均衡器">负载均衡器</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#水平扩展">水平拓展</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#反向代理web-服务器">反向代理（web 服务器）</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#应用层">API 服务（应用层）</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#缓存">缓存</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#关系型数据库管理系统rdbms">关系型数据库管理系统 (RDBMS)</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#故障切换">SQL 故障主从切换</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#主从复制">主从复制</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#异步">异步</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#一致性模式">一致性模式</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#可用性模式">可用性模式</a></li>
+</ul>
+<p>我们将增加一个额外的用例：<strong>用户</strong> 访问摘要和交易数据。</p>
+<p>用户会话，按类别统计的统计信息，以及最近的事务可以放在 <strong>内存缓存</strong>（如 Redis 或 Memcached ）中。</p>
+<ul>
+<li><strong>客户端</strong> 发送读请求给 <strong>Web 服务器</strong></li>
+<li><strong>Web 服务器</strong> 转发请求到 <strong>读 API</strong> 服务器<ul>
+<li>静态内容可通过 <strong>对象存储</strong> 比如缓存在 <strong>CDN</strong> 上的 S3 来服务</li>
+</ul>
+</li>
+<li><strong>读 API</strong> 服务器做如下动作:<ul>
+<li>检查 <strong>内存缓存</strong> 的内容<ul>
+<li>如果URL在 <strong>内存缓存</strong>中，返回缓存的内容</li>
+<li>否则<ul>
+<li>如果URL在 <strong>SQL 数据库</strong>中，获取该内容<ul>
+<li>以其内容更新 <strong>内存缓存</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>参考 <a href="https://github.com/ido777/system-design-primer-update#when-to-update-the-cache">何时更新缓存</a> 中权衡和替代的内容。以上方法描述了 <a href="https://github.com/ido777/system-design-primer-update#cache-aside">cache-aside缓存模式</a>.</p>
+<p>我们可以使用诸如 Amazon Redshift 或者 Google BigQuery 等数据仓库解决方案，而不是将<code>monthly_spending</code>聚合表保留在 <strong>SQL 数据库</strong> 中。</p>
+<p>我们可能只想在数据库中存储一个月的<code>交易</code>数据，而将其余数据存储在数据仓库或者 <strong>对象存储区</strong> 中。<strong>对象存储区</strong> （如Amazon S3) 能够舒服地解决每月 250 GB新内容的限制。</p>
+<p>为了解决每秒 <em>平均</em> 2000 次读请求数（峰值时更高），受欢迎的内容的流量应由 <strong>内存缓存</strong> 而不是数据库来处理。 <strong>内存缓存</strong> 也可用于处理不均匀分布的流量和流量尖峰。 只要副本不陷入重复写入的困境，<strong>SQL 读副本</strong> 应该能够处理高速缓存未命中。</p>
+<p><em>平均</em> 200 次交易写入每秒（峰值时更高）对于单个 <strong>SQL 写入主-从服务</strong> 来说可能是棘手的。我们可能需要考虑其它的 SQL 性能拓展技术：</p>
+<ul>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#联合">联合</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#分片">分片</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#非规范化">非规范化</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#sql-调优">SQL 调优</a></li>
+</ul>
+<p>我们也可以考虑将一些数据移至 <strong>NoSQL 数据库</strong>。</p>
+<h2 id="_15">其它要点<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>是否深入这些额外的主题，取决于你的问题范围和剩下的时间。</p>
+</blockquote>
+<h4 id="nosql">NoSQL<a class="headerlink" href="#nosql" title="Permanent link">&para;</a></h4>
+<ul>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#键-值存储">键-值存储</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#文档类型存储">文档类型存储</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#列型存储">列型存储</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#图数据库">图数据库</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#sql-还是-nosql">SQL vs NoSQL</a></li>
+</ul>
+<h3 id="_16">缓存<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h3>
+<ul>
+<li>在哪缓存<ul>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#客户端缓存">客户端缓存</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#cdn-缓存">CDN 缓存</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#web-服务器缓存">Web 服务器缓存</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#数据库缓存">数据库缓存</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#应用缓存">应用缓存</a></li>
+</ul>
+</li>
+<li>什么需要缓存<ul>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#数据库查询级别的缓存">数据库查询级别的缓存</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#对象级别的缓存">对象级别的缓存</a></li>
+</ul>
+</li>
+<li>何时更新缓存<ul>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#缓存模式">缓存模式</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#直写模式">直写模式</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#回写模式">回写模式</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#刷新">刷新</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="_17">异步与微服务<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#消息队列">消息队列</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#任务队列">任务队列</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#背压">背压</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#微服务">微服务</a></li>
+</ul>
+<h3 id="_18">通信<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h3>
+<ul>
+<li>可权衡选择的方案：<ul>
+<li>与客户端的外部通信 - <a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#表述性状态转移rest">使用 REST 作为 HTTP API</a></li>
+<li>服务器内部通信 - <a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#远程过程调用协议rpc">RPC</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#服务发现">服务发现</a></li>
+</ul>
+<h3 id="_19">安全性<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h3>
+<p>请参阅<a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#安全">「安全」</a>一章。</p>
+<h3 id="_20">延迟数值<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h3>
+<p>请参阅<a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#每个程序员都应该知道的延迟数">「每个程序员都应该知道的延迟数」</a>。</p>
+<h3 id="_21">持续探讨<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h3>
+<ul>
+<li>持续进行基准测试并监控你的系统，以解决他们提出的瓶颈问题。</li>
+<li>架构拓展是一个迭代的过程。</li>
+</ul>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="May 20, 2025 09:05:17">May 20, 2025</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Created">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="May 20, 2025 09:05:17">May 20, 2025</span>
+  </span>
+
+    
+    
+    
+      
+  <span class="md-source-file__fact">
+    
+      
+  <span class="md-icon" title="Contributors">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2"/></svg>
+  </span>
+  <span>GitHub</span>
+
+    
+    <nav>
+      
+        <a href="https://github.com/ido777" class="md-author" title="@ido777">
+          
+          <img src="https://avatars.githubusercontent.com/u/6554277?v=4&size=72" alt="ido777">
+        </a>
+      
+      
+      
+    </nav>
+  </span>
+
+    
+  </aside>
+
+
+  
+
+
+
+
+  <h2 id="__comments">Comments</h2>
+  <!-- Insert generated snippet here -->
+  <div id="comments" class="md-content">
+    <!-- Giscus widget -->
+    <div class="giscus-frame"></div>
+    <script
+      src="js/client-debug.js"
+      data-repo="ido777/system-design-primer-update"
+      data-repo-id="R_kgDOORdCfw"
+      data-category="Feedback by Page"
+      data-category-id="DIC_kwDOORdCf84CqLEY"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="bottom"
+      data-theme="light"
+      data-lang="en"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async>
+    </script>
+  </div>
+  <!-- Synchronize Giscus theme with palette -->
+  <script>
+    var giscus = document.querySelector("script[src*=giscus]")
+
+    // Set palette on initial load
+    var palette = __md_get("__palette")
+    if (palette && typeof palette.color === "object") {
+      var theme = palette.color.scheme === "slate"
+        ? "transparent_dark"
+        : "light"
+
+      // Instruct Giscus to set theme
+      giscus.setAttribute("data-theme", theme) 
+    }
+
+    // Register event handlers after documented loaded
+    document.addEventListener("DOMContentLoaded", function() {
+      var ref = document.querySelector("[data-md-component=palette]")
+      ref.addEventListener("change", function() {
+        var palette = __md_get("__palette")
+        if (palette && typeof palette.color === "object") {
+          var theme = palette.color.scheme === "slate"
+            ? "transparent_dark"
+            : "light"
+
+          // Instruct Giscus to change theme
+          var frame = document.querySelector(".giscus-frame")
+          frame.contentWindow.postMessage(
+            { giscus: { setConfig: { theme } } },
+            "https://giscus.app"
+          )
+        }
+      })
+    })
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "navigation.path", "content.code.annotate", "content.tabs.link", "search.highlight", "search.suggest", "toc.follow"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="../../../javascripts/client-debug.js"></script>
+      
+        <script src="../../../javascripts/giscus-debug.js"></script>
+      
+    
+  </body>
+</html>

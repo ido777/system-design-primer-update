@@ -1,0 +1,3646 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://ido777.github.io/system-design-primer-update/en/study_guide/en/study_guide.html">
+      
+      
+        <link rel="prev" href="index.html">
+      
+      
+        <link rel="next" href="practice.html">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Study Guide Start Here - System Design Primer Update</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+        <script src="https://unpkg.com/iframe-worker/shim"></script>
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/default.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","UA-210436000-1"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","UA-210436000-1",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=UA-210436000-1",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#system-design-interview-study-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="System Design Primer Update" class="md-header__button md-logo" aria-label="System Design Primer Update" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            System Design Primer Update
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Study Guide Start Here
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ido777/system-design-primer-update" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ido777/system-design-primer-update
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="index.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../about.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  About
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../CONTRIBUTING.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Contributing
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../LICENSE.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  License
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../CHANGELOG.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Changelog
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  English
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../zh/design-glance.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Translations (Not up to date)
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="System Design Primer Update" class="md-nav__button md-logo" aria-label="System Design Primer Update" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    System Design Primer Update
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ido777/system-design-primer-update" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ido777/system-design-primer-update
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CONTRIBUTING.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Contributing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LICENSE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    License
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CHANGELOG.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Changelog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    English
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            English
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Study Guide Start Here
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="study_guide.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Study Guide Start Here
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#understand-what-a-system-design-interview-is-really-about" class="md-nav__link">
+    <span class="md-ellipsis">
+      Understand What a System Design Interview Is Really About
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cracking-the-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cracking the system
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cracking the system">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-strategic-framework-for-system-design-interview-preparation" class="md-nav__link">
+    <span class="md-ellipsis">
+      A Strategic Framework for System Design Interview Preparation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="A Strategic Framework for System Design Interview Preparation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interviewers-perspective" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interviewer's perspective.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interviewers-goals-in-system-design-interview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interviewer's Goals in System Design Interview
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alex-xus-four-phase-framework-for-the-system-design-interview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Alex Xu's four-phase framework for the system design interview
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#from-insight-to-interview-mastery" class="md-nav__link">
+    <span class="md-ellipsis">
+      From Insight to Interview Mastery
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="From Insight to Interview Mastery">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#critical-behaviors-in-the-interview-room" class="md-nav__link">
+    <span class="md-ellipsis">
+      Critical Behaviors in the Interview Room
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#abc-cheat-codes-a-way-to-memorize-during-the-interview" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ ABC Cheat Codes - A way to memorize during the interview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interview-abc-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔁 Interview ABC Loop
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔁 Interview ABC Loop">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#abc-for-preparation" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 ABC for Preparation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#abc-dialogue-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      🗣️ ABC Dialogue Loop
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#abc-thinking-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧠 ABC - Thinking Process
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-1-understand-the-problem-establish-design-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase 1: Understand the Problem &amp; Establish Design Scope
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase 1: Understand the Problem &amp; Establish Design Scope">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interviewers-goal" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Interviewer's Goal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#candidates-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Candidate's Strategy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-one-ask-abc-ask-wide-open-questions-on-the-below-subjects" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧭 Phase one Ask ABC - Ask wide open questions on the below subjects:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-dialogue-pastebin" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔍 Example Dialogue (Pastebin)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔍 Example Dialogue (Pastebin)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#for-more-examples-of-the-scoping-dialogue" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧭 For more examples of the scoping dialogue
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-one-breakdown-abc-brief-the-requirements-with-breakdown-at-mind" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧭 Phase one Breakdown ABC - Brief the requirements with breakdown at mind:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-breakdown-pastebin" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔍 Example Breakdown (Pastebin)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use cases
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#background-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Background tasks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#non-functional-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Non functional requirements
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#out-of-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      Out of scope
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-considerations-we-need-to-think-about-later-on" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other considerations we need to think about (Later on)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-2-propose-a-high-level-design-get-buy-in" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase 2: Propose a High-Level Design &amp; Get Buy-In
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase 2: Propose a High-Level Design &amp; Get Buy-In">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interviewers-goal_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Interviewer's Goal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#candidates-strategy_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛠️ Candidate's Strategy
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛠️ Candidate&#39;s Strategy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-to-create-the-high-level-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to create the high level design
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How to create the high level design">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#optional-use-cases-sequence-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optional: use cases --&gt; Sequence diagram
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#important-actually-we-can-use-mermaid-to-draw-the-sequence-diagram-maybe-even-in-the-interview-room" class="md-nav__link">
+    <span class="md-ellipsis">
+      Important: Actually we can use mermaid to draw the sequence diagram, maybe even in the interview room.
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#background-tasks_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Background tasks
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-two-abc-propose-a-high-level-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧭 Phase two ABC - Propose a high-level design
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧭 Phase two ABC - Propose a high-level design">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#block-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      Block diagram
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-buy-in" class="md-nav__link">
+    <span class="md-ellipsis">
+      Get buy-in
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-25-after-gaining-buy-in-and-before-the-deep-dive" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase 2.5: After Gaining Buy-In and Before the Deep Dive
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interviewers-goal-decide-whats-next" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Interviewer’s Goal: Decide What’s Next
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#candidates-strategy-steer-the-conversation-strategically" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Candidate’s Strategy: Steer the Conversation Strategically
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-3-deep-dive-into-key-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase 3: Deep Dive into Key Components
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase 3: Deep Dive into Key Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interviewers-goal_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Interviewer's Goal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#candidates-strategy_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Candidate's Strategy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#abc-process-for-phase-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧭 ABC Process for Phase 3
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="practice.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    System Design Interview Questions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="design-glance.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    System Design at a Glance
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../solutions/system_design/pastebin/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    System Design Solutions
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6_5" id="__nav_6_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_5">
+            <span class="md-nav__icon md-icon"></span>
+            System Design Solutions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solutions/system_design/query_cache/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Query Cache
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solutions/system_design/mint/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Mint
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solutions/system_design/sales_rank/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sales Rank
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solutions/system_design/url_shortener/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    URL Shortener
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solutions/system_design/web_crawler/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Web Crawler
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solutions/system_design/scaling_aws/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Scaling AWS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solutions/system_design/social_graph/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Social Graph
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solutions/system_design/twitter/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Twitter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../solutions/object_oriented_design/movie_tickets/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Object-Oriented Design Solutions
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6_6" id="__nav_6_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_6">
+            <span class="md-nav__icon md-icon"></span>
+            Object-Oriented Design Solutions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solutions/object_oriented_design/call_center/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Call Center
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solutions/object_oriented_design/circular_array/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Circular Array
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solutions/object_oriented_design/deck_of_cards/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deck of Cards
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solutions/object_oriented_design/hash_table/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Hash Table
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solutions/object_oriented_design/lru_cache/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    LRU Cache
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solutions/object_oriented_design/online_chat/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Online Chat
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solutions/object_oriented_design/parking_lot/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Parking Lot
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Translations (Not up to date)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Translations (Not up to date)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_1" id="__nav_7_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    简体中文 (Simplified Chinese)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_1">
+            <span class="md-nav__icon md-icon"></span>
+            简体中文 (Simplified Chinese)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zh/design-glance.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    简体中文主页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    繁體中文 (Traditional Chinese)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            繁體中文 (Traditional Chinese)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zh-Hant/design-glance.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    繁體中文首頁
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    العربية (Arabic)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            العربية (Arabic)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ar/design-glance.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    الصفحة الرئيسية
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    日本語 (Japanese)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            日本語 (Japanese)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ja/design-glance.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    日本語のホーム
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_5" id="__nav_7_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Türkçe (Turkish)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_5">
+            <span class="md-nav__icon md-icon"></span>
+            Türkçe (Turkish)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tr/design-glance.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Türkçe Anasayfa
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#understand-what-a-system-design-interview-is-really-about" class="md-nav__link">
+    <span class="md-ellipsis">
+      Understand What a System Design Interview Is Really About
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cracking-the-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cracking the system
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cracking the system">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-strategic-framework-for-system-design-interview-preparation" class="md-nav__link">
+    <span class="md-ellipsis">
+      A Strategic Framework for System Design Interview Preparation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="A Strategic Framework for System Design Interview Preparation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interviewers-perspective" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interviewer's perspective.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interviewers-goals-in-system-design-interview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interviewer's Goals in System Design Interview
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alex-xus-four-phase-framework-for-the-system-design-interview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Alex Xu's four-phase framework for the system design interview
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#from-insight-to-interview-mastery" class="md-nav__link">
+    <span class="md-ellipsis">
+      From Insight to Interview Mastery
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="From Insight to Interview Mastery">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#critical-behaviors-in-the-interview-room" class="md-nav__link">
+    <span class="md-ellipsis">
+      Critical Behaviors in the Interview Room
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#abc-cheat-codes-a-way-to-memorize-during-the-interview" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ ABC Cheat Codes - A way to memorize during the interview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interview-abc-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔁 Interview ABC Loop
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔁 Interview ABC Loop">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#abc-for-preparation" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 ABC for Preparation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#abc-dialogue-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      🗣️ ABC Dialogue Loop
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#abc-thinking-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧠 ABC - Thinking Process
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-1-understand-the-problem-establish-design-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase 1: Understand the Problem &amp; Establish Design Scope
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase 1: Understand the Problem &amp; Establish Design Scope">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interviewers-goal" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Interviewer's Goal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#candidates-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Candidate's Strategy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-one-ask-abc-ask-wide-open-questions-on-the-below-subjects" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧭 Phase one Ask ABC - Ask wide open questions on the below subjects:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-dialogue-pastebin" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔍 Example Dialogue (Pastebin)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔍 Example Dialogue (Pastebin)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#for-more-examples-of-the-scoping-dialogue" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧭 For more examples of the scoping dialogue
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-one-breakdown-abc-brief-the-requirements-with-breakdown-at-mind" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧭 Phase one Breakdown ABC - Brief the requirements with breakdown at mind:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-breakdown-pastebin" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔍 Example Breakdown (Pastebin)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use cases
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#background-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Background tasks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#non-functional-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Non functional requirements
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#out-of-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      Out of scope
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-considerations-we-need-to-think-about-later-on" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other considerations we need to think about (Later on)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-2-propose-a-high-level-design-get-buy-in" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase 2: Propose a High-Level Design &amp; Get Buy-In
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase 2: Propose a High-Level Design &amp; Get Buy-In">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interviewers-goal_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Interviewer's Goal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#candidates-strategy_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛠️ Candidate's Strategy
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛠️ Candidate&#39;s Strategy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-to-create-the-high-level-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to create the high level design
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How to create the high level design">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#optional-use-cases-sequence-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optional: use cases --&gt; Sequence diagram
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#important-actually-we-can-use-mermaid-to-draw-the-sequence-diagram-maybe-even-in-the-interview-room" class="md-nav__link">
+    <span class="md-ellipsis">
+      Important: Actually we can use mermaid to draw the sequence diagram, maybe even in the interview room.
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#background-tasks_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Background tasks
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-two-abc-propose-a-high-level-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧭 Phase two ABC - Propose a high-level design
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧭 Phase two ABC - Propose a high-level design">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#block-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      Block diagram
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-buy-in" class="md-nav__link">
+    <span class="md-ellipsis">
+      Get buy-in
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-25-after-gaining-buy-in-and-before-the-deep-dive" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase 2.5: After Gaining Buy-In and Before the Deep Dive
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interviewers-goal-decide-whats-next" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Interviewer’s Goal: Decide What’s Next
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#candidates-strategy-steer-the-conversation-strategically" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Candidate’s Strategy: Steer the Conversation Strategically
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-3-deep-dive-into-key-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase 3: Deep Dive into Key Components
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase 3: Deep Dive into Key Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interviewers-goal_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Interviewer's Goal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#candidates-strategy_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Candidate's Strategy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#abc-process-for-phase-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧭 ABC Process for Phase 3
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="system-design-interview-study-guide">System Design Interview Study Guide<a class="headerlink" href="#system-design-interview-study-guide" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>Repetition is the mother of all skills</p>
+<ul>
+<li>Tony Robbins</li>
+</ul>
+</blockquote>
+<p>📌 Learning Objectives</p>
+<p>By the end of this guide, you will be able to:</p>
+<ol>
+<li><strong>Strategize</strong> your preparation by pinpointing the true goals of a system-design interview and crafting a focused, personalized learning plan.</li>
+<li><strong>Crack</strong> the interviewer's hidden requirements—avoiding the common pitfall of solving the wrong problem by extracting true constraints and priorities from the outset.</li>
+<li><strong>Internalize</strong> the four-phase framework for system design interview via the ABC mnemonic to guide a structured, confidence-driven design conversation, ensuring you stay on track.</li>
+<li><strong>Sketch</strong> a clear, high-level architecture in under five minutes and <strong>defend</strong> your choices by articulating key trade-offs.</li>
+<li><strong>Apply</strong> this simple, systematic process end-to-end on realistic interview scenarios, iterating and refining based on feedback and reflection.</li>
+</ol>
+<p>🗺️ Contents overview</p>
+<pre class="mermaid"><code>%%{init: { "flowchart": { "htmlLabels": true } }}%%
+
+flowchart TB
+  %% Kickoff container at top
+  subgraph Kickoff["**Kickoff**"]
+    direction TB
+    style Kickoff stroke-dasharray:5,5,fill:none,stroke-width:2px
+    A[&lt;a href="#understand-what-a-system-design-interview-is-really-about"&gt;What is a system design interview &lt;em&gt;really&lt;/em&gt; about?&lt;/a&gt;]
+    B[&lt;a href="#cracking-the-system"&gt;Cracking the system&lt;/a&gt;]
+    C[&lt;a href="#alex-xus-four-phase-framework"&gt;Alex Xu's 4 steps &lt;/a&gt;]    
+    D[&lt;a href="#abc-cheat-code"&gt;ABC Cheat Code&lt;/a&gt;]
+    E[&lt;a href="#design-example"&gt;Design Example&lt;/a&gt;]
+  end
+
+  %% Gap Assessment container
+  subgraph GapAssessment["**Gap Assessment**"]
+    direction LR
+    style GapAssessment stroke-dasharray:5,5,fill:none,stroke-width:2px
+    GA2[&lt;a href="#gap-assessment"&gt;Try sample solved interviews and compare your results&lt;/a&gt;]
+    GA1[&lt;a href="#refresh-terms-and-building-blocks"&gt;Learn/refresh terms and building blocks&lt;/a&gt;]
+  end
+
+  %% Personal Plan container
+  subgraph PersonalPlan["**Personal Learning Plan**"]
+    direction LR
+    style PersonalPlan stroke-dasharray:5,5,fill:none,stroke-width:2px
+    %% use href to point both to Personal Plan header  
+    PP1[&lt;a href="#personal-learning-plan"&gt;Harness your personal strengths in the learning process&lt;/a&gt;]
+    PP2[&lt;a href="#personal-learning-plan"&gt;Shortcuts?&lt;/a&gt;]
+  end
+
+  %% Learning Loop container
+  subgraph LearningLoop["**Learning Loop**"]
+    direction LR
+    style LearningLoop stroke-dasharray:5,5,fill:none,stroke-width:2px
+    %% use href to point both to Learning Loop header  
+    GapAnalysis["Goal"]
+    LearnTry["Learn / Solve / See Solutions"]
+    Test["Check"]
+    Assess["Assess Gaps"]
+  end
+
+
+  %% Container flow
+  Kickoff --&gt; GapAssessment
+  GapAssessment --&gt; PersonalPlan
+  PersonalPlan --&gt;  LearningLoop
+
+
+  %% Internal flows
+  A --&gt; B
+  B --&gt; C  
+  C --&gt; D
+  D --&gt; E
+  E --&gt; C
+
+  GA1 --&gt; GA2
+  GA2 --&gt; GA1
+  PP1 --&gt; PP2
+  PP2 --&gt; PP1
+
+
+  GapAnalysis --&gt; LearnTry --&gt; Test --&gt; Assess --&gt; GapAnalysis
+
+  %% Style nodes
+  style A fill:#FFCCCC,stroke:#CC0000,stroke-width:4px,rx:6,ry:6
+  style B fill:#FFD580,stroke:#AA6600,stroke-width:4px,rx:6,ry:6
+  style C fill:#CCFFCC,stroke:#009900,stroke-width:4px,rx:6,ry:6
+  style D fill:#E6E6FA,stroke:#6A5ACD,stroke-width:4px,rx:6,ry:6
+  style E fill:#FFF0F5,stroke:#993366,stroke-width:4px,rx:6,ry:6
+
+  style GA1 fill:#FFFACD,stroke:#B8860B,stroke-width:4px,rx:6,ry:6
+  style GA2 fill:#FFFACD,stroke:#B8860B,stroke-width:4px,rx:6,ry:6
+
+  style PP1 fill:#E6E6FA,stroke:#6A5ACD,stroke-width:4px,rx:6,ry:6
+  style PP2 fill:#E6E6FA,stroke:#6A5ACD,stroke-width:4px,rx:6,ry:6
+
+  style GapAnalysis fill:#FFE4E1,stroke:#CC0000,stroke-width:4px,rx:6,ry:6
+  style LearnTry fill:#FFFACD,stroke:#B8860B,stroke-width:4px,rx:6,ry:6
+  style Test fill:#F0FFF0,stroke:#009900,stroke-width:4px,rx:6,ry:6
+  style Assess fill:#FFF0F5,stroke:#993366,stroke-width:4px,rx:6,ry:6</code></pre>
+<h2 id="understand-what-a-system-design-interview-is-really-about">Understand What a System Design Interview Is <em>Really</em> About<a class="headerlink" href="#understand-what-a-system-design-interview-is-really-about" title="Permanent link">&para;</a></h2>
+<p>No one can build a system from scratch in 45 minutes, but no one excepts it from you. 
+In fact, “system design interview” is a misnomer—it’s not about <strong>designing</strong> a system, but about <strong>explaining</strong> one to your interviewer. Even more challenging, most of the questions the interviewer has in mind aren’t stated outright; they’re inferred from your explanation—sometimes incorrectly—when you miss the precise detail they’re looking for.</p>
+<p><strong>Example</strong>
+While you’re describing the read flow in your design, the interviewer might ask:</p>
+<blockquote>
+<p>“Does the read flow <em>really</em> go from the client all the way to the web server?”</p>
+</blockquote>
+<p>Since many system design discussions focus on scaling, this prompt likely hints that you should mention DNS, load balancers, or CDNs. Just because you discussed those components moments earlier—and the interviewer didn’t follow up—doesn’t mean they aren’t testing your knowledge now.</p>
+<p>What should you do?</p>
+<ul>
+<li>Stop explaining the read flow and switch to an overview of DNS, load balancers, or CDNs?</li>
+<li>Continue describing the read flow while integrating those components?</li>
+<li>Dive into the CDN’s cache hit and miss mechanisms?</li>
+</ul>
+<p>The answer: <strong>ASK</strong>. Seek to uncover the hidden question. Open-ended questions help the interviewer clarify what they really want you to explain at that moment.</p>
+<p>A system design interview is a ceremonial rite governed by strict, unspoken rules.<strong>You can’t win the game if you don’t understand those rules</strong>. 
+Many candidates stumble not for lack of technical chops, but because they misread the interview’s true purpose at specific moments. Rather than memorizing architectures, focus on driving a collaborative design <strong>discussion</strong>. Interviewers want to see how you <strong>lead</strong> a targeted conversation around a <strong>scoped problem</strong>, not how quickly you can draft an entire production system. Ultimately, it’s on you to uncover and address the interviewer’s hidden questions at every turn.</p>
+<hr />
+<blockquote>
+<p><em>A well-structured system design interview isn't about blurting out the “right” design—it's about owning the conversation. 
+Rather than simply answering, you must lead: ask clarifying questions, listen to sub text, expose hidden , and keep the interviewer engaged. 
+</em><em>Alex Xu's four-phase framework</em><em>, the </em><em>ABC interview loops</em><em> </em>below<em> are designed to help you to do just that.</em></p>
+</blockquote>
+<hr />
+<h2 id="cracking-the-system">Cracking the system<a class="headerlink" href="#cracking-the-system" title="Permanent link">&para;</a></h2>
+<h3 id="a-strategic-framework-for-system-design-interview-preparation">A Strategic Framework for System Design Interview Preparation<a class="headerlink" href="#a-strategic-framework-for-system-design-interview-preparation" title="Permanent link">&para;</a></h3>
+<hr />
+<ol>
+<li>
+<p><strong>Truly understand the interviewer's perspective.</strong>
+   The interviewer has a well-defined and consistent goal, to evaluate your ability. Therefore, their behavior during the interview tends to follow a certain <strong>pattern</strong>. This predictability allows candidates to anticipate and respond effectively to key behavioral cues. The best preparation will be to cover each and every pattern that your interviewer may be following. Therefore, the first step is to understand what the interviewer is really after then to cover those patterns and prepare for them. You should start here no matter your timeline.</p>
+</li>
+<li>
+<p><strong>Learn &amp; practice the 4 phases and the ABC cheat code.</strong>
+   The 4 phases and the ABC cheat code are designed to help you work in a systematic way to approach the interviewer patterns. 
+   The 4 phases by Alex Xu, as well as his list of do and don't do actions for the entire interview are structured way to target each of the interviewer goals in a dedicated "phase" of the interview. 
+   The ABC cheat code is an attempt to help you memorize it and help you work with the 4 phases under stress.</p>
+</li>
+<li>
+<p><strong>Learn common solutions patterns.</strong>
+   The interview does not have a fixed flow, Think of it as a tree of interactions and make sure you cover all the most <strong>important branches and leaves</strong>. 
+   Many of those branch are relevant many design questions so you can look at it as 2 subjects. </p>
+</li>
+<li>Breaking down the design into sub problems.</li>
+<li>Knowing the patterns and best practices for many sub problems.</li>
+</ol>
+<p>Don't worry - we will go into details in the next sections, but for now let's just keep in mind that truly understanding the interviewer's perspective is the first step in your preparation.</p>
+<hr />
+<h4 id="interviewers-perspective">Interviewer's perspective.<a class="headerlink" href="#interviewers-perspective" title="Permanent link">&para;</a></h4>
+<p>Before talking about the solution - system design interview guide, let's understand the problem.
+The interviewer decides on your success in the interview, so let's reverse engineer the process of the system design interview from the interviewer point of view.
+Once we know what the interviewer is looking for, we can build a framework that will help us to prepare for the interview and to be more effective during the interview.</p>
+<p>The interviewer has a well-defined and consistent goal, to evaluate your ability in a systematic way and limited time and to compare it with other candidates.
+The limited time is a challenge for the interviewer, therefore the interviewer will use some shortcuts and triggers to create as many as possible evaluation points to evaluate the candidate's ability.</p>
+<p>Understand the interviewer's goals and triggers will help you to prepare for the interview and to be more effective during the interview.</p>
+<h4 id="interviewers-goals-in-system-design-interview">Interviewer's Goals in System Design Interview<a class="headerlink" href="#interviewers-goals-in-system-design-interview" title="Permanent link">&para;</a></h4>
+<ol>
+<li><strong>Evaluate Communication and Clarification Skills</strong>
+   During the <em>problem clarification</em> phase, the interviewer wants to see if the candidate can ask the right questions, uncover hidden constraints, and frame the problem with precision — just like they would in real-world ambiguity.
+   For this reason, many interviews start with vague questions, by design. This is a trigger for evaluation point!
+   You start answering without asking for more clarifications - <strong>Boom!</strong> You missed this goal from the interviewer's perspective.  </li>
+<li>
+<p><strong>Assess High-Level Thinking and Tradeoff Awareness</strong>
+   In the <em>high-level design</em> phase, the goal is to understand how the candidate breaks a big system into components, balances trade-offs (e.g., latency vs. throughput), and considers scalability, availability, and reliability.
+   High level design is an art not science, it meant to demonstrate the most important aspects of the system, but pay attention you and the interviewer might have different visions of the most important aspects. 
+   Again, this is a trigger! In order to excel in the high level design you need not only to know to break a problem into components but also uncover what is the interviewer looking for.</p>
+</li>
+<li>
+<p><strong>Test Technical Depth and Practical Decision-Making</strong>
+   During the <em>deep dive</em>, the interviewer looks for depth — how well the candidate understands core components (e.g., databases, queues, caching), edge cases and whether they can explain and defend technical choices with enough details.
+   Well, technical depth is a very broad topic, but there are some patterns and common practices that can help you do the deep dive.
+   Knowing those patterns and common practices will help you to do the main part of the deep dive for many specific topics.</p>
+</li>
+<li><strong>Gauge Thought Process, Flexibility, and Maturity</strong>
+   Overall, the interviewer wants to see how you reflect, summarize trade-offs, suggest improvements, process feedback and work under pressure.</li>
+<li><strong>Wrap-up</strong>
+   Towards the end of the interview, the interviewer might want to cover some more aspects from his original evaluations points on the above issues as well as other aspects that might be important to her such as gauge thought process, flexibility, and maturity.
+   Understanding this can help you utilize the time at the end of the interview for your benefit since it is your last chance to improve on things you underperformed in the interview.</li>
+</ol>
+<h3 id="alex-xus-four-phase-framework-for-the-system-design-interview">Alex Xu's four-phase framework for the system design interview<a class="headerlink" href="#alex-xus-four-phase-framework-for-the-system-design-interview" title="Permanent link">&para;</a></h3>
+<p><strong>Phase 1: Understand the Problem &amp; Establish Design Scope</strong><br />
+- <strong>Drive the dialogue with questions.</strong> Who are our users? What scale do we expect? Which features matter most? Every question you ask both narrows scope and demonstrates leadership.<br />
+- <strong>Confirm alignment.</strong> Restate constraints and assumptions back (“So we need to handle 10 M DAUs with ≤100 ms P99 latency, correct?”) to lock in buy-in before diving deeper.</p>
+<p><strong>Phase 2: Propose a High-Level Design &amp; Get Buy-In</strong><br />
+- <strong>Sketch components at a glance.</strong> Draw clients, gateways, services, data stores—just enough to show your initial blueprint architecture.<br />
+- <strong>Engage actively.</strong> Rather than declaring “Here's my design,” invite feedback: “Does this match what you had in mind?” If you sense any hesitation, ask “What part feels off?” to expose hidden expectations.
+- <strong>Think out loud.</strong> Communicate your thoughts and make sure if you need to do back of the envelope calculations to validate your initial design.</p>
+<p><strong>Phase 3: Deep Dive into Key Components</strong><br />
+- <strong>Select your hotspots.</strong> Based on the feedback you got till here, usually you managed to get a good scope and direction for the deep dive, If this is not the case you need to try to ask more questions to get a better understanding of the problem. If after asking you still don't have a good direction, you can ask the interviewer for suggestions. Such as shall I talk about the main tradeoffs or focus on the areas with the most risk or complexity (e.g., caching, partitioning, queueing)?
+- <strong>Try not to get into unnecessary details</strong> Focus on proving your ability to design scalable systems.
+- <strong>Validate continuously.</strong> After each trade-off discussion, check back: “Does that satisfy our latency goals given the consistency needs?”</p>
+<p><strong>Phase 4: Wrap Up</strong><br />
+- <strong>Close the loop.</strong> Ask, “Are there any areas you'd like me to revisit?” If there's lingering doubt, probe its root and address it on the spot.
+- <strong>Recap of the design, and the feedback you got.</strong> “We defined scope, sketched the system, deep-dived on X and Y... however we understood that we need to revisit..., ”. This is important mainly if you had some design options to choose from.
+- <strong>Ask the interviewer's opinion about the next steps.</strong><br />
+- <strong>Propose other refinements if you have time.</strong> e.g. Potential improvements, error cases, Operational issues (metrics). Note where you might shard more, add rate limiting, back-pressure, or introduce caching layers as the workload grows.  </p>
+<p><em>By taking ownership of the conversation—asking clarifying questions, seeking continuous buy-in, and guiding the interviewer through each phase—you transform a static Q&amp;A into a </em><em>collaborative design session</em><em>. This is the approach that empowers you to steer a system design interview successfully.</em></p>
+<hr />
+<h2 id="from-insight-to-interview-mastery">From Insight to Interview Mastery<a class="headerlink" href="#from-insight-to-interview-mastery" title="Permanent link">&para;</a></h2>
+<h3 id="critical-behaviors-in-the-interview-room">Critical Behaviors in the Interview Room<a class="headerlink" href="#critical-behaviors-in-the-interview-room" title="Permanent link">&para;</a></h3>
+<p>We will start with some simple principles that are direct output of understanding the Interviewer point of view. 
+In the next sections we will build a framework that will help you to implement those principles in real interview scenarios, even under stress.</p>
+<hr />
+<ol>
+<li>
+<p><strong>Drive the Dialogue by Asking and Suggesting.</strong>
+   Unlike coding interviews where you follow prompts, here you're expected to take the lead. Propose directions (“Shall we dive in?”), offer ideas, solicit feedback (“Does this design match your expectations?”), and iterate in real time. You are not just allowed—but <strong><em>expected</em></strong>—to guide the conversation.</p>
+</li>
+<li>
+<p><strong>Scoping Is Your Responsibility.</strong>
+   You won't build an entire production system in 45 minutes; instead, you should lead the conversation to define a manageable subset that simulates real-life constraints without overwhelming detail. Define a narrow, realistic scope—“Which core features should we prioritize?”—so you don't drown in complexity. Think of this as a <strong>negotiation</strong> with the interviewer. You bring your own expertise, which might have some overlaps with the interviewer a priori vision of the <code>right solution</code>. Scoping is your chance to steer the discussion (aka interview) towards areas where your knowledge is strongest, while still aligning with what the interviewer considers a valid solution.</p>
+</li>
+<li>
+<p><strong>Strive to Get Buy-In.</strong>
+   Remember, this is a <em>dialogue</em>, not a monologue. Don't <em>explain the solution</em>—seek agreement at each key stage: after defining the scope, after presenting your high-level design, and during any deep dives. Think of it as <strong>selling</strong> your approach. A successful “sale” solves a problem the “buyer” (interviewer) cares about. If you're not getting buy-in, try to identify the gap and adjust your proposal accordingly.</p>
+</li>
+</ol>
+<hr />
+<h2 id="abc-cheat-codes-a-way-to-memorize-during-the-interview">✅ ABC Cheat Codes - A way to memorize during the interview<a class="headerlink" href="#abc-cheat-codes-a-way-to-memorize-during-the-interview" title="Permanent link">&para;</a></h2>
+<p>In addition to the 4 phases, Alex Xu's have a list of do's and don'ts in his book "System Design Interview - An Insider's Guide".
+It is hard to remember all of them under stress, so let's create a cheat code for remembering them, with the above key principles.
+Let's create a cheat code for remembering them, with the above key principles.
+Just think on it as triple ABC:</p>
+<p>We divided  the key principles into 3 parts:
+- Preparation - Things to do <strong>before</strong> the interview
+- Dialogue Loop - How to <strong>communicate</strong> with the interviewer
+- Thinking Process - How to <strong>think</strong> about the problem during the interview</p>
+<h2 id="interview-abc-loop">🔁 Interview ABC Loop<a class="headerlink" href="#interview-abc-loop" title="Permanent link">&para;</a></h2>
+<h3 id="abc-for-preparation">🎯 ABC for Preparation<a class="headerlink" href="#abc-for-preparation" title="Permanent link">&para;</a></h3>
+<p><strong>A</strong>dopt a Winning Mindset</p>
+<ul>
+<li>Stay positive, <strong>never give up</strong> before or during the interview—resilience is often more important than getting everything right.</li>
+<li>Come in with confidence and determination to <strong>ask questions</strong> and <strong>listen to the interviewer</strong>.</li>
+</ul>
+<p><strong>B</strong>uild Step by Step, your knowledge and solutions </p>
+<ul>
+<li>Learn the 4 phases and the ABC cheat code.</li>
+<li>Jump in and start with the first question, to assess your gaps.</li>
+<li>Learn the tree - learn key concepts and answers to the most common questions.</li>
+<li>Practice, practice, &amp; practice.</li>
+</ul>
+<p><strong>Come Prepared</strong></p>
+<ul>
+<li>Study typical interview questions and scenarios.</li>
+<li>Know the key concepts, patterns, and tools before you enter the room.</li>
+</ul>
+<h3 id="abc-dialogue-loop">🗣️ ABC  Dialogue Loop<a class="headerlink" href="#abc-dialogue-loop" title="Permanent link">&para;</a></h3>
+<p>Use this simple loop to build clear, structured conversations, especially useful in interviews, meetings, or collaborative design sessions.
+This ABC loop is a good way to memorize a simple mantra that will help you to actually work according to  the above 3 key principles we started with.</p>
+<ol>
+<li><strong>Ask</strong> - Start by <strong>A</strong>sking.</li>
+<li><strong>Brief</strong> - Rephrase what you heard to ensure mutual understanding and get <strong>B</strong>uy-in.</li>
+<li><strong>Clarify</strong> - Ask for any missing information or corrections, and <strong>C</strong>larify the next step / sell.  </li>
+</ol>
+<p>Loop until the end of the interview.</p>
+<pre class="mermaid"><code>flowchart LR
+
+   C[Clarify] --&gt; A[Ask] --&gt;  B[Brief] --&gt; C[Clarify]
+
+  style A fill:#FFCCCC,stroke:#CC0000,stroke-width:4px,rx:6,ry:6
+  style B fill:#FFD580,stroke:#AA6600,stroke-width:4px,rx:6,ry:6
+  style C fill:#CCFFCC,stroke:#009900,stroke-width:4px,rx:6,ry:6</code></pre>
+<h3 id="abc-thinking-process">🧠 ABC - Thinking Process<a class="headerlink" href="#abc-thinking-process" title="Permanent link">&para;</a></h3>
+<p>Communicate Your Thoughts Effectively</p>
+<p><strong>A</strong>sk for guidance</p>
+<ul>
+<li>Don't hesitate to request hints if you're stuck.</li>
+<li>A good interviewer is a collaborator, not just an evaluator.</li>
+</ul>
+<p><strong>B</strong>ounce ideas off the interviewer</p>
+<ul>
+<li>Think out loud and share your directions, doubts, reasoning and suggestions.</li>
+<li>Use the interviewer as a sounding board to refine your direction.</li>
+</ul>
+<p><strong>C</strong>ommunicate continuously</p>
+<ul>
+<li><strong>Narrate your thoughts</strong>.</li>
+<li><strong>Avoid</strong> silent problem-solving.</li>
+<li><strong>Verbalize your thought</strong> process clearly, <strong>even if it's still evolving</strong>.</li>
+</ul>
+<h2 id="phase-1-understand-the-problem-establish-design-scope">Phase 1: Understand the Problem &amp; Establish Design Scope<a class="headerlink" href="#phase-1-understand-the-problem-establish-design-scope" title="Permanent link">&para;</a></h2>
+<h3 id="interviewers-goal">🎯 Interviewer's Goal<a class="headerlink" href="#interviewers-goal" title="Permanent link">&para;</a></h3>
+<p><strong>Evaluate Communication and Clarification Skills</strong>
+The interviewer wants to see if you can ask the right questions, uncover hidden constraints, and precisely frame the problem — just like in real-world ambiguous scenarios.</p>
+<h3 id="candidates-strategy">✅ Candidate's Strategy<a class="headerlink" href="#candidates-strategy" title="Permanent link">&para;</a></h3>
+<p>Ask clear, somewhat pre-defined open-ended questions that surface assumptions, constraints, and the essence of the system. Aim for high signal questions that map the system's shape without going deep into implementation yet. Ask about requirements regarding: Reliability, Security, Privacy, Scalability, Maintenance and Operational Aspects. </p>
+<h3 id="phase-one-ask-abc-ask-wide-open-questions-on-the-below-subjects">🧭 Phase one Ask ABC - Ask wide open questions on the below subjects:<a class="headerlink" href="#phase-one-ask-abc-ask-wide-open-questions-on-the-below-subjects" title="Permanent link">&para;</a></h3>
+<ul>
+<li><em>Ask</em> - "What are the main <strong>users, use cases and main features</strong> of the system?" (<strong>A</strong>ctors, <strong>B</strong>usiness Scenarios, <strong>C</strong>ore Features)</li>
+<li><em>Brief</em> So those are our main <strong>A</strong>ssumptions, <strong>B</strong>oundaries (scope), <strong>C</strong>onstraints ? Did I explained <strong>MVP</strong> (Minimum Viable Product) correctly? </li>
+<li><em>Clarify</em> <strong>Any</strong> important topics we need to talk about the problem scope for this phase <strong>Before</strong> we <strong>Continue</strong> </li>
+</ul>
+<h3 id="example-dialogue-pastebin">🔍 Example Dialogue (Pastebin)<a class="headerlink" href="#example-dialogue-pastebin" title="Permanent link">&para;</a></h3>
+<p><strong>Interviewer</strong>: Design Pastebin.com.</p>
+<p><strong>Candidate</strong>: To clarify and understand the scope, may I start with a few quick questions?</p>
+<p><strong>Interviewer</strong>: Yes, please.</p>
+<p><strong>Candidate</strong>: What are the <strong>main features, users, and use cases</strong> of the system?</p>
+<p><strong>Interviewer</strong>: Pastebin is a simple site to share plain text. Users paste content and get a short link to share. Pastebin includes anonymous users as well as logged in users.</p>
+<p><strong>Candidate</strong>: Great. So <strong>can we scope the problem to 2 main flows</strong>:
+1. User creates a paste and gets a link to share.
+2. User accesses a paste using the link.</p>
+<p><strong>Interviewer</strong>: Yes, that's a good start.</p>
+<p><strong>Candidate</strong>: What are the <strong>other</strong> important topics we need to consider for the basic <strong>MVP</strong> functionality?</p>
+<p><strong>Interviewer</strong>: Pastebin supports two types of users:
+* Anonymous users - who can create and share content without an account
+* Authenticated users - who can create content and customize their sharing links (e.g., custom URLs, expiration dates, access controls).</p>
+<p><strong>Candidate</strong>: Understood. For this phase, can we <strong>focus</strong> on Anonymous users?</p>
+<p><strong>Interviewer</strong>: You mean that we should ignore the requirements for authenticated users?</p>
+<p><strong>Candidate</strong>: No, I want to <strong>clarify</strong>. I am suggesting and <strong>asking</strong> your confirmation - to be effective I think we can start dealing with the main flows of the system. We will bear in mind the authenticated requirement and <strong>deal with them later on</strong>. </p>
+<p><strong>Interviewer</strong>: Later on in the interview, or later on in the product life cycle?</p>
+<p><strong>Candidate</strong>: Both. Let me explain. Let's for now assume that we will use REST API to write and read the content. We can have 2 different api endpoints for anonymous and authenticated users, and we can have shared functions that can be used by both. This way we can <strong>focus</strong> on the main flows of the system. On the other hand we can talk about the authenticated requirements now, such as <a href="https://oauth.net/2/">OAuth 2.0</a> of <a href="https://jwt.io/">JWT</a>.</p>
+<p><strong>Interviewer</strong>: Ok.</p>
+<p><strong>Candidate</strong>: So for now, is it ok to focus on the anonymous users?</p>
+<p><strong>Interviewer</strong>: Yes.</p>
+<p><strong>Candidate</strong>: What are the <em>other</em> important topics we need to consider? What about traffic assumptions / load?</p>
+<p><strong>Interviewer</strong>: 10M writes per month, 100M reads. </p>
+<p><strong>Candidate</strong>: Got it. High read-to-write ratio. Any <em>other</em> specific requirements, assumptions or constraints, data flows?</p>
+<p><strong>Interviewer</strong>: We do track monthly stats. Links can have optional expiration. Expired pastes are auto-deleted.</p>
+<p><strong>Candidate</strong>: Is there <strong>anything more</strong> we should discuss in terms of latency, availability, or other non-functional constraints?</p>
+<p><strong>Interviewer</strong>: Reads should be low-latency. High availability is expected. </p>
+<p><strong>Candidate</strong>: Cost efficiency, scaling and security matter, but I <strong>suggest</strong> to digest those in the next phases.</p>
+<p><strong>Interviewer</strong>: Ok.</p>
+<p><strong>Candidate</strong>: Thanks — that's clear and helps scope my design. Let's me summarize the scope as i understood it and the assumptions to make sure we are on the <strong>same page</strong>.</p>
+<p><strong>Interviewer</strong>: Ok.</p>
+<p>...</p>
+<p>As you can see the candidate is <strong>leading</strong> the conversation and <strong>negotiating</strong> the scope with the interviewer.
+He uses the <code>suggest</code> word to indicate that he is open for a dialog and he is asking for the interviewer's confirmation, and tries to keep the conversation according to the interviewer acceptable path.
+When the candidate faces an objections (e.g. authenticated users) he continues the negotiation while providing 2 options (e.g. now or later) while showing knowledge related to the requirements. 
+This hints that scoping without this requirement is not for a lack of relevant knowledge but for focusing on the problem we deal with at this moment.
+The candidate asks many variations of <code>Anything else?</code> or <code>other?</code> to uncover more hidden requirements and assumptions.
+The candidate mentions scaling and security which are important in interviews but checks if it is ok to deal with those a bit later.</p>
+<p>There are a lot of <strong>system considerations</strong> that are important in interviews maybe the below cards will help you to remember them.
+But even if you don't remember them, you can still ask the interviewer for other requirements we need to consider.</p>
+<p >
+  <img src="../images/requirements.png" style="margin-left:40px;" width="500">
+  <br/>
+</p>
+
+<h4 id="for-more-examples-of-the-scoping-dialogue">🧭 For more examples of the scoping dialogue<a class="headerlink" href="#for-more-examples-of-the-scoping-dialogue" title="Permanent link">&para;</a></h4>
+<p>see the <a href="#examples-for-phase-2-in-the-solutions-section">Solutions phase 1 examples</a></p>
+<h3 id="phase-one-breakdown-abc-brief-the-requirements-with-breakdown-at-mind">🧭 Phase one Breakdown ABC - Brief the requirements with breakdown at mind:<a class="headerlink" href="#phase-one-breakdown-abc-brief-the-requirements-with-breakdown-at-mind" title="Permanent link">&para;</a></h3>
+<p>ok, let's recall why we need to Brief the requirements.</p>
+<ul>
+<li><strong>Align</strong> - We need to align the requirements with the interviewer, since this is essence of this phase.</li>
+</ul>
+<p>However our next phase is the high level design so wouldn't it be great if we use the brief so writing down the high level design will be easy?</p>
+<p>The high level is about breaking the problem (aka requirements) into components. So let's summarize the requirements while trying to break them into components.</p>
+<ul>
+<li><strong>Breakdown</strong> - All we need to do is to group the detailed requirements we just aligned with the interviewer into use case, &amp; background tasks and other non functional requirements. A use case is an interaction between an actor (like a user or another system) and your system, usually described in terms of goals the actor wants to achieve.</li>
+<li><strong>Compile</strong> - We can compile the grouped requirements into a initial list of components and their interactions.</li>
+</ul>
+<p>Let's see how we can do that.</p>
+<h3 id="example-breakdown-pastebin">🔍 Example Breakdown (Pastebin)<a class="headerlink" href="#example-breakdown-pastebin" title="Permanent link">&para;</a></h3>
+<p><strong>Candidate</strong>: ok, here a reflection of what I understood from the requirements, I will write it down here</p>
+<blockquote>
+<h3 id="use-cases">Use cases<a class="headerlink" href="#use-cases" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>User</strong> enters a block of text and gets a randomly generated link</li>
+<li><strong>User</strong> enters a paste's url and views the contents</li>
+<li><strong>User</strong> is anonymous</li>
+</ul>
+<h3 id="background-tasks">Background tasks<a class="headerlink" href="#background-tasks" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Service</strong> tracks analytics of pages<ul>
+<li>Monthly visit stats</li>
+</ul>
+</li>
+<li><strong>Service</strong> deletes expired pastes</li>
+</ul>
+<h3 id="non-functional-requirements">Non functional requirements<a class="headerlink" href="#non-functional-requirements" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Service</strong> has high availability</li>
+</ul>
+<h3 id="out-of-scope">Out of scope<a class="headerlink" href="#out-of-scope" title="Permanent link">&para;</a></h3>
+<ul>
+<li>All authenticated users features</li>
+<li>Any other requirements</li>
+</ul>
+<h3 id="other-considerations-we-need-to-think-about-later-on">Other considerations we need to think about (Later on)<a class="headerlink" href="#other-considerations-we-need-to-think-about-later-on" title="Permanent link">&para;</a></h3>
+<ul>
+<li>System Quality Attributes (Reliability, Scalability, Security &amp; Privacy, Operational Aspects, etc.)</li>
+<li>System life cycle (Deployment, Monitoring, Logging, Automation, CI/CD, etc.)</li>
+</ul>
+</blockquote>
+<p>Does it look good?  Did I miss anything? Any thing else we should cover at this stage?</p>
+<p><strong>Interviewer</strong>: Yes, it looks good.</p>
+<p>We will use this structure later on to create the high level design. However at this stage our focus is in making sure we understand the problem and the scope and get the interviewer's approval for how we define the problem.
+Another goal is to verify that we have all the details we need to start the high level design. We want the high level be a straight forward step that is driven from the requirements (more on this in the next section).</p>
+<h2 id="phase-2-propose-a-high-level-design-get-buy-in">Phase 2: Propose a High-Level Design &amp; Get Buy-In<a class="headerlink" href="#phase-2-propose-a-high-level-design-get-buy-in" title="Permanent link">&para;</a></h2>
+<h3 id="interviewers-goal_1">🎯 Interviewer's Goal<a class="headerlink" href="#interviewers-goal_1" title="Permanent link">&para;</a></h3>
+<p><strong>Assess High-Level Thinking and Tradeoff Awareness</strong>
+In this phase, the interviewer wants to see how you break a system into logical components, understand their relationships, and think in terms of scalability, availability, performance, and trade-offs.</p>
+<h3 id="candidates-strategy_1">🛠️ Candidate's Strategy<a class="headerlink" href="#candidates-strategy_1" title="Permanent link">&para;</a></h3>
+<p>We know the problem and the scope, we already approved the scope, use cases, background tasks and other non functional now we need to write the high level design.
+So we need to 
+- Break the system into logical components, 
+- understand their relationships, </p>
+<p>While doing the above we need to think about the design considerations such as maintainability, scalability, availability, performance, security, privacy, and trade-offs. However dealing with all of them in one shot is not realistic and actually will work against you, since we already agreed that the interview is about the process not the final solution.</p>
+<p>So we need a process that will help us to cover the design considerations step by step.
+In the interview we can't cover everything in great details, and some of the steps might be overkill for you or for the interviewer - so we need to suggest the next step to the interviewer and align with the interviewer expectations.</p>
+<h4 id="how-to-create-the-high-level-design">How to create the high level design<a class="headerlink" href="#how-to-create-the-high-level-design" title="Permanent link">&para;</a></h4>
+<p>While breaking down the design problem we can look at three different aspects:</p>
+<ol>
+<li>Who (which component) does this sub activity? </li>
+<li>When does this activity happen?</li>
+<li>What are the relationships with other components? </li>
+</ol>
+<p>Answering the above questions will help us to break the problem into sub problems. 
+A good way to start is to translate the use cases into sequence diagrams. In the sequence diagram we can see the components that take part in the use case end to end and the interactions between them and while doing that we can uncover additional functionality (components?) that we need to add to the design.</p>
+<h5 id="optional-use-cases-sequence-diagram">Optional: use cases  --&gt; Sequence diagram<a class="headerlink" href="#optional-use-cases-sequence-diagram" title="Permanent link">&para;</a></h5>
+<p>Our final goal is to describe the components that take part in our system. 
+Depending on the use case, it might be straightforward to write all the components or might need some extra step to uncover.
+Making the extra step is a good way to demonstrate the process and the components, and will give you a structured way to define the components. </p>
+<p>Use case is an <strong>interaction</strong> between an actor and system, so let's draw the interaction with sequence diagram.</p>
+<h5 id="important-actually-we-can-use-mermaid-to-draw-the-sequence-diagram-maybe-even-in-the-interview-room">Important: Actually we can use mermaid to draw the sequence diagram, maybe even in the interview room.<a class="headerlink" href="#important-actually-we-can-use-mermaid-to-draw-the-sequence-diagram-maybe-even-in-the-interview-room" title="Permanent link">&para;</a></h5>
+<blockquote>
+<p>Using mermaid we focus on what we want to draw and avoid wasting time on the editor.
+So take a look at the source of the drawing below as well as the rendered result
+In addition AI autocomplete can help us to draw the diagram. (ask in advance if this is valid in the interview room)</p>
+</blockquote>
+<p>We will start with standard entities we find in every web design.
+User, Client (Frontend, Browser, Mobile App), Web Server,  API (Backend), Database.</p>
+<p>Use cases:
+1. User creates a paste and gets a link to share.
+2. User accesses a paste using the link.</p>
+<pre class="mermaid"><code>sequenceDiagram
+    User-&gt;&gt;Client: paste text
+    Client-&gt;&gt;Web Server: POST /paste
+    Web Server-&gt;&gt;API: POST /paste
+    API-&gt;&gt;API: generate a url
+    API-&gt;&gt;Database: Write paste content
+    Database--&gt;&gt;API: Return a reference
+    API--&gt;&gt;Database: Write (url, content_id) 
+    API--&gt;&gt;Web Server: Return a link
+    Web Server--&gt;&gt;Client: Return a link
+    Client-&gt;&gt;User: show the link
+
+    User-&gt;&gt;Client: GET /url
+    Client-&gt;&gt;Web Server: GET /url
+    Web Server-&gt;&gt;API: GET /url
+    API-&gt;&gt;Database: Read url
+    Database--&gt;&gt;API: Return content_id
+    API-&gt;&gt;Database: Read content_id
+    Database--&gt;&gt;API: Return the paste
+    API--&gt;&gt;Web Server: Return the paste
+    Web Server--&gt;&gt;Client: Return the paste
+    Client-&gt;&gt;User: show the paste</code></pre>
+<p>Now let's add the background tasks</p>
+<h4 id="background-tasks_1">Background tasks<a class="headerlink" href="#background-tasks_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Service</strong> tracks analytics of pages<ul>
+<li>Monthly visit stats</li>
+</ul>
+</li>
+<li><strong>Service</strong> deletes expired pastes</li>
+</ul>
+<pre class="mermaid"><code>sequenceDiagram
+    Service-&gt;&gt;Database: Query expired pastes
+    Database--&gt;&gt;Service: Return expired pastes
+    Service-&gt;&gt;Database: Delete expired pastes
+    Database--&gt;&gt;Service: Return status
+    Service-&gt;&gt;Database: Query monthly stats
+    Database--&gt;&gt;Service: Return monthly stats
+    Service-&gt;&gt;Database: Write monthly stats
+    Database--&gt;&gt;Service: Return written monthly stats
+</code></pre>
+<p>Ok, we draw our draft thoughts on the sequence diagram.
+While we draw it we had to refine our understanding about the use case. 
+The use case already defined that the system create url for the paste, but <strong>Who</strong> is responsible for creating the url?
+While writing our thoughts it became clear that the url creation is a functionality we need to assign to a component, so we did it.
+What if we are wrong?  should it be a separate component?<br />
+Those are good questions that you should ask yourself during the drawing process. You should narrate your thoughts and explain your reasoning, or even say I am drawing the first thing that pop up in my mind, maybe I need to revisit it. Remember to ask the interviewer for feedback.</p>
+<blockquote>
+<p>Remember the solution is not what we are after, it is the the process of getting to a reasonable solution.</p>
+</blockquote>
+<p>So we wrote a draft for the flow of the use case.
+Reflecting on the sequence diagram and  the requirements we can see that we can gain the following insights:</p>
+<ul>
+<li>We have 2 different types of data we write to the database:<ul>
+<li>paste content (might be large content)</li>
+<li>url and content id (metadata that is used for read)
+those are 2 different data artifacts that we need to store in the database, with different size and access patterns.</li>
+</ul>
+</li>
+<li>We need to add and update the metadata for the expiration.
+  e.g. replace </li>
+<li>API--&gt;&gt;Database: Write (url, content_id) 
+  with</li>
+<li>API--&gt;&gt;Database: Write (url, content_id, creation_time) </li>
+<li>We need to update the stats for read and write </li>
+<li>We need someone to aggregate the raw read/write into user stats </li>
+<li>Although queuing is done in the background, we need to consider the latency and throughput of the queue.</li>
+<li>Read to write ratio is 1:10, but in our draft they are in the same component.</li>
+</ul>
+<p>All the above are missing from the sequence diagram, so it is a good time to get the interviewer's feedback on the next step.
+Fixing the sequence diagram to include the above is probably not we want to do, since we want to focus on the high level design.
+But we can suggest high level ideas and ask the interviewer for feedback.</p>
+<p>We can store the different artifacts in different components. The content can be stored in object store that can hold big chunks, and the (url, reference) pairs can be stored in SQL DB.
+We can add Analytics service that will aggregate the raw read/write into user stats.
+Analytics is required for many web sites, so there are open source tools like prometheus and grafana that can be used to handle it.</p>
+<p>In addition we can have different components for read and write api, since in our requirements we can see that read to write has 1:10 ratio. So separating them will enable to scale them independently.</p>
+<blockquote>
+<p>Never heard of prometheus and grafana? 
+No problem, we will cover tools and common components later on.
+For now let's focus on the high level design process.</p>
+</blockquote>
+<h3 id="phase-two-abc-propose-a-high-level-design">🧭 Phase two ABC - Propose a high-level design<a class="headerlink" href="#phase-two-abc-propose-a-high-level-design" title="Permanent link">&para;</a></h3>
+<ul>
+<li><em>Artifacts</em> - "What are the core data models, read and write operations?"</li>
+<li><em>Bursting</em> - "What is processed in synchronic mode and what is processed in the background? How do we handle the bursty nature of the traffic?"</li>
+<li><em>Capacity</em> - "How do we scale the system? What are the bottlenecks? What are the trade-offs?"</li>
+</ul>
+<h4 id="block-diagram">Block diagram<a class="headerlink" href="#block-diagram" title="Permanent link">&para;</a></h4>
+<p>Usually high level design is represented with a block diagram.
+We already uncovered the main components and their interactions (either with sequence diagram or in our mind).
+Now before we draw it, let's think on the design considerations. </p>
+<p>Here are the design considerations we need to think about:</p>
+<ol>
+<li>Identify the <strong>core read and write operations</strong></li>
+<li>Establish <strong>data processing/preparation</strong> workflows</li>
+<li>Understand <strong>timing</strong> (sync/async, triggered vs. scheduled)</li>
+<li>Propose a <strong>high-level architecture</strong> (building blocks + interactions)</li>
+<li>Evaluate <strong>trade-offs and constraints</strong> and Alternative Approaches</li>
+<li>Optimize for Latency and availability</li>
+</ol>
+<p>Reflecting on the above we can suggest:
+- We will have object store to store the content.
+- We will have SQL DB to store the url and content id pairs.
+- We will have Analytics service to aggregate the raw read/write into user stats.
+- We will have have a different component for read api and write api.</p>
+<p>Here is the block diagram:
+<pre class="mermaid"><code>%%{init: { "flowchart": { "htmlLabels": true } }}%%
+
+flowchart TB
+  %% Client Layer
+  subgraph Client["**Client**"]
+    direction TB
+    WebClient[Web Client]
+    MobileClient[Mobile Client]
+  end
+
+  %% Web Server Layer
+  subgraph WebServer["**Web Server - (Reverse Proxy)**"]
+    direction LR
+    WriteAPI[Write API]
+    ReadAPI[Read API]
+    Analytics[Analytics]
+  end
+
+  %% Storage Layer
+  subgraph Storage["**Storage**"]
+    direction LR
+    SQLDB[(SQL Database)]
+    ObjectStore[(Object Store)]
+  end
+
+  %% Data Flow
+  Client --&gt; WebServer
+
+
+  WriteAPI --&gt; SQLDB
+  WriteAPI --&gt; ObjectStore
+  ReadAPI --&gt; SQLDB
+  ReadAPI --&gt; ObjectStore
+  Analytics --&gt; SQLDB
+  Analytics --&gt; ObjectStore
+
+  %% Styling Nodes
+  style WebClient fill:#FFCCCC,stroke:#CC0000,stroke-width:2px,rx:6,ry:6
+  style MobileClient fill:#FFD580,stroke:#AA6600,stroke-width:2px,rx:6,ry:6
+  style WriteAPI fill:#CCE5FF,stroke:#004085,stroke-width:2px,rx:6,ry:6
+  style ReadAPI fill:#CCE5FF,stroke:#004085,stroke-width:2px,rx:6,ry:6
+  style Analytics fill:#D4EDDA,stroke:#155724,stroke-width:2px,rx:6,ry:6
+  style SQLDB fill:#E2E3E5,stroke:#6C757D,stroke-width:2px,rx:6,ry:6
+  style ObjectStore fill:#E2E3E5,stroke:#6C757D,stroke-width:2px,rx:6,ry:6
+</code></pre></p>
+<h3 id="get-buy-in">Get buy-in<a class="headerlink" href="#get-buy-in" title="Permanent link">&para;</a></h3>
+<p>Ok, we have the block diagram, now we need to get the interviewer's buy-in.</p>
+<p>Here’s an improved and clearer version of your paragraph, preserving all the original ideas while tightening structure, fixing grammar, and improving flow and clarity:</p>
+<hr />
+<h3 id="phase-25-after-gaining-buy-in-and-before-the-deep-dive">Phase 2.5: After Gaining Buy-In and Before the Deep Dive<a class="headerlink" href="#phase-25-after-gaining-buy-in-and-before-the-deep-dive" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>This phase is not part of Alex Xu’s original framework but has been added to emphasize a crucial <strong>pivot</strong> point in the interview process — the transition from high-level design to a deep dive.</p>
+</blockquote>
+<h3 id="interviewers-goal-decide-whats-next">🎯 Interviewer’s Goal: <strong>Decide What’s Next</strong><a class="headerlink" href="#interviewers-goal-decide-whats-next" title="Permanent link">&para;</a></h3>
+<p>A successful system design interview balances <strong>depth and breadth</strong> — it’s not just about diving into specific components but also about demonstrating a strong <strong>system-level perspective</strong>. After you’ve presented your high-level design, the interviewer will assess the next step:
+Should they ask for a deep dive into one component, or pivot to a different topic that aligns with their interests?</p>
+<h3 id="candidates-strategy-steer-the-conversation-strategically">✅ Candidate’s Strategy: <strong>Steer the Conversation Strategically</strong><a class="headerlink" href="#candidates-strategy-steer-the-conversation-strategically" title="Permanent link">&para;</a></h3>
+<p>The high-level diagram is a helpful artifact, but it’s <strong>not the core of this phase</strong>. What matters more is how you use it to demonstrate your ability to reason through trade-offs, highlight design alternatives, and surface issues that matter in real-world systems.</p>
+<p>This is a great opportunity to identify and propose discussion topics based on what emerged during the high-level design conversation. You’ll often touch on trade-offs, edge cases, or architectural decisions — areas where you can show structured thinking.</p>
+<p>In fact, many interviewers care more about these broader conversations than digging into low-level details like code structure, REST endpoints, or database schemas. If you’re stronger in some areas than others, <strong>proactively suggest topics</strong> where you can shine — especially if they match themes raised by the interviewer.</p>
+<p>This is what <strong>Phase 2.5</strong> is here to remind you: once you’ve earned buy-in on your high-level plan, <strong>don’t passively wait</strong> for the interviewer to decide — suggest one or more next steps that align with your strengths and keep the momentum going.</p>
+<p>You might offer to explore topics like:</p>
+<ul>
+<li><strong>Scalability</strong> – e.g., introducing caching layers, load balancers, or reverse proxies</li>
+<li><strong>Reliability</strong> – e.g., adding monitoring, logging, retries, or backups</li>
+<li><strong>Security</strong> – e.g., applying authentication, authorization, or encryption</li>
+<li><strong>Efficiency</strong> – e.g., using indexing, compression, or data deduplication</li>
+</ul>
+<p>These are <strong>common areas of discussion</strong> that apply to many designs. Mastering them means you can confidently propose them during this transitional moment.</p>
+<h2 id="phase-3-deep-dive-into-key-components">Phase 3: Deep Dive into Key Components<a class="headerlink" href="#phase-3-deep-dive-into-key-components" title="Permanent link">&para;</a></h2>
+<h3 id="interviewers-goal_2">🎯  Interviewer's Goal<a class="headerlink" href="#interviewers-goal_2" title="Permanent link">&para;</a></h3>
+<p><strong>Test Technical Depth and Practical Decision-Making</strong>
+Interviewer looks for how well you understand core components (e.g., databases, queues, caching) and whether you can explain and defend choices under pressure.</p>
+<h3 id="candidates-strategy_2">✅ Candidate's Strategy<a class="headerlink" href="#candidates-strategy_2" title="Permanent link">&para;</a></h3>
+<p>Suggest the topics you are more confident about.
+Use common patterns and solutions you know.
+Understand the exceptions - should you write code? What questions to answer in the deep dive?</p>
+<h3 id="abc-process-for-phase-3">🧭 ABC Process for Phase 3<a class="headerlink" href="#abc-process-for-phase-3" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>A</strong>lign your strengths with interview exceptions </li>
+<li><strong>Broadcast</strong> your thoughts augmented with your knowledge, and questions</li>
+<li><strong>Confirm</strong> you cover the expectations and get buy-in</li>
+</ul>
+<p>In the study guide we are focusing on the framework and the process, so we won't dive into the details of the design we proposed in the previous phase.</p>
+<p>2 important notes:
+- You should try to influence this phase to cover the topics you are more confident about.
+- You should know enough patterns of solutions <a href="to_add_later#sometime">TBA</a> that will help you to navigate through deep dive of questions you never saw (or those you forgot...).</p>
+<h1 id="phase-4-wrap-up">Phase 4: Wrap Up<a class="headerlink" href="#phase-4-wrap-up" title="Permanent link">&para;</a></h1>
+<h3 id="interviewers-goal_3">🎯  Interviewer's Goal<a class="headerlink" href="#interviewers-goal_3" title="Permanent link">&para;</a></h3>
+<p><strong>Get final observations and revisit some aspects</strong>
+You are at the end of the interview, the interviewer will try to get final observations and revisit some aspects to complete the picture.</p>
+<h3 id="candidates-strategy_3">✅ Candidate's Strategy<a class="headerlink" href="#candidates-strategy_3" title="Permanent link">&para;</a></h3>
+<p>Opertunity to frame the solution and repeat important points.
+Last chance to improve on things you underperformed in the interview.</p>
+<h3 id="abc-process-for-phase-4">🧭 ABC Process for Phase 4<a class="headerlink" href="#abc-process-for-phase-4" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>A</strong>sk for Gaps: “Are there any parts you'd like to revisit?”</li>
+<li><strong>B</strong>rief Recap: “Here's what we covered: scope, design, deep dive, and trade-offs.”</li>
+<li><strong>C</strong>hance: “Given more time, I'd add X, Y, Z or improve metrics and failover strategies. </li>
+</ul>
+<hr />
+<h2 id="gap-assessment">Gap Assessment<a class="headerlink" href="#gap-assessment" title="Permanent link">&para;</a></h2>
+<p>There are <strong>two distinct goals</strong> you need to master in parallel:</p>
+<ul>
+<li><strong>System design interview performance</strong></li>
+<li><strong>System design knowledge and understanding</strong></li>
+</ul>
+<p>These are not the same — and confusing them is a common mistake.
+Interview performance is about being able to structure your thinking, communicate clearly, and demonstrate practical reasoning <strong>under time pressure and with limited context</strong>.
+System design knowledge, on the other hand, is about deeply understanding distributed systems, architectural trade-offs, and design patterns that apply across real-world scenarios.</p>
+<p>You need <strong>both</strong>: one is about <strong>knowing</strong>, the other is about <strong>showing</strong> — or more precisely, <strong>communicating and packaging your thinking effectively</strong> for the interview format and the interviewer's expectations.</p>
+<h3 id="system-design-interview-practice">System design interview practice<a class="headerlink" href="#system-design-interview-practice" title="Permanent link">&para;</a></h3>
+<p>The best way to assess your gap is to jump over and practice solved examples.</p>
+<p>In the future we will add interactive tools to aid you.
+For the time being you can read the assignment, then write the 4 phases answer and walk your way through a solved example and map gaps.
+Do not read the solution, try to solve it on your own. It is better to solve 10 questions on your own than to read 100 solved questions.</p>
+<h3 id="system-design-knowledge">System design knowledge<a class="headerlink" href="#system-design-knowledge" title="Permanent link">&para;</a></h3>
+<p>Review the topics in the repo and learn them.</p>
+<p>The original repo had Anki cards to help you practice.
+We will add a more modern tools later on.</p>
+<p>For now use read the main README.md and practice the Anki cards to memorize the topics and common questions.
+list of topics that are covered in the book.</p>
+<p>Try to test your memory about the system design guides.</p>
+<h2 id="refresh-your-knowledge">Refresh Your knowledge<a class="headerlink" href="#refresh-your-knowledge" title="Permanent link">&para;</a></h2>
+<p>After mapping your gaps prioritize your learning and learn and practice. 
+Learn / Refresh your knowledge by reading the system design topics and practice by solving the interview questions.</p>
+<blockquote>
+<p>Comment: We are working on a tools to help you with this.</p>
+</blockquote>
+<h1 id="personal-learning-plan">Personal Learning Plan<a class="headerlink" href="#personal-learning-plan" title="Permanent link">&para;</a></h1>
+<p>Build your own learning plan based on your timeline, strengths and experience.
+Here is a sample plan, you can use it as a template to build your own plan.</p>
+<p>Let's us know if it worked for you or if you think we can improve it.</p>
+<h3 id="system-design-interview">System design interview<a class="headerlink" href="#system-design-interview" title="Permanent link">&para;</a></h3>
+<h3 id="timeline-matters">Timeline matters<a class="headerlink" href="#timeline-matters" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Short timeline</strong> - <strong>Understand</strong> the process and the framework. <strong>Search</strong> for typical questions in the company you addressing. Solve solved questions. <strong>Practice</strong> the company's typical questions.</li>
+<li><strong>Medium timeline</strong> - Search <strong>more</strong> about the company. Solve <strong>more</strong> questions.</li>
+<li><strong>Long timeline</strong> - Practice, practice and practice.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Short</th>
+<th>Medium</th>
+<th>Long</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Start with this document, <a href="#study-guide">Study Guide</a></td>
+<td><img alt="👍" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/1f44d.png" title=":+1:" /></td>
+<td><img alt="👍" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/1f44d.png" title=":+1:" /></td>
+<td><img alt="👍" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/1f44d.png" title=":+1:" /></td>
+</tr>
+<tr>
+<td><strong>Learn about the company you addressing</strong>, search for tips and resources about their interview questions and process</td>
+<td><img alt="👍" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/1f44d.png" title=":+1:" /></td>
+<td><img alt="👍" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/1f44d.png" title=":+1:" /></td>
+<td><img alt="👍" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/1f44d.png" title=":+1:" /></td>
+</tr>
+<tr>
+<td>Work through <a href="#system-design-interview-questions-with-solutions">System design interview questions with solutions</a> read a question, try to solve it on your own, then find your gaps from the solution</td>
+<td>Few times</td>
+<td>More times</td>
+<td>Know by heart</td>
+</tr>
+<tr>
+<td>Once you see that you missed something in your solution jump over to the <a href="index.html#index-of-system-design-topics">System design topics</a> and refresh your knowledge</td>
+<td>Few times</td>
+<td>More times</td>
+<td>Know by heart</td>
+</tr>
+</tbody>
+</table>
+<h3 id="system-design-knowledge_1">System design knowledge<a class="headerlink" href="#system-design-knowledge_1" title="Permanent link">&para;</a></h3>
+<h3 id="timeline-matters_1">Timeline matters<a class="headerlink" href="#timeline-matters_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Short timeline</strong> - Aim for <strong>breadth</strong> with system design topics.  Practice by solving <strong>some</strong> interview questions.</li>
+<li><strong>Medium timeline</strong> - Aim for <strong>breadth</strong> and <strong>some depth</strong> with system design topics.  Practice by solving <strong>many</strong> interview questions.</li>
+<li><strong>Long timeline</strong> - Aim for <strong>breadth</strong> and <strong>more depth</strong> with system design topics.  Practice by solving <strong>most</strong> interview questions.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Short</th>
+<th>Medium</th>
+<th>Long</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Start with this document, <a href="#study-guide">Study Guide</a></td>
+<td><img alt="👍" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/1f44d.png" title=":+1:" /></td>
+<td><img alt="👍" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/1f44d.png" title=":+1:" /></td>
+<td><img alt="👍" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/1f44d.png" title=":+1:" /></td>
+</tr>
+<tr>
+<td>Do a first pass on <a href="index.html#index-of-system-design-topics">System design topics</a> to get a broad understanding of how systems work</td>
+<td><img alt="👍" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/1f44d.png" title=":+1:" /></td>
+<td><img alt="👍" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/1f44d.png" title=":+1:" /></td>
+<td><img alt="👍" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/1f44d.png" title=":+1:" /></td>
+</tr>
+<tr>
+<td>Work through <a href="#system-design-interview-questions-with-solutions">System design interview questions with solutions</a> read a question, try to solve it on your own, then find your gaps from the solution</td>
+<td>Few times</td>
+<td>More times</td>
+<td>Know by heart</td>
+</tr>
+<tr>
+<td>Once mastered all the solutions in <a href="#system-design-interview-questions-with-solutions">System design interview questions with solutions</a> and you still have energy or time left, Go to other resources</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Other resources </p>
+<ul>
+<li>Review other books and guides and resources in the web - See <a href="#resources">Resources</a></li>
+<li>Read through a few articles in the <a href="16_real_world_architectures.md#company-engineering-blogs">Company engineering blogs</a> for the companies you are interviewing with</li>
+<li>Read through a few <a href="16_real_world_architectures.md#real-world-architectures">Real world architectures</a> </li>
+</ul>
+<hr />
+<h1 id="learning-loop">Learning Loop<a class="headerlink" href="#learning-loop" title="Permanent link">&para;</a></h1>
+<p>Time to practice. </p>
+<h3 id="repetition-is-the-mother-of-all-skills">Repetition is the mother of all skills<a class="headerlink" href="#repetition-is-the-mother-of-all-skills" title="Permanent link">&para;</a></h3>
+<hr />
+<h1 id="faq">FAQ<a class="headerlink" href="#faq" title="Permanent link">&para;</a></h1>
+<p><strong>Q: For interviews, do I need to know everything here?</strong></p>
+<p><strong>A: No, you don't need to know everything here to prepare for the interview</strong>.</p>
+<p>What you are asked in an interview depends on variables such as:</p>
+<ul>
+<li>How much experience you have</li>
+<li>What your technical background is</li>
+<li>What positions you are interviewing for</li>
+<li>Which companies you are interviewing with</li>
+<li>Luck</li>
+</ul>
+<p>More experienced candidates are generally expected to know more about system design.  Architects or team leads might be expected to know more than individual contributors.  Top tech companies are likely to have one or more design interview rounds.</p>
+<p>Start broad and go deeper in a few areas.  It helps to know a little about various key system design topics.  Adjust the following guide based on your timeline, experience, what positions you are interviewing for, and which companies you are interviewing with.</p>
+<h3 id="sources-and-further-reading">Source(s) and further reading<a class="headerlink" href="#sources-and-further-reading" title="Permanent link">&para;</a></h3>
+<p>Check out the following links to get a better idea of what to expect:</p>
+<h3 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Alex Xu</strong>, book, <em>System Design Interview - An Insider's Guide</em>, Second Edition, 2020.</li>
+<li><strong>GeeksforGeeks</strong>, <a href="https://www.geeksforgeeks.org/common-mistakes-to-avoid-in-a-system-design-interview/">"Common Mistakes to Avoid in a System Design Interview"</a>.</li>
+<li><strong>Exponent</strong>, <a href="https://www.youtube.com/watch?v=z_YuqLmGZuo&amp;ab_channel=GauravSen">"Five common system design interview mistakes 😅"</a>.</li>
+</ol>
+<p>More (original repo) resources:</p>
+<ul>
+<li><a href="https://www.palantir.com/2011/10/how-to-rock-a-systems-design-interview/">How to ace a systems design interview</a></li>
+<li><a href="http://www.hiredintech.com/system-design">The system design interview</a></li>
+<li><a href="https://www.youtube.com/watch?v=ZgdS0EUmn70">Intro to Architecture and Systems Design Interviews</a></li>
+<li><a href="https://leetcode.com/discuss/career/229177/My-System-Design-Template">System design template</a></li>
+</ul>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="May 20, 2025 09:05:17">May 20, 2025</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Created">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="May 20, 2025 09:05:17">May 20, 2025</span>
+  </span>
+
+    
+    
+    
+      
+  <span class="md-source-file__fact">
+    
+      
+  <span class="md-icon" title="Contributors">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2"/></svg>
+  </span>
+  <span>GitHub</span>
+
+    
+    <nav>
+      
+        <a href="https://github.com/ido777" class="md-author" title="@ido777">
+          
+          <img src="https://avatars.githubusercontent.com/u/6554277?v=4&size=72" alt="ido777">
+        </a>
+      
+      
+      
+    </nav>
+  </span>
+
+    
+  </aside>
+
+
+  
+
+
+
+
+  <h2 id="__comments">Comments</h2>
+  <!-- Insert generated snippet here -->
+  <div id="comments" class="md-content">
+    <!-- Giscus widget -->
+    <div class="giscus-frame"></div>
+    <script
+      src="js/client-debug.js"
+      data-repo="ido777/system-design-primer-update"
+      data-repo-id="R_kgDOORdCfw"
+      data-category="Feedback by Page"
+      data-category-id="DIC_kwDOORdCf84CqLEY"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="bottom"
+      data-theme="light"
+      data-lang="en"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async>
+    </script>
+  </div>
+  <!-- Synchronize Giscus theme with palette -->
+  <script>
+    var giscus = document.querySelector("script[src*=giscus]")
+
+    // Set palette on initial load
+    var palette = __md_get("__palette")
+    if (palette && typeof palette.color === "object") {
+      var theme = palette.color.scheme === "slate"
+        ? "transparent_dark"
+        : "light"
+
+      // Instruct Giscus to set theme
+      giscus.setAttribute("data-theme", theme) 
+    }
+
+    // Register event handlers after documented loaded
+    document.addEventListener("DOMContentLoaded", function() {
+      var ref = document.querySelector("[data-md-component=palette]")
+      ref.addEventListener("change", function() {
+        var palette = __md_get("__palette")
+        if (palette && typeof palette.color === "object") {
+          var theme = palette.color.scheme === "slate"
+            ? "transparent_dark"
+            : "light"
+
+          // Instruct Giscus to change theme
+          var frame = document.querySelector(".giscus-frame")
+          frame.contentWindow.postMessage(
+            { giscus: { setConfig: { theme } } },
+            "https://giscus.app"
+          )
+        }
+      })
+    })
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="index.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Home">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Home
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="practice.html" class="md-footer__link md-footer__link--next" aria-label="Next: System Design Interview Questions">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                System Design Interview Questions
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "navigation.path", "content.code.annotate", "content.tabs.link", "search.highlight", "search.suggest", "toc.follow"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="../javascripts/client-debug.js"></script>
+      
+        <script src="../javascripts/giscus-debug.js"></script>
+      
+    
+  </body>
+</html>

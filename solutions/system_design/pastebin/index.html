@@ -1,0 +1,2903 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://ido777.github.io/system-design-primer-update/en/study_guide/solutions/system_design/pastebin/index.html">
+      
+      
+        <link rel="prev" href="../../../en/design-glance.html">
+      
+      
+        <link rel="next" href="../query_cache/index.html">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Pastebin - System Design Primer Update</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+        <script src="https://unpkg.com/iframe-worker/shim"></script>
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/default.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","UA-210436000-1"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","UA-210436000-1",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=UA-210436000-1",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#design-text-snippet-sharer-eg-github-gist-pastebincom" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="System Design Primer Update" class="md-header__button md-logo" aria-label="System Design Primer Update" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            System Design Primer Update
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Pastebin
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ido777/system-design-primer-update" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ido777/system-design-primer-update
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../en/index.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../about.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  About
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../CONTRIBUTING.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Contributing
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../LICENSE.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  License
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../CHANGELOG.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Changelog
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../en/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  English
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../zh/design-glance.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Translations (Not up to date)
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="System Design Primer Update" class="md-nav__button md-logo" aria-label="System Design Primer Update" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    System Design Primer Update
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ido777/system-design-primer-update" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ido777/system-design-primer-update
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../en/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CONTRIBUTING.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Contributing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../LICENSE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    License
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CHANGELOG.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Changelog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../en/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    English
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            English
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../en/study_guide.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Study Guide Start Here
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../en/practice.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    System Design Interview Questions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../en/design-glance.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    System Design at a Glance
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="index.html" class="md-nav__link md-nav__link--active">
+              
+  
+  
+  <span class="md-ellipsis">
+    System Design Solutions
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link md-nav__link--active" for="__nav_6_5" id="__nav_6_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6_5">
+            <span class="md-nav__icon md-icon"></span>
+            System Design Solutions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../query_cache/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Query Cache
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mint/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Mint
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sales_rank/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sales Rank
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../url_shortener/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    URL Shortener
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../web_crawler/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Web Crawler
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scaling_aws/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Scaling AWS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../social_graph/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Social Graph
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../twitter/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Twitter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../object_oriented_design/movie_tickets/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Object-Oriented Design Solutions
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6_6" id="__nav_6_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_6">
+            <span class="md-nav__icon md-icon"></span>
+            Object-Oriented Design Solutions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../object_oriented_design/call_center/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Call Center
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../object_oriented_design/circular_array/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Circular Array
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../object_oriented_design/deck_of_cards/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deck of Cards
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../object_oriented_design/hash_table/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Hash Table
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../object_oriented_design/lru_cache/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    LRU Cache
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../object_oriented_design/online_chat/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Online Chat
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../object_oriented_design/parking_lot/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Parking Lot
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Translations (Not up to date)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Translations (Not up to date)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_1" id="__nav_7_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    简体中文 (Simplified Chinese)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_1">
+            <span class="md-nav__icon md-icon"></span>
+            简体中文 (Simplified Chinese)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../zh/design-glance.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    简体中文主页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    繁體中文 (Traditional Chinese)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            繁體中文 (Traditional Chinese)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../zh-Hant/design-glance.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    繁體中文首頁
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    العربية (Arabic)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            العربية (Arabic)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ar/design-glance.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    الصفحة الرئيسية
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    日本語 (Japanese)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            日本語 (Japanese)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ja/design-glance.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    日本語のホーム
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_5" id="__nav_7_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Türkçe (Turkish)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_5">
+            <span class="md-nav__icon md-icon"></span>
+            Türkçe (Turkish)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tr/design-glance.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Türkçe Anasayfa
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pastebincom-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      📝 Pastebin.com Overview
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📝 Pastebin.com Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Features:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ideal-use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ideal Use Cases:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-investigate-the-problem-use-cases-and-constraints-and-establish-design-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Investigate the problem, use cases and constraints and establish design scope
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 1: Investigate the problem, use cases and constraints and establish design scope">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-questions-should-you-ask-to-clarify-the-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      What questions should you ask to clarify the problem?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-dialogue-pastebin" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔍 Example Dialogue (Pastebin)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-breakdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔍 Example Breakdown
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use cases
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#background-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Background tasks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#non-functional-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Non functional requirements
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#out-of-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      Out of scope
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-considerations-we-need-to-think-about-later-on" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other considerations we need to think about (Later on)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-cases_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use cases
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Use cases">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#well-scope-the-problem-to-handle-only-the-following-use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      We'll scope the problem to handle only the following use cases
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#out-of-scope_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Out of scope
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constraints-and-assumptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constraints and assumptions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Constraints and assumptions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#state-assumptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      State assumptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#calculate-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Calculate usage
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-create-a-high-level-design-get-buy-in" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Create a high level design &amp; Get buy-in
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 2: Create a high level design &amp; Get buy-in">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-buy-in" class="md-nav__link">
+    <span class="md-ellipsis">
+      Get buy-in
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-design-core-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Design core components
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 3: Design core components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#use-case-user-enters-a-block-of-text-and-gets-a-randomly-generated-link" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use case: User enters a block of text and gets a randomly generated link
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Use case: User enters a block of text and gets a randomly generated link">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rest-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      REST API
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="REST API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#write-api-create-a-paste" class="md-nav__link">
+    <span class="md-ellipsis">
+      Write API - Create a paste
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-case-user-enters-a-pastes-url-and-views-the-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use case: User enters a paste's url and views the contents
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Use case: User enters a paste&#39;s url and views the contents">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rest-api_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      REST API
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="REST API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#read-api-get-a-paste" class="md-nav__link">
+    <span class="md-ellipsis">
+      Read API - Get a paste
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-case-service-tracks-analytics-of-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use case: Service tracks analytics of pages
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Use case: Service tracks analytics of pages">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-of-mapreduce-concept" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example of MapReduce Concept
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modern-mapreduce-today-looks-like" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modern "MapReduce" today looks like:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-case-service-deletes-expired-pastes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use case: Service deletes expired pastes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tradeoffs-and-scaling-the-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tradeoffs and Scaling the design
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-wrap-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4 Wrap up
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-talking-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      Additional talking points
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Additional talking points">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nosql" class="md-nav__link">
+    <span class="md-ellipsis">
+      NoSQL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      Caching
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asynchronism-and-microservices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Asynchronism and microservices
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#communications" class="md-nav__link">
+    <span class="md-ellipsis">
+      Communications
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latency-numbers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Latency numbers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ongoing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ongoing
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="design-text-snippet-sharer-eg-github-gist-pastebincom">Design Text snippet sharer (e.g. GitHub Gist, Pastebin.com)<a class="headerlink" href="#design-text-snippet-sharer-eg-github-gist-pastebincom" title="Permanent link">&para;</a></h1>
+<p><em>Note: This document links directly to relevant areas found in the <a href="https://github.com/ido777/system-design-primer-update.git#index-of-system-design-topics">system design topics</a> to avoid duplication.  Refer to the linked content for general talking points, tradeoffs, and alternatives.</em></p>
+<p>In this exercise, we'll design a text snippet sharer, e.g. GitHub Gist, Pastebin.com.
+We will focus only on the core functionality.</p>
+<p><a href="../url_shortener/index.html">Design A URL shortener</a>  - e.g. <a href="https://tinyurl.com/">TinyURL</a>, <a href="https://bit.ly/">bit.ly</a> is a related question, since pastebin requires storing the paste contents instead of the original unshortened url. However, the URL shortener question is more focused on the shortlink generation and redirection, while the pastebin question is more focused on the storage and retrieval of the paste contents.</p>
+<h2 id="pastebincom-overview">📝 Pastebin.com Overview<a class="headerlink" href="#pastebincom-overview" title="Permanent link">&para;</a></h2>
+<p><strong>Pastebin</strong> is a straightforward web-based tool designed for quickly sharing plain text or code snippets.</p>
+<h3 id="key-features">Key Features:<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>User Access</strong>: Allows anonymous pastes; registration enables management of pastes.</li>
+<li><strong>Paste Visibility</strong>: Options include public, unlisted, and private pastes.</li>
+<li><strong>Expiration Settings</strong>: Set pastes to expire after a specific time or view count.</li>
+<li><strong>Syntax Highlighting</strong>: Supports various programming and markup languages.</li>
+<li><strong>PRO Account Benefits</strong>:</li>
+<li>Create pastes up to 10 MB (free users limited to 500 KB).</li>
+<li>Unlimited private and unlisted pastes.</li>
+<li>Increased daily paste limits (250 per 24 hours).</li>
+<li>Ad-free browsing and additional alert features.  </li>
+</ul>
+<h3 id="ideal-use-cases">Ideal Use Cases:<a class="headerlink" href="#ideal-use-cases" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Quickly sharing logs, error messages, or configuration files.</li>
+<li>Temporary storage of text for collaboration or troubleshooting.</li>
+<li>Situations where simplicity and speed are paramount. </li>
+</ul>
+<h2 id="step-1-investigate-the-problem-use-cases-and-constraints-and-establish-design-scope">Step 1: Investigate the problem, use cases and constraints and establish design scope<a class="headerlink" href="#step-1-investigate-the-problem-use-cases-and-constraints-and-establish-design-scope" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>Gather main functional requirements and scope the problem.
+Ask questions to clarify use cases and constraints.
+Discuss assumptions.</p>
+</blockquote>
+<p>Adding clarifying questions is the first step in the process.
+Remember your goal is to understand the problem and establish the design scope.</p>
+<h3 id="what-questions-should-you-ask-to-clarify-the-problem">What questions should you ask to clarify the problem?<a class="headerlink" href="#what-questions-should-you-ask-to-clarify-the-problem" title="Permanent link">&para;</a></h3>
+<p>Here is an example of the dialog you could have with the <strong>Interviewer</strong>:</p>
+<h3 id="example-dialogue-pastebin">🔍 Example Dialogue (Pastebin)<a class="headerlink" href="#example-dialogue-pastebin" title="Permanent link">&para;</a></h3>
+<p><strong>Interviewer</strong>: Design Pastebin.com.</p>
+<p><strong>Candidate</strong>: To clarify and understand the scope, may I start with a few quick questions?</p>
+<p><strong>Interviewer</strong>: Yes, please.</p>
+<p><strong>Candidate</strong>: What are the <strong>main features, users, and use cases</strong> of the system?</p>
+<p><strong>Interviewer</strong>: Pastebin is a simple site to share plain text. Users paste content and get a short link to share. Pastebin includes anonymous users as well as logged in users.</p>
+<p><strong>Candidate</strong>: Great. So <strong>can we scope the problem to 2 main flows</strong>:
+1. User creates a paste and gets a link to share.
+2. User accesses a paste using the link.</p>
+<p><strong>Interviewer</strong>: Yes, that's a good start.</p>
+<p><strong>Candidate</strong>: What are the <strong>other</strong> important topics we need to consider for the basic <strong>MVP</strong> functionality?</p>
+<p><strong>Interviewer</strong>: Pastebin supports two types of users:
+* Anonymous users - who can create and share content without an account
+* Authenticated users - who can create content and customize their sharing links (e.g., custom URLs, expiration dates, access controls).</p>
+<p><strong>Candidate</strong>: Understood. For this phase, can we <strong>focus</strong> on Anonymous users?</p>
+<p><strong>Interviewer</strong>: You mean that we should ignore the requirements for authenticated users?</p>
+<p><strong>Candidate</strong>: No, I want to <strong>clarify</strong>. I am suggesting and <strong>asking</strong> your confirmation - to be effective I think we can start dealing with the main flows of the system. We will bear in mind the authenticated requirement and <strong>deal with them later on</strong>. </p>
+<p><strong>Interviewer</strong>: Later on in the interview, or later on in the product life cycle?</p>
+<p><strong>Candidate</strong>: Both. Let me explain. Let's for now assume that we will use REST API to write and read the content. We can have 2 different api endpoints for anonymous and authenticated users, and we can have shared functions that can be used by both. This way we can <strong>focus</strong> on the main flows of the system. On the other hand we can talk about the authenticated requirements now, such as <a href="https://oauth.net/2/">OAuth 2.0</a> of <a href="https://jwt.io/">JWT</a>.</p>
+<p><strong>Interviewer</strong>: Ok.</p>
+<p><strong>Candidate</strong>: So for now, is it ok to focus on the anonymous users?</p>
+<p><strong>Interviewer</strong>: Yes.</p>
+<p><strong>Candidate</strong>: What are the <em>other</em> important topics we need to consider? What about traffic assumptions / load?</p>
+<p><strong>Interviewer</strong>: 10M writes per month, 100M reads. </p>
+<p><strong>Candidate</strong>: Got it. High read-to-write ratio. Any <em>other</em> specific requirements, assumptions or constraints, data flows?</p>
+<p><strong>Interviewer</strong>: We do track monthly stats. Links can have optional expiration. Expired pastes are auto-deleted.</p>
+<p><strong>Candidate</strong>: Is there <strong>anything more</strong> we should discuss in terms of latency, availability, or other non-functional constraints?</p>
+<p><strong>Interviewer</strong>: Reads should be low-latency. High availability is expected. </p>
+<p><strong>Candidate</strong>: Cost efficiency, scaling and security matter, but I <strong>suggest</strong> to digest those in the next phases.</p>
+<p><strong>Interviewer</strong>: Ok.</p>
+<p><strong>Candidate</strong>: Thanks — that's clear and helps scope my design. Let's me summarize the scope as i understood it and the assumptions to make sure we are on the <strong>same page</strong>.</p>
+<p><strong>Interviewer</strong>: Ok.</p>
+<h3 id="example-breakdown">🔍 Example Breakdown<a class="headerlink" href="#example-breakdown" title="Permanent link">&para;</a></h3>
+<p><strong>Candidate</strong>: ok, here a reflection of what I understood from the requirements, I will write it down here</p>
+<blockquote>
+<h3 id="use-cases">Use cases<a class="headerlink" href="#use-cases" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>User</strong> enters a block of text and gets a randomly generated link</li>
+<li><strong>User</strong> enters a paste's url and views the contents</li>
+<li><strong>User</strong> is anonymous</li>
+</ul>
+<h3 id="background-tasks">Background tasks<a class="headerlink" href="#background-tasks" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Service</strong> tracks analytics of pages<ul>
+<li>Monthly visit stats</li>
+</ul>
+</li>
+<li><strong>Service</strong> deletes expired pastes</li>
+</ul>
+<h3 id="non-functional-requirements">Non functional requirements<a class="headerlink" href="#non-functional-requirements" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Service</strong> has high availability</li>
+</ul>
+<h3 id="out-of-scope">Out of scope<a class="headerlink" href="#out-of-scope" title="Permanent link">&para;</a></h3>
+<ul>
+<li>All authenticated users features</li>
+<li>Any other requirements</li>
+</ul>
+<h3 id="other-considerations-we-need-to-think-about-later-on">Other considerations we need to think about (Later on)<a class="headerlink" href="#other-considerations-we-need-to-think-about-later-on" title="Permanent link">&para;</a></h3>
+<ul>
+<li>System Quality Attributes (Reliability, Scalability, Security &amp; Privacy, Operational Aspects, etc.)</li>
+<li>System life cycle (Deployment, Monitoring, Logging, Automation, CI/CD, etc.)</li>
+</ul>
+</blockquote>
+<p>Does it look good?  Did I miss anything? Any thing else we should cover at this stage?</p>
+<p><strong>Interviewer</strong>: Yes, it looks good.</p>
+<h3 id="use-cases_1">Use cases<a class="headerlink" href="#use-cases_1" title="Permanent link">&para;</a></h3>
+<h4 id="well-scope-the-problem-to-handle-only-the-following-use-cases">We'll scope the problem to handle only the following use cases<a class="headerlink" href="#well-scope-the-problem-to-handle-only-the-following-use-cases" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>User</strong> enters a block of text and gets a randomly generated link<ul>
+<li>Expiration<ul>
+<li>Default setting does not expire</li>
+<li>Can optionally set a timed expiration</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>User</strong> enters a paste's url and views the contents</li>
+<li><strong>User</strong> is anonymous</li>
+<li><strong>Service</strong> tracks analytics of pages<ul>
+<li>Monthly visit stats</li>
+</ul>
+</li>
+<li><strong>Service</strong> deletes expired pastes</li>
+<li><strong>Service</strong> has high availability</li>
+</ul>
+<h4 id="out-of-scope_1">Out of scope<a class="headerlink" href="#out-of-scope_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>User</strong> registers for an account<ul>
+<li><strong>User</strong> verifies email</li>
+</ul>
+</li>
+<li><strong>User</strong> logs into a registered account<ul>
+<li><strong>User</strong> edits the document</li>
+</ul>
+</li>
+<li><strong>User</strong> can set visibility</li>
+<li><strong>User</strong> can set the shortlink</li>
+</ul>
+<h3 id="constraints-and-assumptions">Constraints and assumptions<a class="headerlink" href="#constraints-and-assumptions" title="Permanent link">&para;</a></h3>
+<h4 id="state-assumptions">State assumptions<a class="headerlink" href="#state-assumptions" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Traffic is not evenly distributed</li>
+<li>Following a short link should be fast</li>
+<li>Pastes are text only</li>
+<li>Page view analytics do not need to be realtime</li>
+<li>10 million users</li>
+<li>10 million paste writes per month</li>
+<li>100 million paste reads per month</li>
+<li>10:1 read to write ratio</li>
+</ul>
+<h4 id="calculate-usage">Calculate usage<a class="headerlink" href="#calculate-usage" title="Permanent link">&para;</a></h4>
+<p><strong>Clarify with your interviewer if you should run back-of-the-envelope usage calculations.</strong>
+<strong>if</strong> you need to calculate usage, here is calculation example:</p>
+<ul>
+<li>Size per paste<ul>
+<li>1 KB content per paste</li>
+<li><code>shortlink</code> - 7 bytes</li>
+<li><code>expiration_length_in_minutes</code> - 4 bytes</li>
+<li><code>created_at</code> - 5 bytes</li>
+<li><code>paste_path</code> - 255 bytes</li>
+<li>total = ~1.27 KB</li>
+</ul>
+</li>
+<li>12.7 GB of new paste content per month<ul>
+<li>1.27 KB per paste * 10 million pastes per month</li>
+<li>~450 GB of new paste content in 3 years</li>
+<li>360 million shortlinks in 3 years</li>
+<li>Assume most are new pastes instead of updates to existing ones</li>
+</ul>
+</li>
+<li>4 paste writes per second on average</li>
+<li>40 read requests per second on average</li>
+</ul>
+<p>Handy conversion guide:</p>
+<ul>
+<li>2.5 million seconds per month</li>
+<li>1 request per second = 2.5 million requests per month</li>
+<li>40 requests per second = 100 million requests per month</li>
+<li>400 requests per second = 1 billion requests per month</li>
+</ul>
+<h2 id="step-2-create-a-high-level-design-get-buy-in">Step 2: Create a high level design &amp; Get buy-in<a class="headerlink" href="#step-2-create-a-high-level-design-get-buy-in" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>Outline a high level design with all important components.</p>
+</blockquote>
+<!-- Old image for reference ![Imgur](http://i.imgur.com/BKsBnmG.png) -->
+
+<pre class="mermaid"><code>%%{init: { "flowchart": { "htmlLabels": true } }}%%
+
+flowchart TB
+  %% Client Layer
+  subgraph Client["**Client**"]
+    direction TB
+    WebClient[Web Client]
+    MobileClient[Mobile Client]
+  end
+
+  %% Web Server Layer
+  subgraph WebServer["**Web Server - (Reverse Proxy)**"]
+    direction LR
+    WriteAPI[Write API]
+    ReadAPI[Read API]
+    Analytics[Analytics]
+  end
+
+  %% Storage Layer
+  subgraph Storage["**Storage**"]
+    direction LR
+    SQLDB[(SQL Database)]
+    ObjectStore[(Object Store)]
+  end
+
+  %% Data Flow
+  Client --&gt; WebServer
+
+
+  WriteAPI --&gt; SQLDB
+  WriteAPI --&gt; ObjectStore
+  ReadAPI --&gt; SQLDB
+  ReadAPI --&gt; ObjectStore
+  Analytics --&gt; SQLDB
+  Analytics --&gt; ObjectStore
+
+  %% Styling Nodes
+  style WebClient fill:#FFCCCC,stroke:#CC0000,stroke-width:2px,rx:6,ry:6
+  style MobileClient fill:#FFD580,stroke:#AA6600,stroke-width:2px,rx:6,ry:6
+  style WriteAPI fill:#CCE5FF,stroke:#004085,stroke-width:2px,rx:6,ry:6
+  style ReadAPI fill:#CCE5FF,stroke:#004085,stroke-width:2px,rx:6,ry:6
+  style Analytics fill:#D4EDDA,stroke:#155724,stroke-width:2px,rx:6,ry:6
+  style SQLDB fill:#E2E3E5,stroke:#6C757D,stroke-width:2px,rx:6,ry:6
+  style ObjectStore fill:#E2E3E5,stroke:#6C757D,stroke-width:2px,rx:6,ry:6
+</code></pre>
+<h3 id="get-buy-in">Get buy-in<a class="headerlink" href="#get-buy-in" title="Permanent link">&para;</a></h3>
+<p>✅ Why This Breakdown?</p>
+<p>Rather than diving into implementation, this diagram tells a story:</p>
+<p>It reflects usage patterns (10:1 read/write). This is why we have different components for write and read.</p>
+<p>It separates latency-sensitive vs. async processing. Analytics is async processing so it gets its own component.</p>
+<p>It shows readiness for growth without premature optimization. Write with load balancer, read with cache.</p>
+<p>It creates a solid skeleton that supports further discussion on reverse proxy, caching, sharding, CDN integration, or even queueing systems for analytics—all while staying grounded in the problem as scoped.</p>
+<p>You should ask for a feedback after you present the diagram, and get buy-in and some initial ideas about areas to dive into, based on the feedback.</p>
+<h2 id="step-3-design-core-components">Step 3: Design core components<a class="headerlink" href="#step-3-design-core-components" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>Dive into details for each core component.</p>
+</blockquote>
+<h3 id="use-case-user-enters-a-block-of-text-and-gets-a-randomly-generated-link">Use case: User enters a block of text and gets a randomly generated link<a class="headerlink" href="#use-case-user-enters-a-block-of-text-and-gets-a-randomly-generated-link" title="Permanent link">&para;</a></h3>
+<p>We could use a <a href="https://github.com/ido777/system-design-primer-update.git#relational-database-management-system-rdbms">relational database</a> as a large hash table, mapping the generated url to a file server and path containing the paste file.</p>
+<p>Instead of managing a file server, we could use a managed <strong>Object Store</strong> such as Amazon S3 or a <a href="https://github.com/ido777/system-design-primer-update.git#document-store">NoSQL document store</a>.</p>
+<p>An alternative to a relational database acting as a large hash table, we could use a <a href="https://github.com/ido777/system-design-primer-update.git#key-value-store">NoSQL key-value store</a>.  We should discuss the <a href="https://github.com/ido777/system-design-primer-update.git#sql-or-nosql">tradeoffs between choosing SQL or NoSQL</a>.  The following discussion uses the relational database approach.</p>
+<ul>
+<li>The <strong>Client</strong> sends a create paste request to the <strong>Web Server</strong>, running as a <a href="https://github.com/ido777/system-design-primer-update.git#reverse-proxy-web-server">reverse proxy</a></li>
+<li>The <strong>Web Server</strong> forwards the request to the <strong>Write API</strong> server</li>
+<li>The <strong>Write API</strong> server does the following:<ul>
+<li>Generates a unique url<ul>
+<li>Checks if the url is unique by looking at the <strong>SQL Database</strong> for a duplicate</li>
+<li>If the url is not unique, it generates another url</li>
+<li>If we supported a custom url, we could use the user-supplied (also check for a duplicate)</li>
+</ul>
+</li>
+<li>Saves to the <strong>SQL Database</strong> <code>pastes</code> table</li>
+<li>Saves the paste data to the <strong>Object Store</strong></li>
+<li>Returns the url</li>
+</ul>
+</li>
+</ul>
+<p><strong>Clarify with your interviewer the expected amount, style, and purpose of the code you should write</strong>.</p>
+<p>The <code>pastes</code> table could have the following structure:</p>
+<div class="highlight"><pre><span></span><code>shortlink char(7) NOT NULL
+expiration_length_in_minutes int NOT NULL
+created_at datetime NOT NULL
+paste_path varchar(255) NOT NULL
+PRIMARY KEY(shortlink)
+</code></pre></div>
+<p>Setting the primary key to be based on the <code>shortlink</code> column creates an <a href="https://github.com/ido777/system-design-primer-update.git#use-good-indices">index</a> that the database uses to enforce uniqueness. We create an additional index on <code>created_at</code> so the database can locate pastes created within a time range without full table scans. Since indexes are typically implemented with B-trees, index lookup is O(log n) instead of O(n). Frequently accessed indexes (like by recent timestamps) are often cached automatically in RAM by the database’s internal cache and since the indexes are smaller, they are likely to stay in memory. Reading 1 MB sequentially from memory takes about 250 microseconds, while reading from SSD takes 4x and from disk takes 80x longer.<sup><a href=https://github.com/ido777/system-design-primer-update.git#latency-numbers-every-programmer-should-know>1</a></sup></p>
+<p>To generate the unique url, we could:</p>
+<ul>
+<li>Take the <a href="https://en.wikipedia.org/wiki/MD5"><strong>MD5</strong></a> hash of the user's ip_address + timestamp<ul>
+<li>MD5 is a widely used hashing function that produces a 128-bit (16 bytes) hash value</li>
+<li>MD5 is uniformly distributed</li>
+<li>Alternatively, we could also take the MD5 hash of randomly-generated data</li>
+</ul>
+</li>
+<li><a href="https://www.kerstner.at/2012/07/shortening-strings-using-base-62-encoding/"><strong>Base 62</strong></a> encode the MD5 hash<ul>
+<li>Base 62 encodes to <code>[a-zA-Z0-9]</code> which works well for urls, eliminating the need for escaping special characters</li>
+<li>There is only one hash result for the original input and Base 62 is deterministic (no randomness involved)</li>
+<li>Base 64 is another popular encoding but provides issues for urls because of the additional <code>+</code> and <code>/</code> characters</li>
+<li>The following <a href="http://stackoverflow.com/questions/742013/how-to-code-a-url-shortener">Base 62 pseudocode</a> runs in O(k) time where k is the number of digits = 7:</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code>def base_encode(num, base=62):
+    digits = []
+    while num &gt; 0
+      remainder = modulo(num, base)
+      digits.push(remainder)
+      num = divide(num, base)
+    digits = digits.reverse
+</code></pre></div>
+<p>Here is python example implementation:
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">base_encode</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="mi">62</span><span class="p">):</span>
+    <span class="n">characters</span> <span class="o">=</span> <span class="s2">&quot;0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;</span>
+    <span class="k">if</span> <span class="n">num</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">characters</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="n">digits</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">while</span> <span class="n">num</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">remainder</span> <span class="o">=</span> <span class="n">num</span> <span class="o">%</span> <span class="n">base</span>
+        <span class="n">digits</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">characters</span><span class="p">[</span><span class="n">remainder</span><span class="p">])</span>
+        <span class="n">num</span> <span class="o">//=</span> <span class="n">base</span>  <span class="c1"># Integer division</span>
+
+    <span class="n">digits</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+    <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">digits</span><span class="p">)</span>
+</code></pre></div></p>
+<ul>
+<li>Take the first 7 characters of the output, which results in 62^7 possible values and should be sufficient to handle our constraint of 360 million shortlinks in 3 years:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>url = base_encode(md5(ip_address+timestamp))[:URL_LENGTH]
+</code></pre></div>
+<p>python example implementation:
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">hashlib</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">generate_shortlink</span><span class="p">(</span><span class="n">ip_address</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">url_length</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="c1"># Step 1: Create MD5 hash</span>
+    <span class="n">raw</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ip_address</span><span class="si">}{</span><span class="n">timestamp</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+    <span class="n">md5_hash</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span><span class="o">.</span><span class="n">digest</span><span class="p">()</span>
+
+    <span class="c1"># Step 2: Convert hash to an integer</span>
+    <span class="n">num</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">md5_hash</span><span class="p">,</span> <span class="n">byteorder</span><span class="o">=</span><span class="s1">&#39;big&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Step 3: Base62 encode the integer</span>
+    <span class="n">base62_encoded</span> <span class="o">=</span> <span class="n">base_encode</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+
+    <span class="c1"># Step 4: Take the first `url_length` characters</span>
+    <span class="k">return</span> <span class="n">base62_encoded</span><span class="p">[:</span><span class="n">url_length</span><span class="p">]</span>
+
+<span class="c1"># Example usage</span>
+<span class="n">shortlink</span> <span class="o">=</span> <span class="n">generate_shortlink</span><span class="p">(</span><span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span> <span class="s2">&quot;2025-04-28T15:30:00Z&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">shortlink</span><span class="p">)</span>  <span class="c1"># Example output: &quot;4F9dQ2b&quot;</span>
+</code></pre></div></p>
+<h4 id="rest-api">REST API<a class="headerlink" href="#rest-api" title="Permanent link">&para;</a></h4>
+<p>We'll use a public <a href="https://github.com/ido777/system-design-primer-update.git#representational-state-transfer-rest"><strong>REST API</strong></a>:</p>
+<h5 id="write-api-create-a-paste">Write API - Create a paste<a class="headerlink" href="#write-api-create-a-paste" title="Permanent link">&para;</a></h5>
+<div class="highlight"><pre><span></span><code>$ curl -X POST --data &#39;{ &quot;expiration_length_in_minutes&quot;: &quot;60&quot;, \
+    &quot;paste_contents&quot;: &quot;Hello World!&quot; }&#39; https://pastebin.com/api/v1/paste
+</code></pre></div>
+<p>Response:</p>
+<div class="highlight"><pre><span></span><code>{
+    &quot;shortlink&quot;: &quot;foobar&quot;
+}
+</code></pre></div>
+<h3 id="use-case-user-enters-a-pastes-url-and-views-the-contents">Use case: User enters a paste's url and views the contents<a class="headerlink" href="#use-case-user-enters-a-pastes-url-and-views-the-contents" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The <strong>Client</strong> sends a get paste request to the <strong>Web Server</strong></li>
+<li>The <strong>Web Server</strong> forwards the request to the <strong>Read API</strong> server</li>
+<li>The <strong>Read API</strong> server does the following:<ul>
+<li>Checks the <strong>SQL Database</strong> for the generated url<ul>
+<li>If the url is in the <strong>SQL Database</strong>, fetch the paste contents from the <strong>Object Store</strong></li>
+<li>Else, return an error message for the user</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="rest-api_1">REST API<a class="headerlink" href="#rest-api_1" title="Permanent link">&para;</a></h4>
+<h5 id="read-api-get-a-paste">Read API - Get a paste<a class="headerlink" href="#read-api-get-a-paste" title="Permanent link">&para;</a></h5>
+<div class="highlight"><pre><span></span><code>$ curl https://pastebin.com/api/v1/paste?shortlink=foobar
+</code></pre></div>
+<p>Response:</p>
+<div class="highlight"><pre><span></span><code>{
+    &quot;paste_contents&quot;: &quot;Hello World&quot;
+    &quot;created_at&quot;: &quot;YYYY-MM-DD HH:MM:SS&quot;
+    &quot;expiration_length_in_minutes&quot;: &quot;60&quot;
+}
+</code></pre></div>
+<h3 id="use-case-service-tracks-analytics-of-pages">Use case: Service tracks analytics of pages<a class="headerlink" href="#use-case-service-tracks-analytics-of-pages" title="Permanent link">&para;</a></h3>
+<p>Since realtime analytics are not a requirement, we could simply <strong>MapReduce</strong> the <strong>Web Server</strong> logs to generate hit counts.
+While traditional MapReduce jobs are rarely written manually today, the underlying pattern — mapping, grouping, and reducing data — is still everywhere. For website analytics, we typically use SQL engines like BigQuery or Athena for batch queries, or streaming frameworks like Flink for real-time aggregation, depending on data freshness needs and scale.</p>
+<p><strong>Clarify with your interviewer the expected amount, style, and purpose of the code you should write</strong>.</p>
+<h4 id="example-of-mapreduce-concept">Example of MapReduce Concept<a class="headerlink" href="#example-of-mapreduce-concept" title="Permanent link">&para;</a></h4>
+<p>For educational purposes and small local testing, we can simulate MapReduce logic using Python. This is <strong>not how production systems work today</strong>, but it is useful for <strong>understanding the concepts</strong> and explaining it to the interviewer.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span>
+
+<span class="c1"># Example raw log lines</span>
+<span class="n">logs</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;2025-04-01 12:00:00 /home&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;2025-04-01 12:05:00 /about&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;2025-04-01 12:10:00 /home&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;2025-04-02 13:00:00 /contact&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="c1"># Map Step</span>
+<span class="n">mapped</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">logs</span><span class="p">:</span>
+    <span class="n">timestamp</span><span class="p">,</span> <span class="n">url</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+    <span class="n">day</span> <span class="o">=</span> <span class="n">timestamp</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;T&#39;</span> <span class="ow">in</span> <span class="n">timestamp</span> <span class="k">else</span> <span class="n">timestamp</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">mapped</span><span class="o">.</span><span class="n">append</span><span class="p">(((</span><span class="n">day</span><span class="p">,</span> <span class="n">url</span><span class="p">),</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="c1"># Shuffle &amp; Group Step</span>
+<span class="n">grouped</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">mapped</span><span class="p">:</span>
+    <span class="n">grouped</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+<span class="c1"># Reduce Step</span>
+<span class="n">reduced</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">values</span> <span class="ow">in</span> <span class="n">grouped</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">reduced</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+
+<span class="c1"># Output</span>
+<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">reduced</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="modern-mapreduce-today-looks-like">Modern "MapReduce" today looks like:<a class="headerlink" href="#modern-mapreduce-today-looks-like" title="Permanent link">&para;</a></h4>
+<ol>
+<li>If you have logs (e.g., nginx, access logs):</li>
+<li><strong>Store them</strong> in an object store like:</li>
+<li>AWS S3</li>
+<li>
+<p>Google Cloud Storage</p>
+</li>
+<li>
+<p><strong>Organize them</strong> by time (e.g., <code>/logs/yyyy/mm/dd/</code> partition folders).</p>
+</li>
+<li>
+<p><strong>Query them</strong> using <strong>Athena</strong> or <strong>BigQuery</strong> with <strong>SQL</strong>.</p>
+</li>
+</ol>
+<p>You might run a query like:</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span>
+<span class="w">  </span><span class="nb">DATE</span><span class="p">(</span><span class="k">timestamp</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">day</span><span class="p">,</span>
+<span class="w">  </span><span class="n">url</span><span class="p">,</span>
+<span class="w">  </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">hits</span>
+<span class="k">FROM</span>
+<span class="w">  </span><span class="n">logs</span>
+<span class="k">WHERE</span>
+<span class="w">  </span><span class="k">timestamp</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="s1">&#39;2025-04-01&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="s1">&#39;2025-04-30&#39;</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span>
+<span class="w">  </span><span class="k">day</span><span class="p">,</span><span class="w"> </span><span class="n">url</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span>
+<span class="w">  </span><span class="n">hits</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</code></pre></div>
+<p>⚡ And this is <strong>MapReduce under the hood</strong>:</p>
+<ul>
+<li>SQL SELECT → Map</li>
+<li>GROUP BY → Reduce</li>
+</ul>
+<p>But you don’t manage the "mapping" and "reducing" manually — the cloud service <strong>optimizes</strong> and <strong>parallelizes</strong> it for you.</p>
+<h3 id="use-case-service-deletes-expired-pastes">Use case: Service deletes expired pastes<a class="headerlink" href="#use-case-service-deletes-expired-pastes" title="Permanent link">&para;</a></h3>
+<p>To delete expired pastes, we could just scan the <strong>SQL Database</strong> for all entries whose expiration timestamp are older than the current timestamp.  All expired entries would then be deleted (or  marked as expired) from the table.</p>
+<h3 id="tradeoffs-and-scaling-the-design">Tradeoffs and Scaling the design<a class="headerlink" href="#tradeoffs-and-scaling-the-design" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>Identify and address bottlenecks, given the constraints.</p>
+</blockquote>
+<p><img alt="Imgur" src="../../images/4edXG0T.png" /></p>
+<p><strong>Important: Do not simply jump right into the final design from the initial design!</strong></p>
+<p>State you would do this iteratively: </p>
+<p>1) <strong>Benchmark/Load Test</strong></p>
+<p>2) <strong>Profile</strong> for bottlenecks </p>
+<p>3) address bottlenecks while evaluating alternatives and trade-offs, and </p>
+<p>4) repeat.  </p>
+<p>See <a href="../scaling_aws/index.html">Design a system that scales to millions of users on AWS</a> as a sample on how to iteratively scale the initial design.</p>
+<p>It's important to discuss what bottlenecks you might encounter with the initial design and how you might address each of them.<br />
+For example, what issues are addressed by adding 
+ - a <strong>Load Balancer</strong> with multiple <strong>Web Servers</strong>?
+ -  <strong>CDN</strong>?<br />
+ - <strong>Master-Slave Replicas</strong>?
+ - What are the alternatives and <strong>Trade-Offs</strong> for each?</p>
+<p>We'll introduce some components to complete the design and to address scalability issues.  Internal load balancers are not shown to reduce clutter.</p>
+<h2 id="step-4-wrap-up">Step 4 Wrap up<a class="headerlink" href="#step-4-wrap-up" title="Permanent link">&para;</a></h2>
+<p>To summarize, we've designed a text snippet sharer system that meets the core requirements. We've discussed the high-level design, identified potential bottlenecks, and proposed solutions to address scalability issues. Now it is time to align again with the interviewer expectations.
+See if she has any feedback or questions, suggest next steps, improvements, error handling, and monitoring if appropriate.</p>
+<p><em>To avoid repeating discussions</em>, refer to the following <a href="https://github.com/ido777/system-design-primer-update.git#index-of-system-design-topics">system design topics</a> for main talking points, tradeoffs, and alternatives:</p>
+<ul>
+<li><a href="https://github.com/ido777/system-design-primer-update.git#domain-name-system">DNS</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update.git#content-delivery-network">CDN</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update.git#load-balancer">Load balancer</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update.git#horizontal-scaling">Horizontal scaling</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update.git#reverse-proxy-web-server">Web server (reverse proxy)</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update.git#application-layer">API server (application layer)</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update.git#cache">Cache</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update.git#relational-database-management-system-rdbms">Relational database management system (RDBMS)</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update.git#fail-over">SQL write master-slave failover</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update.git#master-slave-replication">Master-slave replication</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update.git#consistency-patterns">Consistency patterns</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update.git#availability-patterns">Availability patterns</a></li>
+</ul>
+<p>The <strong>Analytics Database</strong> could use a data warehousing solution such as Amazon Redshift or Google BigQuery.</p>
+<p>An <strong>Object Store</strong> such as Amazon S3 can comfortably handle the constraint of 12.7 GB of new content per month.</p>
+<p>To address the 40 <em>average</em> read requests per second (higher at peak), traffic for popular content should be handled by the <strong>Memory Cache</strong> instead of the database.  The <strong>Memory Cache</strong> is also useful for handling the unevenly distributed traffic and traffic spikes.  The <strong>SQL Read Replicas</strong> should be able to handle the cache misses, as long as the replicas are not bogged down with replicating writes.</p>
+<p>4 <em>average</em> paste writes per second (with higher at peak) should be do-able for a single <strong>SQL Write Master-Slave</strong>.  Otherwise, we'll need to employ additional SQL scaling patterns:</p>
+<ul>
+<li><a href="https://github.com/ido777/system-design-primer-update.git#federation">Federation</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update.git#sharding">Sharding</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update.git#denormalization">Denormalization</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update.git#sql-tuning">SQL Tuning</a></li>
+</ul>
+<p>We should also consider moving some data to a <strong>NoSQL Database</strong>.</p>
+<h2 id="additional-talking-points">Additional talking points<a class="headerlink" href="#additional-talking-points" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>Additional topics to dive into, depending on the problem scope and time remaining.</p>
+</blockquote>
+<h4 id="nosql">NoSQL<a class="headerlink" href="#nosql" title="Permanent link">&para;</a></h4>
+<ul>
+<li><a href="https://github.com/ido777/system-design-primer-update.git#key-value-store">Key-value store</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update.git#document-store">Document store</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update.git#wide-column-store">Wide column store</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update.git#graph-database">Graph database</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update.git#sql-or-nosql">SQL vs NoSQL</a></li>
+</ul>
+<h3 id="caching">Caching<a class="headerlink" href="#caching" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Where to cache<ul>
+<li><a href="https://github.com/ido777/system-design-primer-update.git#client-caching">Client caching</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update.git#cdn-caching">CDN caching</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update.git#web-server-caching">Web server caching</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update.git#database-caching">Database caching</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update.git#application-caching">Application caching</a></li>
+</ul>
+</li>
+<li>What to cache<ul>
+<li><a href="https://github.com/ido777/system-design-primer-update.git#caching-at-the-database-query-level">Caching at the database query level</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update.git#caching-at-the-object-level">Caching at the object level</a></li>
+</ul>
+</li>
+<li>When to update the cache<ul>
+<li><a href="https://github.com/ido777/system-design-primer-update.git#cache-aside">Cache-aside</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update.git#write-through">Write-through</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update.git#write-behind-write-back">Write-behind (write-back)</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update.git#refresh-ahead">Refresh ahead</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="asynchronism-and-microservices">Asynchronism and microservices<a class="headerlink" href="#asynchronism-and-microservices" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://github.com/ido777/system-design-primer-update.git#message-queues">Message queues</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update.git#task-queues">Task queues</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update.git#back-pressure">Back pressure</a></li>
+<li><a href="https://github.com/ido777/system-design-primer-update.git#microservices">Microservices</a></li>
+</ul>
+<h3 id="communications">Communications<a class="headerlink" href="#communications" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Discuss tradeoffs:<ul>
+<li>External communication with clients - <a href="https://github.com/ido777/system-design-primer-update.git#representational-state-transfer-rest">HTTP APIs following REST</a></li>
+<li>Internal communications - <a href="https://github.com/ido777/system-design-primer-update.git#remote-procedure-call-rpc">RPC</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/ido777/system-design-primer-update.git#service-discovery">Service discovery</a></li>
+</ul>
+<h3 id="security">Security<a class="headerlink" href="#security" title="Permanent link">&para;</a></h3>
+<p>Refer to the <a href="https://github.com/ido777/system-design-primer-update.git#security">security section</a>.</p>
+<h3 id="latency-numbers">Latency numbers<a class="headerlink" href="#latency-numbers" title="Permanent link">&para;</a></h3>
+<p>See <a href="https://github.com/ido777/system-design-primer-update.git#latency-numbers-every-programmer-should-know">Latency numbers every programmer should know</a>.</p>
+<h3 id="ongoing">Ongoing<a class="headerlink" href="#ongoing" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Continue benchmarking and monitoring your system to address bottlenecks as they come up</li>
+<li>Scaling is an iterative process</li>
+</ul>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="May 20, 2025 09:05:17">May 20, 2025</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Created">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="May 20, 2025 09:05:17">May 20, 2025</span>
+  </span>
+
+    
+    
+    
+      
+  <span class="md-source-file__fact">
+    
+      
+  <span class="md-icon" title="Contributors">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2"/></svg>
+  </span>
+  <span>GitHub</span>
+
+    
+    <nav>
+      
+        <a href="https://github.com/ido777" class="md-author" title="@ido777">
+          
+          <img src="https://avatars.githubusercontent.com/u/6554277?v=4&size=72" alt="ido777">
+        </a>
+      
+      
+      
+    </nav>
+  </span>
+
+    
+  </aside>
+
+
+  
+
+
+
+
+  <h2 id="__comments">Comments</h2>
+  <!-- Insert generated snippet here -->
+  <div id="comments" class="md-content">
+    <!-- Giscus widget -->
+    <div class="giscus-frame"></div>
+    <script
+      src="js/client-debug.js"
+      data-repo="ido777/system-design-primer-update"
+      data-repo-id="R_kgDOORdCfw"
+      data-category="Feedback by Page"
+      data-category-id="DIC_kwDOORdCf84CqLEY"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="bottom"
+      data-theme="light"
+      data-lang="en"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async>
+    </script>
+  </div>
+  <!-- Synchronize Giscus theme with palette -->
+  <script>
+    var giscus = document.querySelector("script[src*=giscus]")
+
+    // Set palette on initial load
+    var palette = __md_get("__palette")
+    if (palette && typeof palette.color === "object") {
+      var theme = palette.color.scheme === "slate"
+        ? "transparent_dark"
+        : "light"
+
+      // Instruct Giscus to set theme
+      giscus.setAttribute("data-theme", theme) 
+    }
+
+    // Register event handlers after documented loaded
+    document.addEventListener("DOMContentLoaded", function() {
+      var ref = document.querySelector("[data-md-component=palette]")
+      ref.addEventListener("change", function() {
+        var palette = __md_get("__palette")
+        if (palette && typeof palette.color === "object") {
+          var theme = palette.color.scheme === "slate"
+            ? "transparent_dark"
+            : "light"
+
+          // Instruct Giscus to change theme
+          var frame = document.querySelector(".giscus-frame")
+          frame.contentWindow.postMessage(
+            { giscus: { setConfig: { theme } } },
+            "https://giscus.app"
+          )
+        }
+      })
+    })
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../../../en/design-glance.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: System Design at a Glance">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                System Design at a Glance
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../query_cache/index.html" class="md-footer__link md-footer__link--next" aria-label="Next: Query Cache">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Query Cache
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "navigation.path", "content.code.annotate", "content.tabs.link", "search.highlight", "search.suggest", "toc.follow"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="../../../javascripts/client-debug.js"></script>
+      
+        <script src="../../../javascripts/giscus-debug.js"></script>
+      
+    
+  </body>
+</html>
