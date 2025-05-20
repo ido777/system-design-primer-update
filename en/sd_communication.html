@@ -1707,6 +1707,8 @@
     
       
         
+          
+        
       
         
       
@@ -1736,8 +1738,9 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_6" >
         
           
-          <label class="md-nav__link" for="__nav_6_6" id="__nav_6_6_label" tabindex="0">
-            
+          <div class="md-nav__link md-nav__container">
+            <a href="../solutions/object_oriented_design/call_center/index.html" class="md-nav__link ">
+              
   
   
   <span class="md-ellipsis">
@@ -1746,8 +1749,14 @@
   </span>
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6_6" id="__nav_6_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6_6">
@@ -1757,27 +1766,6 @@
           <ul class="md-nav__list" data-md-scrollfix>
             
               
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../solutions/object_oriented_design/call_center/README.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Call Center
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
             
               
                 
@@ -1786,7 +1774,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../solutions/object_oriented_design/circular_array/circular_array.py" class="md-nav__link">
+      <a href="../solutions/object_oriented_design/circular_array/index.html" class="md-nav__link">
         
   
   
@@ -1809,7 +1797,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../solutions/object_oriented_design/deck_of_cards/deck_of_cards.py" class="md-nav__link">
+      <a href="../solutions/object_oriented_design/deck_of_cards/index.html" class="md-nav__link">
         
   
   
@@ -1832,7 +1820,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../solutions/object_oriented_design/hash_table/hash_table.py" class="md-nav__link">
+      <a href="../solutions/object_oriented_design/hash_table/index.html" class="md-nav__link">
         
   
   
@@ -1855,7 +1843,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../solutions/object_oriented_design/lru_cache/lru_cache.py" class="md-nav__link">
+      <a href="../solutions/object_oriented_design/lru_cache/index.html" class="md-nav__link">
         
   
   
@@ -1878,7 +1866,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../solutions/object_oriented_design/movie_tickets/movie_tickets.py" class="md-nav__link">
+      <a href="../solutions/object_oriented_design/movie_tickets/index.html" class="md-nav__link">
         
   
   
@@ -1901,7 +1889,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../solutions/object_oriented_design/online_chat/online_chat.py" class="md-nav__link">
+      <a href="../solutions/object_oriented_design/online_chat/index.html" class="md-nav__link">
         
   
   
@@ -1924,7 +1912,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../solutions/object_oriented_design/parking_lot/parking_lot.py" class="md-nav__link">
+      <a href="../solutions/object_oriented_design/parking_lot/index.html" class="md-nav__link">
         
   
   
@@ -2993,14 +2981,20 @@
 <li>The server response repeats the steps above in reverse order.</li>
 </ul>
 <p>Sample RPC calls:</p>
-<div class="highlight"><pre><span></span><code>GET /someoperation?data=anId
-
-POST /anotheroperation
-{
-  &quot;data&quot;:&quot;anId&quot;;
-  &quot;anotherdata&quot;: &quot;another value&quot;
-}
-</code></pre></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span>
+<span class="normal"><a href="#__codelineno-0-5">5</a></span>
+<span class="normal"><a href="#__codelineno-0-6">6</a></span>
+<span class="normal"><a href="#__codelineno-0-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a>GET /someoperation?data=anId
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a>POST /anotheroperation
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a>{
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a>  &quot;data&quot;:&quot;anId&quot;;
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a>  &quot;anotherdata&quot;: &quot;another value&quot;
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a>}
+</span></code></pre></div></td></tr></table></div>
 <p>RPC is focused on exposing behaviors.  RPCs are often used for performance reasons with internal communications, as you can hand-craft native calls to better fit your use cases.</p>
 <p>Choose a native library (aka SDK) when:</p>
 <ul>
@@ -3027,11 +3021,14 @@ POST /anotheroperation
 <li><strong><a href="http://restcookbook.com/Basics/hateoas/">HATEOAS</a> (HTML interface for HTTP)</strong> - your web service should be fully accessible in a browser.</li>
 </ul>
 <p>Sample REST calls:</p>
-<div class="highlight"><pre><span></span><code>GET /someresources/anId
-
-PUT /someresources/anId
-{&quot;anotherdata&quot;: &quot;another value&quot;}
-</code></pre></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a>GET /someresources/anId
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a>PUT /someresources/anId
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a>{&quot;anotherdata&quot;: &quot;another value&quot;}
+</span></code></pre></div></td></tr></table></div>
 <p>REST is focused on exposing data.  It minimizes the coupling between client/server and is often used for public HTTP APIs.  REST uses a more generic and uniform method of exposing resources through URIs, <a href="https://github.com/for-GET/know-your-http-well/blob/master/headers.md">representation through headers</a>, and actions through verbs such as GET, POST, PUT, DELETE, and PATCH.  Being stateless, REST is great for horizontal scaling and partitioning.</p>
 <h4 id="disadvantages-rest">Disadvantage(s): REST<a class="headerlink" href="#disadvantages-rest" title="Permanent link">&para;</a></h4>
 <ul>
@@ -3339,7 +3336,7 @@ PUT /someresources/anId
     
     
       
-      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "navigation.path", "content.code.annotate", "content.tabs.link", "search.highlight", "search.suggest", "toc.follow"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "navigation.path", "content.code.annotate", "content.code.copy", "content.tabs.link", "search.highlight", "search.suggest", "toc.follow"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../assets/javascripts/bundle.13a4f30d.min.js"></script>

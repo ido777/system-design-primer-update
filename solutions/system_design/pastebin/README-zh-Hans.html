@@ -1512,6 +1512,8 @@
     
       
         
+          
+        
       
         
       
@@ -1541,8 +1543,9 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_6" >
         
           
-          <label class="md-nav__link" for="__nav_6_6" id="__nav_6_6_label" tabindex="0">
-            
+          <div class="md-nav__link md-nav__container">
+            <a href="../../object_oriented_design/call_center/index.html" class="md-nav__link ">
+              
   
   
   <span class="md-ellipsis">
@@ -1551,8 +1554,14 @@
   </span>
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6_6" id="__nav_6_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6_6">
@@ -1562,27 +1571,6 @@
           <ul class="md-nav__list" data-md-scrollfix>
             
               
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../object_oriented_design/call_center/README.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Call Center
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
             
               
                 
@@ -1591,7 +1579,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../object_oriented_design/circular_array/circular_array.py" class="md-nav__link">
+      <a href="../../object_oriented_design/circular_array/index.html" class="md-nav__link">
         
   
   
@@ -1614,7 +1602,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../object_oriented_design/deck_of_cards/deck_of_cards.py" class="md-nav__link">
+      <a href="../../object_oriented_design/deck_of_cards/index.html" class="md-nav__link">
         
   
   
@@ -1637,7 +1625,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../object_oriented_design/hash_table/hash_table.py" class="md-nav__link">
+      <a href="../../object_oriented_design/hash_table/index.html" class="md-nav__link">
         
   
   
@@ -1660,7 +1648,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../object_oriented_design/lru_cache/lru_cache.py" class="md-nav__link">
+      <a href="../../object_oriented_design/lru_cache/index.html" class="md-nav__link">
         
   
   
@@ -1683,7 +1671,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../object_oriented_design/movie_tickets/movie_tickets.py" class="md-nav__link">
+      <a href="../../object_oriented_design/movie_tickets/index.html" class="md-nav__link">
         
   
   
@@ -1706,7 +1694,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../object_oriented_design/online_chat/online_chat.py" class="md-nav__link">
+      <a href="../../object_oriented_design/online_chat/index.html" class="md-nav__link">
         
   
   
@@ -1729,7 +1717,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../object_oriented_design/parking_lot/parking_lot.py" class="md-nav__link">
+      <a href="../../object_oriented_design/parking_lot/index.html" class="md-nav__link">
         
   
   
@@ -2850,12 +2838,16 @@
 </ul>
 <p><strong>向面试官阐明你需要写多少代码</strong></p>
 <p><code>pastes</code> 表可以有如下结构：</p>
-<div class="highlight"><pre><span></span><code><span class="n">shortlink</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span>
-<span class="n">expiration_length_in_minutes</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span>
-<span class="n">created_at</span><span class="w"> </span><span class="n">datetime</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span>
-<span class="n">paste_path</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span>
-<span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">(</span><span class="n">shortlink</span><span class="p">)</span>
-</code></pre></div>
+<div class="language-sql highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">SQL</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span>
+<span class="normal"><a href="#__codelineno-0-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="n">shortlink</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="n">expiration_length_in_minutes</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="n">created_at</span><span class="w"> </span><span class="n">datetime</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="n">paste_path</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">(</span><span class="n">shortlink</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
 <p>我们将在 <code>shortlink</code> 字段和 <code>created_at</code> 字段上创建一个<a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#使用正确的索引">数据库索引</a>，用来提高查询的速度（避免因为扫描全表导致的长时间查询）并将数据保存在内存中，从内存里面顺序读取 1MB 的数据需要大概 250 微秒，而从 SSD 上读取则需要花费 4 倍的时间，从硬盘上则需要花费 80 倍的时间。<sup><a href=https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#每个程序员都应该知道的延迟数 > 1</a></sup></p>
 <p>为了生成唯一的 url，我们可以：</p>
 <ul>
@@ -2869,27 +2861,35 @@
 <li>Base 64 是另外一个流行的编码方案，但是对于 urls，会因为额外的 <code>+</code> 和 <code>-</code> 字符串而产生一些问题</li>
 <li>以下 <a href="http://stackoverflow.com/questions/742013/how-to-code-a-url-shortener">Base 62 伪代码</a> 执行的时间复杂度是 O(k)，k 是数字的数量 = 7：</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">base_encode</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="mi">62</span><span class="p">):</span>
-    <span class="n">digits</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">while</span> <span class="n">num</span> <span class="o">&gt;</span> <span class="mi">0</span>
-      <span class="n">remainder</span> <span class="o">=</span> <span class="n">modulo</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">base</span><span class="p">)</span>
-      <span class="n">digits</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">remainder</span><span class="p">)</span>
-      <span class="n">num</span> <span class="o">=</span> <span class="n">divide</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">base</span><span class="p">)</span>
-    <span class="n">digits</span> <span class="o">=</span> <span class="n">digits</span><span class="o">.</span><span class="n">reverse</span>
-</code></pre></div>
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span>
+<span class="normal"><a href="#__codelineno-1-5">5</a></span>
+<span class="normal"><a href="#__codelineno-1-6">6</a></span>
+<span class="normal"><a href="#__codelineno-1-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">base_encode</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="mi">62</span><span class="p">):</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a>    <span class="n">digits</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a>    <span class="k">while</span> <span class="n">num</span> <span class="o">&gt;</span> <span class="mi">0</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a>      <span class="n">remainder</span> <span class="o">=</span> <span class="n">modulo</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">base</span><span class="p">)</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a>      <span class="n">digits</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">remainder</span><span class="p">)</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a>      <span class="n">num</span> <span class="o">=</span> <span class="n">divide</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">base</span><span class="p">)</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a>    <span class="n">digits</span> <span class="o">=</span> <span class="n">digits</span><span class="o">.</span><span class="n">reverse</span>
+</span></code></pre></div></td></tr></table></div>
 <ul>
 <li>取输出的前 7 个字符，结果会有 62^7 个可能的值，应该足以满足在 3 年内处理 3.6 亿个短链接的约束：</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="n">url</span> <span class="o">=</span> <span class="n">base_encode</span><span class="p">(</span><span class="n">md5</span><span class="p">(</span><span class="n">ip_address</span><span class="o">+</span><span class="n">timestamp</span><span class="p">))[:</span><span class="n">URL_LENGTH</span><span class="p">]</span>
-</code></pre></div>
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="n">url</span> <span class="o">=</span> <span class="n">base_encode</span><span class="p">(</span><span class="n">md5</span><span class="p">(</span><span class="n">ip_address</span><span class="o">+</span><span class="n">timestamp</span><span class="p">))[:</span><span class="n">URL_LENGTH</span><span class="p">]</span>
+</span></code></pre></div></td></tr></table></div>
 <p>我们将会用一个公开的 <a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#表述性状态转移rest"><strong>REST 风格接口</strong></a>：</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>--data<span class="w"> </span><span class="s1">&#39;{&quot;expiration_length_in_minutes&quot;:&quot;60&quot;, \&quot;paste_contents&quot;:&quot;Hello World!&quot;}&#39;</span><span class="w"> </span>https://pastebin.com/api/v1/paste
-</code></pre></div>
+<div class="language-shell highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a>$<span class="w"> </span>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>--data<span class="w"> </span><span class="s1">&#39;{&quot;expiration_length_in_minutes&quot;:&quot;60&quot;, \&quot;paste_contents&quot;:&quot;Hello World!&quot;}&#39;</span><span class="w"> </span>https://pastebin.com/api/v1/paste
+</span></code></pre></div></td></tr></table></div>
 <p>Response:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;shortlink&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;foobar&quot;</span>
-<span class="p">}</span>
-</code></pre></div>
+<div class="language-json highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">JSON</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="p">{</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="w">    </span><span class="nt">&quot;shortlink&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;foobar&quot;</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
 <p>用于内部通信，我们可以用 <a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#远程过程调用协议rpc">RPC</a>。</p>
 <h3 id="paste-url">用例：用户输入一个 paste 的 url 后可以看到它存储的内容<a class="headerlink" href="#paste-url" title="Permanent link">&para;</a></h3>
 <ul>
@@ -2903,48 +2903,81 @@
 </li>
 </ul>
 <p>REST API：</p>
-<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>https://pastebin.com/api/v1/paste?shortlink<span class="o">=</span>foobar
-</code></pre></div>
+<div class="language-shell highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a>curl<span class="w"> </span>https://pastebin.com/api/v1/paste?shortlink<span class="o">=</span>foobar
+</span></code></pre></div></td></tr></table></div>
 <p>Response:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;paste_contents&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Hello World&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;created_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;YYYY-MM-DD HH:MM:SS&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;expiration_length_in_minutes&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;60&quot;</span>
-<span class="p">}</span>
-</code></pre></div>
+<div class="language-json highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">JSON</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span>
+<span class="normal"><a href="#__codelineno-6-4">4</a></span>
+<span class="normal"><a href="#__codelineno-6-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="p">{</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="w">    </span><span class="nt">&quot;paste_contents&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Hello World&quot;</span><span class="p">,</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="w">    </span><span class="nt">&quot;created_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;YYYY-MM-DD HH:MM:SS&quot;</span><span class="p">,</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="w">    </span><span class="nt">&quot;expiration_length_in_minutes&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;60&quot;</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
 <h3 id="_11">用例： 服务跟踪分析页面<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
 <p>因为实时分析不是必须的，所以我们可以简单的 <strong>MapReduce</strong> <strong>Web Server</strong> 的日志，用来生成点击次数。</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">HitCounts</span><span class="p">(</span><span class="n">MRJob</span><span class="p">):</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">extract_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Extract the generated url from the log line.&quot;&quot;&quot;</span>
-        <span class="o">...</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">extract_year_month</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the year and month portions of the timestamp.&quot;&quot;&quot;</span>
-        <span class="o">...</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">mapper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Parse each log line, extract and transform relevant lines.</span>
-
-<span class="sd">        Emit key value pairs of the form:</span>
-
-<span class="sd">        (2016-01, url0), 1</span>
-<span class="sd">        (2016-01, url0), 1</span>
-<span class="sd">        (2016-01, url1), 1</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">extract_url</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-        <span class="n">period</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">extract_year_month</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-        <span class="k">yield</span> <span class="p">(</span><span class="n">period</span><span class="p">,</span> <span class="n">url</span><span class="p">),</span> <span class="mi">1</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">reducer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sum values for each key.</span>
-
-<span class="sd">        (2016-01, url0), 2</span>
-<span class="sd">        (2016-01, url1), 1</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">yield</span> <span class="n">key</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
-</code></pre></div>
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-7-10">10</a></span>
+<span class="normal"><a href="#__codelineno-7-11">11</a></span>
+<span class="normal"><a href="#__codelineno-7-12">12</a></span>
+<span class="normal"><a href="#__codelineno-7-13">13</a></span>
+<span class="normal"><a href="#__codelineno-7-14">14</a></span>
+<span class="normal"><a href="#__codelineno-7-15">15</a></span>
+<span class="normal"><a href="#__codelineno-7-16">16</a></span>
+<span class="normal"><a href="#__codelineno-7-17">17</a></span>
+<span class="normal"><a href="#__codelineno-7-18">18</a></span>
+<span class="normal"><a href="#__codelineno-7-19">19</a></span>
+<span class="normal"><a href="#__codelineno-7-20">20</a></span>
+<span class="normal"><a href="#__codelineno-7-21">21</a></span>
+<span class="normal"><a href="#__codelineno-7-22">22</a></span>
+<span class="normal"><a href="#__codelineno-7-23">23</a></span>
+<span class="normal"><a href="#__codelineno-7-24">24</a></span>
+<span class="normal"><a href="#__codelineno-7-25">25</a></span>
+<span class="normal"><a href="#__codelineno-7-26">26</a></span>
+<span class="normal"><a href="#__codelineno-7-27">27</a></span>
+<span class="normal"><a href="#__codelineno-7-28">28</a></span>
+<span class="normal"><a href="#__codelineno-7-29">29</a></span>
+<span class="normal"><a href="#__codelineno-7-30">30</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">HitCounts</span><span class="p">(</span><span class="n">MRJob</span><span class="p">):</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">extract_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Extract the generated url from the log line.&quot;&quot;&quot;</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5"></a>        <span class="o">...</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6"></a>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">extract_year_month</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the year and month portions of the timestamp.&quot;&quot;&quot;</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9"></a>        <span class="o">...</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10"></a>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">mapper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Parse each log line, extract and transform relevant lines.</span>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13"></a>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14"></a><span class="sd">        Emit key value pairs of the form:</span>
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15"></a>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16"></a><span class="sd">        (2016-01, url0), 1</span>
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17"></a><span class="sd">        (2016-01, url0), 1</span>
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18"></a><span class="sd">        (2016-01, url1), 1</span>
+</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19"></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20"></a>        <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">extract_url</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</span><span id="__span-7-21"><a id="__codelineno-7-21" name="__codelineno-7-21"></a>        <span class="n">period</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">extract_year_month</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</span><span id="__span-7-22"><a id="__codelineno-7-22" name="__codelineno-7-22"></a>        <span class="k">yield</span> <span class="p">(</span><span class="n">period</span><span class="p">,</span> <span class="n">url</span><span class="p">),</span> <span class="mi">1</span>
+</span><span id="__span-7-23"><a id="__codelineno-7-23" name="__codelineno-7-23"></a>
+</span><span id="__span-7-24"><a id="__codelineno-7-24" name="__codelineno-7-24"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">reducer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+</span><span id="__span-7-25"><a id="__codelineno-7-25" name="__codelineno-7-25"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Sum values for each key.</span>
+</span><span id="__span-7-26"><a id="__codelineno-7-26" name="__codelineno-7-26"></a>
+</span><span id="__span-7-27"><a id="__codelineno-7-27" name="__codelineno-7-27"></a><span class="sd">        (2016-01, url0), 2</span>
+</span><span id="__span-7-28"><a id="__codelineno-7-28" name="__codelineno-7-28"></a><span class="sd">        (2016-01, url1), 1</span>
+</span><span id="__span-7-29"><a id="__codelineno-7-29" name="__codelineno-7-29"></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="__span-7-30"><a id="__codelineno-7-30" name="__codelineno-7-30"></a>        <span class="k">yield</span> <span class="n">key</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
 <h3 id="pastes">用例： 服务删除过期的 pastes<a class="headerlink" href="#pastes" title="Permanent link">&para;</a></h3>
 <p>为了删除过期的 pastes，我们可以直接搜索 <strong>SQL 数据库</strong> 中所有的过期时间比当前时间更早的记录，
 所有过期的记录将从这张表里面删除（或者将其标记为过期）。</p>
@@ -3235,7 +3268,7 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "navigation.path", "content.code.annotate", "content.tabs.link", "search.highlight", "search.suggest", "toc.follow"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "navigation.path", "content.code.annotate", "content.code.copy", "content.tabs.link", "search.highlight", "search.suggest", "toc.follow"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../../assets/javascripts/bundle.13a4f30d.min.js"></script>

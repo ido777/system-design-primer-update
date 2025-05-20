@@ -1512,6 +1512,8 @@
     
       
         
+          
+        
       
         
       
@@ -1541,8 +1543,9 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_6" >
         
           
-          <label class="md-nav__link" for="__nav_6_6" id="__nav_6_6_label" tabindex="0">
-            
+          <div class="md-nav__link md-nav__container">
+            <a href="../../object_oriented_design/call_center/index.html" class="md-nav__link ">
+              
   
   
   <span class="md-ellipsis">
@@ -1551,8 +1554,14 @@
   </span>
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6_6" id="__nav_6_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6_6">
@@ -1562,27 +1571,6 @@
           <ul class="md-nav__list" data-md-scrollfix>
             
               
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../object_oriented_design/call_center/README.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Call Center
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
             
               
                 
@@ -1591,7 +1579,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../object_oriented_design/circular_array/circular_array.py" class="md-nav__link">
+      <a href="../../object_oriented_design/circular_array/index.html" class="md-nav__link">
         
   
   
@@ -1614,7 +1602,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../object_oriented_design/deck_of_cards/deck_of_cards.py" class="md-nav__link">
+      <a href="../../object_oriented_design/deck_of_cards/index.html" class="md-nav__link">
         
   
   
@@ -1637,7 +1625,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../object_oriented_design/hash_table/hash_table.py" class="md-nav__link">
+      <a href="../../object_oriented_design/hash_table/index.html" class="md-nav__link">
         
   
   
@@ -1660,7 +1648,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../object_oriented_design/lru_cache/lru_cache.py" class="md-nav__link">
+      <a href="../../object_oriented_design/lru_cache/index.html" class="md-nav__link">
         
   
   
@@ -1683,7 +1671,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../object_oriented_design/movie_tickets/movie_tickets.py" class="md-nav__link">
+      <a href="../../object_oriented_design/movie_tickets/index.html" class="md-nav__link">
         
   
   
@@ -1706,7 +1694,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../object_oriented_design/online_chat/online_chat.py" class="md-nav__link">
+      <a href="../../object_oriented_design/online_chat/index.html" class="md-nav__link">
         
   
   
@@ -1729,7 +1717,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../object_oriented_design/parking_lot/parking_lot.py" class="md-nav__link">
+      <a href="../../object_oriented_design/parking_lot/index.html" class="md-nav__link">
         
   
   
@@ -2863,22 +2851,32 @@
 </ul>
 <p><strong>告知你的面试官你准备写多少代码</strong>。</p>
 <p><code>accounts</code>表应该具有如下结构：</p>
-<div class="highlight"><pre><span></span><code>id int NOT NULL AUTO_INCREMENT
-created_at datetime NOT NULL
-last_update datetime NOT NULL
-account_url varchar(255) NOT NULL
-account_login varchar(32) NOT NULL
-account_password_hash char(64) NOT NULL
-user_id int NOT NULL
-PRIMARY KEY(id)
-FOREIGN KEY(user_id) REFERENCES users(id)
-</code></pre></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span>
+<span class="normal"><a href="#__codelineno-0-5">5</a></span>
+<span class="normal"><a href="#__codelineno-0-6">6</a></span>
+<span class="normal"><a href="#__codelineno-0-7">7</a></span>
+<span class="normal"><a href="#__codelineno-0-8">8</a></span>
+<span class="normal"><a href="#__codelineno-0-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a>id int NOT NULL AUTO_INCREMENT
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a>created_at datetime NOT NULL
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a>last_update datetime NOT NULL
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a>account_url varchar(255) NOT NULL
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a>account_login varchar(32) NOT NULL
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a>account_password_hash char(64) NOT NULL
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a>user_id int NOT NULL
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a>PRIMARY KEY(id)
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9"></a>FOREIGN KEY(user_id) REFERENCES users(id)
+</span></code></pre></div></td></tr></table></div>
 <p>我们将在<code>id</code>，<code>user_id</code>和<code>created_at</code>等字段上创建一个<a href="https://github.com/ido777/system-design-primer-update#use-good-indices">索引</a>以加速查找（对数时间而不是扫描整个表）并保持数据在内存中。从内存中顺序读取 1 MB数据花费大约250毫秒，而从SSD读取是其4倍，从磁盘读取是其80倍。<sup><a href=https://github.com/ido777/system-design-primer-update#latency-numbers-every-programmer-should-know>1</a></sup></p>
 <p>我们将使用公开的<a href="https://github.com/ido777/system-design-primer-update#representational-state-transfer-rest"><strong>REST API</strong></a>:</p>
-<div class="highlight"><pre><span></span><code>$ curl -X POST --data &#39;{ &quot;user_id&quot;: &quot;foo&quot;, &quot;account_url&quot;: &quot;bar&quot;, \
-    &quot;account_login&quot;: &quot;baz&quot;, &quot;account_password&quot;: &quot;qux&quot; }&#39; \
-    https://mint.com/api/v1/account
-</code></pre></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a>$ curl -X POST --data &#39;{ &quot;user_id&quot;: &quot;foo&quot;, &quot;account_url&quot;: &quot;bar&quot;, \
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a>    &quot;account_login&quot;: &quot;baz&quot;, &quot;account_password&quot;: &quot;qux&quot; }&#39; \
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a>    https://mint.com/api/v1/account
+</span></code></pre></div></td></tr></table></div>
 <p>对于内部通信，我们可以使用<a href="https://github.com/ido777/system-design-primer-update#remote-procedure-call-rpc">远程过程调用</a>。</p>
 <p>接下来，服务从账户中提取交易。</p>
 <h3 id="_11">用例：服务从账户中提取交易<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
@@ -2913,87 +2911,145 @@ FOREIGN KEY(user_id) REFERENCES users(id)
 </li>
 </ul>
 <p><code>transactions</code>表应该具有如下结构：</p>
-<div class="highlight"><pre><span></span><code>id int NOT NULL AUTO_INCREMENT
-created_at datetime NOT NULL
-seller varchar(32) NOT NULL
-amount decimal NOT NULL
-user_id int NOT NULL
-PRIMARY KEY(id)
-FOREIGN KEY(user_id) REFERENCES users(id)
-</code></pre></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">5</a></span>
+<span class="normal"><a href="#__codelineno-2-6">6</a></span>
+<span class="normal"><a href="#__codelineno-2-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a>id int NOT NULL AUTO_INCREMENT
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a>created_at datetime NOT NULL
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a>seller varchar(32) NOT NULL
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a>amount decimal NOT NULL
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a>user_id int NOT NULL
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a>PRIMARY KEY(id)
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a>FOREIGN KEY(user_id) REFERENCES users(id)
+</span></code></pre></div></td></tr></table></div>
 <p>我们将在 <code>id</code>，<code>user_id</code>，和 <code>created_at</code>字段上创建<a href="https://github.com/ido777/system-design-primer-update#use-good-indices">索引</a>。</p>
 <p><code>monthly_spending</code>表应该具有如下结构：</p>
-<div class="highlight"><pre><span></span><code>id int NOT NULL AUTO_INCREMENT
-month_year date NOT NULL
-category varchar(32)
-amount decimal NOT NULL
-user_id int NOT NULL
-PRIMARY KEY(id)
-FOREIGN KEY(user_id) REFERENCES users(id)
-</code></pre></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span>
+<span class="normal"><a href="#__codelineno-3-5">5</a></span>
+<span class="normal"><a href="#__codelineno-3-6">6</a></span>
+<span class="normal"><a href="#__codelineno-3-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a>id int NOT NULL AUTO_INCREMENT
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a>month_year date NOT NULL
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a>category varchar(32)
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a>amount decimal NOT NULL
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5"></a>user_id int NOT NULL
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6"></a>PRIMARY KEY(id)
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7"></a>FOREIGN KEY(user_id) REFERENCES users(id)
+</span></code></pre></div></td></tr></table></div>
 <p>我们将在<code>id</code>，<code>user_id</code>字段上创建<a href="https://github.com/ido777/system-design-primer-update#use-good-indices">索引</a>。</p>
 <h4 id="_12">分类服务<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h4>
 <p>对于 <strong>分类服务</strong>，我们可以生成一个带有最受欢迎卖家的卖家-类别字典。如果我们估计 50000 个卖家，并估计每个条目占用不少于 255 个字节，该字典只需要大约 12 MB内存。</p>
 <p><strong>告知你的面试官你准备写多少代码</strong>。</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">DefaultCategories</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
-
-    <span class="n">HOUSING</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">FOOD</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="n">GAS</span> <span class="o">=</span> <span class="mi">2</span>
-    <span class="n">SHOPPING</span> <span class="o">=</span> <span class="mi">3</span>
-    <span class="o">...</span>
-
-<span class="n">seller_category_map</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="n">seller_category_map</span><span class="p">[</span><span class="s1">&#39;Exxon&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">DefaultCategories</span><span class="o">.</span><span class="n">GAS</span>
-<span class="n">seller_category_map</span><span class="p">[</span><span class="s1">&#39;Target&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">DefaultCategories</span><span class="o">.</span><span class="n">SHOPPING</span>
-<span class="o">...</span>
-</code></pre></div>
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span>
+<span class="normal"><a href="#__codelineno-4-11">11</a></span>
+<span class="normal"><a href="#__codelineno-4-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">DefaultCategories</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a>    <span class="n">HOUSING</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a>    <span class="n">FOOD</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a>    <span class="n">GAS</span> <span class="o">=</span> <span class="mi">2</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6"></a>    <span class="n">SHOPPING</span> <span class="o">=</span> <span class="mi">3</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7"></a>    <span class="o">...</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8"></a>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="n">seller_category_map</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10"></a><span class="n">seller_category_map</span><span class="p">[</span><span class="s1">&#39;Exxon&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">DefaultCategories</span><span class="o">.</span><span class="n">GAS</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11"></a><span class="n">seller_category_map</span><span class="p">[</span><span class="s1">&#39;Target&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">DefaultCategories</span><span class="o">.</span><span class="n">SHOPPING</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12"></a><span class="o">...</span>
+</span></code></pre></div></td></tr></table></div>
 <p>对于一开始没有在映射中的卖家，我们可以通过评估用户提供的手动类别来进行众包。在 O(1) 时间内，我们可以用堆来快速查找每个卖家的顶端的手动覆盖。</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Categorizer</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seller_category_map</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">seller_category_crowd_overrides_map</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">seller_category_map</span> <span class="o">=</span> <span class="n">seller_category_map</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">seller_category_crowd_overrides_map</span> <span class="o">=</span> \
-            <span class="n">seller_category_crowd_overrides_map</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">categorize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transaction</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">transaction</span><span class="o">.</span><span class="n">seller</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">seller_category_map</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">seller_category_map</span><span class="p">[</span><span class="n">transaction</span><span class="o">.</span><span class="n">seller</span><span class="p">]</span>
-        <span class="k">elif</span> <span class="n">transaction</span><span class="o">.</span><span class="n">seller</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">seller_category_crowd_overrides_map</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">seller_category_map</span><span class="p">[</span><span class="n">transaction</span><span class="o">.</span><span class="n">seller</span><span class="p">]</span> <span class="o">=</span> \
-                <span class="bp">self</span><span class="o">.</span><span class="n">seller_category_crowd_overrides_map</span><span class="p">[</span><span class="n">transaction</span><span class="o">.</span><span class="n">seller</span><span class="p">]</span><span class="o">.</span><span class="n">peek_min</span><span class="p">()</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">seller_category_map</span><span class="p">[</span><span class="n">transaction</span><span class="o">.</span><span class="n">seller</span><span class="p">]</span>
-        <span class="k">return</span> <span class="kc">None</span>
-</code></pre></div>
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span>
+<span class="normal"><a href="#__codelineno-5-11">11</a></span>
+<span class="normal"><a href="#__codelineno-5-12">12</a></span>
+<span class="normal"><a href="#__codelineno-5-13">13</a></span>
+<span class="normal"><a href="#__codelineno-5-14">14</a></span>
+<span class="normal"><a href="#__codelineno-5-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Categorizer</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seller_category_map</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">seller_category_crowd_overrides_map</span><span class="p">):</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">seller_category_map</span> <span class="o">=</span> <span class="n">seller_category_map</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">seller_category_crowd_overrides_map</span> <span class="o">=</span> \
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6"></a>            <span class="n">seller_category_crowd_overrides_map</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7"></a>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">categorize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transaction</span><span class="p">):</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9"></a>        <span class="k">if</span> <span class="n">transaction</span><span class="o">.</span><span class="n">seller</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">seller_category_map</span><span class="p">:</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10"></a>            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">seller_category_map</span><span class="p">[</span><span class="n">transaction</span><span class="o">.</span><span class="n">seller</span><span class="p">]</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11"></a>        <span class="k">elif</span> <span class="n">transaction</span><span class="o">.</span><span class="n">seller</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">seller_category_crowd_overrides_map</span><span class="p">:</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">seller_category_map</span><span class="p">[</span><span class="n">transaction</span><span class="o">.</span><span class="n">seller</span><span class="p">]</span> <span class="o">=</span> \
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13"></a>                <span class="bp">self</span><span class="o">.</span><span class="n">seller_category_crowd_overrides_map</span><span class="p">[</span><span class="n">transaction</span><span class="o">.</span><span class="n">seller</span><span class="p">]</span><span class="o">.</span><span class="n">peek_min</span><span class="p">()</span>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14"></a>            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">seller_category_map</span><span class="p">[</span><span class="n">transaction</span><span class="o">.</span><span class="n">seller</span><span class="p">]</span>
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15"></a>        <span class="k">return</span> <span class="kc">None</span>
+</span></code></pre></div></td></tr></table></div>
 <p>交易实现：</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Transaction</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">created_at</span><span class="p">,</span> <span class="n">seller</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">timestamp</span> <span class="o">=</span> <span class="n">timestamp</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">seller</span> <span class="o">=</span> <span class="n">seller</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">amount</span> <span class="o">=</span> <span class="n">amount</span>
-</code></pre></div>
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span>
+<span class="normal"><a href="#__codelineno-6-4">4</a></span>
+<span class="normal"><a href="#__codelineno-6-5">5</a></span>
+<span class="normal"><a href="#__codelineno-6-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Transaction</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">created_at</span><span class="p">,</span> <span class="n">seller</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">timestamp</span> <span class="o">=</span> <span class="n">timestamp</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">seller</span> <span class="o">=</span> <span class="n">seller</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">amount</span> <span class="o">=</span> <span class="n">amount</span>
+</span></code></pre></div></td></tr></table></div>
 <h3 id="_13">用例：服务推荐预算<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
 <p>首先，我们可以使用根据收入等级分配每类别金额的通用预算模板。使用这种方法，我们不必存储在约束中标识的 1 亿个预算项目，只需存储用户覆盖的预算项目。如果用户覆盖预算类别，我们可以在
 <code>TABLE budget_overrides</code>中存储此覆盖。</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Budget</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">income</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">income</span> <span class="o">=</span> <span class="n">income</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">categories_to_budget_map</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_budget_template</span><span class="p">()</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">create_budget_template</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">{</span>
-            <span class="s1">&#39;DefaultCategories.HOUSING&#39;</span><span class="p">:</span> <span class="n">income</span> <span class="o">*</span> <span class="mf">.4</span><span class="p">,</span>
-            <span class="s1">&#39;DefaultCategories.FOOD&#39;</span><span class="p">:</span> <span class="n">income</span> <span class="o">*</span> <span class="mf">.2</span>
-            <span class="s1">&#39;DefaultCategories.GAS&#39;</span><span class="p">:</span> <span class="n">income</span> <span class="o">*</span> <span class="mf">.1</span><span class="p">,</span>
-            <span class="s1">&#39;DefaultCategories.SHOPPING&#39;</span><span class="p">:</span> <span class="n">income</span> <span class="o">*</span> <span class="mf">.2</span>
-            <span class="o">...</span>
-        <span class="p">}</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">override_category_budget</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">category</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">categories_to_budget_map</span><span class="p">[</span><span class="n">category</span><span class="p">]</span> <span class="o">=</span> <span class="n">amount</span>
-</code></pre></div>
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-7-10">10</a></span>
+<span class="normal"><a href="#__codelineno-7-11">11</a></span>
+<span class="normal"><a href="#__codelineno-7-12">12</a></span>
+<span class="normal"><a href="#__codelineno-7-13">13</a></span>
+<span class="normal"><a href="#__codelineno-7-14">14</a></span>
+<span class="normal"><a href="#__codelineno-7-15">15</a></span>
+<span class="normal"><a href="#__codelineno-7-16">16</a></span>
+<span class="normal"><a href="#__codelineno-7-17">17</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Budget</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">income</span><span class="p">):</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">income</span> <span class="o">=</span> <span class="n">income</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">categories_to_budget_map</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_budget_template</span><span class="p">()</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6"></a>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">create_budget_template</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8"></a>        <span class="k">return</span> <span class="p">{</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9"></a>            <span class="s1">&#39;DefaultCategories.HOUSING&#39;</span><span class="p">:</span> <span class="n">income</span> <span class="o">*</span> <span class="mf">.4</span><span class="p">,</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10"></a>            <span class="s1">&#39;DefaultCategories.FOOD&#39;</span><span class="p">:</span> <span class="n">income</span> <span class="o">*</span> <span class="mf">.2</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11"></a>            <span class="s1">&#39;DefaultCategories.GAS&#39;</span><span class="p">:</span> <span class="n">income</span> <span class="o">*</span> <span class="mf">.1</span><span class="p">,</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12"></a>            <span class="s1">&#39;DefaultCategories.SHOPPING&#39;</span><span class="p">:</span> <span class="n">income</span> <span class="o">*</span> <span class="mf">.2</span>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13"></a>            <span class="o">...</span>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14"></a>        <span class="p">}</span>
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15"></a>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">override_category_budget</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">category</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">categories_to_budget_map</span><span class="p">[</span><span class="n">category</span><span class="p">]</span> <span class="o">=</span> <span class="n">amount</span>
+</span></code></pre></div></td></tr></table></div>
 <p>对于 <strong>预算服务</strong> 而言，我们可以在<code>transactions</code>表上运行SQL查询以生成<code>monthly_spending</code>聚合表。由于用户通常每个月有很多交易，所以<code>monthly_spending</code>表的行数可能会少于总共50亿次交易的行数。</p>
 <p>作为替代，我们可以在原始交易文件上运行 <strong>MapReduce</strong> 作业来：</p>
 <ul>
@@ -3004,56 +3060,101 @@ FOREIGN KEY(user_id) REFERENCES users(id)
 <p>如果用户更新类别，我们可以调用 <strong>预算服务</strong> 重新运行分析。</p>
 <p><strong>告知你的面试官你准备写多少代码</strong>.</p>
 <p>日志文件格式样例，以tab分割：</p>
-<div class="highlight"><pre><span></span><code>user_id   timestamp   seller  amount
-</code></pre></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a>user_id   timestamp   seller  amount
+</span></code></pre></div></td></tr></table></div>
 <p><strong>MapReduce</strong> 实现:</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">SpendingByCategory</span><span class="p">(</span><span class="n">MRJob</span><span class="p">):</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">categorizer</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">categorizer</span> <span class="o">=</span> <span class="n">categorizer</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">current_year_month</span> <span class="o">=</span> <span class="n">calc_current_year_month</span><span class="p">()</span>
-        <span class="o">...</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">calc_current_year_month</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;返回当前年月&quot;&quot;&quot;</span>
-        <span class="o">...</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">extract_year_month</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;返回时间戳的年，月部分&quot;&quot;&quot;</span>
-        <span class="o">...</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">handle_budget_notifications</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">total</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;如果接近或超出预算，调用通知API&quot;&quot;&quot;</span>
-        <span class="o">...</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">mapper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;解析每个日志行，提取和转换相关行。</span>
-
-<span class="sd">        参数行应为如下形式：</span>
-
-<span class="sd">        user_id   timestamp   seller  amount</span>
-
-<span class="sd">        使用分类器来将卖家转换成类别，生成如下形式的key-value对：</span>
-
-<span class="sd">        (user_id, 2016-01, shopping), 25</span>
-<span class="sd">        (user_id, 2016-01, shopping), 100</span>
-<span class="sd">        (user_id, 2016-01, gas), 50</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">user_id</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">,</span> <span class="n">seller</span><span class="p">,</span> <span class="n">amount</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
-        <span class="n">category</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">categorizer</span><span class="o">.</span><span class="n">categorize</span><span class="p">(</span><span class="n">seller</span><span class="p">)</span>
-        <span class="n">period</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">extract_year_month</span><span class="p">(</span><span class="n">timestamp</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">period</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_year_month</span><span class="p">:</span>
-            <span class="k">yield</span> <span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="n">period</span><span class="p">,</span> <span class="n">category</span><span class="p">),</span> <span class="n">amount</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">reducer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;将每个key对应的值求和。</span>
-
-<span class="sd">        (user_id, 2016-01, shopping), 125</span>
-<span class="sd">        (user_id, 2016-01, gas), 50</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">total</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
-        <span class="k">yield</span> <span class="n">key</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
-</code></pre></div>
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-9-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-9-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-9-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-9-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-9-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-9-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-9-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-9-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-9-10">10</a></span>
+<span class="normal"><a href="#__codelineno-9-11">11</a></span>
+<span class="normal"><a href="#__codelineno-9-12">12</a></span>
+<span class="normal"><a href="#__codelineno-9-13">13</a></span>
+<span class="normal"><a href="#__codelineno-9-14">14</a></span>
+<span class="normal"><a href="#__codelineno-9-15">15</a></span>
+<span class="normal"><a href="#__codelineno-9-16">16</a></span>
+<span class="normal"><a href="#__codelineno-9-17">17</a></span>
+<span class="normal"><a href="#__codelineno-9-18">18</a></span>
+<span class="normal"><a href="#__codelineno-9-19">19</a></span>
+<span class="normal"><a href="#__codelineno-9-20">20</a></span>
+<span class="normal"><a href="#__codelineno-9-21">21</a></span>
+<span class="normal"><a href="#__codelineno-9-22">22</a></span>
+<span class="normal"><a href="#__codelineno-9-23">23</a></span>
+<span class="normal"><a href="#__codelineno-9-24">24</a></span>
+<span class="normal"><a href="#__codelineno-9-25">25</a></span>
+<span class="normal"><a href="#__codelineno-9-26">26</a></span>
+<span class="normal"><a href="#__codelineno-9-27">27</a></span>
+<span class="normal"><a href="#__codelineno-9-28">28</a></span>
+<span class="normal"><a href="#__codelineno-9-29">29</a></span>
+<span class="normal"><a href="#__codelineno-9-30">30</a></span>
+<span class="normal"><a href="#__codelineno-9-31">31</a></span>
+<span class="normal"><a href="#__codelineno-9-32">32</a></span>
+<span class="normal"><a href="#__codelineno-9-33">33</a></span>
+<span class="normal"><a href="#__codelineno-9-34">34</a></span>
+<span class="normal"><a href="#__codelineno-9-35">35</a></span>
+<span class="normal"><a href="#__codelineno-9-36">36</a></span>
+<span class="normal"><a href="#__codelineno-9-37">37</a></span>
+<span class="normal"><a href="#__codelineno-9-38">38</a></span>
+<span class="normal"><a href="#__codelineno-9-39">39</a></span>
+<span class="normal"><a href="#__codelineno-9-40">40</a></span>
+<span class="normal"><a href="#__codelineno-9-41">41</a></span>
+<span class="normal"><a href="#__codelineno-9-42">42</a></span>
+<span class="normal"><a href="#__codelineno-9-43">43</a></span>
+<span class="normal"><a href="#__codelineno-9-44">44</a></span>
+<span class="normal"><a href="#__codelineno-9-45">45</a></span>
+<span class="normal"><a href="#__codelineno-9-46">46</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">SpendingByCategory</span><span class="p">(</span><span class="n">MRJob</span><span class="p">):</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2"></a>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">categorizer</span><span class="p">):</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">categorizer</span> <span class="o">=</span> <span class="n">categorizer</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">current_year_month</span> <span class="o">=</span> <span class="n">calc_current_year_month</span><span class="p">()</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6"></a>        <span class="o">...</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7"></a>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">calc_current_year_month</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;返回当前年月&quot;&quot;&quot;</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10"></a>        <span class="o">...</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11"></a>
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">extract_year_month</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">):</span>
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;返回时间戳的年，月部分&quot;&quot;&quot;</span>
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14"></a>        <span class="o">...</span>
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15"></a>
+</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">handle_budget_notifications</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">total</span><span class="p">):</span>
+</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;如果接近或超出预算，调用通知API&quot;&quot;&quot;</span>
+</span><span id="__span-9-18"><a id="__codelineno-9-18" name="__codelineno-9-18"></a>        <span class="o">...</span>
+</span><span id="__span-9-19"><a id="__codelineno-9-19" name="__codelineno-9-19"></a>
+</span><span id="__span-9-20"><a id="__codelineno-9-20" name="__codelineno-9-20"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">mapper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
+</span><span id="__span-9-21"><a id="__codelineno-9-21" name="__codelineno-9-21"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;解析每个日志行，提取和转换相关行。</span>
+</span><span id="__span-9-22"><a id="__codelineno-9-22" name="__codelineno-9-22"></a>
+</span><span id="__span-9-23"><a id="__codelineno-9-23" name="__codelineno-9-23"></a><span class="sd">        参数行应为如下形式：</span>
+</span><span id="__span-9-24"><a id="__codelineno-9-24" name="__codelineno-9-24"></a>
+</span><span id="__span-9-25"><a id="__codelineno-9-25" name="__codelineno-9-25"></a><span class="sd">        user_id   timestamp   seller  amount</span>
+</span><span id="__span-9-26"><a id="__codelineno-9-26" name="__codelineno-9-26"></a>
+</span><span id="__span-9-27"><a id="__codelineno-9-27" name="__codelineno-9-27"></a><span class="sd">        使用分类器来将卖家转换成类别，生成如下形式的key-value对：</span>
+</span><span id="__span-9-28"><a id="__codelineno-9-28" name="__codelineno-9-28"></a>
+</span><span id="__span-9-29"><a id="__codelineno-9-29" name="__codelineno-9-29"></a><span class="sd">        (user_id, 2016-01, shopping), 25</span>
+</span><span id="__span-9-30"><a id="__codelineno-9-30" name="__codelineno-9-30"></a><span class="sd">        (user_id, 2016-01, shopping), 100</span>
+</span><span id="__span-9-31"><a id="__codelineno-9-31" name="__codelineno-9-31"></a><span class="sd">        (user_id, 2016-01, gas), 50</span>
+</span><span id="__span-9-32"><a id="__codelineno-9-32" name="__codelineno-9-32"></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="__span-9-33"><a id="__codelineno-9-33" name="__codelineno-9-33"></a>        <span class="n">user_id</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">,</span> <span class="n">seller</span><span class="p">,</span> <span class="n">amount</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+</span><span id="__span-9-34"><a id="__codelineno-9-34" name="__codelineno-9-34"></a>        <span class="n">category</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">categorizer</span><span class="o">.</span><span class="n">categorize</span><span class="p">(</span><span class="n">seller</span><span class="p">)</span>
+</span><span id="__span-9-35"><a id="__codelineno-9-35" name="__codelineno-9-35"></a>        <span class="n">period</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">extract_year_month</span><span class="p">(</span><span class="n">timestamp</span><span class="p">)</span>
+</span><span id="__span-9-36"><a id="__codelineno-9-36" name="__codelineno-9-36"></a>        <span class="k">if</span> <span class="n">period</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_year_month</span><span class="p">:</span>
+</span><span id="__span-9-37"><a id="__codelineno-9-37" name="__codelineno-9-37"></a>            <span class="k">yield</span> <span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="n">period</span><span class="p">,</span> <span class="n">category</span><span class="p">),</span> <span class="n">amount</span>
+</span><span id="__span-9-38"><a id="__codelineno-9-38" name="__codelineno-9-38"></a>
+</span><span id="__span-9-39"><a id="__codelineno-9-39" name="__codelineno-9-39"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">reducer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+</span><span id="__span-9-40"><a id="__codelineno-9-40" name="__codelineno-9-40"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;将每个key对应的值求和。</span>
+</span><span id="__span-9-41"><a id="__codelineno-9-41" name="__codelineno-9-41"></a>
+</span><span id="__span-9-42"><a id="__codelineno-9-42" name="__codelineno-9-42"></a><span class="sd">        (user_id, 2016-01, shopping), 125</span>
+</span><span id="__span-9-43"><a id="__codelineno-9-43" name="__codelineno-9-43"></a><span class="sd">        (user_id, 2016-01, gas), 50</span>
+</span><span id="__span-9-44"><a id="__codelineno-9-44" name="__codelineno-9-44"></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="__span-9-45"><a id="__codelineno-9-45" name="__codelineno-9-45"></a>        <span class="n">total</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+</span><span id="__span-9-46"><a id="__codelineno-9-46" name="__codelineno-9-46"></a>        <span class="k">yield</span> <span class="n">key</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
 <h2 id="_14">第四步：设计扩展<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
 <blockquote>
 <p>根据限制条件，找到并解决瓶颈。</p>
@@ -3373,7 +3474,7 @@ FOREIGN KEY(user_id) REFERENCES users(id)
     
     
       
-      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "navigation.path", "content.code.annotate", "content.tabs.link", "search.highlight", "search.suggest", "toc.follow"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "navigation.path", "content.code.annotate", "content.code.copy", "content.tabs.link", "search.highlight", "search.suggest", "toc.follow"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../../assets/javascripts/bundle.13a4f30d.min.js"></script>

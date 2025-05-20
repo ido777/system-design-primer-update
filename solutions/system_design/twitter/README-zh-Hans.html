@@ -1512,6 +1512,8 @@
     
       
         
+          
+        
       
         
       
@@ -1541,8 +1543,9 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_6" >
         
           
-          <label class="md-nav__link" for="__nav_6_6" id="__nav_6_6_label" tabindex="0">
-            
+          <div class="md-nav__link md-nav__container">
+            <a href="../../object_oriented_design/call_center/index.html" class="md-nav__link ">
+              
   
   
   <span class="md-ellipsis">
@@ -1551,8 +1554,14 @@
   </span>
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6_6" id="__nav_6_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6_6">
@@ -1562,27 +1571,6 @@
           <ul class="md-nav__list" data-md-scrollfix>
             
               
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../object_oriented_design/call_center/README.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Call Center
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
             
               
                 
@@ -1591,7 +1579,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../object_oriented_design/circular_array/circular_array.py" class="md-nav__link">
+      <a href="../../object_oriented_design/circular_array/index.html" class="md-nav__link">
         
   
   
@@ -1614,7 +1602,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../object_oriented_design/deck_of_cards/deck_of_cards.py" class="md-nav__link">
+      <a href="../../object_oriented_design/deck_of_cards/index.html" class="md-nav__link">
         
   
   
@@ -1637,7 +1625,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../object_oriented_design/hash_table/hash_table.py" class="md-nav__link">
+      <a href="../../object_oriented_design/hash_table/index.html" class="md-nav__link">
         
   
   
@@ -1660,7 +1648,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../object_oriented_design/lru_cache/lru_cache.py" class="md-nav__link">
+      <a href="../../object_oriented_design/lru_cache/index.html" class="md-nav__link">
         
   
   
@@ -1683,7 +1671,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../object_oriented_design/movie_tickets/movie_tickets.py" class="md-nav__link">
+      <a href="../../object_oriented_design/movie_tickets/index.html" class="md-nav__link">
         
   
   
@@ -1706,7 +1694,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../object_oriented_design/online_chat/online_chat.py" class="md-nav__link">
+      <a href="../../object_oriented_design/online_chat/index.html" class="md-nav__link">
         
   
   
@@ -1729,7 +1717,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../object_oriented_design/parking_lot/parking_lot.py" class="md-nav__link">
+      <a href="../../object_oriented_design/parking_lot/index.html" class="md-nav__link">
         
   
   
@@ -2885,25 +2873,35 @@
 </ul>
 <p><strong>向你的面试官告知你准备写多少代码</strong>。</p>
 <p>如果我们用 Redis 作为<strong>内存缓存</strong>，那可以用 Redis 原生的 list 作为其数据结构。结构如下：</p>
-<div class="highlight"><pre><span></span><code>           tweet n+2                   tweet n+1                   tweet n
-| 8 bytes   8 bytes  1 byte | 8 bytes   8 bytes  1 byte | 8 bytes   8 bytes  1 byte |
-| tweet_id  user_id  meta   | tweet_id  user_id  meta   | tweet_id  user_id  meta   |
-</code></pre></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a>           tweet n+2                   tweet n+1                   tweet n
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a>| 8 bytes   8 bytes  1 byte | 8 bytes   8 bytes  1 byte | 8 bytes   8 bytes  1 byte |
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a>| tweet_id  user_id  meta   | tweet_id  user_id  meta   | tweet_id  user_id  meta   |
+</span></code></pre></div></td></tr></table></div>
 <p>新发布的推特将被存储在对应用户（关注且活跃的用户）的主页时间轴的<strong>内存缓存</strong>中。</p>
 <p>我们可以调用一个公共的 <a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#表述性状态转移rest">REST API</a>：</p>
-<div class="highlight"><pre><span></span><code>$ curl -X POST --data &#39;{ &quot;user_id&quot;: &quot;123&quot;, &quot;auth_token&quot;: &quot;ABC123&quot;, \
-    &quot;status&quot;: &quot;hello world!&quot;, &quot;media_ids&quot;: &quot;ABC987&quot; }&#39; \
-    https://twitter.com/api/v1/tweet
-</code></pre></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a>$ curl -X POST --data &#39;{ &quot;user_id&quot;: &quot;123&quot;, &quot;auth_token&quot;: &quot;ABC123&quot;, \
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a>    &quot;status&quot;: &quot;hello world!&quot;, &quot;media_ids&quot;: &quot;ABC987&quot; }&#39; \
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a>    https://twitter.com/api/v1/tweet
+</span></code></pre></div></td></tr></table></div>
 <p>返回：</p>
-<div class="highlight"><pre><span></span><code>{
-    &quot;created_at&quot;: &quot;Wed Sep 05 00:37:15 +0000 2012&quot;,
-    &quot;status&quot;: &quot;hello world!&quot;,
-    &quot;tweet_id&quot;: &quot;987&quot;,
-    &quot;user_id&quot;: &quot;123&quot;,
-    ...
-}
-</code></pre></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">5</a></span>
+<span class="normal"><a href="#__codelineno-2-6">6</a></span>
+<span class="normal"><a href="#__codelineno-2-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a>{
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a>    &quot;created_at&quot;: &quot;Wed Sep 05 00:37:15 +0000 2012&quot;,
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a>    &quot;status&quot;: &quot;hello world!&quot;,
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a>    &quot;tweet_id&quot;: &quot;987&quot;,
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a>    &quot;user_id&quot;: &quot;123&quot;,
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a>    ...
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a>}
+</span></code></pre></div></td></tr></table></div>
 <p>而对于服务器内部的通信，我们可以使用 <a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#远程过程调用协议rpc">RPC</a>。</p>
 <h3 id="_12">用例：用户浏览主页时间轴<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
 <ul>
@@ -2917,25 +2915,39 @@
 </li>
 </ul>
 <p>REST API：</p>
-<div class="highlight"><pre><span></span><code>$ curl https://twitter.com/api/v1/home_timeline?user_id=123
-</code></pre></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a>$ curl https://twitter.com/api/v1/home_timeline?user_id=123
+</span></code></pre></div></td></tr></table></div>
 <p>返回：</p>
-<div class="highlight"><pre><span></span><code>{
-    &quot;user_id&quot;: &quot;456&quot;,
-    &quot;tweet_id&quot;: &quot;123&quot;,
-    &quot;status&quot;: &quot;foo&quot;
-},
-{
-    &quot;user_id&quot;: &quot;789&quot;,
-    &quot;tweet_id&quot;: &quot;456&quot;,
-    &quot;status&quot;: &quot;bar&quot;
-},
-{
-    &quot;user_id&quot;: &quot;789&quot;,
-    &quot;tweet_id&quot;: &quot;579&quot;,
-    &quot;status&quot;: &quot;baz&quot;
-},
-</code></pre></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span>
+<span class="normal"><a href="#__codelineno-4-11">11</a></span>
+<span class="normal"><a href="#__codelineno-4-12">12</a></span>
+<span class="normal"><a href="#__codelineno-4-13">13</a></span>
+<span class="normal"><a href="#__codelineno-4-14">14</a></span>
+<span class="normal"><a href="#__codelineno-4-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a>{
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a>    &quot;user_id&quot;: &quot;456&quot;,
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a>    &quot;tweet_id&quot;: &quot;123&quot;,
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a>    &quot;status&quot;: &quot;foo&quot;
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a>},
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6"></a>{
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7"></a>    &quot;user_id&quot;: &quot;789&quot;,
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8"></a>    &quot;tweet_id&quot;: &quot;456&quot;,
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9"></a>    &quot;status&quot;: &quot;bar&quot;
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10"></a>},
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11"></a>{
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12"></a>    &quot;user_id&quot;: &quot;789&quot;,
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13"></a>    &quot;tweet_id&quot;: &quot;579&quot;,
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14"></a>    &quot;status&quot;: &quot;baz&quot;
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15"></a>},
+</span></code></pre></div></td></tr></table></div>
 <h3 id="_13">用例：用户浏览用户时间轴<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>客户端</strong>向<strong>Web 服务器</strong>发起获得用户时间线的请求</li>
@@ -2965,8 +2977,8 @@
 </li>
 </ul>
 <p>REST API：</p>
-<div class="highlight"><pre><span></span><code>$ curl https://twitter.com/api/v1/search?query=hello+world
-</code></pre></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a>$ curl https://twitter.com/api/v1/search?query=hello+world
+</span></code></pre></div></td></tr></table></div>
 <p>返回结果与前面的主页时间轴类似，只不过返回的是符合查询条件的推特。</p>
 <h2 id="_15">第四步：架构扩展<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
 <blockquote>
@@ -3133,29 +3145,6 @@
 
     
     
-      
-  <span class="md-source-file__fact">
-    
-      
-  <span class="md-icon" title="Contributors">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2"/></svg>
-  </span>
-  <span>GitHub</span>
-
-    
-    <nav>
-      
-        <a href="https://github.com/ido777" class="md-author" title="@ido777">
-          
-          <img src="https://avatars.githubusercontent.com/u/6554277?v=4&size=72" alt="ido777">
-        </a>
-      
-      
-      
-    </nav>
-  </span>
-
-    
   </aside>
 
 
@@ -3279,7 +3268,7 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "navigation.path", "content.code.annotate", "content.tabs.link", "search.highlight", "search.suggest", "toc.follow"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "navigation.path", "content.code.annotate", "content.code.copy", "content.tabs.link", "search.highlight", "search.suggest", "toc.follow"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../../assets/javascripts/bundle.13a4f30d.min.js"></script>

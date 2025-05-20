@@ -1512,6 +1512,8 @@
     
       
         
+          
+        
       
         
       
@@ -1541,8 +1543,9 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_6" >
         
           
-          <label class="md-nav__link" for="__nav_6_6" id="__nav_6_6_label" tabindex="0">
-            
+          <div class="md-nav__link md-nav__container">
+            <a href="../../object_oriented_design/call_center/index.html" class="md-nav__link ">
+              
   
   
   <span class="md-ellipsis">
@@ -1551,8 +1554,14 @@
   </span>
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6_6" id="__nav_6_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6_6">
@@ -1562,27 +1571,6 @@
           <ul class="md-nav__list" data-md-scrollfix>
             
               
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../object_oriented_design/call_center/README.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Call Center
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
             
               
                 
@@ -1591,7 +1579,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../object_oriented_design/circular_array/circular_array.py" class="md-nav__link">
+      <a href="../../object_oriented_design/circular_array/index.html" class="md-nav__link">
         
   
   
@@ -1614,7 +1602,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../object_oriented_design/deck_of_cards/deck_of_cards.py" class="md-nav__link">
+      <a href="../../object_oriented_design/deck_of_cards/index.html" class="md-nav__link">
         
   
   
@@ -1637,7 +1625,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../object_oriented_design/hash_table/hash_table.py" class="md-nav__link">
+      <a href="../../object_oriented_design/hash_table/index.html" class="md-nav__link">
         
   
   
@@ -1660,7 +1648,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../object_oriented_design/lru_cache/lru_cache.py" class="md-nav__link">
+      <a href="../../object_oriented_design/lru_cache/index.html" class="md-nav__link">
         
   
   
@@ -1683,7 +1671,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../object_oriented_design/movie_tickets/movie_tickets.py" class="md-nav__link">
+      <a href="../../object_oriented_design/movie_tickets/index.html" class="md-nav__link">
         
   
   
@@ -1706,7 +1694,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../object_oriented_design/online_chat/online_chat.py" class="md-nav__link">
+      <a href="../../object_oriented_design/online_chat/index.html" class="md-nav__link">
         
   
   
@@ -1729,7 +1717,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../object_oriented_design/parking_lot/parking_lot.py" class="md-nav__link">
+      <a href="../../object_oriented_design/parking_lot/index.html" class="md-nav__link">
         
   
   
@@ -2785,41 +2773,74 @@
 <h3 id="_7">用例： 用户搜索某人并查看到被搜人的最短路径<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
 <p><strong>和你的面试官说清你期望的代码量</strong></p>
 <p>没有百万用户（点）的和十亿朋友关系（边）的限制，我们能够用一般 BFS 方法解决无权重最短路径任务：</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Graph</span><span class="p">(</span><span class="n">Graph</span><span class="p">):</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">shortest_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">dest</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">source</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">dest</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">None</span>
-        <span class="k">if</span> <span class="n">source</span> <span class="ow">is</span> <span class="n">dest</span><span class="p">:</span>
-            <span class="k">return</span> <span class="p">[</span><span class="n">source</span><span class="o">.</span><span class="n">key</span><span class="p">]</span>
-        <span class="n">prev_node_keys</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shortest_path</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">dest</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">prev_node_keys</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">None</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">path_ids</span> <span class="o">=</span> <span class="p">[</span><span class="n">dest</span><span class="o">.</span><span class="n">key</span><span class="p">]</span>
-            <span class="n">prev_node_key</span> <span class="o">=</span> <span class="n">prev_node_keys</span><span class="p">[</span><span class="n">dest</span><span class="o">.</span><span class="n">key</span><span class="p">]</span>
-            <span class="k">while</span> <span class="n">prev_node_key</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">path_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">prev_node_key</span><span class="p">)</span>
-                <span class="n">prev_node_key</span> <span class="o">=</span> <span class="n">prev_node_keys</span><span class="p">[</span><span class="n">prev_node_key</span><span class="p">]</span>
-            <span class="k">return</span> <span class="n">path_ids</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">_shortest_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">dest</span><span class="p">):</span>
-        <span class="n">queue</span> <span class="o">=</span> <span class="n">deque</span><span class="p">()</span>
-        <span class="n">queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
-        <span class="n">prev_node_keys</span> <span class="o">=</span> <span class="p">{</span><span class="n">source</span><span class="o">.</span><span class="n">key</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
-        <span class="n">source</span><span class="o">.</span><span class="n">visit_state</span> <span class="o">=</span> <span class="n">State</span><span class="o">.</span><span class="n">visited</span>
-        <span class="k">while</span> <span class="n">queue</span><span class="p">:</span>
-            <span class="n">node</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">popleft</span><span class="p">()</span>
-            <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="n">dest</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">prev_node_keys</span>
-            <span class="n">prev_node</span> <span class="o">=</span> <span class="n">node</span>
-            <span class="k">for</span> <span class="n">adj_node</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">adj_nodes</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
-                <span class="k">if</span> <span class="n">adj_node</span><span class="o">.</span><span class="n">visit_state</span> <span class="o">==</span> <span class="n">State</span><span class="o">.</span><span class="n">unvisited</span><span class="p">:</span>
-                    <span class="n">queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">adj_node</span><span class="p">)</span>
-                    <span class="n">prev_node_keys</span><span class="p">[</span><span class="n">adj_node</span><span class="o">.</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">prev_node</span><span class="o">.</span><span class="n">key</span>
-                    <span class="n">adj_node</span><span class="o">.</span><span class="n">visit_state</span> <span class="o">=</span> <span class="n">State</span><span class="o">.</span><span class="n">visited</span>
-        <span class="k">return</span> <span class="kc">None</span>
-</code></pre></div>
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span>
+<span class="normal"><a href="#__codelineno-0-14">14</a></span>
+<span class="normal"><a href="#__codelineno-0-15">15</a></span>
+<span class="normal"><a href="#__codelineno-0-16">16</a></span>
+<span class="normal"><a href="#__codelineno-0-17">17</a></span>
+<span class="normal"><a href="#__codelineno-0-18">18</a></span>
+<span class="normal"><a href="#__codelineno-0-19">19</a></span>
+<span class="normal"><a href="#__codelineno-0-20">20</a></span>
+<span class="normal"><a href="#__codelineno-0-21">21</a></span>
+<span class="normal"><a href="#__codelineno-0-22">22</a></span>
+<span class="normal"><a href="#__codelineno-0-23">23</a></span>
+<span class="normal"><a href="#__codelineno-0-24">24</a></span>
+<span class="normal"><a href="#__codelineno-0-25">25</a></span>
+<span class="normal"><a href="#__codelineno-0-26">26</a></span>
+<span class="normal"><a href="#__codelineno-0-27">27</a></span>
+<span class="normal"><a href="#__codelineno-0-28">28</a></span>
+<span class="normal"><a href="#__codelineno-0-29">29</a></span>
+<span class="normal"><a href="#__codelineno-0-30">30</a></span>
+<span class="normal"><a href="#__codelineno-0-31">31</a></span>
+<span class="normal"><a href="#__codelineno-0-32">32</a></span>
+<span class="normal"><a href="#__codelineno-0-33">33</a></span>
+<span class="normal"><a href="#__codelineno-0-34">34</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Graph</span><span class="p">(</span><span class="n">Graph</span><span class="p">):</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">shortest_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">dest</span><span class="p">):</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a>        <span class="k">if</span> <span class="n">source</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">dest</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a>            <span class="k">return</span> <span class="kc">None</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a>        <span class="k">if</span> <span class="n">source</span> <span class="ow">is</span> <span class="n">dest</span><span class="p">:</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a>            <span class="k">return</span> <span class="p">[</span><span class="n">source</span><span class="o">.</span><span class="n">key</span><span class="p">]</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a>        <span class="n">prev_node_keys</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shortest_path</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">dest</span><span class="p">)</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9"></a>        <span class="k">if</span> <span class="n">prev_node_keys</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10"></a>            <span class="k">return</span> <span class="kc">None</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11"></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12"></a>            <span class="n">path_ids</span> <span class="o">=</span> <span class="p">[</span><span class="n">dest</span><span class="o">.</span><span class="n">key</span><span class="p">]</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13"></a>            <span class="n">prev_node_key</span> <span class="o">=</span> <span class="n">prev_node_keys</span><span class="p">[</span><span class="n">dest</span><span class="o">.</span><span class="n">key</span><span class="p">]</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14"></a>            <span class="k">while</span> <span class="n">prev_node_key</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15"></a>                <span class="n">path_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">prev_node_key</span><span class="p">)</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16"></a>                <span class="n">prev_node_key</span> <span class="o">=</span> <span class="n">prev_node_keys</span><span class="p">[</span><span class="n">prev_node_key</span><span class="p">]</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17"></a>            <span class="k">return</span> <span class="n">path_ids</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18"></a>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">_shortest_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">dest</span><span class="p">):</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20"></a>        <span class="n">queue</span> <span class="o">=</span> <span class="n">deque</span><span class="p">()</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21"></a>        <span class="n">queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22"></a>        <span class="n">prev_node_keys</span> <span class="o">=</span> <span class="p">{</span><span class="n">source</span><span class="o">.</span><span class="n">key</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23"></a>        <span class="n">source</span><span class="o">.</span><span class="n">visit_state</span> <span class="o">=</span> <span class="n">State</span><span class="o">.</span><span class="n">visited</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24"></a>        <span class="k">while</span> <span class="n">queue</span><span class="p">:</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25"></a>            <span class="n">node</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">popleft</span><span class="p">()</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26"></a>            <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="n">dest</span><span class="p">:</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27"></a>                <span class="k">return</span> <span class="n">prev_node_keys</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28"></a>            <span class="n">prev_node</span> <span class="o">=</span> <span class="n">node</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29"></a>            <span class="k">for</span> <span class="n">adj_node</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">adj_nodes</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30"></a>                <span class="k">if</span> <span class="n">adj_node</span><span class="o">.</span><span class="n">visit_state</span> <span class="o">==</span> <span class="n">State</span><span class="o">.</span><span class="n">unvisited</span><span class="p">:</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31"></a>                    <span class="n">queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">adj_node</span><span class="p">)</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32"></a>                    <span class="n">prev_node_keys</span><span class="p">[</span><span class="n">adj_node</span><span class="o">.</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">prev_node</span><span class="o">.</span><span class="n">key</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33"></a>                    <span class="n">adj_node</span><span class="o">.</span><span class="n">visit_state</span> <span class="o">=</span> <span class="n">State</span><span class="o">.</span><span class="n">visited</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34"></a>        <span class="k">return</span> <span class="kc">None</span>
+</span></code></pre></div></td></tr></table></div>
 <p>我们不能在同一台机器上满足所有用户，我们需要通过 <strong>人员服务器</strong> <a href="https://github.com/ido777/system-design-primer-update#sharding">拆分</a> 用户并且通过 <strong>查询服务</strong> 访问。</p>
 <ul>
 <li><strong>客户端</strong> 向 <strong>服务器</strong> 发送请求，<strong>服务器</strong> 作为 <a href="https://github.com/ido777/system-design-primer-update#reverse-proxy-web-server">反向代理</a></li>
@@ -2838,116 +2859,209 @@
 <p><strong>和你的面试官说清你应该写的代码量</strong></p>
 <p><strong>注释</strong>：简易版错误处理执行如下。询问你是否需要编写适当的错误处理方法。</p>
 <p><strong>查询服务</strong> 实现：</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">LookupService</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">lookup</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_init_lookup</span><span class="p">()</span>  <span class="c1"># key: person_id, value: person_server</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">_init_lookup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="o">...</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">lookup_person_server</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">person_id</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">lookup</span><span class="p">[</span><span class="n">person_id</span><span class="p">]</span>
-</code></pre></div>
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">LookupService</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">lookup</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_init_lookup</span><span class="p">()</span>  <span class="c1"># key: person_id, value: person_server</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">_init_lookup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a>        <span class="o">...</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8"></a>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">lookup_person_server</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">person_id</span><span class="p">):</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">lookup</span><span class="p">[</span><span class="n">person_id</span><span class="p">]</span>
+</span></code></pre></div></td></tr></table></div>
 <p><strong>人员服务器</strong> 实现：</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">PersonServer</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">people</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># key: person_id, value: person</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">add_person</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">person</span><span class="p">):</span>
-        <span class="o">...</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">people</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ids</span><span class="p">):</span>
-        <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">ids</span><span class="p">:</span>
-            <span class="k">if</span> <span class="nb">id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">people</span><span class="p">:</span>
-                <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">people</span><span class="p">[</span><span class="nb">id</span><span class="p">])</span>
-        <span class="k">return</span> <span class="n">results</span>
-</code></pre></div>
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span>
+<span class="normal"><a href="#__codelineno-2-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">PersonServer</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">people</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># key: person_id, value: person</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">add_person</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">person</span><span class="p">):</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a>        <span class="o">...</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">people</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ids</span><span class="p">):</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10"></a>        <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11"></a>        <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">ids</span><span class="p">:</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12"></a>            <span class="k">if</span> <span class="nb">id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">people</span><span class="p">:</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13"></a>                <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">people</span><span class="p">[</span><span class="nb">id</span><span class="p">])</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14"></a>        <span class="k">return</span> <span class="n">results</span>
+</span></code></pre></div></td></tr></table></div>
 <p><strong>用户</strong> 实现：</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Person</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">friend_ids</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">id</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">friend_ids</span> <span class="o">=</span> <span class="n">friend_ids</span>
-</code></pre></div>
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span>
+<span class="normal"><a href="#__codelineno-3-5">5</a></span>
+<span class="normal"><a href="#__codelineno-3-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Person</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">friend_ids</span><span class="p">):</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">id</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">friend_ids</span> <span class="o">=</span> <span class="n">friend_ids</span>
+</span></code></pre></div></td></tr></table></div>
 <p><strong>用户图服务</strong> 实现：</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">UserGraphService</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lookup_service</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">lookup_service</span> <span class="o">=</span> <span class="n">lookup_service</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">person</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">person_id</span><span class="p">):</span>
-        <span class="n">person_server</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lookup_service</span><span class="o">.</span><span class="n">lookup_person_server</span><span class="p">(</span><span class="n">person_id</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">person_server</span><span class="o">.</span><span class="n">people</span><span class="p">([</span><span class="n">person_id</span><span class="p">])</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">shortest_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source_key</span><span class="p">,</span> <span class="n">dest_key</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">source_key</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">dest_key</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">None</span>
-        <span class="k">if</span> <span class="n">source_key</span> <span class="ow">is</span> <span class="n">dest_key</span><span class="p">:</span>
-            <span class="k">return</span> <span class="p">[</span><span class="n">source_key</span><span class="p">]</span>
-        <span class="n">prev_node_keys</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shortest_path</span><span class="p">(</span><span class="n">source_key</span><span class="p">,</span> <span class="n">dest_key</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">prev_node_keys</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">None</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="c1"># Iterate through the path_ids backwards, starting at dest_key</span>
-            <span class="n">path_ids</span> <span class="o">=</span> <span class="p">[</span><span class="n">dest_key</span><span class="p">]</span>
-            <span class="n">prev_node_key</span> <span class="o">=</span> <span class="n">prev_node_keys</span><span class="p">[</span><span class="n">dest_key</span><span class="p">]</span>
-            <span class="k">while</span> <span class="n">prev_node_key</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">path_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">prev_node_key</span><span class="p">)</span>
-                <span class="n">prev_node_key</span> <span class="o">=</span> <span class="n">prev_node_keys</span><span class="p">[</span><span class="n">prev_node_key</span><span class="p">]</span>
-            <span class="c1"># Reverse the list since we iterated backwards</span>
-            <span class="k">return</span> <span class="n">path_ids</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">_shortest_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source_key</span><span class="p">,</span> <span class="n">dest_key</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
-        <span class="c1"># Use the id to get the Person</span>
-        <span class="n">source</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">person</span><span class="p">(</span><span class="n">source_key</span><span class="p">)</span>
-        <span class="c1"># Update our bfs queue</span>
-        <span class="n">queue</span> <span class="o">=</span> <span class="n">deque</span><span class="p">()</span>
-        <span class="n">queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
-        <span class="c1"># prev_node_keys keeps track of each hop from</span>
-        <span class="c1"># the source_key to the dest_key</span>
-        <span class="n">prev_node_keys</span> <span class="o">=</span> <span class="p">{</span><span class="n">source_key</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
-        <span class="c1"># We&#39;ll use visited_ids to keep track of which nodes we&#39;ve</span>
-        <span class="c1"># visited, which can be different from a typical bfs where</span>
-        <span class="c1"># this can be stored in the node itself</span>
-        <span class="n">visited_ids</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
-        <span class="n">visited_ids</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">source</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
-        <span class="k">while</span> <span class="n">queue</span><span class="p">:</span>
-            <span class="n">node</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">popleft</span><span class="p">()</span>
-            <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">key</span> <span class="ow">is</span> <span class="n">dest_key</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">prev_node_keys</span>
-            <span class="n">prev_node</span> <span class="o">=</span> <span class="n">node</span>
-            <span class="k">for</span> <span class="n">friend_id</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">friend_ids</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">friend_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">visited_ids</span><span class="p">:</span>
-                    <span class="n">friend_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">person</span><span class="p">(</span><span class="n">friend_id</span><span class="p">)</span>
-                    <span class="n">queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">friend_node</span><span class="p">)</span>
-                    <span class="n">prev_node_keys</span><span class="p">[</span><span class="n">friend_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">prev_node</span><span class="o">.</span><span class="n">key</span>
-                    <span class="n">visited_ids</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">friend_id</span><span class="p">)</span>
-        <span class="k">return</span> <span class="kc">None</span>
-</code></pre></div>
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span>
+<span class="normal"><a href="#__codelineno-4-11">11</a></span>
+<span class="normal"><a href="#__codelineno-4-12">12</a></span>
+<span class="normal"><a href="#__codelineno-4-13">13</a></span>
+<span class="normal"><a href="#__codelineno-4-14">14</a></span>
+<span class="normal"><a href="#__codelineno-4-15">15</a></span>
+<span class="normal"><a href="#__codelineno-4-16">16</a></span>
+<span class="normal"><a href="#__codelineno-4-17">17</a></span>
+<span class="normal"><a href="#__codelineno-4-18">18</a></span>
+<span class="normal"><a href="#__codelineno-4-19">19</a></span>
+<span class="normal"><a href="#__codelineno-4-20">20</a></span>
+<span class="normal"><a href="#__codelineno-4-21">21</a></span>
+<span class="normal"><a href="#__codelineno-4-22">22</a></span>
+<span class="normal"><a href="#__codelineno-4-23">23</a></span>
+<span class="normal"><a href="#__codelineno-4-24">24</a></span>
+<span class="normal"><a href="#__codelineno-4-25">25</a></span>
+<span class="normal"><a href="#__codelineno-4-26">26</a></span>
+<span class="normal"><a href="#__codelineno-4-27">27</a></span>
+<span class="normal"><a href="#__codelineno-4-28">28</a></span>
+<span class="normal"><a href="#__codelineno-4-29">29</a></span>
+<span class="normal"><a href="#__codelineno-4-30">30</a></span>
+<span class="normal"><a href="#__codelineno-4-31">31</a></span>
+<span class="normal"><a href="#__codelineno-4-32">32</a></span>
+<span class="normal"><a href="#__codelineno-4-33">33</a></span>
+<span class="normal"><a href="#__codelineno-4-34">34</a></span>
+<span class="normal"><a href="#__codelineno-4-35">35</a></span>
+<span class="normal"><a href="#__codelineno-4-36">36</a></span>
+<span class="normal"><a href="#__codelineno-4-37">37</a></span>
+<span class="normal"><a href="#__codelineno-4-38">38</a></span>
+<span class="normal"><a href="#__codelineno-4-39">39</a></span>
+<span class="normal"><a href="#__codelineno-4-40">40</a></span>
+<span class="normal"><a href="#__codelineno-4-41">41</a></span>
+<span class="normal"><a href="#__codelineno-4-42">42</a></span>
+<span class="normal"><a href="#__codelineno-4-43">43</a></span>
+<span class="normal"><a href="#__codelineno-4-44">44</a></span>
+<span class="normal"><a href="#__codelineno-4-45">45</a></span>
+<span class="normal"><a href="#__codelineno-4-46">46</a></span>
+<span class="normal"><a href="#__codelineno-4-47">47</a></span>
+<span class="normal"><a href="#__codelineno-4-48">48</a></span>
+<span class="normal"><a href="#__codelineno-4-49">49</a></span>
+<span class="normal"><a href="#__codelineno-4-50">50</a></span>
+<span class="normal"><a href="#__codelineno-4-51">51</a></span>
+<span class="normal"><a href="#__codelineno-4-52">52</a></span>
+<span class="normal"><a href="#__codelineno-4-53">53</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">UserGraphService</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lookup_service</span><span class="p">):</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">lookup_service</span> <span class="o">=</span> <span class="n">lookup_service</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">person</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">person_id</span><span class="p">):</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7"></a>        <span class="n">person_server</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lookup_service</span><span class="o">.</span><span class="n">lookup_person_server</span><span class="p">(</span><span class="n">person_id</span><span class="p">)</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8"></a>        <span class="k">return</span> <span class="n">person_server</span><span class="o">.</span><span class="n">people</span><span class="p">([</span><span class="n">person_id</span><span class="p">])</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9"></a>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">shortest_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source_key</span><span class="p">,</span> <span class="n">dest_key</span><span class="p">):</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11"></a>        <span class="k">if</span> <span class="n">source_key</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">dest_key</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12"></a>            <span class="k">return</span> <span class="kc">None</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13"></a>        <span class="k">if</span> <span class="n">source_key</span> <span class="ow">is</span> <span class="n">dest_key</span><span class="p">:</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14"></a>            <span class="k">return</span> <span class="p">[</span><span class="n">source_key</span><span class="p">]</span>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15"></a>        <span class="n">prev_node_keys</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shortest_path</span><span class="p">(</span><span class="n">source_key</span><span class="p">,</span> <span class="n">dest_key</span><span class="p">)</span>
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16"></a>        <span class="k">if</span> <span class="n">prev_node_keys</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17"></a>            <span class="k">return</span> <span class="kc">None</span>
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18"></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19"></a>            <span class="c1"># Iterate through the path_ids backwards, starting at dest_key</span>
+</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20"></a>            <span class="n">path_ids</span> <span class="o">=</span> <span class="p">[</span><span class="n">dest_key</span><span class="p">]</span>
+</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21"></a>            <span class="n">prev_node_key</span> <span class="o">=</span> <span class="n">prev_node_keys</span><span class="p">[</span><span class="n">dest_key</span><span class="p">]</span>
+</span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22"></a>            <span class="k">while</span> <span class="n">prev_node_key</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23"></a>                <span class="n">path_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">prev_node_key</span><span class="p">)</span>
+</span><span id="__span-4-24"><a id="__codelineno-4-24" name="__codelineno-4-24"></a>                <span class="n">prev_node_key</span> <span class="o">=</span> <span class="n">prev_node_keys</span><span class="p">[</span><span class="n">prev_node_key</span><span class="p">]</span>
+</span><span id="__span-4-25"><a id="__codelineno-4-25" name="__codelineno-4-25"></a>            <span class="c1"># Reverse the list since we iterated backwards</span>
+</span><span id="__span-4-26"><a id="__codelineno-4-26" name="__codelineno-4-26"></a>            <span class="k">return</span> <span class="n">path_ids</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span><span id="__span-4-27"><a id="__codelineno-4-27" name="__codelineno-4-27"></a>
+</span><span id="__span-4-28"><a id="__codelineno-4-28" name="__codelineno-4-28"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">_shortest_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source_key</span><span class="p">,</span> <span class="n">dest_key</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+</span><span id="__span-4-29"><a id="__codelineno-4-29" name="__codelineno-4-29"></a>        <span class="c1"># Use the id to get the Person</span>
+</span><span id="__span-4-30"><a id="__codelineno-4-30" name="__codelineno-4-30"></a>        <span class="n">source</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">person</span><span class="p">(</span><span class="n">source_key</span><span class="p">)</span>
+</span><span id="__span-4-31"><a id="__codelineno-4-31" name="__codelineno-4-31"></a>        <span class="c1"># Update our bfs queue</span>
+</span><span id="__span-4-32"><a id="__codelineno-4-32" name="__codelineno-4-32"></a>        <span class="n">queue</span> <span class="o">=</span> <span class="n">deque</span><span class="p">()</span>
+</span><span id="__span-4-33"><a id="__codelineno-4-33" name="__codelineno-4-33"></a>        <span class="n">queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+</span><span id="__span-4-34"><a id="__codelineno-4-34" name="__codelineno-4-34"></a>        <span class="c1"># prev_node_keys keeps track of each hop from</span>
+</span><span id="__span-4-35"><a id="__codelineno-4-35" name="__codelineno-4-35"></a>        <span class="c1"># the source_key to the dest_key</span>
+</span><span id="__span-4-36"><a id="__codelineno-4-36" name="__codelineno-4-36"></a>        <span class="n">prev_node_keys</span> <span class="o">=</span> <span class="p">{</span><span class="n">source_key</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+</span><span id="__span-4-37"><a id="__codelineno-4-37" name="__codelineno-4-37"></a>        <span class="c1"># We&#39;ll use visited_ids to keep track of which nodes we&#39;ve</span>
+</span><span id="__span-4-38"><a id="__codelineno-4-38" name="__codelineno-4-38"></a>        <span class="c1"># visited, which can be different from a typical bfs where</span>
+</span><span id="__span-4-39"><a id="__codelineno-4-39" name="__codelineno-4-39"></a>        <span class="c1"># this can be stored in the node itself</span>
+</span><span id="__span-4-40"><a id="__codelineno-4-40" name="__codelineno-4-40"></a>        <span class="n">visited_ids</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+</span><span id="__span-4-41"><a id="__codelineno-4-41" name="__codelineno-4-41"></a>        <span class="n">visited_ids</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">source</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+</span><span id="__span-4-42"><a id="__codelineno-4-42" name="__codelineno-4-42"></a>        <span class="k">while</span> <span class="n">queue</span><span class="p">:</span>
+</span><span id="__span-4-43"><a id="__codelineno-4-43" name="__codelineno-4-43"></a>            <span class="n">node</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">popleft</span><span class="p">()</span>
+</span><span id="__span-4-44"><a id="__codelineno-4-44" name="__codelineno-4-44"></a>            <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">key</span> <span class="ow">is</span> <span class="n">dest_key</span><span class="p">:</span>
+</span><span id="__span-4-45"><a id="__codelineno-4-45" name="__codelineno-4-45"></a>                <span class="k">return</span> <span class="n">prev_node_keys</span>
+</span><span id="__span-4-46"><a id="__codelineno-4-46" name="__codelineno-4-46"></a>            <span class="n">prev_node</span> <span class="o">=</span> <span class="n">node</span>
+</span><span id="__span-4-47"><a id="__codelineno-4-47" name="__codelineno-4-47"></a>            <span class="k">for</span> <span class="n">friend_id</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">friend_ids</span><span class="p">:</span>
+</span><span id="__span-4-48"><a id="__codelineno-4-48" name="__codelineno-4-48"></a>                <span class="k">if</span> <span class="n">friend_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">visited_ids</span><span class="p">:</span>
+</span><span id="__span-4-49"><a id="__codelineno-4-49" name="__codelineno-4-49"></a>                    <span class="n">friend_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">person</span><span class="p">(</span><span class="n">friend_id</span><span class="p">)</span>
+</span><span id="__span-4-50"><a id="__codelineno-4-50" name="__codelineno-4-50"></a>                    <span class="n">queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">friend_node</span><span class="p">)</span>
+</span><span id="__span-4-51"><a id="__codelineno-4-51" name="__codelineno-4-51"></a>                    <span class="n">prev_node_keys</span><span class="p">[</span><span class="n">friend_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">prev_node</span><span class="o">.</span><span class="n">key</span>
+</span><span id="__span-4-52"><a id="__codelineno-4-52" name="__codelineno-4-52"></a>                    <span class="n">visited_ids</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">friend_id</span><span class="p">)</span>
+</span><span id="__span-4-53"><a id="__codelineno-4-53" name="__codelineno-4-53"></a>        <span class="k">return</span> <span class="kc">None</span>
+</span></code></pre></div></td></tr></table></div>
 <p>我们用的是公共的 <a href="https://github.com/ido777/system-design-primer-update#representational-state-transfer-rest"><strong>REST API</strong></a>：</p>
-<div class="highlight"><pre><span></span><code>$ curl https://social.com/api/v1/friend_search?person_id=1234
-</code></pre></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a>$ curl https://social.com/api/v1/friend_search?person_id=1234
+</span></code></pre></div></td></tr></table></div>
 <p>响应：</p>
-<div class="highlight"><pre><span></span><code>{
-    &quot;person_id&quot;: &quot;100&quot;,
-    &quot;name&quot;: &quot;foo&quot;,
-    &quot;link&quot;: &quot;https://social.com/foo&quot;,
-},
-{
-    &quot;person_id&quot;: &quot;53&quot;,
-    &quot;name&quot;: &quot;bar&quot;,
-    &quot;link&quot;: &quot;https://social.com/bar&quot;,
-},
-{
-    &quot;person_id&quot;: &quot;1234&quot;,
-    &quot;name&quot;: &quot;baz&quot;,
-    &quot;link&quot;: &quot;https://social.com/baz&quot;,
-},
-</code></pre></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-6-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-6-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-6-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-6-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-6-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-6-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-6-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-6-10">10</a></span>
+<span class="normal"><a href="#__codelineno-6-11">11</a></span>
+<span class="normal"><a href="#__codelineno-6-12">12</a></span>
+<span class="normal"><a href="#__codelineno-6-13">13</a></span>
+<span class="normal"><a href="#__codelineno-6-14">14</a></span>
+<span class="normal"><a href="#__codelineno-6-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a>{
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a>    &quot;person_id&quot;: &quot;100&quot;,
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a>    &quot;name&quot;: &quot;foo&quot;,
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4"></a>    &quot;link&quot;: &quot;https://social.com/foo&quot;,
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5"></a>},
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6"></a>{
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7"></a>    &quot;person_id&quot;: &quot;53&quot;,
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8"></a>    &quot;name&quot;: &quot;bar&quot;,
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9"></a>    &quot;link&quot;: &quot;https://social.com/bar&quot;,
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10"></a>},
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11"></a>{
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12"></a>    &quot;person_id&quot;: &quot;1234&quot;,
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13"></a>    &quot;name&quot;: &quot;baz&quot;,
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14"></a>    &quot;link&quot;: &quot;https://social.com/baz&quot;,
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15"></a>},
+</span></code></pre></div></td></tr></table></div>
 <p>内部通信使用 <a href="https://github.com/ido777/system-design-primer-update#remote-procedure-call-rpc">远端过程调用</a>。</p>
 <h2 id="4">第 4 步：扩展设计<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
 <blockquote>
@@ -3105,29 +3219,6 @@
 
     
     
-      
-  <span class="md-source-file__fact">
-    
-      
-  <span class="md-icon" title="Contributors">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2"/></svg>
-  </span>
-  <span>GitHub</span>
-
-    
-    <nav>
-      
-        <a href="https://github.com/ido777" class="md-author" title="@ido777">
-          
-          <img src="https://avatars.githubusercontent.com/u/6554277?v=4&size=72" alt="ido777">
-        </a>
-      
-      
-      
-    </nav>
-  </span>
-
-    
   </aside>
 
 
@@ -3251,7 +3342,7 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "navigation.path", "content.code.annotate", "content.tabs.link", "search.highlight", "search.suggest", "toc.follow"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "navigation.path", "content.code.annotate", "content.code.copy", "content.tabs.link", "search.highlight", "search.suggest", "toc.follow"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../../assets/javascripts/bundle.13a4f30d.min.js"></script>

@@ -1518,6 +1518,8 @@
     
       
         
+          
+        
       
         
       
@@ -1547,8 +1549,9 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_6" >
         
           
-          <label class="md-nav__link" for="__nav_6_6" id="__nav_6_6_label" tabindex="0">
-            
+          <div class="md-nav__link md-nav__container">
+            <a href="../solutions/object_oriented_design/call_center/index.html" class="md-nav__link ">
+              
   
   
   <span class="md-ellipsis">
@@ -1557,8 +1560,14 @@
   </span>
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6_6" id="__nav_6_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6_6">
@@ -1568,27 +1577,6 @@
           <ul class="md-nav__list" data-md-scrollfix>
             
               
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../solutions/object_oriented_design/call_center/README.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Call Center
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
             
               
                 
@@ -1597,7 +1585,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../solutions/object_oriented_design/circular_array/circular_array.py" class="md-nav__link">
+      <a href="../solutions/object_oriented_design/circular_array/index.html" class="md-nav__link">
         
   
   
@@ -1620,7 +1608,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../solutions/object_oriented_design/deck_of_cards/deck_of_cards.py" class="md-nav__link">
+      <a href="../solutions/object_oriented_design/deck_of_cards/index.html" class="md-nav__link">
         
   
   
@@ -1643,7 +1631,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../solutions/object_oriented_design/hash_table/hash_table.py" class="md-nav__link">
+      <a href="../solutions/object_oriented_design/hash_table/index.html" class="md-nav__link">
         
   
   
@@ -1666,7 +1654,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../solutions/object_oriented_design/lru_cache/lru_cache.py" class="md-nav__link">
+      <a href="../solutions/object_oriented_design/lru_cache/index.html" class="md-nav__link">
         
   
   
@@ -1689,7 +1677,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../solutions/object_oriented_design/movie_tickets/movie_tickets.py" class="md-nav__link">
+      <a href="../solutions/object_oriented_design/movie_tickets/index.html" class="md-nav__link">
         
   
   
@@ -1712,7 +1700,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../solutions/object_oriented_design/online_chat/online_chat.py" class="md-nav__link">
+      <a href="../solutions/object_oriented_design/online_chat/index.html" class="md-nav__link">
         
   
   
@@ -1735,7 +1723,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../solutions/object_oriented_design/parking_lot/parking_lot.py" class="md-nav__link">
+      <a href="../solutions/object_oriented_design/parking_lot/index.html" class="md-nav__link">
         
   
   
@@ -7032,13 +7020,13 @@
 <p>Bir hizmet, birden çok hataya duyarlı bileşenden oluşuyorsa, hizmetin genel erişilebilirliği, bileşenlerin sıralı mı yoksa paralel mi olduğuna bağlıdır.</p>
 <h6 id="sral">Sıralı<a class="headerlink" href="#sral" title="Permanent link">&para;</a></h6>
 <p>Erişilebilirliği %100'den küçük iki bileşenin sıralı olduğu durumda toplam erişilebilirlik düşecektir:</p>
-<div class="highlight"><pre><span></span><code>Erişilebilirlik (Toplam) = Erişilebilirlik (Bileşen 1) * Erişilebilirlik (Bileşen 2)
-</code></pre></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a>Erişilebilirlik (Toplam) = Erişilebilirlik (Bileşen 1) * Erişilebilirlik (Bileşen 2)
+</span></code></pre></div></td></tr></table></div>
 <p>Eğer "Bileşen 1" ve "Bileşen 2" %99.9 erişilebilirliğe sahiplerse toplam erişilebilirlik %99.8 olacaktır.</p>
 <h6 id="paralel">Paralel<a class="headerlink" href="#paralel" title="Permanent link">&para;</a></h6>
 <p>Erişilebilirliği %100'den küçük iki bileşenin paralel olduğu durumda toplam erişilebilirlik artacaktır:</p>
-<div class="highlight"><pre><span></span><code>Erişilebilirlik (Toplam) = 1 - (1 - Erişilebilirlik (Bileşen 1)) * (1 - Erişilebilirlik (Bileşen 2))
-</code></pre></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a>Erişilebilirlik (Toplam) = 1 - (1 - Erişilebilirlik (Bileşen 1)) * (1 - Erişilebilirlik (Bileşen 2))
+</span></code></pre></div></td></tr></table></div>
 <p>Eğer "Bileşen 1" ve "Bileşen 2" %99.9 erişilebilirliğe sahiplerse toplam erişilebilirlik %99.9999 olacaktır.</p>
 <h2 id="alan-ad-sistemi-dns">Alan Adı Sistemi (DNS)<a class="headerlink" href="#alan-ad-sistemi-dns" title="Permanent link">&para;</a></h2>
 <p align="center">
@@ -7605,15 +7593,22 @@
 <li>Bulunan sonuçları önbellekte saklar.</li>
 <li>İhtiyacı olunan veriyi döndürür.</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">):</span>
-    <span class="n">user</span> <span class="o">=</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;user.</span><span class="si">{0}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">user_id</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">user</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">user</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM users WHERE user_id = </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">user_id</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">user</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">key</span> <span class="o">=</span> <span class="s2">&quot;user.</span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
-            <span class="n">cache</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">user</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">user</span>
-</code></pre></div>
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">5</a></span>
+<span class="normal"><a href="#__codelineno-2-6">6</a></span>
+<span class="normal"><a href="#__codelineno-2-7">7</a></span>
+<span class="normal"><a href="#__codelineno-2-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">get_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">):</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a>    <span class="n">user</span> <span class="o">=</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;user.</span><span class="si">{0}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">user_id</span><span class="p">)</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a>    <span class="k">if</span> <span class="n">user</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a>        <span class="n">user</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM users WHERE user_id = </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">user_id</span><span class="p">)</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a>        <span class="k">if</span> <span class="n">user</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a>            <span class="n">key</span> <span class="o">=</span> <span class="s2">&quot;user.</span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a>            <span class="n">cache</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">user</span><span class="p">))</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a>    <span class="k">return</span> <span class="n">user</span>
+</span></code></pre></div></td></tr></table></div>
 <p><a href="https://memcached.org/">Memcached</a> genellikle bu şekilde kullanılır.</p>
 <p>Önbelleğe eklenen veriler çok hızlı okunur. Önbellek moduna tembel yükleme de denir. Yalnızca istenen veriler önbelleğe alınır; bu, önbelleğin istenmeyen verilerle doldurulmasını önler.</p>
 <h5 id="dezavantajlar-cache-aside">Dezavantaj(lar): cache-aside<a class="headerlink" href="#dezavantajlar-cache-aside" title="Permanent link">&para;</a></h5>
@@ -7636,13 +7631,15 @@
 <li>Geri dönüş.</li>
 </ul>
 <p>Uygulama kodu:</p>
-<div class="highlight"><pre><span></span><code><span class="n">set_user</span><span class="p">(</span><span class="mi">12345</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;foo&quot;</span><span class="p">:</span><span class="s2">&quot;bar&quot;</span><span class="p">})</span>
-</code></pre></div>
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="n">set_user</span><span class="p">(</span><span class="mi">12345</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;foo&quot;</span><span class="p">:</span><span class="s2">&quot;bar&quot;</span><span class="p">})</span>
+</span></code></pre></div></td></tr></table></div>
 <p>Önbellek kodu:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">set_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
-    <span class="n">user</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;UPDATE Users WHERE id = </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">user_id</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
-    <span class="n">cache</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="n">user</span><span class="p">)</span>
-</code></pre></div>
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">set_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a>    <span class="n">user</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;UPDATE Users WHERE id = </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">user_id</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a>    <span class="n">cache</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="n">user</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
 <p>Depolama ve yazma işlemleri nedeniyle, üzerine yazma yöntemi genel olarak çok yavaş bir işlemdir, ancak yeni yazılan verilerin okunması çok hızlıdır. Kullanıcılar genellikle veriyi okurken veriyi güncelleme sırasındaki gecikmeye daha toleranslıdır. Önbellekteki veriler eski değildir.</p>
 <h5 id="dezavantajlar-uzerine-yazma-write-through">Dezavantaj(lar): üzerine yazma (write-through)<a class="headerlink" href="#dezavantajlar-uzerine-yazma-write-through" title="Permanent link">&para;</a></h5>
 <ul>
@@ -7862,14 +7859,20 @@
 <p>Örnek RPC çağrısı:</p>
 </li>
 </ul>
-<div class="highlight"><pre><span></span><code>GET /someoperation?data=anId
-
-POST /anotheroperation
-{
-  &quot;data&quot;:&quot;anId&quot;;
-  &quot;anotherdata&quot;: &quot;another value&quot;
-}
-</code></pre></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span>
+<span class="normal"><a href="#__codelineno-5-3">3</a></span>
+<span class="normal"><a href="#__codelineno-5-4">4</a></span>
+<span class="normal"><a href="#__codelineno-5-5">5</a></span>
+<span class="normal"><a href="#__codelineno-5-6">6</a></span>
+<span class="normal"><a href="#__codelineno-5-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a>GET /someoperation?data=anId
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a>POST /anotheroperation
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a>{
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5"></a>  &quot;data&quot;:&quot;anId&quot;;
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6"></a>  &quot;anotherdata&quot;: &quot;another value&quot;
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7"></a>}
+</span></code></pre></div></td></tr></table></div>
 <p>RPC, davranışları ortaya çıkarmaya odaklanmıştır. RPC'ler, genellikle iç iletişimde performans nedenleriyle kullanılır, çünkü kullanım durumlarınıza daha iyi uyan özelleştirilmiş çağrıları el ile oluşturabilirsiniz.</p>
 <p>Aşağıdaki durumlarda yerel kitaplığı (yani SDK'yı) seçin:</p>
 <ul>
@@ -7896,11 +7899,14 @@ POST /anotheroperation
 <li><strong><a href="http://restcookbook.com/Basics/hateoas/">HATEOAS</a> (HTTP için HTML arayüzü)</strong> - Web servisiniz tarayıcıda tamamen erişilebilir olmalıdır.</li>
 </ul>
 <p>Örnek REST isteği:</p>
-<div class="highlight"><pre><span></span><code>GET /someresources/anId
-
-PUT /someresources/anId
-{&quot;anotherdata&quot;: &quot;another value&quot;}
-</code></pre></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span>
+<span class="normal"><a href="#__codelineno-6-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a>GET /someresources/anId
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a>PUT /someresources/anId
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4"></a>{&quot;anotherdata&quot;: &quot;another value&quot;}
+</span></code></pre></div></td></tr></table></div>
 <p>REST, veri sunmaya odaklanmıştır. İstemci/sunucu arasındaki bağı minimuma indirir ve genellikle genel HTTP API'leri için kullanılır. REST, kaynakları URI'lar aracılığıyla, <a href="https://github.com/for-GET/know-your-http-well/blob/master/headers.md">başlıklar</a> aracılığıyla temsil edilme ve GET, POST, PUT, DELETE ve PATCH gibi metotlar aracılığıyla metotları açma konusunda daha genel ve birleşik bir yöntem kullanır. Durum bilgisi olmayan(stateless) yapısı nedeniyle, REST yatay ölçeklendirme ve bölütleme için uygundur.</p>
 <h4 id="dezavantajlar-rest">Dezavantaj(lar): REST<a class="headerlink" href="#dezavantajlar-rest" title="Permanent link">&para;</a></h4>
 <ul>
@@ -7989,46 +7995,77 @@ PUT /someresources/anId
 <h2 id="ek">Ek<a class="headerlink" href="#ek" title="Permanent link">&para;</a></h2>
 <p>Bazen sizden geçerli tahminler yapmanız istenecektir. Örneğin, diskten 100 görüntünün küçük resimlerini oluşturmanın ne kadar süreceğini veya bir veri yapısının ne kadar bellek gerektireceğini tahmin etmeniz gerekebilir. <strong>İkinin kuvveti tablosu</strong> ve <strong>Her geliştiricinin bilmesi gereken bazı zaman verileri</strong> bazı kullanışlı referans materyalleridir.</p>
 <h3 id="ikinin-kuvveti-tablosu">İkinin kuvveti tablosu<a class="headerlink" href="#ikinin-kuvveti-tablosu" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>Kuvvet           Gerçek değer      Yaklaşık değer       Bytes
----------------------------------------------------------------
-7                             128
-8                             256
-10                           1024   1 thousand           1 KB
-16                         65,536                       64 KB
-20                      1,048,576   1 million            1 MB
-30                  1,073,741,824   1 billion            1 GB
-32                  4,294,967,296                        4 GB
-40              1,099,511,627,776   1 trillion           1 TB
-</code></pre></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-7-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a>Kuvvet           Gerçek değer      Yaklaşık değer       Bytes
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a>---------------------------------------------------------------
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a>7                             128
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a>8                             256
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5"></a>10                           1024   1 thousand           1 KB
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6"></a>16                         65,536                       64 KB
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7"></a>20                      1,048,576   1 million            1 MB
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8"></a>30                  1,073,741,824   1 billion            1 GB
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9"></a>32                  4,294,967,296                        4 GB
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10"></a>40              1,099,511,627,776   1 trillion           1 TB
+</span></code></pre></div></td></tr></table></div>
 <h4 id="kaynaklar-ve-ek-okuma_16">Kaynak(lar) ve ek okuma<a class="headerlink" href="#kaynaklar-ve-ek-okuma_16" title="Permanent link">&para;</a></h4>
 <ul>
 <li><a href="https://en.wikipedia.org/wiki/Power_of_two">Powers of two</a></li>
 </ul>
 <h3 id="her-programcnn-bilmesi-gereken-gecikme-saylar">Her programcının bilmesi gereken gecikme sayıları<a class="headerlink" href="#her-programcnn-bilmesi-gereken-gecikme-saylar" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>Latency Comparison Numbers
---------------------------
-L1 cache reference                           0.5 ns
-Branch mispredict                            5   ns
-L2 cache reference                           7   ns                      14x L1 cache
-Mutex lock/unlock                           25   ns
-Main memory reference                      100   ns                      20x L2 cache, 200x L1 cache
-Compress 1K bytes with Zippy            10,000   ns       10 us
-Send 1 KB bytes over 1 Gbps network     10,000   ns       10 us
-Read 4 KB randomly from SSD*           150,000   ns      150 us          ~1GB/sec SSD
-Read 1 MB sequentially from memory     250,000   ns      250 us
-Round trip within same datacenter      500,000   ns      500 us
-Read 1 MB sequentially from SSD*     1,000,000   ns    1,000 us    1 ms  ~1GB/sec SSD, 4X memory
-Disk seek                           10,000,000   ns   10,000 us   10 ms  20x datacenter roundtrip
-Read 1 MB sequentially from 1 Gbps  10,000,000   ns   10,000 us   10 ms  40x memory, 10X SSD
-Read 1 MB sequentially from disk    30,000,000   ns   30,000 us   30 ms 120x memory, 30X SSD
-Send packet CA-&gt;Netherlands-&gt;CA    150,000,000   ns  150,000 us  150 ms
-
-Notes
------
-1 ns = 10^-9 seconds
-1 us = 10^-6 seconds = 1,000 ns
-1 ms = 10^-3 seconds = 1,000 us = 1,000,000 ns
-</code></pre></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-8-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-8-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-8-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-8-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-8-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-8-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-8-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-8-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-8-10">10</a></span>
+<span class="normal"><a href="#__codelineno-8-11">11</a></span>
+<span class="normal"><a href="#__codelineno-8-12">12</a></span>
+<span class="normal"><a href="#__codelineno-8-13">13</a></span>
+<span class="normal"><a href="#__codelineno-8-14">14</a></span>
+<span class="normal"><a href="#__codelineno-8-15">15</a></span>
+<span class="normal"><a href="#__codelineno-8-16">16</a></span>
+<span class="normal"><a href="#__codelineno-8-17">17</a></span>
+<span class="normal"><a href="#__codelineno-8-18">18</a></span>
+<span class="normal"><a href="#__codelineno-8-19">19</a></span>
+<span class="normal"><a href="#__codelineno-8-20">20</a></span>
+<span class="normal"><a href="#__codelineno-8-21">21</a></span>
+<span class="normal"><a href="#__codelineno-8-22">22</a></span>
+<span class="normal"><a href="#__codelineno-8-23">23</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a>Latency Comparison Numbers
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a>--------------------------
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a>L1 cache reference                           0.5 ns
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a>Branch mispredict                            5   ns
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5"></a>L2 cache reference                           7   ns                      14x L1 cache
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6"></a>Mutex lock/unlock                           25   ns
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7"></a>Main memory reference                      100   ns                      20x L2 cache, 200x L1 cache
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8"></a>Compress 1K bytes with Zippy            10,000   ns       10 us
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9"></a>Send 1 KB bytes over 1 Gbps network     10,000   ns       10 us
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10"></a>Read 4 KB randomly from SSD*           150,000   ns      150 us          ~1GB/sec SSD
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11"></a>Read 1 MB sequentially from memory     250,000   ns      250 us
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12"></a>Round trip within same datacenter      500,000   ns      500 us
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13"></a>Read 1 MB sequentially from SSD*     1,000,000   ns    1,000 us    1 ms  ~1GB/sec SSD, 4X memory
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14"></a>Disk seek                           10,000,000   ns   10,000 us   10 ms  20x datacenter roundtrip
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15"></a>Read 1 MB sequentially from 1 Gbps  10,000,000   ns   10,000 us   10 ms  40x memory, 10X SSD
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16"></a>Read 1 MB sequentially from disk    30,000,000   ns   30,000 us   30 ms 120x memory, 30X SSD
+</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17"></a>Send packet CA-&gt;Netherlands-&gt;CA    150,000,000   ns  150,000 us  150 ms
+</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18"></a>
+</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19"></a>Notes
+</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20"></a>-----
+</span><span id="__span-8-21"><a id="__codelineno-8-21" name="__codelineno-8-21"></a>1 ns = 10^-9 seconds
+</span><span id="__span-8-22"><a id="__codelineno-8-22" name="__codelineno-8-22"></a>1 us = 10^-6 seconds = 1,000 ns
+</span><span id="__span-8-23"><a id="__codelineno-8-23" name="__codelineno-8-23"></a>1 ms = 10^-3 seconds = 1,000 us = 1,000,000 ns
+</span></code></pre></div></td></tr></table></div>
 <p>Yukarıdaki sayılar temelinde kullanışlı ölçümler:</p>
 <ul>
 <li>HDD'den sıralı okuma hızı: 30 MB/s</li>
@@ -8521,34 +8558,6 @@ Notes
 
     
     
-      
-  <span class="md-source-file__fact">
-    
-      
-  <span class="md-icon" title="Contributors">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2"/></svg>
-  </span>
-  <span>GitHub</span>
-
-    
-    <nav>
-      
-        <a href="https://github.com/ido777" class="md-author" title="@ido777">
-          
-          <img src="https://avatars.githubusercontent.com/u/6554277?v=4&size=72" alt="ido777">
-        </a>
-      
-        <a href="https://github.com/web-flow" class="md-author" title="@web-flow">
-          
-          <img src="https://avatars.githubusercontent.com/u/19864447?v=4&size=72" alt="web-flow">
-        </a>
-      
-      
-      
-    </nav>
-  </span>
-
-    
   </aside>
 
 
@@ -8694,7 +8703,7 @@ Notes
     
     
       
-      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "navigation.path", "content.code.annotate", "content.tabs.link", "search.highlight", "search.suggest", "toc.follow"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "navigation.path", "content.code.annotate", "content.code.copy", "content.tabs.link", "search.highlight", "search.suggest", "toc.follow"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../assets/javascripts/bundle.13a4f30d.min.js"></script>

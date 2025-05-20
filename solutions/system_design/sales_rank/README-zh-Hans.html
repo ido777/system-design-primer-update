@@ -1512,6 +1512,8 @@
     
       
         
+          
+        
       
         
       
@@ -1541,8 +1543,9 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_6" >
         
           
-          <label class="md-nav__link" for="__nav_6_6" id="__nav_6_6_label" tabindex="0">
-            
+          <div class="md-nav__link md-nav__container">
+            <a href="../../object_oriented_design/call_center/index.html" class="md-nav__link ">
+              
   
   
   <span class="md-ellipsis">
@@ -1551,8 +1554,14 @@
   </span>
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6_6" id="__nav_6_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6_6">
@@ -1562,27 +1571,6 @@
           <ul class="md-nav__list" data-md-scrollfix>
             
               
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../object_oriented_design/call_center/README.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Call Center
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
             
               
                 
@@ -1591,7 +1579,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../object_oriented_design/circular_array/circular_array.py" class="md-nav__link">
+      <a href="../../object_oriented_design/circular_array/index.html" class="md-nav__link">
         
   
   
@@ -1614,7 +1602,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../object_oriented_design/deck_of_cards/deck_of_cards.py" class="md-nav__link">
+      <a href="../../object_oriented_design/deck_of_cards/index.html" class="md-nav__link">
         
   
   
@@ -1637,7 +1625,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../object_oriented_design/hash_table/hash_table.py" class="md-nav__link">
+      <a href="../../object_oriented_design/hash_table/index.html" class="md-nav__link">
         
   
   
@@ -1660,7 +1648,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../object_oriented_design/lru_cache/lru_cache.py" class="md-nav__link">
+      <a href="../../object_oriented_design/lru_cache/index.html" class="md-nav__link">
         
   
   
@@ -1683,7 +1671,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../object_oriented_design/movie_tickets/movie_tickets.py" class="md-nav__link">
+      <a href="../../object_oriented_design/movie_tickets/index.html" class="md-nav__link">
         
   
   
@@ -1706,7 +1694,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../object_oriented_design/online_chat/online_chat.py" class="md-nav__link">
+      <a href="../../object_oriented_design/online_chat/index.html" class="md-nav__link">
         
   
   
@@ -1729,7 +1717,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../object_oriented_design/parking_lot/parking_lot.py" class="md-nav__link">
+      <a href="../../object_oriented_design/parking_lot/index.html" class="md-nav__link">
         
   
   
@@ -2814,108 +2802,194 @@
 <p>我们可以在现成的<strong>对象存储</strong>系统（例如 Amazon S3 服务）中存储 <strong>售卖 API</strong> 服务产生的日志文本， 因此不需要我们自己搭建分布式文件系统了。</p>
 <p><strong>向你的面试官告知你准备写多少代码</strong>。</p>
 <p>假设下面是一个用 tab 分割的简易的日志记录：</p>
-<div class="highlight"><pre><span></span><code>timestamp   product_id  category_id    qty     total_price   seller_id    buyer_id
-t1          product1    category1      2       20.00         1            1
-t2          product1    category2      2       20.00         2            2
-t2          product1    category2      1       10.00         2            3
-t3          product2    category1      3        7.00         3            4
-t4          product3    category2      7        2.00         4            5
-t5          product4    category1      1        5.00         5            6
-...
-</code></pre></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span>
+<span class="normal"><a href="#__codelineno-0-5">5</a></span>
+<span class="normal"><a href="#__codelineno-0-6">6</a></span>
+<span class="normal"><a href="#__codelineno-0-7">7</a></span>
+<span class="normal"><a href="#__codelineno-0-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a>timestamp   product_id  category_id    qty     total_price   seller_id    buyer_id
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a>t1          product1    category1      2       20.00         1            1
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a>t2          product1    category2      2       20.00         2            2
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a>t2          product1    category2      1       10.00         2            3
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a>t3          product2    category1      3        7.00         3            4
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a>t4          product3    category2      7        2.00         4            5
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a>t5          product4    category1      1        5.00         5            6
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a>...
+</span></code></pre></div></td></tr></table></div>
 <p><strong>售卖排行服务</strong> 需要用到 <strong>MapReduce</strong>，并使用 <strong>售卖 API</strong> 服务进行日志记录，同时将结果写入 <strong>SQL 数据库</strong>中的总表 <code>sales_rank</code> 中。我们也可以讨论一下<a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#sql-还是-nosql">究竟是用 SQL 还是用 NoSQL</a>。</p>
 <p>我们需要通过以下步骤使用 <strong>MapReduce</strong>：</p>
 <ul>
 <li><strong>第 1 步</strong> - 将数据转换为 <code>(category, product_id), sum(quantity)</code> 的形式</li>
 <li><strong>第 2 步</strong> - 执行分布式排序</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">SalesRanker</span><span class="p">(</span><span class="n">MRJob</span><span class="p">):</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">within_past_week</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;如果时间戳属于过去的一周则返回 True，</span>
-<span class="sd">        否则返回 False。&quot;&quot;&quot;</span>
-        <span class="o">...</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">mapper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_</span> <span class="n">line</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;解析日志的每一行，提取并转换相关行，</span>
-
-<span class="sd">        将键值对设定为如下形式：</span>
-
-<span class="sd">        (category1, product1), 2</span>
-<span class="sd">        (category2, product1), 2</span>
-<span class="sd">        (category2, product1), 1</span>
-<span class="sd">        (category1, product2), 3</span>
-<span class="sd">        (category2, product3), 7</span>
-<span class="sd">        (category1, product4), 1</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">timestamp</span><span class="p">,</span> <span class="n">product_id</span><span class="p">,</span> <span class="n">category_id</span><span class="p">,</span> <span class="n">quantity</span><span class="p">,</span> <span class="n">total_price</span><span class="p">,</span> <span class="n">seller_id</span><span class="p">,</span> \
-            <span class="n">buyer_id</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">within_past_week</span><span class="p">(</span><span class="n">timestamp</span><span class="p">):</span>
-            <span class="k">yield</span> <span class="p">(</span><span class="n">category_id</span><span class="p">,</span> <span class="n">product_id</span><span class="p">),</span> <span class="n">quantity</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">reducer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;将每个 key 的值加起来。</span>
-
-<span class="sd">        (category1, product1), 2</span>
-<span class="sd">        (category2, product1), 3</span>
-<span class="sd">        (category1, product2), 3</span>
-<span class="sd">        (category2, product3), 7</span>
-<span class="sd">        (category1, product4), 1</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">yield</span> <span class="n">key</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">mapper_sort</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;构造 key 以确保正确的排序。</span>
-
-<span class="sd">        将键值对转换成如下形式：</span>
-
-<span class="sd">        (category1, 2), product1</span>
-<span class="sd">        (category2, 3), product1</span>
-<span class="sd">        (category1, 3), product2</span>
-<span class="sd">        (category2, 7), product3</span>
-<span class="sd">        (category1, 1), product4</span>
-
-<span class="sd">        MapReduce 的随机排序步骤会将键</span>
-<span class="sd">        值的排序打乱，变成下面这样：</span>
-
-<span class="sd">        (category1, 1), product4</span>
-<span class="sd">        (category1, 2), product1</span>
-<span class="sd">        (category1, 3), product2</span>
-<span class="sd">        (category2, 3), product1</span>
-<span class="sd">        (category2, 7), product3</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">category_id</span><span class="p">,</span> <span class="n">product_id</span> <span class="o">=</span> <span class="n">key</span>
-        <span class="n">quantity</span> <span class="o">=</span> <span class="n">value</span>
-        <span class="k">yield</span> <span class="p">(</span><span class="n">category_id</span><span class="p">,</span> <span class="n">quantity</span><span class="p">),</span> <span class="n">product_id</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">reducer_identity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-        <span class="k">yield</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">steps</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; 此处为 map reduce 步骤&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="p">[</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">mr</span><span class="p">(</span><span class="n">mapper</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">mapper</span><span class="p">,</span>
-                    <span class="n">reducer</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">reducer</span><span class="p">),</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">mr</span><span class="p">(</span><span class="n">mapper</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">mapper_sort</span><span class="p">,</span>
-                    <span class="n">reducer</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">reducer_identity</span><span class="p">),</span>
-        <span class="p">]</span>
-</code></pre></div>
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span>
+<span class="normal"><a href="#__codelineno-1-12">12</a></span>
+<span class="normal"><a href="#__codelineno-1-13">13</a></span>
+<span class="normal"><a href="#__codelineno-1-14">14</a></span>
+<span class="normal"><a href="#__codelineno-1-15">15</a></span>
+<span class="normal"><a href="#__codelineno-1-16">16</a></span>
+<span class="normal"><a href="#__codelineno-1-17">17</a></span>
+<span class="normal"><a href="#__codelineno-1-18">18</a></span>
+<span class="normal"><a href="#__codelineno-1-19">19</a></span>
+<span class="normal"><a href="#__codelineno-1-20">20</a></span>
+<span class="normal"><a href="#__codelineno-1-21">21</a></span>
+<span class="normal"><a href="#__codelineno-1-22">22</a></span>
+<span class="normal"><a href="#__codelineno-1-23">23</a></span>
+<span class="normal"><a href="#__codelineno-1-24">24</a></span>
+<span class="normal"><a href="#__codelineno-1-25">25</a></span>
+<span class="normal"><a href="#__codelineno-1-26">26</a></span>
+<span class="normal"><a href="#__codelineno-1-27">27</a></span>
+<span class="normal"><a href="#__codelineno-1-28">28</a></span>
+<span class="normal"><a href="#__codelineno-1-29">29</a></span>
+<span class="normal"><a href="#__codelineno-1-30">30</a></span>
+<span class="normal"><a href="#__codelineno-1-31">31</a></span>
+<span class="normal"><a href="#__codelineno-1-32">32</a></span>
+<span class="normal"><a href="#__codelineno-1-33">33</a></span>
+<span class="normal"><a href="#__codelineno-1-34">34</a></span>
+<span class="normal"><a href="#__codelineno-1-35">35</a></span>
+<span class="normal"><a href="#__codelineno-1-36">36</a></span>
+<span class="normal"><a href="#__codelineno-1-37">37</a></span>
+<span class="normal"><a href="#__codelineno-1-38">38</a></span>
+<span class="normal"><a href="#__codelineno-1-39">39</a></span>
+<span class="normal"><a href="#__codelineno-1-40">40</a></span>
+<span class="normal"><a href="#__codelineno-1-41">41</a></span>
+<span class="normal"><a href="#__codelineno-1-42">42</a></span>
+<span class="normal"><a href="#__codelineno-1-43">43</a></span>
+<span class="normal"><a href="#__codelineno-1-44">44</a></span>
+<span class="normal"><a href="#__codelineno-1-45">45</a></span>
+<span class="normal"><a href="#__codelineno-1-46">46</a></span>
+<span class="normal"><a href="#__codelineno-1-47">47</a></span>
+<span class="normal"><a href="#__codelineno-1-48">48</a></span>
+<span class="normal"><a href="#__codelineno-1-49">49</a></span>
+<span class="normal"><a href="#__codelineno-1-50">50</a></span>
+<span class="normal"><a href="#__codelineno-1-51">51</a></span>
+<span class="normal"><a href="#__codelineno-1-52">52</a></span>
+<span class="normal"><a href="#__codelineno-1-53">53</a></span>
+<span class="normal"><a href="#__codelineno-1-54">54</a></span>
+<span class="normal"><a href="#__codelineno-1-55">55</a></span>
+<span class="normal"><a href="#__codelineno-1-56">56</a></span>
+<span class="normal"><a href="#__codelineno-1-57">57</a></span>
+<span class="normal"><a href="#__codelineno-1-58">58</a></span>
+<span class="normal"><a href="#__codelineno-1-59">59</a></span>
+<span class="normal"><a href="#__codelineno-1-60">60</a></span>
+<span class="normal"><a href="#__codelineno-1-61">61</a></span>
+<span class="normal"><a href="#__codelineno-1-62">62</a></span>
+<span class="normal"><a href="#__codelineno-1-63">63</a></span>
+<span class="normal"><a href="#__codelineno-1-64">64</a></span>
+<span class="normal"><a href="#__codelineno-1-65">65</a></span>
+<span class="normal"><a href="#__codelineno-1-66">66</a></span>
+<span class="normal"><a href="#__codelineno-1-67">67</a></span>
+<span class="normal"><a href="#__codelineno-1-68">68</a></span>
+<span class="normal"><a href="#__codelineno-1-69">69</a></span>
+<span class="normal"><a href="#__codelineno-1-70">70</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">SalesRanker</span><span class="p">(</span><span class="n">MRJob</span><span class="p">):</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">within_past_week</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">):</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;如果时间戳属于过去的一周则返回 True，</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="sd">        否则返回 False。&quot;&quot;&quot;</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a>        <span class="o">...</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">mapper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_</span> <span class="n">line</span><span class="p">):</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;解析日志的每一行，提取并转换相关行，</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10"></a>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="sd">        将键值对设定为如下形式：</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12"></a>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="sd">        (category1, product1), 2</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="sd">        (category2, product1), 2</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="sd">        (category2, product1), 1</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="sd">        (category1, product2), 3</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17"></a><span class="sd">        (category2, product3), 7</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18"></a><span class="sd">        (category1, product4), 1</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19"></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20"></a>        <span class="n">timestamp</span><span class="p">,</span> <span class="n">product_id</span><span class="p">,</span> <span class="n">category_id</span><span class="p">,</span> <span class="n">quantity</span><span class="p">,</span> <span class="n">total_price</span><span class="p">,</span> <span class="n">seller_id</span><span class="p">,</span> \
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21"></a>            <span class="n">buyer_id</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22"></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">within_past_week</span><span class="p">(</span><span class="n">timestamp</span><span class="p">):</span>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23"></a>            <span class="k">yield</span> <span class="p">(</span><span class="n">category_id</span><span class="p">,</span> <span class="n">product_id</span><span class="p">),</span> <span class="n">quantity</span>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24"></a>
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">reducer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;将每个 key 的值加起来。</span>
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27"></a>
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28"></a><span class="sd">        (category1, product1), 2</span>
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29"></a><span class="sd">        (category2, product1), 3</span>
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30"></a><span class="sd">        (category1, product2), 3</span>
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31"></a><span class="sd">        (category2, product3), 7</span>
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32"></a><span class="sd">        (category1, product4), 1</span>
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33"></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34"></a>        <span class="k">yield</span> <span class="n">key</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35"></a>
+</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">mapper_sort</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;构造 key 以确保正确的排序。</span>
+</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38"></a>
+</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39"></a><span class="sd">        将键值对转换成如下形式：</span>
+</span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40"></a>
+</span><span id="__span-1-41"><a id="__codelineno-1-41" name="__codelineno-1-41"></a><span class="sd">        (category1, 2), product1</span>
+</span><span id="__span-1-42"><a id="__codelineno-1-42" name="__codelineno-1-42"></a><span class="sd">        (category2, 3), product1</span>
+</span><span id="__span-1-43"><a id="__codelineno-1-43" name="__codelineno-1-43"></a><span class="sd">        (category1, 3), product2</span>
+</span><span id="__span-1-44"><a id="__codelineno-1-44" name="__codelineno-1-44"></a><span class="sd">        (category2, 7), product3</span>
+</span><span id="__span-1-45"><a id="__codelineno-1-45" name="__codelineno-1-45"></a><span class="sd">        (category1, 1), product4</span>
+</span><span id="__span-1-46"><a id="__codelineno-1-46" name="__codelineno-1-46"></a>
+</span><span id="__span-1-47"><a id="__codelineno-1-47" name="__codelineno-1-47"></a><span class="sd">        MapReduce 的随机排序步骤会将键</span>
+</span><span id="__span-1-48"><a id="__codelineno-1-48" name="__codelineno-1-48"></a><span class="sd">        值的排序打乱，变成下面这样：</span>
+</span><span id="__span-1-49"><a id="__codelineno-1-49" name="__codelineno-1-49"></a>
+</span><span id="__span-1-50"><a id="__codelineno-1-50" name="__codelineno-1-50"></a><span class="sd">        (category1, 1), product4</span>
+</span><span id="__span-1-51"><a id="__codelineno-1-51" name="__codelineno-1-51"></a><span class="sd">        (category1, 2), product1</span>
+</span><span id="__span-1-52"><a id="__codelineno-1-52" name="__codelineno-1-52"></a><span class="sd">        (category1, 3), product2</span>
+</span><span id="__span-1-53"><a id="__codelineno-1-53" name="__codelineno-1-53"></a><span class="sd">        (category2, 3), product1</span>
+</span><span id="__span-1-54"><a id="__codelineno-1-54" name="__codelineno-1-54"></a><span class="sd">        (category2, 7), product3</span>
+</span><span id="__span-1-55"><a id="__codelineno-1-55" name="__codelineno-1-55"></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="__span-1-56"><a id="__codelineno-1-56" name="__codelineno-1-56"></a>        <span class="n">category_id</span><span class="p">,</span> <span class="n">product_id</span> <span class="o">=</span> <span class="n">key</span>
+</span><span id="__span-1-57"><a id="__codelineno-1-57" name="__codelineno-1-57"></a>        <span class="n">quantity</span> <span class="o">=</span> <span class="n">value</span>
+</span><span id="__span-1-58"><a id="__codelineno-1-58" name="__codelineno-1-58"></a>        <span class="k">yield</span> <span class="p">(</span><span class="n">category_id</span><span class="p">,</span> <span class="n">quantity</span><span class="p">),</span> <span class="n">product_id</span>
+</span><span id="__span-1-59"><a id="__codelineno-1-59" name="__codelineno-1-59"></a>
+</span><span id="__span-1-60"><a id="__codelineno-1-60" name="__codelineno-1-60"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">reducer_identity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+</span><span id="__span-1-61"><a id="__codelineno-1-61" name="__codelineno-1-61"></a>        <span class="k">yield</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span>
+</span><span id="__span-1-62"><a id="__codelineno-1-62" name="__codelineno-1-62"></a>
+</span><span id="__span-1-63"><a id="__codelineno-1-63" name="__codelineno-1-63"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">steps</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-1-64"><a id="__codelineno-1-64" name="__codelineno-1-64"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot; 此处为 map reduce 步骤&quot;&quot;&quot;</span>
+</span><span id="__span-1-65"><a id="__codelineno-1-65" name="__codelineno-1-65"></a>        <span class="k">return</span> <span class="p">[</span>
+</span><span id="__span-1-66"><a id="__codelineno-1-66" name="__codelineno-1-66"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">mr</span><span class="p">(</span><span class="n">mapper</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">mapper</span><span class="p">,</span>
+</span><span id="__span-1-67"><a id="__codelineno-1-67" name="__codelineno-1-67"></a>                    <span class="n">reducer</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">reducer</span><span class="p">),</span>
+</span><span id="__span-1-68"><a id="__codelineno-1-68" name="__codelineno-1-68"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">mr</span><span class="p">(</span><span class="n">mapper</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">mapper_sort</span><span class="p">,</span>
+</span><span id="__span-1-69"><a id="__codelineno-1-69" name="__codelineno-1-69"></a>                    <span class="n">reducer</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">reducer_identity</span><span class="p">),</span>
+</span><span id="__span-1-70"><a id="__codelineno-1-70" name="__codelineno-1-70"></a>        <span class="p">]</span>
+</span></code></pre></div></td></tr></table></div>
 <p>得到的结果将会是如下的排序列，我们将其插入 <code>sales_rank</code> 表中：</p>
-<div class="highlight"><pre><span></span><code>(category1, 1), product4
-(category1, 2), product1
-(category1, 3), product2
-(category2, 3), product1
-(category2, 7), product3
-</code></pre></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a>(category1, 1), product4
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a>(category1, 2), product1
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a>(category1, 3), product2
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a>(category2, 3), product1
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a>(category2, 7), product3
+</span></code></pre></div></td></tr></table></div>
 <p><code>sales_rank</code> 表的数据结构如下：</p>
-<div class="highlight"><pre><span></span><code>id int NOT NULL AUTO_INCREMENT
-category_id int NOT NULL
-total_sold int NOT NULL
-product_id int NOT NULL
-PRIMARY KEY(id)
-FOREIGN KEY(category_id) REFERENCES Categories(id)
-FOREIGN KEY(product_id) REFERENCES Products(id)
-</code></pre></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span>
+<span class="normal"><a href="#__codelineno-3-5">5</a></span>
+<span class="normal"><a href="#__codelineno-3-6">6</a></span>
+<span class="normal"><a href="#__codelineno-3-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a>id int NOT NULL AUTO_INCREMENT
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a>category_id int NOT NULL
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a>total_sold int NOT NULL
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a>product_id int NOT NULL
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5"></a>PRIMARY KEY(id)
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6"></a>FOREIGN KEY(category_id) REFERENCES Categories(id)
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7"></a>FOREIGN KEY(product_id) REFERENCES Products(id)
+</span></code></pre></div></td></tr></table></div>
 <p>我们会以 <code>id</code>、<code>category_id</code> 与 <code>product_id</code> 创建一个 <a href="https://github.com/ido777/system-design-primer-update#use-good-indices">索引</a>以加快查询速度（只需要使用读取日志的时间，不再需要每次都扫描整个数据表）并让数据常驻内存。从内存读取 1 MB 连续数据大约要花 250 微秒，而从 SSD 读取同样大小的数据要花费 4 倍的时间，从机械硬盘读取需要花费 80 倍以上的时间。<sup><a href=https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#每个程序员都应该知道的延迟数>1</a></sup></p>
 <h3 id="_11">用例：用户需要根据分类浏览上周中最受欢迎的商品<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
 <ul>
@@ -2924,28 +2998,45 @@ FOREIGN KEY(product_id) REFERENCES Products(id)
 <li>The <strong>查询 API</strong> 服务将从 <strong>SQL 数据库</strong>的 <code>sales_rank</code> 表中读取数据</li>
 </ul>
 <p>我们可以调用一个公共的 <a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#表述性状态转移rest">REST API</a>：</p>
-<div class="highlight"><pre><span></span><code>$ curl https://amazon.com/api/v1/popular?category_id=1234
-</code></pre></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a>$ curl https://amazon.com/api/v1/popular?category_id=1234
+</span></code></pre></div></td></tr></table></div>
 <p>返回：</p>
-<div class="highlight"><pre><span></span><code>{
-    &quot;id&quot;: &quot;100&quot;,
-    &quot;category_id&quot;: &quot;1234&quot;,
-    &quot;total_sold&quot;: &quot;100000&quot;,
-    &quot;product_id&quot;: &quot;50&quot;,
-},
-{
-    &quot;id&quot;: &quot;53&quot;,
-    &quot;category_id&quot;: &quot;1234&quot;,
-    &quot;total_sold&quot;: &quot;90000&quot;,
-    &quot;product_id&quot;: &quot;200&quot;,
-},
-{
-    &quot;id&quot;: &quot;75&quot;,
-    &quot;category_id&quot;: &quot;1234&quot;,
-    &quot;total_sold&quot;: &quot;80000&quot;,
-    &quot;product_id&quot;: &quot;3&quot;,
-},
-</code></pre></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span>
+<span class="normal"><a href="#__codelineno-5-11">11</a></span>
+<span class="normal"><a href="#__codelineno-5-12">12</a></span>
+<span class="normal"><a href="#__codelineno-5-13">13</a></span>
+<span class="normal"><a href="#__codelineno-5-14">14</a></span>
+<span class="normal"><a href="#__codelineno-5-15">15</a></span>
+<span class="normal"><a href="#__codelineno-5-16">16</a></span>
+<span class="normal"><a href="#__codelineno-5-17">17</a></span>
+<span class="normal"><a href="#__codelineno-5-18">18</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a>{
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a>    &quot;id&quot;: &quot;100&quot;,
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a>    &quot;category_id&quot;: &quot;1234&quot;,
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a>    &quot;total_sold&quot;: &quot;100000&quot;,
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5"></a>    &quot;product_id&quot;: &quot;50&quot;,
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6"></a>},
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7"></a>{
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8"></a>    &quot;id&quot;: &quot;53&quot;,
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9"></a>    &quot;category_id&quot;: &quot;1234&quot;,
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10"></a>    &quot;total_sold&quot;: &quot;90000&quot;,
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11"></a>    &quot;product_id&quot;: &quot;200&quot;,
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12"></a>},
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13"></a>{
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14"></a>    &quot;id&quot;: &quot;75&quot;,
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15"></a>    &quot;category_id&quot;: &quot;1234&quot;,
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16"></a>    &quot;total_sold&quot;: &quot;80000&quot;,
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17"></a>    &quot;product_id&quot;: &quot;3&quot;,
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18"></a>},
+</span></code></pre></div></td></tr></table></div>
 <p>而对于服务器内部的通信，我们可以使用 <a href="https://github.com/ido777/system-design-primer-update/blob/master/README-zh-Hans.md#远程过程调用协议rpc">RPC</a>。</p>
 <h2 id="_12">第四步：架构扩展<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
 <blockquote>
@@ -3242,7 +3333,7 @@ FOREIGN KEY(product_id) REFERENCES Products(id)
     
     
       
-      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "navigation.path", "content.code.annotate", "content.tabs.link", "search.highlight", "search.suggest", "toc.follow"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "navigation.path", "content.code.annotate", "content.code.copy", "content.tabs.link", "search.highlight", "search.suggest", "toc.follow"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../../assets/javascripts/bundle.13a4f30d.min.js"></script>

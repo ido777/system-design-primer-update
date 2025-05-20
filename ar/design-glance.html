@@ -1520,6 +1520,8 @@
     
       
         
+          
+        
       
         
       
@@ -1549,8 +1551,9 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_6" >
         
           
-          <label class="md-nav__link" for="__nav_6_6" id="__nav_6_6_label" tabindex="0">
-            
+          <div class="md-nav__link md-nav__container">
+            <a href="../solutions/object_oriented_design/call_center/index.html" class="md-nav__link ">
+              
   
   
   <span class="md-ellipsis">
@@ -1559,8 +1562,14 @@
   </span>
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6_6" id="__nav_6_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6_6">
@@ -1570,27 +1579,6 @@
           <ul class="md-nav__list" data-md-scrollfix>
             
               
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../solutions/object_oriented_design/call_center/README.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Call Center
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
             
               
                 
@@ -1599,7 +1587,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../solutions/object_oriented_design/circular_array/circular_array.py" class="md-nav__link">
+      <a href="../solutions/object_oriented_design/circular_array/index.html" class="md-nav__link">
         
   
   
@@ -1622,7 +1610,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../solutions/object_oriented_design/deck_of_cards/deck_of_cards.py" class="md-nav__link">
+      <a href="../solutions/object_oriented_design/deck_of_cards/index.html" class="md-nav__link">
         
   
   
@@ -1645,7 +1633,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../solutions/object_oriented_design/hash_table/hash_table.py" class="md-nav__link">
+      <a href="../solutions/object_oriented_design/hash_table/index.html" class="md-nav__link">
         
   
   
@@ -1668,7 +1656,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../solutions/object_oriented_design/lru_cache/lru_cache.py" class="md-nav__link">
+      <a href="../solutions/object_oriented_design/lru_cache/index.html" class="md-nav__link">
         
   
   
@@ -1691,7 +1679,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../solutions/object_oriented_design/movie_tickets/movie_tickets.py" class="md-nav__link">
+      <a href="../solutions/object_oriented_design/movie_tickets/index.html" class="md-nav__link">
         
   
   
@@ -1714,7 +1702,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../solutions/object_oriented_design/online_chat/online_chat.py" class="md-nav__link">
+      <a href="../solutions/object_oriented_design/online_chat/index.html" class="md-nav__link">
         
   
   
@@ -1737,7 +1725,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../solutions/object_oriented_design/parking_lot/parking_lot.py" class="md-nav__link">
+      <a href="../solutions/object_oriented_design/parking_lot/index.html" class="md-nav__link">
         
   
   
@@ -6843,13 +6831,13 @@
 <p>إذا كانت الخدمة تتكون من مكونات متعددة قابلة للفشل، فإن التوافر الإجمالي للخدمة يعتمد على ما إذا كانت المكونات مرتبة على التوالي أو على التوازي.</p>
 <h6 id="_32">على التوالي<a class="headerlink" href="#_32" title="Permanent link">&para;</a></h6>
 <p>ينخفض التوافر الإجمالي عندما يكون هناك مكونان بتوافر أقل من 100% على التوالي:</p>
-<div class="highlight"><pre><span></span><code>Availability (Total) = Availability (Foo) * Availability (Bar)
-</code></pre></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a>Availability (Total) = Availability (Foo) * Availability (Bar)
+</span></code></pre></div></td></tr></table></div>
 <p>إذا كان كل من <code>Foo</code> و <code>Bar</code> لديهما توافر بنسبة 99.9%، فإن توافرهما الإجمالي على التوالي سيكون 99.8%.</p>
 <h6 id="_33">على التوازي<a class="headerlink" href="#_33" title="Permanent link">&para;</a></h6>
 <p>يزداد التوافر الإجمالي عندما يكون هناك مكونان بتوافر أقل من 100% على التوازي:</p>
-<p><div class="highlight"><pre><span></span><code>Availability (Total) = 1 - (1 - Availability (Foo)) * (1 - Availability (Bar))
-</code></pre></div>
+<p><div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a>Availability (Total) = 1 - (1 - Availability (Foo)) * (1 - Availability (Bar))
+</span></code></pre></div></td></tr></table></div>
 إذا كان كل من <code>Foo</code> و <code>Bar</code> لديهما توافر بنسبة 99.9%، فإن توافرهما الإجمالي على التوازي سيكون 99.9999%.</p>
 <h2 id="domain-name-system">نظام أسماء النطاقات (Domain Name System)<a class="headerlink" href="#domain-name-system" title="Permanent link">&para;</a></h2>
 <p align="center">
@@ -7415,15 +7403,22 @@
 <li>إضافة الإدخال إلى التخزين المؤقت</li>
 <li>إرجاع الإدخال</li>
 </ul>
-<p><div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">):</span>
-    <span class="n">user</span> <span class="o">=</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;user.</span><span class="si">{0}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">user_id</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">user</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">user</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM users WHERE user_id = </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">user_id</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">user</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">key</span> <span class="o">=</span> <span class="s2">&quot;user.</span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
-            <span class="n">cache</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">user</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">user</span>
-</code></pre></div>
+<p><div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">5</a></span>
+<span class="normal"><a href="#__codelineno-2-6">6</a></span>
+<span class="normal"><a href="#__codelineno-2-7">7</a></span>
+<span class="normal"><a href="#__codelineno-2-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">get_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">):</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a>    <span class="n">user</span> <span class="o">=</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;user.</span><span class="si">{0}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">user_id</span><span class="p">)</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a>    <span class="k">if</span> <span class="n">user</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a>        <span class="n">user</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM users WHERE user_id = </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">user_id</span><span class="p">)</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a>        <span class="k">if</span> <span class="n">user</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a>            <span class="n">key</span> <span class="o">=</span> <span class="s2">&quot;user.</span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a>            <span class="n">cache</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">user</span><span class="p">))</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a>    <span class="k">return</span> <span class="n">user</span>
+</span></code></pre></div></td></tr></table></div>
 يتم استخدام <a href="https://memcached.org/">Memcached</a> بشكل عام بهذه الطريقة.</p>
 <p>عمليات القراءة اللاحقة للبيانات المضافة إلى التخزين المؤقت تكون سريعة. يشار إلى التخزين المؤقت الجانبي أيضاً باسم التحميل الكسول (lazy loading). يتم تخزين البيانات المطلوبة فقط مؤقتاً، مما يتجنب ملء ذاكرة التخزين المؤقت ببيانات غير مطلوبة.</p>
 <h5 id="_74">عيوب التخزين المؤقت الجانبي<a class="headerlink" href="#_74" title="Permanent link">&para;</a></h5>
@@ -7446,13 +7441,15 @@
 <li>العودة</li>
 </ul>
 <p>كود التطبيق:</p>
-<div class="highlight"><pre><span></span><code><span class="n">set_user</span><span class="p">(</span><span class="mi">12345</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;foo&quot;</span><span class="p">:</span><span class="s2">&quot;bar&quot;</span><span class="p">})</span>
-</code></pre></div>
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="n">set_user</span><span class="p">(</span><span class="mi">12345</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;foo&quot;</span><span class="p">:</span><span class="s2">&quot;bar&quot;</span><span class="p">})</span>
+</span></code></pre></div></td></tr></table></div>
 <p>كود التخزين المؤقت:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">set_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
-    <span class="n">user</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;UPDATE Users WHERE id = </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">user_id</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
-    <span class="n">cache</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="n">user</span><span class="p">)</span>
-</code></pre></div>
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">set_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a>    <span class="n">user</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;UPDATE Users WHERE id = </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">user_id</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a>    <span class="n">cache</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="n">user</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
 <p>تعتبر الكتابة المباشرة عملية بطيئة بشكل عام بسبب عملية الكتابة، لكن عمليات القراءة اللاحقة للبيانات المكتوبة حديثاً تكون سريعة. يميل المستخدمون عموماً إلى تحمل التأخير عند تحديث البيانات أكثر من تحملهم له عند قراءتها. البيانات في التخزين المؤقت لا تكون قديمة.</p>
 <h5 id="_75">عيوب الكتابة المباشرة<a class="headerlink" href="#_75" title="Permanent link">&para;</a></h5>
 <ul>
@@ -7666,14 +7663,20 @@
 * <strong>إجراء stub الخادم (Server stub procedure)</strong> - يفك تنظيم النتائج، ويستدعي إجراء الخادم المطابق لمعرف الإجراء ويمرر الوسائط المعطاة.
 * استجابة الخادم تكرر الخطوات أعلاه بترتيب عكسي.</p>
 <p>أمثلة على استدعاءات RPC:</p>
-<div class="highlight"><pre><span></span><code>GET /someoperation?data=anId
-
-POST /anotheroperation
-{
-  &quot;data&quot;:&quot;anId&quot;;
-  &quot;anotherdata&quot;: &quot;another value&quot;
-}
-</code></pre></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span>
+<span class="normal"><a href="#__codelineno-5-3">3</a></span>
+<span class="normal"><a href="#__codelineno-5-4">4</a></span>
+<span class="normal"><a href="#__codelineno-5-5">5</a></span>
+<span class="normal"><a href="#__codelineno-5-6">6</a></span>
+<span class="normal"><a href="#__codelineno-5-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a>GET /someoperation?data=anId
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a>POST /anotheroperation
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a>{
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5"></a>  &quot;data&quot;:&quot;anId&quot;;
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6"></a>  &quot;anotherdata&quot;: &quot;another value&quot;
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7"></a>}
+</span></code></pre></div></td></tr></table></div>
 <p>يركز RPC على كشف السلوكيات. غالباً ما يتم استخدام RPCs لأسباب تتعلق بالأداء مع الاتصالات الداخلية، حيث يمكنك صياغة الاستدعاءات الأصلية يدوياً لتناسب حالات الاستخدام الخاصة بك بشكل أفضل.</p>
 <p>اختر مكتبة أصلية (المعروفة أيضاً باسم SDK) عندما:</p>
 <ul>
@@ -7700,11 +7703,14 @@ POST /anotheroperation
 <li><strong><a href="http://restcookbook.com/Basics/hateoas/">HATEOAS</a> (واجهة HTML لـ HTTP)</strong> - يجب أن تكون خدمة الويب الخاصة بك قابلة للوصول بالكامل في المتصفح.</li>
 </ul>
 <p>أمثلة على استدعاءات REST:</p>
-<p><div class="highlight"><pre><span></span><code>GET /someresources/anId
-
-PUT /someresources/anId
-{&quot;anotherdata&quot;: &quot;another value&quot;}
-</code></pre></div>
+<p><div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span>
+<span class="normal"><a href="#__codelineno-6-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a>GET /someresources/anId
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a>PUT /someresources/anId
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4"></a>{&quot;anotherdata&quot;: &quot;another value&quot;}
+</span></code></pre></div></td></tr></table></div>
 يركز REST على عرض البيانات. وهو يقلل من الترابط بين العميل/الخادم ويستخدم غالباً لواجهات برمجة التطبيقات HTTP العامة. يستخدم REST طريقة أكثر عمومية وموحدة لعرض الموارد من خلال URIs، و<a href="https://github.com/for-GET/know-your-http-well/blob/master/headers.md">التمثيل من خلال الترويسات</a>، والإجراءات من خلال الأفعال مثل GET وPOST وPUT وDELETE وPATCH. كونه خالٍ من الحالة، فإن REST مثالي للتوسع الأفقي والتقسيم.</p>
 <h4 id="rest_1">عيوب REST<a class="headerlink" href="#rest_1" title="Permanent link">&para;</a></h4>
 <ul>
@@ -7793,46 +7799,77 @@ PUT /someresources/anId
 <h2 id="_88">الملحق<a class="headerlink" href="#_88" title="Permanent link">&para;</a></h2>
 <p>قد يُطلب منك أحياناً إجراء تقديرات تقريبية. على سبيل المثال، قد تحتاج إلى تحديد الوقت اللازم لإنشاء 100 صورة مصغرة من القرص أو مقدار الذاكرة التي ستستهلكها بنية البيانات. يعد <strong>جدول قوى الاثنين</strong> و <strong>أرقام زمن الاستجابة التي يجب أن يعرفها كل مبرمج</strong> مراجع مفيدة.</p>
 <h3 id="_89">جدول قوى الاثنين<a class="headerlink" href="#_89" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>Power           Exact Value         Approx Value        Bytes
----------------------------------------------------------------
-7                             128
-8                             256
-10                           1024   1 thousand           1 KB
-16                         65,536                       64 KB
-20                      1,048,576   1 million            1 MB
-30                  1,073,741,824   1 billion            1 GB
-32                  4,294,967,296                        4 GB
-40              1,099,511,627,776   1 trillion           1 TB
-</code></pre></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-7-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a>Power           Exact Value         Approx Value        Bytes
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a>---------------------------------------------------------------
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a>7                             128
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a>8                             256
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5"></a>10                           1024   1 thousand           1 KB
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6"></a>16                         65,536                       64 KB
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7"></a>20                      1,048,576   1 million            1 MB
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8"></a>30                  1,073,741,824   1 billion            1 GB
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9"></a>32                  4,294,967,296                        4 GB
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10"></a>40              1,099,511,627,776   1 trillion           1 TB
+</span></code></pre></div></td></tr></table></div>
 <h4 id="_90">المصادر وقراءات إضافية<a class="headerlink" href="#_90" title="Permanent link">&para;</a></h4>
 <ul>
 <li><a href="https://en.wikipedia.org/wiki/Power_of_two">قوى الاثنين</a></li>
 </ul>
 <h3 id="_91">أرقام زمن الاستجابة التي يجب أن يعرفها كل مبرمج<a class="headerlink" href="#_91" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>Latency Comparison Numbers
---------------------------
-L1 cache reference                           0.5 ns
-Branch mispredict                            5   ns
-L2 cache reference                           7   ns                      14x L1 cache
-Mutex lock/unlock                           25   ns
-Main memory reference                      100   ns                      20x L2 cache, 200x L1 cache
-Compress 1K bytes with Zippy            10,000   ns       10 us
-Send 1 KB bytes over 1 Gbps network     10,000   ns       10 us
-Read 4 KB randomly from SSD*           150,000   ns      150 us          ~1GB/sec SSD
-Read 1 MB sequentially from memory     250,000   ns      250 us
-Round trip within same datacenter      500,000   ns      500 us
-Read 1 MB sequentially from SSD*     1,000,000   ns    1,000 us    1 ms  ~1GB/sec SSD, 4X memory
-HDD seek                            10,000,000   ns   10,000 us   10 ms  20x datacenter roundtrip
-Read 1 MB sequentially from 1 Gbps  10,000,000   ns   10,000 us   10 ms  40x memory, 10X SSD
-Read 1 MB sequentially from HDD     30,000,000   ns   30,000 us   30 ms 120x memory, 30X SSD
-Send packet CA-&gt;Netherlands-&gt;CA    150,000,000   ns  150,000 us  150 ms
-
-Notes
------
-1 ns = 10^-9 seconds
-1 us = 10^-6 seconds = 1,000 ns
-1 ms = 10^-3 seconds = 1,000 us = 1,000,000 ns
-</code></pre></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-8-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-8-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-8-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-8-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-8-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-8-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-8-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-8-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-8-10">10</a></span>
+<span class="normal"><a href="#__codelineno-8-11">11</a></span>
+<span class="normal"><a href="#__codelineno-8-12">12</a></span>
+<span class="normal"><a href="#__codelineno-8-13">13</a></span>
+<span class="normal"><a href="#__codelineno-8-14">14</a></span>
+<span class="normal"><a href="#__codelineno-8-15">15</a></span>
+<span class="normal"><a href="#__codelineno-8-16">16</a></span>
+<span class="normal"><a href="#__codelineno-8-17">17</a></span>
+<span class="normal"><a href="#__codelineno-8-18">18</a></span>
+<span class="normal"><a href="#__codelineno-8-19">19</a></span>
+<span class="normal"><a href="#__codelineno-8-20">20</a></span>
+<span class="normal"><a href="#__codelineno-8-21">21</a></span>
+<span class="normal"><a href="#__codelineno-8-22">22</a></span>
+<span class="normal"><a href="#__codelineno-8-23">23</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a>Latency Comparison Numbers
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a>--------------------------
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a>L1 cache reference                           0.5 ns
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a>Branch mispredict                            5   ns
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5"></a>L2 cache reference                           7   ns                      14x L1 cache
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6"></a>Mutex lock/unlock                           25   ns
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7"></a>Main memory reference                      100   ns                      20x L2 cache, 200x L1 cache
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8"></a>Compress 1K bytes with Zippy            10,000   ns       10 us
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9"></a>Send 1 KB bytes over 1 Gbps network     10,000   ns       10 us
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10"></a>Read 4 KB randomly from SSD*           150,000   ns      150 us          ~1GB/sec SSD
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11"></a>Read 1 MB sequentially from memory     250,000   ns      250 us
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12"></a>Round trip within same datacenter      500,000   ns      500 us
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13"></a>Read 1 MB sequentially from SSD*     1,000,000   ns    1,000 us    1 ms  ~1GB/sec SSD, 4X memory
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14"></a>HDD seek                            10,000,000   ns   10,000 us   10 ms  20x datacenter roundtrip
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15"></a>Read 1 MB sequentially from 1 Gbps  10,000,000   ns   10,000 us   10 ms  40x memory, 10X SSD
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16"></a>Read 1 MB sequentially from HDD     30,000,000   ns   30,000 us   30 ms 120x memory, 30X SSD
+</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17"></a>Send packet CA-&gt;Netherlands-&gt;CA    150,000,000   ns  150,000 us  150 ms
+</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18"></a>
+</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19"></a>Notes
+</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20"></a>-----
+</span><span id="__span-8-21"><a id="__codelineno-8-21" name="__codelineno-8-21"></a>1 ns = 10^-9 seconds
+</span><span id="__span-8-22"><a id="__codelineno-8-22" name="__codelineno-8-22"></a>1 us = 10^-6 seconds = 1,000 ns
+</span><span id="__span-8-23"><a id="__codelineno-8-23" name="__codelineno-8-23"></a>1 ms = 10^-3 seconds = 1,000 us = 1,000,000 ns
+</span></code></pre></div></td></tr></table></div>
 <p>مقاييس مفيدة مبنية على الأرقام أعلاه:</p>
 <ul>
 <li>القراءة التسلسلية من القرص الصلب HDD بسرعة 30 ميجابايت/ثانية</li>
@@ -8278,12 +8315,16 @@ Notes
 <p>يمكنك العثور على معلومات الاتصال الخاصة بي على <a href="https://github.com/donnemartin">صفحتي على GitHub</a>.</p>
 <h2 id="_101">الترخيص<a class="headerlink" href="#_101" title="Permanent link">&para;</a></h2>
 <p><em>أقدم لك الكود والموارد في هذا الـ repository تحت ترخيص مفتوح المصدر. نظراً لأن هذا repository شخصي، فإن الترخيص الذي تتلقاه للكود والموارد الخاصة بي هو مني وليس من صاحب عملي (Facebook).</em></p>
-<div class="highlight"><pre><span></span><code>Copyright 2017 Donne Martin
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>Copyright 2017 Donne Martin
 
 Creative Commons Attribution 4.0 International License (CC BY 4.0)
 
 http://creativecommons.org/licenses/by/4.0/
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
 
 
 
@@ -8527,7 +8568,7 @@ http://creativecommons.org/licenses/by/4.0/
     
     
       
-      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "navigation.path", "content.code.annotate", "content.tabs.link", "search.highlight", "search.suggest", "toc.follow"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "navigation.path", "content.code.annotate", "content.code.copy", "content.tabs.link", "search.highlight", "search.suggest", "toc.follow"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../assets/javascripts/bundle.13a4f30d.min.js"></script>

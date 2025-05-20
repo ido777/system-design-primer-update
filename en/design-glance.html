@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://ido777.github.io/system-design-primer-update/en/design-glance.html">
       
       
-        <link rel="prev" href="../solutions/object_oriented_design/parking_lot/parking_lot.py">
+        <link rel="prev" href="../solutions/object_oriented_design/parking_lot/index.html">
       
       
         <link rel="next" href="sd_motivation.html">
@@ -1523,6 +1523,8 @@
     
       
         
+          
+        
       
         
       
@@ -1552,8 +1554,9 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_6" >
         
           
-          <label class="md-nav__link" for="__nav_6_6" id="__nav_6_6_label" tabindex="0">
-            
+          <div class="md-nav__link md-nav__container">
+            <a href="../solutions/object_oriented_design/call_center/index.html" class="md-nav__link ">
+              
   
   
   <span class="md-ellipsis">
@@ -1562,8 +1565,14 @@
   </span>
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6_6" id="__nav_6_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6_6">
@@ -1573,27 +1582,6 @@
           <ul class="md-nav__list" data-md-scrollfix>
             
               
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../solutions/object_oriented_design/call_center/README.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Call Center
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
             
               
                 
@@ -1602,7 +1590,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../solutions/object_oriented_design/circular_array/circular_array.py" class="md-nav__link">
+      <a href="../solutions/object_oriented_design/circular_array/index.html" class="md-nav__link">
         
   
   
@@ -1625,7 +1613,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../solutions/object_oriented_design/deck_of_cards/deck_of_cards.py" class="md-nav__link">
+      <a href="../solutions/object_oriented_design/deck_of_cards/index.html" class="md-nav__link">
         
   
   
@@ -1648,7 +1636,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../solutions/object_oriented_design/hash_table/hash_table.py" class="md-nav__link">
+      <a href="../solutions/object_oriented_design/hash_table/index.html" class="md-nav__link">
         
   
   
@@ -1671,7 +1659,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../solutions/object_oriented_design/lru_cache/lru_cache.py" class="md-nav__link">
+      <a href="../solutions/object_oriented_design/lru_cache/index.html" class="md-nav__link">
         
   
   
@@ -1694,7 +1682,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../solutions/object_oriented_design/movie_tickets/movie_tickets.py" class="md-nav__link">
+      <a href="../solutions/object_oriented_design/movie_tickets/index.html" class="md-nav__link">
         
   
   
@@ -1717,7 +1705,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../solutions/object_oriented_design/online_chat/online_chat.py" class="md-nav__link">
+      <a href="../solutions/object_oriented_design/online_chat/index.html" class="md-nav__link">
         
   
   
@@ -1740,7 +1728,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../solutions/object_oriented_design/parking_lot/parking_lot.py" class="md-nav__link">
+      <a href="../solutions/object_oriented_design/parking_lot/index.html" class="md-nav__link">
         
   
   
@@ -7211,13 +7199,13 @@ Solutions linked to content in the <code>solutions/</code> folder.
 <p>If a service consists of multiple components prone to failure, the service's overall availability depends on whether the components are in sequence or in parallel.</p>
 <h5 id="in-sequence">In sequence<a class="headerlink" href="#in-sequence" title="Permanent link">&para;</a></h5>
 <p>Overall availability decreases when two components with availability &lt; 100% are in sequence:</p>
-<div class="highlight"><pre><span></span><code>Availability (Total) = Availability (Foo) * Availability (Bar)
-</code></pre></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a>Availability (Total) = Availability (Foo) * Availability (Bar)
+</span></code></pre></div></td></tr></table></div>
 <p>If both <code>Foo</code> and <code>Bar</code> each had 99.9% availability, their total availability in sequence would be 99.8%.</p>
 <h5 id="in-parallel">In parallel<a class="headerlink" href="#in-parallel" title="Permanent link">&para;</a></h5>
 <p>Overall availability increases when two components with availability &lt; 100% are in parallel:</p>
-<div class="highlight"><pre><span></span><code>Availability (Total) = 1 - (1 - Availability (Foo)) * (1 - Availability (Bar))
-</code></pre></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a>Availability (Total) = 1 - (1 - Availability (Foo)) * (1 - Availability (Bar))
+</span></code></pre></div></td></tr></table></div>
 <p>If both <code>Foo</code> and <code>Bar</code> each had 99.9% availability, their total availability in parallel would be 99.9999%.</p>
 <h2 id="domain-name-system">Domain name system<a class="headerlink" href="#domain-name-system" title="Permanent link">&para;</a></h2>
 <p align="center">
@@ -7799,17 +7787,26 @@ Solutions linked to content in the <code>solutions/</code> folder.
 <li>Add entry to cache</li>
 <li>Return entry</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">):</span>
-    <span class="n">user</span> <span class="o">=</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;user.</span><span class="si">{0}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">user_id</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">user</span><span class="p">:</span> 
-      <span class="k">return</span> <span class="n">user</span>
-
-    <span class="n">user</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM users WHERE user_id = </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">user_id</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">user</span><span class="p">:</span>
-        <span class="n">key</span> <span class="o">=</span> <span class="s2">&quot;user.</span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
-        <span class="n">cache</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">user</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">user</span>
-</code></pre></div>
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">get_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">):</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a>    <span class="n">user</span> <span class="o">=</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;user.</span><span class="si">{0}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">user_id</span><span class="p">)</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a>    <span class="k">if</span> <span class="n">user</span><span class="p">:</span> 
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a>      <span class="k">return</span> <span class="n">user</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a>    <span class="n">user</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM users WHERE user_id = </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">user_id</span><span class="p">)</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a>    <span class="k">if</span> <span class="n">user</span><span class="p">:</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a>        <span class="n">key</span> <span class="o">=</span> <span class="s2">&quot;user.</span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9"></a>        <span class="n">cache</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">user</span><span class="p">))</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10"></a>    <span class="k">return</span> <span class="n">user</span>
+</span></code></pre></div></td></tr></table></div>
 <p><a href="https://memcached.org/">Memcached</a> is generally used in this manner.</p>
 <p>Subsequent reads of data added to cache are fast.  Cache-aside is also referred to as lazy loading.  Only requested data is cached, which avoids filling up the cache with data that isn't requested.</p>
 <h5 id="disadvantages-cache-aside">Disadvantage(s): cache-aside<a class="headerlink" href="#disadvantages-cache-aside" title="Permanent link">&para;</a></h5>
@@ -7832,13 +7829,15 @@ Solutions linked to content in the <code>solutions/</code> folder.
 <li>Return</li>
 </ul>
 <p>Application code:</p>
-<div class="highlight"><pre><span></span><code><span class="n">set_user</span><span class="p">(</span><span class="mi">12345</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;foo&quot;</span><span class="p">:</span><span class="s2">&quot;bar&quot;</span><span class="p">})</span>
-</code></pre></div>
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="n">set_user</span><span class="p">(</span><span class="mi">12345</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;foo&quot;</span><span class="p">:</span><span class="s2">&quot;bar&quot;</span><span class="p">})</span>
+</span></code></pre></div></td></tr></table></div>
 <p>Cache code:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">set_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
-    <span class="n">user</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;UPDATE Users WHERE id = </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">user_id</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
-    <span class="n">cache</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="n">user</span><span class="p">)</span>
-</code></pre></div>
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">set_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a>    <span class="n">user</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;UPDATE Users WHERE id = </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">user_id</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a>    <span class="n">cache</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="n">user</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
 <p>Write-through is a slow overall operation due to the write operation, but subsequent reads of just written data are fast.  Users are generally more tolerant of latency when updating data than reading data.  Data in the cache is not stale.</p>
 <h5 id="disadvantages-write-through">Disadvantage(s): write through<a class="headerlink" href="#disadvantages-write-through" title="Permanent link">&para;</a></h5>
 <ul>
@@ -8073,14 +8072,20 @@ Solutions linked to content in the <code>solutions/</code> folder.
 <li>The server response repeats the steps above in reverse order.</li>
 </ul>
 <p>Sample RPC calls:</p>
-<div class="highlight"><pre><span></span><code>GET /someoperation?data=anId
-
-POST /anotheroperation
-{
-  &quot;data&quot;:&quot;anId&quot;;
-  &quot;anotherdata&quot;: &quot;another value&quot;
-}
-</code></pre></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span>
+<span class="normal"><a href="#__codelineno-5-3">3</a></span>
+<span class="normal"><a href="#__codelineno-5-4">4</a></span>
+<span class="normal"><a href="#__codelineno-5-5">5</a></span>
+<span class="normal"><a href="#__codelineno-5-6">6</a></span>
+<span class="normal"><a href="#__codelineno-5-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a>GET /someoperation?data=anId
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a>POST /anotheroperation
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a>{
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5"></a>  &quot;data&quot;:&quot;anId&quot;;
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6"></a>  &quot;anotherdata&quot;: &quot;another value&quot;
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7"></a>}
+</span></code></pre></div></td></tr></table></div>
 <p>RPC is focused on exposing behaviors.  RPCs are often used for performance reasons with internal communications, as you can hand-craft native calls to better fit your use cases.</p>
 <p>Choose a native library (aka SDK) when:</p>
 <ul>
@@ -8107,11 +8112,14 @@ POST /anotheroperation
 <li><strong><a href="http://restcookbook.com/Basics/hateoas/">HATEOAS</a> (HTML interface for HTTP)</strong> - your web service should be fully accessible in a browser.</li>
 </ul>
 <p>Sample REST calls:</p>
-<div class="highlight"><pre><span></span><code>GET /someresources/anId
-
-PUT /someresources/anId
-{&quot;anotherdata&quot;: &quot;another value&quot;}
-</code></pre></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span>
+<span class="normal"><a href="#__codelineno-6-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a>GET /someresources/anId
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a>PUT /someresources/anId
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4"></a>{&quot;anotherdata&quot;: &quot;another value&quot;}
+</span></code></pre></div></td></tr></table></div>
 <p>REST is focused on exposing data.  It minimizes the coupling between client/server and is often used for public HTTP APIs.  REST uses a more generic and uniform method of exposing resources through URIs, <a href="https://github.com/for-GET/know-your-http-well/blob/master/headers.md">representation through headers</a>, and actions through verbs such as GET, POST, PUT, DELETE, and PATCH.  Being stateless, REST is great for horizontal scaling and partitioning.</p>
 <h4 id="disadvantages-rest">Disadvantage(s): REST<a class="headerlink" href="#disadvantages-rest" title="Permanent link">&para;</a></h4>
 <ul>
@@ -8200,46 +8208,77 @@ PUT /someresources/anId
 <h2 id="appendix">Appendix<a class="headerlink" href="#appendix" title="Permanent link">&para;</a></h2>
 <p>You'll sometimes be asked to do 'back-of-the-envelope' estimates.  For example, you might need to determine how long it will take to generate 100 image thumbnails from disk or how much memory a data structure will take.  The <strong>Powers of two table</strong> and <strong>Latency numbers every programmer should know</strong> are handy references.</p>
 <h3 id="powers-of-two-table">Powers of two table<a class="headerlink" href="#powers-of-two-table" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>Power           Exact Value         Approx Value        Bytes
----------------------------------------------------------------
-7                             128
-8                             256
-10                           1024   1 thousand           1 KB
-16                         65,536                       64 KB
-20                      1,048,576   1 million            1 MB
-30                  1,073,741,824   1 billion            1 GB
-32                  4,294,967,296                        4 GB
-40              1,099,511,627,776   1 trillion           1 TB
-</code></pre></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-7-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a>Power           Exact Value         Approx Value        Bytes
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a>---------------------------------------------------------------
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a>7                             128
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a>8                             256
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5"></a>10                           1024   1 thousand           1 KB
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6"></a>16                         65,536                       64 KB
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7"></a>20                      1,048,576   1 million            1 MB
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8"></a>30                  1,073,741,824   1 billion            1 GB
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9"></a>32                  4,294,967,296                        4 GB
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10"></a>40              1,099,511,627,776   1 trillion           1 TB
+</span></code></pre></div></td></tr></table></div>
 <h4 id="sources-and-further-reading_13">Source(s) and further reading<a class="headerlink" href="#sources-and-further-reading_13" title="Permanent link">&para;</a></h4>
 <ul>
 <li><a href="https://en.wikipedia.org/wiki/Power_of_two">Powers of two</a></li>
 </ul>
 <h3 id="latency-numbers-every-programmer-should-know">Latency numbers every programmer should know<a class="headerlink" href="#latency-numbers-every-programmer-should-know" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>Latency Comparison Numbers
---------------------------
-L1 cache reference                           0.5 ns
-Branch mispredict                            5   ns
-L2 cache reference                           7   ns                      14x L1 cache
-Mutex lock/unlock                           25   ns
-Main memory reference                      100   ns                      20x L2 cache, 200x L1 cache
-Compress 1K bytes with Zippy            10,000   ns       10 us
-Send 1 KB bytes over 1 Gbps network     10,000   ns       10 us
-Read 4 KB randomly from SSD*           150,000   ns      150 us          ~1GB/sec SSD
-Read 1 MB sequentially from memory     250,000   ns      250 us
-Round trip within same datacenter      500,000   ns      500 us
-Read 1 MB sequentially from SSD*     1,000,000   ns    1,000 us    1 ms  ~1GB/sec SSD, 4X memory
-HDD seek                            10,000,000   ns   10,000 us   10 ms  20x datacenter roundtrip
-Read 1 MB sequentially from 1 Gbps  10,000,000   ns   10,000 us   10 ms  40x memory, 10X SSD
-Read 1 MB sequentially from HDD     30,000,000   ns   30,000 us   30 ms 120x memory, 30X SSD
-Send packet CA-&gt;Netherlands-&gt;CA    150,000,000   ns  150,000 us  150 ms
-
-Notes
------
-1 ns = 10^-9 seconds
-1 us = 10^-6 seconds = 1,000 ns
-1 ms = 10^-3 seconds = 1,000 us = 1,000,000 ns
-</code></pre></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-8-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-8-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-8-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-8-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-8-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-8-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-8-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-8-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-8-10">10</a></span>
+<span class="normal"><a href="#__codelineno-8-11">11</a></span>
+<span class="normal"><a href="#__codelineno-8-12">12</a></span>
+<span class="normal"><a href="#__codelineno-8-13">13</a></span>
+<span class="normal"><a href="#__codelineno-8-14">14</a></span>
+<span class="normal"><a href="#__codelineno-8-15">15</a></span>
+<span class="normal"><a href="#__codelineno-8-16">16</a></span>
+<span class="normal"><a href="#__codelineno-8-17">17</a></span>
+<span class="normal"><a href="#__codelineno-8-18">18</a></span>
+<span class="normal"><a href="#__codelineno-8-19">19</a></span>
+<span class="normal"><a href="#__codelineno-8-20">20</a></span>
+<span class="normal"><a href="#__codelineno-8-21">21</a></span>
+<span class="normal"><a href="#__codelineno-8-22">22</a></span>
+<span class="normal"><a href="#__codelineno-8-23">23</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a>Latency Comparison Numbers
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a>--------------------------
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a>L1 cache reference                           0.5 ns
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a>Branch mispredict                            5   ns
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5"></a>L2 cache reference                           7   ns                      14x L1 cache
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6"></a>Mutex lock/unlock                           25   ns
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7"></a>Main memory reference                      100   ns                      20x L2 cache, 200x L1 cache
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8"></a>Compress 1K bytes with Zippy            10,000   ns       10 us
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9"></a>Send 1 KB bytes over 1 Gbps network     10,000   ns       10 us
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10"></a>Read 4 KB randomly from SSD*           150,000   ns      150 us          ~1GB/sec SSD
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11"></a>Read 1 MB sequentially from memory     250,000   ns      250 us
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12"></a>Round trip within same datacenter      500,000   ns      500 us
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13"></a>Read 1 MB sequentially from SSD*     1,000,000   ns    1,000 us    1 ms  ~1GB/sec SSD, 4X memory
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14"></a>HDD seek                            10,000,000   ns   10,000 us   10 ms  20x datacenter roundtrip
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15"></a>Read 1 MB sequentially from 1 Gbps  10,000,000   ns   10,000 us   10 ms  40x memory, 10X SSD
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16"></a>Read 1 MB sequentially from HDD     30,000,000   ns   30,000 us   30 ms 120x memory, 30X SSD
+</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17"></a>Send packet CA-&gt;Netherlands-&gt;CA    150,000,000   ns  150,000 us  150 ms
+</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18"></a>
+</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19"></a>Notes
+</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20"></a>-----
+</span><span id="__span-8-21"><a id="__codelineno-8-21" name="__codelineno-8-21"></a>1 ns = 10^-9 seconds
+</span><span id="__span-8-22"><a id="__codelineno-8-22" name="__codelineno-8-22"></a>1 us = 10^-6 seconds = 1,000 ns
+</span><span id="__span-8-23"><a id="__codelineno-8-23" name="__codelineno-8-23"></a>1 ms = 10^-3 seconds = 1,000 us = 1,000,000 ns
+</span></code></pre></div></td></tr></table></div>
 <p>Handy metrics based on numbers above:</p>
 <ul>
 <li>Read sequentially from HDD at 30 MB/s</li>
@@ -8631,12 +8670,16 @@ Looking to add a blog?  To avoid duplicating work, consider adding your company 
 <p>My contact info can be found on my <a href="https://github.com/donnemartin">GitHub page</a>.</p>
 <h2 id="license">License<a class="headerlink" href="#license" title="Permanent link">&para;</a></h2>
 <p><em>I am providing code and resources in this repository to you under an open source license.  Because this is my personal repository, the license you receive to my code and resources is from me and not my employer (Facebook).</em></p>
-<div class="highlight"><pre><span></span><code>Copyright 2017 Donne Martin
-
-Creative Commons Attribution 4.0 International License (CC BY 4.0)
-
-http://creativecommons.org/licenses/by/4.0/
-</code></pre></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
+<span class="normal"><a href="#__codelineno-9-2">2</a></span>
+<span class="normal"><a href="#__codelineno-9-3">3</a></span>
+<span class="normal"><a href="#__codelineno-9-4">4</a></span>
+<span class="normal"><a href="#__codelineno-9-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a>Copyright 2017 Donne Martin
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2"></a>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3"></a>Creative Commons Attribution 4.0 International License (CC BY 4.0)
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4"></a>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5"></a>http://creativecommons.org/licenses/by/4.0/
+</span></code></pre></div></td></tr></table></div>
 
 
 
@@ -8909,7 +8952,7 @@ http://creativecommons.org/licenses/by/4.0/
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../solutions/object_oriented_design/parking_lot/parking_lot.py" class="md-footer__link md-footer__link--prev" aria-label="Previous: Parking Lot">
+          <a href="../solutions/object_oriented_design/parking_lot/index.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Parking Lot">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -8970,7 +9013,7 @@ http://creativecommons.org/licenses/by/4.0/
     
     
       
-      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "navigation.path", "content.code.annotate", "content.tabs.link", "search.highlight", "search.suggest", "toc.follow"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "navigation.path", "content.code.annotate", "content.code.copy", "content.tabs.link", "search.highlight", "search.suggest", "toc.follow"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../assets/javascripts/bundle.13a4f30d.min.js"></script>

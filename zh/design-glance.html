@@ -1520,6 +1520,8 @@
     
       
         
+          
+        
       
         
       
@@ -1549,8 +1551,9 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_6" >
         
           
-          <label class="md-nav__link" for="__nav_6_6" id="__nav_6_6_label" tabindex="0">
-            
+          <div class="md-nav__link md-nav__container">
+            <a href="../solutions/object_oriented_design/call_center/index.html" class="md-nav__link ">
+              
   
   
   <span class="md-ellipsis">
@@ -1559,8 +1562,14 @@
   </span>
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6_6" id="__nav_6_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6_6">
@@ -1570,27 +1579,6 @@
           <ul class="md-nav__list" data-md-scrollfix>
             
               
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../solutions/object_oriented_design/call_center/README.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Call Center
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
             
               
                 
@@ -1599,7 +1587,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../solutions/object_oriented_design/circular_array/circular_array.py" class="md-nav__link">
+      <a href="../solutions/object_oriented_design/circular_array/index.html" class="md-nav__link">
         
   
   
@@ -1622,7 +1610,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../solutions/object_oriented_design/deck_of_cards/deck_of_cards.py" class="md-nav__link">
+      <a href="../solutions/object_oriented_design/deck_of_cards/index.html" class="md-nav__link">
         
   
   
@@ -1645,7 +1633,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../solutions/object_oriented_design/hash_table/hash_table.py" class="md-nav__link">
+      <a href="../solutions/object_oriented_design/hash_table/index.html" class="md-nav__link">
         
   
   
@@ -1668,7 +1656,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../solutions/object_oriented_design/lru_cache/lru_cache.py" class="md-nav__link">
+      <a href="../solutions/object_oriented_design/lru_cache/index.html" class="md-nav__link">
         
   
   
@@ -1691,7 +1679,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../solutions/object_oriented_design/movie_tickets/movie_tickets.py" class="md-nav__link">
+      <a href="../solutions/object_oriented_design/movie_tickets/index.html" class="md-nav__link">
         
   
   
@@ -1714,7 +1702,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../solutions/object_oriented_design/online_chat/online_chat.py" class="md-nav__link">
+      <a href="../solutions/object_oriented_design/online_chat/index.html" class="md-nav__link">
         
   
   
@@ -1737,7 +1725,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../solutions/object_oriented_design/parking_lot/parking_lot.py" class="md-nav__link">
+      <a href="../solutions/object_oriented_design/parking_lot/index.html" class="md-nav__link">
         
   
   
@@ -7396,15 +7384,22 @@
 <li>将查找到的结果存储到缓存中</li>
 <li>返回所需内容</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">):</span>
-    <span class="n">user</span> <span class="o">=</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;user.</span><span class="si">{0}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">user_id</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">user</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">user</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM users WHERE user_id = </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">user_id</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">user</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">key</span> <span class="o">=</span> <span class="s2">&quot;user.</span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
-            <span class="n">cache</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">user</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">user</span>
-</code></pre></div>
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span>
+<span class="normal"><a href="#__codelineno-0-5">5</a></span>
+<span class="normal"><a href="#__codelineno-0-6">6</a></span>
+<span class="normal"><a href="#__codelineno-0-7">7</a></span>
+<span class="normal"><a href="#__codelineno-0-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">get_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">):</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a>    <span class="n">user</span> <span class="o">=</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;user.</span><span class="si">{0}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">user_id</span><span class="p">)</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a>    <span class="k">if</span> <span class="n">user</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a>        <span class="n">user</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM users WHERE user_id = </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">user_id</span><span class="p">)</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a>        <span class="k">if</span> <span class="n">user</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a>            <span class="n">key</span> <span class="o">=</span> <span class="s2">&quot;user.</span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a>            <span class="n">cache</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">user</span><span class="p">))</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a>    <span class="k">return</span> <span class="n">user</span>
+</span></code></pre></div></td></tr></table></div>
 <p><a href="https://memcached.org/">Memcached</a> 通常用这种方式使用。</p>
 <p>添加到缓存中的数据读取速度很快。缓存模式也称为延迟加载。只缓存所请求的数据，这避免了没有被请求的数据占满了缓存空间。</p>
 <h5 id="_96">缓存的缺点：<a class="headerlink" href="#_96" title="Permanent link">&para;</a></h5>
@@ -7427,13 +7422,15 @@
 <li>返回所需内容</li>
 </ul>
 <p>应用代码：</p>
-<div class="highlight"><pre><span></span><code>set_user(12345, {&quot;foo&quot;:&quot;bar&quot;})
-</code></pre></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a>set_user(12345, {&quot;foo&quot;:&quot;bar&quot;})
+</span></code></pre></div></td></tr></table></div>
 <p>缓存代码：</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">set_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
-    <span class="n">user</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;UPDATE Users WHERE id = </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">user_id</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
-    <span class="n">cache</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="n">user</span><span class="p">)</span>
-</code></pre></div>
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">set_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a>    <span class="n">user</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;UPDATE Users WHERE id = </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">user_id</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a>    <span class="n">cache</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="n">user</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
 <p>由于存写操作所以直写模式整体是一种很慢的操作，但是读取刚写入的数据很快。相比读取数据，用户通常比较能接受更新数据时速度较慢。缓存中的数据不会过时。</p>
 <h5 id="_98">直写模式的缺点：<a class="headerlink" href="#_98" title="Permanent link">&para;</a></h5>
 <ul>
@@ -7649,14 +7646,20 @@
 <li><strong>服务端 stub 程序</strong> ── 将结果解包，依据过程 id 调用服务端方法并将参数传递过去。</li>
 </ul>
 <p>RPC 调用示例：</p>
-<div class="highlight"><pre><span></span><code>GET /someoperation?data=anId
-
-POST /anotheroperation
-{
-  &quot;data&quot;:&quot;anId&quot;;
-  &quot;anotherdata&quot;: &quot;another value&quot;
-}
-</code></pre></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span>
+<span class="normal"><a href="#__codelineno-3-5">5</a></span>
+<span class="normal"><a href="#__codelineno-3-6">6</a></span>
+<span class="normal"><a href="#__codelineno-3-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a>GET /someoperation?data=anId
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a>POST /anotheroperation
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a>{
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5"></a>  &quot;data&quot;:&quot;anId&quot;;
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6"></a>  &quot;anotherdata&quot;: &quot;another value&quot;
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7"></a>}
+</span></code></pre></div></td></tr></table></div>
 <p>RPC 专注于暴露方法。RPC 通常用于处理内部通讯的性能问题，这样你可以手动处理本地调用以更好的适应你的情况。</p>
 <p>当以下情况时选择本地库（也就是 SDK）：</p>
 <ul>
@@ -7683,11 +7686,14 @@ POST /anotheroperation
 <li><strong><a href="http://restcookbook.com/Basics/hateoas/">HATEOAS</a>（HTTP 中的HTML 接口）</strong> ── 你的 web 服务器应该能够通过浏览器访问。</li>
 </ul>
 <p>REST 请求的例子：</p>
-<div class="highlight"><pre><span></span><code>GET /someresources/anId
-
-PUT /someresources/anId
-{&quot;anotherdata&quot;: &quot;another value&quot;}
-</code></pre></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span>
+<span class="normal"><a href="#__codelineno-4-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a>GET /someresources/anId
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a>PUT /someresources/anId
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a>{&quot;anotherdata&quot;: &quot;another value&quot;}
+</span></code></pre></div></td></tr></table></div>
 <p>REST 关注于暴露数据。它减少了客户端／服务端的耦合程度，经常用于公共 HTTP API 接口设计。REST 使用更通常与规范化的方法来通过 URI 暴露资源，<a href="https://github.com/for-GET/know-your-http-well/blob/master/headers.md">通过 header 来表述</a>并通过 GET、POST、PUT、DELETE 和 PATCH 这些动作来进行操作。因为无状态的特性，REST 易于横向扩展和隔离。</p>
 <h4 id="rest_1">缺点：REST<a class="headerlink" href="#rest_1" title="Permanent link">&para;</a></h4>
 <ul>
@@ -7775,46 +7781,77 @@ PUT /someresources/anId
 <h2 id="_114">附录<a class="headerlink" href="#_114" title="Permanent link">&para;</a></h2>
 <p>一些时候你会被要求做出保守估计。比如，你可能需要估计从磁盘中生成 100 张图片的缩略图需要的时间或者一个数据结构需要多少的内存。<strong>2 的次方表</strong>和<strong>每个开发者都需要知道的一些时间数据</strong>（译注：OSChina 上有这篇文章的<a href="https://www.oschina.net/news/30009/every-programmer-should-know">译文</a>）都是一些很方便的参考资料。</p>
 <h3 id="2">2 的次方表<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>Power           Exact Value         Approx Value        Bytes
----------------------------------------------------------------
-7                             128
-8                             256
-10                           1024   1 thousand           1 KB
-16                         65,536                       64 KB
-20                      1,048,576   1 million            1 MB
-30                  1,073,741,824   1 billion            1 GB
-32                  4,294,967,296                        4 GB
-40              1,099,511,627,776   1 trillion           1 TB
-</code></pre></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a>Power           Exact Value         Approx Value        Bytes
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a>---------------------------------------------------------------
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a>7                             128
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a>8                             256
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5"></a>10                           1024   1 thousand           1 KB
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6"></a>16                         65,536                       64 KB
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7"></a>20                      1,048,576   1 million            1 MB
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8"></a>30                  1,073,741,824   1 billion            1 GB
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9"></a>32                  4,294,967,296                        4 GB
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10"></a>40              1,099,511,627,776   1 trillion           1 TB
+</span></code></pre></div></td></tr></table></div>
 <h4 id="_115">来源及延伸阅读<a class="headerlink" href="#_115" title="Permanent link">&para;</a></h4>
 <ul>
 <li><a href="https://en.wikipedia.org/wiki/Power_of_two">2 的次方</a></li>
 </ul>
 <h3 id="_116">每个程序员都应该知道的延迟数<a class="headerlink" href="#_116" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>Latency Comparison Numbers
---------------------------
-L1 cache reference                           0.5 ns
-Branch mispredict                            5   ns
-L2 cache reference                           7   ns                      14x L1 cache
-Mutex lock/unlock                           25   ns
-Main memory reference                      100   ns                      20x L2 cache, 200x L1 cache
-Compress 1K bytes with Zippy            10,000   ns       10 us
-Send 1 KB bytes over 1 Gbps network     10,000   ns       10 us
-Read 4 KB randomly from SSD*           150,000   ns      150 us          ~1GB/sec SSD
-Read 1 MB sequentially from memory     250,000   ns      250 us
-Round trip within same datacenter      500,000   ns      500 us
-Read 1 MB sequentially from SSD*     1,000,000   ns    1,000 us    1 ms  ~1GB/sec SSD, 4X memory
-Disk seek                           10,000,000   ns   10,000 us   10 ms  20x datacenter roundtrip
-Read 1 MB sequentially from 1 Gbps  10,000,000   ns   10,000 us   10 ms  40x memory, 10X SSD
-Read 1 MB sequentially from disk    30,000,000   ns   30,000 us   30 ms 120x memory, 30X SSD
-Send packet CA-&gt;Netherlands-&gt;CA    150,000,000   ns  150,000 us  150 ms
-
-Notes
------
-1 ns = 10^-9 seconds
-1 us = 10^-6 seconds = 1,000 ns
-1 ms = 10^-3 seconds = 1,000 us = 1,000,000 ns
-</code></pre></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-6-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-6-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-6-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-6-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-6-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-6-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-6-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-6-10">10</a></span>
+<span class="normal"><a href="#__codelineno-6-11">11</a></span>
+<span class="normal"><a href="#__codelineno-6-12">12</a></span>
+<span class="normal"><a href="#__codelineno-6-13">13</a></span>
+<span class="normal"><a href="#__codelineno-6-14">14</a></span>
+<span class="normal"><a href="#__codelineno-6-15">15</a></span>
+<span class="normal"><a href="#__codelineno-6-16">16</a></span>
+<span class="normal"><a href="#__codelineno-6-17">17</a></span>
+<span class="normal"><a href="#__codelineno-6-18">18</a></span>
+<span class="normal"><a href="#__codelineno-6-19">19</a></span>
+<span class="normal"><a href="#__codelineno-6-20">20</a></span>
+<span class="normal"><a href="#__codelineno-6-21">21</a></span>
+<span class="normal"><a href="#__codelineno-6-22">22</a></span>
+<span class="normal"><a href="#__codelineno-6-23">23</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a>Latency Comparison Numbers
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a>--------------------------
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a>L1 cache reference                           0.5 ns
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4"></a>Branch mispredict                            5   ns
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5"></a>L2 cache reference                           7   ns                      14x L1 cache
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6"></a>Mutex lock/unlock                           25   ns
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7"></a>Main memory reference                      100   ns                      20x L2 cache, 200x L1 cache
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8"></a>Compress 1K bytes with Zippy            10,000   ns       10 us
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9"></a>Send 1 KB bytes over 1 Gbps network     10,000   ns       10 us
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10"></a>Read 4 KB randomly from SSD*           150,000   ns      150 us          ~1GB/sec SSD
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11"></a>Read 1 MB sequentially from memory     250,000   ns      250 us
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12"></a>Round trip within same datacenter      500,000   ns      500 us
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13"></a>Read 1 MB sequentially from SSD*     1,000,000   ns    1,000 us    1 ms  ~1GB/sec SSD, 4X memory
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14"></a>Disk seek                           10,000,000   ns   10,000 us   10 ms  20x datacenter roundtrip
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15"></a>Read 1 MB sequentially from 1 Gbps  10,000,000   ns   10,000 us   10 ms  40x memory, 10X SSD
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16"></a>Read 1 MB sequentially from disk    30,000,000   ns   30,000 us   30 ms 120x memory, 30X SSD
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17"></a>Send packet CA-&gt;Netherlands-&gt;CA    150,000,000   ns  150,000 us  150 ms
+</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18"></a>
+</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19"></a>Notes
+</span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20"></a>-----
+</span><span id="__span-6-21"><a id="__codelineno-6-21" name="__codelineno-6-21"></a>1 ns = 10^-9 seconds
+</span><span id="__span-6-22"><a id="__codelineno-6-22" name="__codelineno-6-22"></a>1 us = 10^-6 seconds = 1,000 ns
+</span><span id="__span-6-23"><a id="__codelineno-6-23" name="__codelineno-6-23"></a>1 ms = 10^-3 seconds = 1,000 us = 1,000,000 ns
+</span></code></pre></div></td></tr></table></div>
 <p>基于上述数字的指标：
 * 从磁盘以 30 MB/s 的速度顺序读取
 * 以 100 MB/s 从 1 Gbps 的以太网顺序读取
@@ -8243,10 +8280,12 @@ Notes
 <p>欢迎联系我讨论本文的不足、问题或者意见。</p>
 <p>可以在我的 <a href="https://github.com/donnemartin">GitHub 主页</a>上找到我的联系方式</p>
 <h2 id="_127">许可<a class="headerlink" href="#_127" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>Creative Commons Attribution 4.0 International License (CC BY 4.0)
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>Creative Commons Attribution 4.0 International License (CC BY 4.0)
 
 http://creativecommons.org/licenses/by/4.0/
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
 
 
 
@@ -8488,7 +8527,7 @@ http://creativecommons.org/licenses/by/4.0/
     
     
       
-      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "navigation.path", "content.code.annotate", "content.tabs.link", "search.highlight", "search.suggest", "toc.follow"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "navigation.path", "content.code.annotate", "content.code.copy", "content.tabs.link", "search.highlight", "search.suggest", "toc.follow"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../assets/javascripts/bundle.13a4f30d.min.js"></script>
