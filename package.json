@@ -1,0 +1,100 @@
+{
+  "name": "skola",
+  "homepage": "https://skola.cards/",
+  "version": "0.2.0",
+  "private": false,
+  "dependencies": {
+    "@hello-pangea/dnd": "16.5.0",
+    "@mantine/charts": "7.15.1",
+    "@mantine/core": "7.15.1",
+    "@mantine/hooks": "7.15.1",
+    "@mantine/notifications": "7.15.1",
+    "@mantine/spotlight": "7.15.1",
+    "@mantine/tiptap": "7.15.1",
+    "@tabler/icons-react": "3.14.0",
+    "@tauri-apps/api": "^1.6.0",
+    "@tiptap/core": "2.27.1",
+    "@tiptap/extension-color": "2.27.1",
+    "@tiptap/extension-hard-break": "2.27.1",
+    "@tiptap/extension-highlight": "2.27.1",
+    "@tiptap/extension-image": "2.27.1",
+    "@tiptap/extension-link": "2.27.1",
+    "@tiptap/extension-placeholder": "2.27.1",
+    "@tiptap/extension-subscript": "2.27.1",
+    "@tiptap/extension-superscript": "2.27.1",
+    "@tiptap/extension-text-align": "2.27.1",
+    "@tiptap/extension-text-style": "2.27.1",
+    "@tiptap/extension-underline": "2.27.1",
+    "@tiptap/pm": "^2.27.1",
+    "@tiptap/react": "2.27.1",
+    "@tiptap/starter-kit": "2.27.1",
+    "clsx": "^2.1.1",
+    "dexie": "^4.2.1",
+    "dexie-cloud-addon": "^4.2.2",
+    "dexie-export-import": "4.1.1",
+    "dexie-react-hooks": "1.1.7",
+    "fsrs.js": "1.2.2",
+    "html-react-parser": "5.1.8",
+    "html-to-text": "9.0.5",
+    "i18next": "23.15.1",
+    "mantine-datatable": "^7.17.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-i18next": "14.1.0",
+    "react-router-dom": "6.22.3",
+    "react-timer-hook": "3.0.7",
+    "uuid": "9.0.1"
+  },
+  "scripts": {
+    "start": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
+    "lint": "biome check",
+    "lint:type": "tsc --noEmit",
+    "extract": "i18next --config i18next-parser.config.mjs 'src/**/*.{ts,tsx}'",
+    "format": "biome check --apply",
+    "tauri": "tauri",
+    "add-domain": "echo https://skola.cards> dist/CNAME",
+    "predeploy": "npm run add-domain && npm run build",
+    "deploy": "gh-pages -d dist",
+    "build-and-deploy": "npm run predeploy && npm run deploy"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.8.3",
+    "@tauri-apps/cli": "^2.9.4",
+    "@types/lodash": "4.17.0",
+    "@types/node": "22.5.5",
+    "@types/react": "18.2.65",
+    "@types/react-dom": "18.2.21",
+    "@types/uuid": "9.0.8",
+    "@vitejs/plugin-react": "4.2.1",
+    "gh-pages": "^6.3.0",
+    "i18next-parser": "9.0.2",
+    "postcss": "8.4.47",
+    "postcss-cli": "11.0.0",
+    "postcss-preset-mantine": "1.13.0",
+    "postcss-simple-vars": "7.0.1",
+    "typescript": "5.5.2",
+    "vite": "5.2.13",
+    "vite-plugin-checker": "0.6.4",
+    "vite-tsconfig-paths": "4.3.2"
+  },
+  "packageManager": "pnpm@9.15.3+sha512.1f79bc245a66eb0b07c5d4d83131240774642caaa86ef7d0434ab47c0d16f66b04e21e0c086eb61e62c77efc4d7f7ec071afad3796af64892fae66509173893a"
+}
