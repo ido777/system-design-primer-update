@@ -1,0 +1,12 @@
+.dropdown {
+  box-shadow: var(--mantine-shadow-md);
+}
+
+.item {
+  font-weight: 500;
+
+  &:global(.active) {
+    color: var(--mantine-primary-color-contrast);
+    background-color: var(--mantine-primary-color-filled);
+  }
+}
