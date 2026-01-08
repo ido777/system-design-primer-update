@@ -1,0 +1,33 @@
+.card {
+    padding: var(--mantine-spacing-sm);
+    border: solid 1px var(--mantine-color-light-border);
+    cursor: pointer;
+
+    p,
+    div,
+    ul,
+    ol {
+        margin: 0;
+    }
+    ul {
+        padding-inline-start: 1.25rem;
+    }
+
+    & img {
+        width: 75%;
+    }
+}
+
+.cardWrapper {
+    margin-bottom: var(--mantine-spacing-xs);
+    background: transparent;
+    border-radius: var(--mantine-radius-sm);
+
+    &:hover {
+        box-shadow: var(--mantine-shadow-xs);
+    }
+
+    &.dragging {
+        box-shadow: var(--mantine-shadow-md);
+    }
+}

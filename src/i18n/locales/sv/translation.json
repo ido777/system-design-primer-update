@@ -1,0 +1,190 @@
+{
+  "card": {
+    "menu": {
+      "debug": "Debug",
+      "edit": "Redigera",
+      "move": "Flytta"
+    }
+  },
+  "deck": {
+    "add-cards": "Lägg till kort",
+    "add-cards-tooltip": "Lägg till kort till denna kortlek",
+    "create-deck-tooltip": "Klicka här för att skapa en ny kortlek",
+    "learning-cards-label": "Plugga",
+    "learning-cards-label_one": "",
+    "learning-cards-label_other": "",
+    "menu": {
+      "debug": "Debug",
+      "delete": "Radera",
+      "import-cards": "Importera kort",
+      "manage-cards": "Hantera kort",
+      "move": "Flytta",
+      "options": "",
+      "rename": "Döp om"
+    },
+    "new-cards-label": "Nya",
+    "new-cards-label_one": "",
+    "new-cards-label_other": "",
+    "new-deck-button": "",
+    "new-deck-modal": {
+      "description": "Beskrivning",
+      "name": "Namn",
+      "name-placeholder": "till exempel \"Spanska\", \"Anatomi\" eller \"Historik\"",
+      "new-subdeck": "Skapa nytt underdäck i {{superDeck}}",
+      "submit": "Skapa"
+    },
+    "notebook": {
+      "title": "Anteckningsbok"
+    },
+    "rename": {
+      "new-name": "",
+      "rename-button": "",
+      "title": ""
+    },
+    "review-cards-label": "Repetera",
+    "review-cards-label_one": "",
+    "review-cards-label_other": "",
+    "settings": "",
+    "subdeck": {
+      "add-subdeck-button": "",
+      "load-fail": "",
+      "title": ""
+    }
+  },
+  "global": {
+    "cancel": "Avbryt",
+    "feature-status": {
+      "in-development": " (Under utveckling)",
+      "new": " (Ny)",
+      "planned": " (Planerad)"
+    }
+  },
+  "hero-deck-section": {
+    "error": "",
+    "no-cards-title": ""
+  },
+  "home": {
+    "title": "Hem",
+    "welcome": "Welcome!",
+    "welcome-user": "Welcome back, {{name}}!"
+  },
+  "learning": {
+    "finished-accuracy-ratio": "",
+    "finished-button-home": "",
+    "finished-button-to-deck": "",
+    "finished-congrats": "",
+    "finished-congrats-name": "",
+    "finished-duration": "",
+    "finished-info": "",
+    "finished-repetions-count": ""
+  },
+  "manage-cards": {
+    "title": "Hantera kort"
+  },
+  "note": {
+    "edit": {
+      "submit-button": "Spara kort",
+      "submit-button-tooltip": "Spara ändringar",
+      "title": "Redigera anteckning",
+      "type-specific": {
+        "double-sided": {
+          "back": "Baksida",
+          "front": "Framsida"
+        },
+        "normal": {
+          "back": "Baksida",
+          "front": "Framsida"
+        }
+      }
+    },
+    "menu": {
+      "edit": "Redigera",
+      "move": "Flytta"
+    },
+    "new": {
+      "select-note-type": {
+        "label": "Korttyp",
+        "tooltip": "Välj den typ av kort du vill skapa."
+      },
+      "submit-button": "Lägg till kort",
+      "submit-button-tooltip": "Lägg till kort",
+      "title": "Nya kort"
+    },
+    "type": {
+      "cloze": "Cloze",
+      "image-occlusion": "Bildocklusion",
+      "normal": "Vanligt",
+      "undefined": "Odefinierad"
+    },
+    "type-double-sided": "Dubbelsidig"
+  },
+  "settings": {
+    "about": {
+      "description": "",
+      "title": "Om Skola"
+    },
+    "appearance": {
+      "color-scheme": "Färgschema",
+      "color-scheme-auto": "",
+      "color-scheme-dark": "",
+      "color-scheme-description": "Välj mellan alltid ljust eller mörkt tema eller använd färgtemat för ditt system.",
+      "color-scheme-light": "",
+      "title": "Utseende"
+    },
+    "database": {
+      "storage-used": "",
+      "title": "Databas"
+    },
+    "developer": {
+      "description": "",
+      "title": "Utvecklare"
+    },
+    "editing": {
+      "editor-options": "",
+      "individual-options": "",
+      "markdown-hint": "Du kan också använda kortkommandon och grundläggande markdown-syntax för att formatera text.",
+      "show-code-option": "",
+      "show-highlight-option": "",
+      "show-link-option": "",
+      "show-list-option": "",
+      "show-options-for-subscript-and-superscript": "",
+      "show-strikethrough-option": "",
+      "title": "Redigering",
+      "use-bubble-menu": "",
+      "use-toolbar": "",
+      "use-toolbar-description": ""
+    },
+    "editing-use-bubble-menu-description": "",
+    "general": {
+      "enable-developer-mode": "Aktivera utvecklarläge",
+      "enable-developer-mode-description": "Visa utvecklarverktyg för att inspektera webbsidor och aktivera utvecklarverktyg i appen.",
+      "enable-zen-mode": "",
+      "enable-zen-mode-description": "",
+      "language": "Språk",
+      "language-description": "Språk som används i gränssnittet.",
+      "name": "Namn",
+      "name-description": "This name will be used to customize the user experience.",
+      "show-shortcut-hints-description": "Möjliga kortkommandon kommer att visas i menyer etc.",
+      "title": "General"
+    },
+    "learn": {
+      "maximumInterval": "",
+      "requestRetention": "",
+      "title": "Lära"
+    },
+    "title": "Inställningar"
+  },
+  "sidebar": {
+    "decks-add": "",
+    "decks-title": ""
+  },
+  "spotlight": {
+    "no-results": "Inga resultater"
+  },
+  "statistics": {
+    "title": "Statistik"
+  },
+  "today": {
+    "title": "Idag"
+  }
+}
