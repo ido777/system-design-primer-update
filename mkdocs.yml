@@ -151,6 +151,7 @@ nav:
   - English:
       - Overview: en/index.md
       - Study Guide Start Here: en/study_guide.md
+      - 'Phase 1: Requirements Cheat Sheet': en/phase1_requirements_cheat_sheet.md
       - System Design Interview Questions: en/practice.md
       - System Design Interview Solutions:
         - Pastebin: solutions/system_design/pastebin/README.md
