@@ -3,9 +3,9 @@ on:
   push:
     branches:
       - main
+
 permissions:
   contents: write
-
 
 jobs:
   deploy:
@@ -15,7 +15,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
 
       - name: Configure Git Credentials
         run: |
@@ -28,22 +27,44 @@ jobs:
           python-version: 3.11
 
       - name: 📦 Cache dependencies
-        run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV 
+        run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV
 
-      - name: 📦 Cache Keys  
+      - name: 📦 Cache Keys
         uses: actions/cache@v4
         with:
           key: mkdocs-material-${{ env.cache_id }}
-          path: .cache 
+          path: .cache
           restore-keys: |
             mkdocs-material-
 
       - name: 📦 Install dependencies
-        run: pip install mkdocs-material mkdocs-git-revision-date-localized-plugin mkdocs-git-committers-plugin-2  mkdocs-git-authors-plugin mkdocstrings mkdocs-static-i18n mkdocstrings-python
+        run: pip install mkdocs-material mkdocs-git-revision-date-localized-plugin mkdocs-git-committers-plugin-2 mkdocs-git-authors-plugin mkdocstrings mkdocs-static-i18n mkdocstrings-python
 
+      # ✅ Build MkDocs to ./site instead of directly deploying
+      - name: 🏗️ Build MkDocs
+        run: mkdocs build --clean --site-dir site
+
+      # ✅ Build Skola and copy into site/skola
+      - name: 🟩 Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: tools/skola/package-lock.json
+
+      - name: 🏗️ Build Skola into /skola
+        working-directory: tools/skola
+        run: |
+          npm ci
+          REPO_NAME="${GITHUB_REPOSITORY#*/}"
+          npm run build -- --base="/${REPO_NAME}/skola/"
+          mkdir -p ../../site/skola
+          cp -r dist/* ../../site/skola/
+
+      # ✅ Deploy the combined site/ folder to gh-pages
       - name: 🚀 Deploy to GitHub Pages
-        run: mkdocs gh-deploy --force
-
-
-
-
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: site
