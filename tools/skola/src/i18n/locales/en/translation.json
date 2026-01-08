@@ -1,0 +1,243 @@
+{
+  "card": {
+    "delete-modal": {
+      "description": "You are about to delete this card. This cannot be undone. Do you wish to continue?",
+      "title": "Delete Card"
+    },
+    "menu": {
+      "debug": "Debug",
+      "delete": "Delete",
+      "edit": "Edit",
+      "move": "Move",
+      "options": "Options",
+      "statistics": "Statistics"
+    }
+  },
+  "deck": {
+    "add-cards": "Add Cards",
+    "add-cards-tooltip": "Add Cards to this Deck",
+    "create-deck-tooltip": "Click to create a new deck",
+    "error-failed-to-load": "This card failed to load",
+    "learning-cards-label": "Learning",
+    "learning-cards-label_one": "1 Learning",
+    "learning-cards-label_other": "{{ count }} Learning",
+    "menu": {
+      "debug": "Debug",
+      "delete": "Delete",
+      "import-cards": "Import Cards",
+      "label": "Menu",
+      "manage-cards": "Manage Cards",
+      "move": "Move",
+      "options": "Options",
+      "rename": "Rename"
+    },
+    "new-cards-label": "New",
+    "new-cards-label_one": "1 New",
+    "new-cards-label_other": "{{ count }} New",
+    "new-deck-button": "New Deck",
+    "new-deck-modal": {
+      "description": "Description",
+      "description-placeholder": "Optional",
+      "name": "Name",
+      "name-placeholder": "for example 'Spanish', 'Anatomy' or 'History",
+      "new-deck": "Create New Deck",
+      "new-subdeck": "Create New Subdeck in {{superDeck}}",
+      "submit": "Create"
+    },
+    "no-decks-found": "There are no decks here. Click the button above to create one!",
+    "notebook": {
+      "title": "Notebook"
+    },
+    "rename": {
+      "new-name": "New Name",
+      "rename-button": "Rename",
+      "title": "Rename \"{{deckName}}\""
+    },
+    "review-cards-label": "Review",
+    "review-cards-label_one": "1 Review",
+    "review-cards-label_other": "{{ count }} Review",
+    "settings": "Settings",
+    "subdeck": {
+      "add-subdeck-button": "Add",
+      "load-fail": "Failed to load sub decks.",
+      "title": "Subdecks"
+    }
+  },
+  "edit-card": {
+    "edit-note": "Edit note"
+  },
+  "global": {
+    "cancel": "Cancel",
+    "feature-status": {
+      "in-development": " (In Development)",
+      "new": " (New)",
+      "planned": " (Planned)"
+    },
+    "no-items-title": "It is looking empty here!"
+  },
+  "hero-deck-section": {
+    "all-cards-done-learn-anyway": "Learn anyway",
+    "all-cards-done-subtitle": "Return back tomorrow or choose to learn anyway.",
+    "all-cards-done-title": "Congratulations! This deck is done for today!",
+    "error": "Failed to load cards.",
+    "learn": "Learn",
+    "no-cards": "Start by creating some cards!"
+  },
+  "home": {
+    "create-deck": "Create a deck",
+    "no-decks-found": "You have not created any decks yet.",
+    "title": "Home",
+    "welcome": "Welcome!",
+    "welcome-user": "Welcome back, {{name}}!"
+  },
+  "learning": {
+    "finished-accuracy-ratio": "Accuracy",
+    "finished-button-home": "Go Home",
+    "finished-button-to-deck": "Back to Deck",
+    "finished-congrats": "Congratulations!",
+    "finished-congrats-name": "Congratulations, {{name}}!",
+    "finished-duration": "Time",
+    "finished-info": "You have finished all cards of this deck for today.",
+    "finished-repetions-count": "Repetitions"
+  },
+  "manage-cards": {
+    "table": {
+      "no-cards-found": "No Cards Found"
+    },
+    "title": "Manage Cards"
+  },
+  "new-card": {
+    "add": "Add card",
+    "add-to-deck": "Adding cards to",
+    "card-type": "Card Type"
+  },
+  "note": {
+    "delete-modal": {
+      "description": "You are about to delete this note. This cannot be undone.",
+      "title": "Delete Note"
+    },
+    "edit": {
+      "see-history-button": "See History",
+      "see-history-tooltip": "Show history of last created cards",
+      "submit-button": "Save Card",
+      "submit-button-tooltip": "Save Card",
+      "title": "Edit Note",
+      "type-specific": {
+        "double-sided": {
+          "back": "Back",
+          "front": "Front"
+        },
+        "normal": {
+          "back": "Back",
+          "front": "Front"
+        }
+      }
+    },
+    "menu": {
+      "delete": "Delete",
+      "edit": "Edit",
+      "move": "Move"
+    },
+    "new": {
+      "adding-to-deck": "Adding to \"{{deckName}}\"",
+      "select-note-type": {
+        "label": "Card Type",
+        "tooltip": "Choose the type of card you want to create"
+      },
+      "submit-button": "Add Card",
+      "submit-button-tooltip": "Add Card",
+      "title": "New Cards"
+    },
+    "type": {
+      "cloze": "Cloze",
+      "image-occlusion": "Image Occlusion",
+      "normal": "Normal",
+      "undefined": "Undefined"
+    },
+    "type-double-sided": "Double Sided"
+  },
+  "notebook": {
+    "individual-show-answer-toggle-tooltip": "Click to Show Answer",
+    "options": {
+      "exclude-subdecks": "Exclude subdecks",
+      "menu": "Notebook menu",
+      "show-answer": "Show Answers"
+    }
+  },
+  "settings": {
+    "about": {
+      "description": "This program was made by a student from Germany studying medicine. Skola is in early development. You may encounter bugs. If you do, I'd be very pleased if you reported them on the git repository.",
+      "title": "About"
+    },
+    "appearance": {
+      "color-scheme": "Color Scheme",
+      "color-scheme-auto": "System",
+      "color-scheme-dark": "Dark",
+      "color-scheme-description": "Choose between always light or dark theme or use the color theme of your system.",
+      "color-scheme-light": "Light",
+      "title": "Appearance"
+    },
+    "database": {
+      "storage-used": "used",
+      "title": "Database"
+    },
+    "developer": {
+      "description": "This is the developer tab. It will contain extra settings for developers.",
+      "title": "Developer"
+    },
+    "editing": {
+      "editor-options": "Editor",
+      "individual-options": "Individual options",
+      "markdown-hint": "You can also use keyboard shortcuts and basic markdown syntax to format text.",
+      "show-code-option": "Show code option",
+      "show-highlight-option": "Show highlight option",
+      "show-link-option": "Show options for links",
+      "show-list-option": "Show options for lists",
+      "show-options-for-subscript-and-superscript": "Show options for subscript and superscript",
+      "show-strikethrough-option": "Show strikethrough option",
+      "title": "Editing",
+      "use-bubble-menu": "Use inline menu",
+      "use-toolbar": "Use toolbar",
+      "use-toolbar-description": "Always show a toolbar with formatting options above the editor"
+    },
+    "editing-use-bubble-menu-description": "Only show formatting options when text is selected",
+    "general": {
+      "enable-developer-mode": "Enable Developer Mode",
+      "enable-developer-mode-description": "This will enable additional options for debugging and creating custom plugins and themes.",
+      "enable-zen-mode": "Zen Mode",
+      "enable-zen-mode-description": "Zen Mode automatically activates full screen mode during learning sessions.",
+      "language": "Language",
+      "language-description": "Set the language for the user interface.",
+      "name": "Name",
+      "name-description": "This name will be used to customize the user experience.",
+      "show-shortcut-hints": "Show Shortcuts",
+      "show-shortcut-hints-description": "Possible keyboard shortcuts will appear in menus etc.",
+      "title": "General"
+    },
+    "learn": {
+      "enable-visual-feedback": "Enable Visual Feedback",
+      "enable-visual-feedback-description": "Show a short color flash after answering a card depending on your rating.",
+      "maximumInterval": "Maxium interval",
+      "maximumIntervalDescription": "The maximum interval in days between two repetitions of a card",
+      "newToReviewRatio": "New Cards Per Reviews",
+      "newToReviewRatioDescription": "This determines how many new cards will be new cards will be shown per review on average. A value of 0.5 means that reviews and new cards will be ordered in equal amounts.",
+      "requestRetention": "Requested retention",
+      "requestRetentionDescription": "Set which percentage of questions you want to be able to remember in the long-term. Note: High values will lead to more reviews and shorter intervals. Lower percentages will generally reduce the amount of learning. If requested retention is too low, you will forget your cards too often which may result in an increased learning demand. Recommended values lie between 0.70 and 0.95.",
+      "title": "Learning"
+    },
+    "title": "Settings"
+  },
+  "sidebar": {
+    "decks-add": "Add deck",
+    "decks-title": "Decks"
+  },
+  "spotlight": {
+    "no-results": "No results"
+  },
+  "statistics": {
+    "title": "Statistics"
+  },
+  "today": {
+    "title": "Today"
+  }
+}
