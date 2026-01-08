@@ -4,9 +4,11 @@ Welcome to the **System Design Primer: Update Edition**. This project is an evol
 
 The content is currently served via GitHub Pages. To explore the latest material on system design, head over to [system-design-primer-update/](https://ido777.github.io/system-design-primer-update/).
 
+> 💡 **Coming interview? Need a fast reminder?** Jump to the [Phase 1: Requirements Cheat Sheet](https://ido777.github.io/system-design-primer-update/en/phase1_requirements_cheat_sheet/) for a quick reference on what questions to ask during the requirements phase.
+
 ## Introduction
 
-### 1. Software Development in 2025: Kubernetes & Generative AI
+### 1. Software Development After 2025: Kubernetes & Generative AI
 
 The world of software development has evolved dramatically since 2017. Today, systems are designed for distribution from day one, powered by Kubernetes, container orchestration, and the rise of Generative AI. This shift demands fresh perspectives on architecture, scalability, and operational practices.
 
