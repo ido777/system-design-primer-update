@@ -1,0 +1,9 @@
+{
+  "files.encoding": "utf8",
+  "files.autoSave": "onFocusChange",
+  "terminal.integrated.copyOnSelection": true,
+  "terminal.integrated.rightClickBehavior": "copyPaste",
+  "search.exclude": {
+    "**/node_modules/**": true,
+  }
+}
