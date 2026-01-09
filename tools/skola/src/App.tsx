@@ -1,9 +1,9 @@
 import "@mantine/core/styles.css";
-import "@mantine/charts/styles.css";
 import "@mantine/notifications/styles.css";
 import "@mantine/spotlight/styles.css";
 import "mantine-datatable/styles.css";
 import "./style/index.css";
+// @mantine/charts/styles.css is loaded lazily in chart components
 
 import classes from "./App.module.css";
 import { cssVariablesResolver, presetTheme } from "./style/StyleProvider";
