@@ -1,0 +1,119 @@
+{
+    "meta": {
+      "id": "system-design.v1",
+      "title": "System Design Interview – Memory Deck (v1)",
+      "version": 1,
+      "description": "Spaced-repetition cards for interview steps, tradeoffs, and core building blocks.",
+      "license": "CC-BY-4.0",
+      "created_at": "2026-01-08",
+      "tags": ["system-design", "interview", "foundations"]
+    },
+    "decks": [
+      {
+        "deck_id": "sd_foundations",
+        "name": "Foundations: Steps, Scale, Tradeoffs",
+        "description": "Your default interview flow + core concepts you should recall instantly.",
+        "tags": ["steps", "tradeoffs", "scaling"],
+        "cards": [
+          {
+            "id": "sd-001",
+            "type": "basic",
+            "prompt": "What are the first 3 things to do at the start of a system design interview?",
+            "answer": "Clarify requirements (functional + non-functional) → define constraints (SLOs, cost, compliance) → estimate scale (QPS, data size, growth).",
+            "tags": ["framework", "steps"]
+          },
+          {
+            "id": "sd-002",
+            "type": "basic",
+            "prompt": "What are common non-functional requirements (NFRs) to ask about?",
+            "answer": "Latency SLO, availability target, consistency needs, throughput, durability, cost, security/privacy, compliance, observability.",
+            "tags": ["nfr", "requirements"]
+          },
+          {
+            "id": "sd-003",
+            "type": "basic",
+            "prompt": "Rule of thumb: how do you estimate bandwidth from QPS?",
+            "answer": "Bandwidth ≈ QPS × avg response size (and consider peak vs average).",
+            "tags": ["capacity", "estimation"]
+          },
+          {
+            "id": "sd-004",
+            "type": "basic",
+            "prompt": "When do you add a cache? Name 3 triggers.",
+            "answer": "Read-heavy workload, expensive computation/DB queries, hot keys/hot data, need to reduce latency or backend load.",
+            "tags": ["cache"]
+          },
+          {
+            "id": "sd-005",
+            "type": "basic",
+            "prompt": "Name 3 cache invalidation strategies and one risk.",
+            "answer": "TTL/expiry, write-through/write-behind, explicit invalidation (publish/subscribe). Risk: stale reads / inconsistency / thundering herd.",
+            "tags": ["cache", "consistency"]
+          },
+          {
+            "id": "sd-006",
+            "type": "basic",
+            "prompt": "Replication vs sharding — what problem does each solve?",
+            "answer": "Replication: availability + read scaling + durability. Sharding: write scaling + dataset size beyond one node.",
+            "tags": ["datastore", "scaling"]
+          },
+          {
+            "id": "sd-007",
+            "type": "basic",
+            "prompt": "CAP theorem in one sentence (practical version).",
+            "answer": "Under network partition, you must trade off between consistency and availability (you can’t fully guarantee both).",
+            "tags": ["cap", "tradeoffs"]
+          },
+          {
+            "id": "sd-008",
+            "type": "basic",
+            "prompt": "Why use a message queue in system design?",
+            "answer": "Decouple services, buffer spikes, smooth workloads, enable async processing, improve resilience with retries/DLQ.",
+            "tags": ["messaging", "resilience"]
+          },
+          {
+            "id": "sd-009",
+            "type": "basic",
+            "prompt": "Idempotency: what is it and where is it critical?",
+            "answer": "Same request can be processed multiple times with same result. Critical for retries: payments, order creation, at-least-once consumers.",
+            "tags": ["reliability", "api"]
+          },
+          {
+            "id": "sd-010",
+            "type": "cloze",
+            "text": "High-level web service: Client → [A] → [B] → [C] → Database",
+            "blanks": {
+              "A": "CDN / Edge",
+              "B": "Load balancer / API gateway",
+              "C": "Stateless service tier"
+            },
+            "tags": ["architecture", "diagram"]
+          },
+          {
+            "id": "sd-011",
+            "type": "cloze",
+            "text": "Golden signals: [A], [B], [C], [D].",
+            "blanks": {
+              "A": "Latency",
+              "B": "Traffic",
+              "C": "Errors",
+              "D": "Saturation"
+            },
+            "tags": ["observability"]
+          },
+          {
+            "id": "sd-012",
+            "type": "cloze",
+            "text": "Backpressure techniques: [A], [B], [C].",
+            "blanks": {
+              "A": "Rate limiting",
+              "B": "Load shedding",
+              "C": "Queue limits / bounded buffers"
+            },
+            "tags": ["resilience", "performance"]
+          }
+        ]
+      }
+    ]
+  }
+  
