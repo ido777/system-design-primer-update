@@ -3,6 +3,8 @@ import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import Checker from "vite-plugin-checker";
 import viteTsconfigPaths from "vite-tsconfig-paths";
+import { visualizer } from "rollup-plugin-visualizer";
+
 
 export default defineConfig({
   base: "/",
@@ -29,6 +31,7 @@ export default defineConfig({
     react(),
     viteTsconfigPaths(),
     Checker({ typescript: true }),
+    visualizer({ open: true, gzipSize: true, brotliSize: true }),
   ],
   clearScreen: false,
   server: {
@@ -58,5 +61,67 @@ export default defineConfig({
     // produce sourcemaps for debug builds
     sourcemap:
       !!process.env.TAURI_DEBUG,
+    rollupOptions: {
+      output: {
+        manualChunks: (id) => {
+          // Split vendor libraries into separate chunks by domain
+          if (id.includes("node_modules")) {
+            // React and React DOM - core framework
+            if (id.includes("react") || id.includes("react-dom")) {
+              return "react-vendor";
+            }
+            
+            // Mantine UI library - split charts separately
+            if (id.includes("@mantine/charts") || id.includes("recharts")) {
+              return "mantine-charts";
+            }
+            if (id.includes("@mantine")) {
+              return "mantine";
+            }
+            
+            // Editor stack - TipTap/ProseMirror
+            if (
+              id.includes("@tiptap") ||
+              id.includes("prosemirror") ||
+              id.includes("yjs") ||
+              id.includes("y-prosemirror")
+            ) {
+              return "editor";
+            }
+            
+            // Database stack - Dexie and related
+            if (
+              id.includes("dexie") ||
+              id.includes("dexie-cloud")
+            ) {
+              return "database";
+            }
+            
+            // RxJS (if used for collaboration/editor)
+            if (id.includes("rxjs")) {
+              return "rxjs";
+            }
+            
+            // Router
+            if (id.includes("react-router")) {
+              return "router";
+            }
+            
+            // Other large vendor libraries
+            if (
+              id.includes("@tabler") ||
+              id.includes("fsrs") ||
+              id.includes("i18next")
+            ) {
+              return "utils";
+            }
+            
+            // All other node_modules
+            return "vendor";
+          }
+        },
+        chunkSizeWarningLimit: 600,
+      },
+    },
   },
 });

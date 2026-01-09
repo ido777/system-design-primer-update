@@ -1,9 +1,9 @@
 import "@mantine/core/styles.css";
-import "@mantine/charts/styles.css";
 import "@mantine/notifications/styles.css";
 import "@mantine/spotlight/styles.css";
 import "mantine-datatable/styles.css";
 import "./style/index.css";
+// @mantine/charts/styles.css is loaded lazily in chart components
 
 import classes from "./App.module.css";
 import { cssVariablesResolver, presetTheme } from "./style/StyleProvider";
@@ -11,7 +11,7 @@ import { cssVariablesResolver, presetTheme } from "./style/StyleProvider";
 import { AppShell, Center, MantineProvider, Stack } from "@mantine/core";
 import { useDisclosure, useLocalStorage } from "@mantine/hooks";
 import { Notifications } from "@mantine/notifications";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { I18nextProvider } from "react-i18next";
 import { Outlet, useLocation } from "react-router-dom";
 import WelcomeView from "./app/WelcomeView";
@@ -20,6 +20,7 @@ import Header from "./app/shell/Header/Header";
 import Sidebar from "./app/shell/Sidebar/Sidebar";
 import i18n from "./i18n";
 import { useSetting } from "./logic/settings/hooks/useSetting";
+import { seedSystemDesignDeck } from "./logic/seed/seedSystemDesignDeck";
 
 function useRestoreLanguage() {
   const [language] = useSetting("language");
@@ -41,6 +42,8 @@ export default function App() {
   });
 
   const routeIsLearn = useLocation().pathname.includes("learn");
+  const hasSeededRef = useRef(false);
+
   useEffect(() => {
     if (routeIsLearn) {
       sidebarhandlers.close();
@@ -48,6 +51,14 @@ export default function App() {
       sidebarhandlers.open();
     }
   }, [routeIsLearn]);
+
+  // Seed the system design deck on first run (only once, even with StrictMode)
+  useEffect(() => {
+    if (!hasSeededRef.current) {
+      hasSeededRef.current = true;
+      seedSystemDesignDeck();
+    }
+  }, []);
 
   return (
     <I18nextProvider i18n={i18n}>

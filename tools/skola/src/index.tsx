@@ -1,15 +1,18 @@
 import App from "@/App";
-import DeckView from "@/app/deck/DeckView";
-import NewNotesView from "@/app/editor/NewNotesView";
-import NoteExplorerView from "@/app/explorer/NoteExplorerView";
 import HomeView from "@/app/home/HomeView";
-import LearnView from "@/app/learn/LearnView/LearnView";
-import SettingsView from "@/app/settings/SettingsView";
-import StatsView from "@/app/statistics/StatsView";
-import TodayView from "@/app/today/TodayView";
+import { Center, Loader } from "@mantine/core";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { Navigate, RouterProvider, createHashRouter } from "react-router-dom";
+
+// Lazy load heavy components that aren't needed on first screen
+const DeckView = React.lazy(() => import("@/app/deck/DeckView"));
+const NewNotesView = React.lazy(() => import("@/app/editor/NewNotesView"));
+const NoteExplorerView = React.lazy(() => import("@/app/explorer/NoteExplorerView"));
+const LearnView = React.lazy(() => import("@/app/learn/LearnView/LearnView"));
+const SettingsView = React.lazy(() => import("@/app/settings/SettingsView"));
+const StatsView = React.lazy(() => import("@/app/statistics/StatsView"));
+const TodayView = React.lazy(() => import("@/app/today/TodayView"));
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -67,7 +70,15 @@ const router = createHashRouter(
 
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <React.Suspense
+      fallback={
+        <Center h="100vh">
+          <Loader />
+        </Center>
+      }
+    >
+      <RouterProvider router={router} />
+    </React.Suspense>
   </React.StrictMode>
 );
 

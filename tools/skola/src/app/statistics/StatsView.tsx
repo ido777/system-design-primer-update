@@ -3,6 +3,8 @@ import { getCardsOf } from "@/logic/card/getCardsOf";
 import { getSimplifiedStatesOf } from "@/logic/card/getSimplifiedStatesOf";
 import { getDeck } from "@/logic/deck/getDeck";
 import { useDecks } from "@/logic/deck/hooks/useDecks";
+// Lazy load chart styles only when this component is used
+import "@mantine/charts/styles.css";
 import { BarChart, DonutChart } from "@mantine/charts";
 import { Center, SegmentedControl, Stack, Title } from "@mantine/core";
 import { State } from "fsrs.js";
