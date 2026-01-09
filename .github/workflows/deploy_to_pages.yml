@@ -63,7 +63,17 @@ jobs:
         run: |
           pnpm install --frozen-lockfile
           REPO_NAME="${GITHUB_REPOSITORY#*/}"
-          pnpm run build -- --base="/${REPO_NAME}/skola/"
+          BASE_PATH="/${REPO_NAME}/skola/"
+          echo "Building with base path: ${BASE_PATH}"
+          export VITE_BASE="${BASE_PATH}"
+          pnpm exec vite build --base "${BASE_PATH}"
+          echo "Verifying built HTML contains correct base path..."
+          if grep -q "${BASE_PATH}assets" dist/index.html 2>/dev/null || grep -q '"/assets' dist/index.html 2>/dev/null; then
+            echo "✓ Base path appears to be set in built HTML"
+          else
+            echo "⚠ Warning: Base path may not be correctly set in built HTML"
+            head -20 dist/index.html || true
+          fi
           mkdir -p ../../site/skola
           cp -r dist/* ../../site/skola/
 

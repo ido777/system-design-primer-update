@@ -6,19 +6,26 @@ import viteTsconfigPaths from "vite-tsconfig-paths";
 import { visualizer } from "rollup-plugin-visualizer";
 
 
-export default defineConfig({
-  base: "/",
-  css: {
-    modules: {},
-  },
-  define: {
-    ENABLE_FIREBASE:
-      process.env.ENABLE_FIREBASE ||
-      true,
-    PUBLIC_URL: JSON.stringify(
-      process.env.PUBLIC_URL || "/",
-    ),
-  },
+export default defineConfig(({ command, mode }) => {
+  // Allow base to be overridden via CLI --base flag or VITE_BASE env var
+  // Default to "/" for local development
+  // Note: CLI --base flag takes precedence over this config
+  const base = process.env.VITE_BASE || "/";
+  
+  return {
+    // base will be overridden by --base CLI flag if provided
+    base,
+    css: {
+      modules: {},
+    },
+    define: {
+      ENABLE_FIREBASE:
+        process.env.ENABLE_FIREBASE ||
+        true,
+      PUBLIC_URL: JSON.stringify(
+        process.env.PUBLIC_URL || base,
+      ),
+    },
   resolve: {
     alias: {
       "@": path.resolve(
@@ -119,9 +126,12 @@ export default defineConfig({
             // All other node_modules
             return "vendor";
           }
+          // Return undefined for non-node_modules files (they go in the main chunk)
+          return undefined;
         },
         chunkSizeWarningLimit: 600,
       },
     },
   },
+  };
 });
