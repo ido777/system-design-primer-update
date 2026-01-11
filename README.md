@@ -4,7 +4,7 @@ Welcome to the **System Design Primer: Update Edition**. This project is an evol
 
 The content is currently served via GitHub Pages. To explore the latest material on system design, head over to [system-design-primer-update/](https://ido777.github.io/system-design-primer-update/).
 
-> 💡 **Coming interview? Need a fast reminder?** Jump to the [Phase 1: Requirements Cheat Sheet](https://ido777.github.io/system-design-primer-update/en/phase1_requirements_cheat_sheet/) for a quick reference on what questions to ask during the requirements phase.
+> 💡 **Coming interview? Need a fast reminder?** Jump to the [Skola based practicing](https://ido777.github.io/system-design-primer-update/skola/#/home) for a a web-based spaced repetition flash card app like anki.
 
 ## Introduction
 
