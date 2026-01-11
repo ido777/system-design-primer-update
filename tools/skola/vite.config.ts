@@ -5,7 +5,10 @@ import Checker from "vite-plugin-checker";
 import viteTsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
-  base: "/",
+  // Support GitHub Pages deployment with base path
+  // Set VITE_BASE_URL=/skola/ for GitHub Pages, or / for root deployment
+  // This value is automatically available in client code as import.meta.env.BASE_URL
+  base: process.env.VITE_BASE_URL || "/",
   css: {
     modules: {},
   },
@@ -14,7 +17,7 @@ export default defineConfig({
       process.env.ENABLE_FIREBASE ||
       true,
     PUBLIC_URL: JSON.stringify(
-      process.env.PUBLIC_URL || "/",
+      process.env.PUBLIC_URL || process.env.VITE_BASE_URL || "/",
     ),
   },
   resolve: {

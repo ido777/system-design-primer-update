@@ -65,8 +65,8 @@ jobs:
           REPO_NAME="${GITHUB_REPOSITORY#*/}"
           BASE_PATH="/${REPO_NAME}/skola/"
           echo "Building with base path: ${BASE_PATH}"
-          export VITE_BASE="${BASE_PATH}"
-          pnpm exec vite build --base "${BASE_PATH}"
+          export VITE_BASE_URL="${BASE_PATH}"
+          pnpm exec vite build
           echo "Verifying built HTML contains correct base path..."
           if grep -q "${BASE_PATH}assets" dist/index.html 2>/dev/null || grep -q '"/assets' dist/index.html 2>/dev/null; then
             echo "✓ Base path appears to be set in built HTML"

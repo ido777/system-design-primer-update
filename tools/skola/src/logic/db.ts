@@ -30,8 +30,22 @@ export class Database extends Dexie {
 
 export const db = new Database();
 
-db.cloud.configure({
-  databaseUrl: "https://zo30f12v5.dexie.cloud",
-  tryUseServiceWorker: true,
-  customLoginGui: true,
-});
+// Configure Dexie Cloud only if enabled and not in a restricted environment
+// This prevents CORS errors on GitHub Pages where cloud sync isn't configured
+const enableDexieCloud = import.meta.env.VITE_ENABLE_DEXIE_CLOUD !== "false";
+const databaseUrl = import.meta.env.VITE_DEXIE_CLOUD_URL || "https://https://zj33i18c8.dexie.cloud";
+
+if (enableDexieCloud && databaseUrl) {
+  try {
+    db.cloud.configure({
+      databaseUrl: databaseUrl,
+      tryUseServiceWorker: true,
+      customLoginGui: true,
+    });
+  } catch (error) {
+    // Gracefully handle configuration errors (e.g., CORS issues)
+    console.warn("Dexie Cloud configuration failed, continuing without cloud sync:", error);
+  }
+} else {
+  console.log("Dexie Cloud is disabled. Data will be stored locally only.");
+}
