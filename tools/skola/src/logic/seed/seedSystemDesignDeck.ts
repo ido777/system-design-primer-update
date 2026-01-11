@@ -88,8 +88,10 @@ export async function seedSystemDesignDeck(): Promise<void> {
     // Set lock to prevent concurrent seeding (e.g., from React StrictMode)
     sessionStorage.setItem(SEEDING_LOCK_KEY, "true");
 
-    // Fetch the deck JSON
-    const response = await fetch("/decks/system-design.v1.json");
+    // Fetch the deck JSON - use import.meta.env.BASE_URL for proper base path support
+    const baseUrl = import.meta.env.BASE_URL || "/";
+    const deckPath = `${baseUrl}decks/system-design.v1.json`.replace(/\/+/g, "/"); // Normalize slashes
+    const response = await fetch(deckPath);
     if (!response.ok) {
       throw new Error(`Failed to fetch deck: ${response.statusText}`);
     }

@@ -26,7 +26,7 @@ export default function WelcomeView() {
       <Stack gap="2rem" maw="600px">
         <div style={{ position: "relative" }}>
           <Image
-            src="logo.svg"
+            src={`${import.meta.env.BASE_URL}logo.svg`}
             alt="Skola Logo"
             maw="4rem"
             style={{
@@ -36,7 +36,7 @@ export default function WelcomeView() {
               zIndex: -1,
             }}
           />
-          <Image src="logo.svg" alt="Skola Logo" maw="4rem" />
+          <Image src={`${import.meta.env.BASE_URL}logo.svg`} alt="Skola Logo" maw="4rem" />
         </div>
         <Stack gap="xs">
           <Title order={1}>Welcome to Skola!</Title>

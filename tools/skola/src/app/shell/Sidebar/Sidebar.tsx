@@ -113,7 +113,7 @@ function Sidebar({
         <Stack gap="xs">
           <Group className={classes.topRow}>
             <Group gap="xs" align="center">
-              <Image src="/logo.svg" alt="Skola Logo" maw="1.5rem" />
+              <Image src={`${import.meta.env.BASE_URL}logo.svg`} alt="Skola Logo" maw="1.5rem" />
               <Title order={5}>Skola</Title>
             </Group>
             {fullscreenMode ? (
