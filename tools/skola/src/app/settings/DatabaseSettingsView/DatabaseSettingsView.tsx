@@ -1,16 +1,14 @@
 import DangerousConfirmModal from "@/components/DangerousConfirmModal";
-import { Alert, Button, Card, FileButton, Stack, Text, Title } from "@mantine/core";
+import { Button, Card, FileButton, Stack, Text, Title } from "@mantine/core";
 import {
   IconDatabaseExport,
   IconDatabaseImport,
-  IconInfoCircle,
   IconTrash,
 } from "@tabler/icons-react";
 import { exportDB, importInto } from "dexie-export-import";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { db } from "../../../logic/db";
-import { resetDatabase } from "../../../logic/db/resetDatabase";
 import classes from "./DatabaseSettingsView.module.css";
 import StorageSection from "./StorageSection";
 
@@ -23,18 +21,6 @@ export default function DatabaseSettingsView() {
     <>
       <Stack gap="xl" align="start">
         <StorageSection />
-        <Alert icon={<IconInfoCircle />} color="blue" title="Database Management">
-          <Text size="sm" mb="xs">
-            Use these tools to manage your Skola database. For debugging purposes, you can also clear IndexedDB manually:
-          </Text>
-          <Text size="xs" c="dimmed">
-            <strong>Chrome/Edge:</strong> DevTools → Application → Storage → IndexedDB → skola_db → Delete
-            <br />
-            <strong>Firefox:</strong> DevTools → Storage → IndexedDB → skola_db → Delete
-            <br />
-            <strong>Safari:</strong> DevTools → Storage → IndexedDB → skola_db → Delete
-          </Text>
-        </Alert>
         <Button
           leftSection={<IconDatabaseExport />}
           onClick={async () => {
@@ -99,8 +85,8 @@ export default function DatabaseSettingsView() {
         </Card>
       </Stack>
       <DangerousConfirmModal
-        dangerousAction={async () => {
-          await resetDatabase();
+        dangerousAction={() => {
+          db.delete();
           navigate("/home");
           window.location.reload();
         }}

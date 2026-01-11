@@ -25,7 +25,3 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 *.key
-
-
-clean_branch.sh
-repo-backup.bundle

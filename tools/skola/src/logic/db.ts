@@ -30,15 +30,8 @@ export class Database extends Dexie {
 
 export const db = new Database();
 
-// Lazy configure cloud - only when cloud features are actually used
-let cloudConfigured = false;
-export function configureCloud() {
-  if (!cloudConfigured) {
-    db.cloud.configure({
-      databaseUrl: "https://zo30f12v5.dexie.cloud",
-      tryUseServiceWorker: true,
-      customLoginGui: true,
-    });
-    cloudConfigured = true;
-  }
-}
+db.cloud.configure({
+  databaseUrl: "https://zo30f12v5.dexie.cloud",
+  tryUseServiceWorker: true,
+  customLoginGui: true,
+});
