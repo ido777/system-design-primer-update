@@ -1,17 +1,12 @@
-import { configureCloud, db } from "@/logic/db";
+import { db } from "@/logic/db";
 import { Badge, Button, Card, Stack, Text } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import { useObservable } from "dexie-react-hooks";
-import { useEffect, useCallback } from "react";
+import { useCallback } from "react";
 
 export default function CloudSection({
   minimalMode,
 }: { minimalMode: boolean }) {
-  // Lazy configure cloud only when this component mounts
-  useEffect(() => {
-    configureCloud();
-  }, []);
-  
   const user = useObservable(db.cloud.currentUser);
 
   const handleLogin = useCallback(async () => {

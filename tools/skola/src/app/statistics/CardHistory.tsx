@@ -1,6 +1,4 @@
 import { NoteType } from "@/logic/note/note";
-// Lazy load chart styles only when this component is used
-import "@mantine/charts/styles.css";
 import { AreaChart } from "@mantine/charts";
 import React, { useMemo } from "react";
 import { Card } from "../../logic/card/card";

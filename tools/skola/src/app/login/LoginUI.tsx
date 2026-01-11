@@ -13,15 +13,10 @@ import {
   resolveText,
 } from "dexie-cloud-addon";
 import { useObservable } from "dexie-react-hooks";
-import { useEffect, useState } from "react";
-import { configureCloud, db } from "../../logic/db";
+import { useState } from "react";
+import { db } from "../../logic/db";
 
 export default function LoginUI() {
-  // Lazy configure cloud only when this component mounts
-  useEffect(() => {
-    configureCloud();
-  }, []);
-  
   const [params, setParams] = useState<{ [param: string]: string }>({});
 
   const loginUI: DXCUserInteraction | undefined = useObservable(
