@@ -3,18 +3,22 @@ import { Button, Card, FileButton, Stack, Text, Title } from "@mantine/core";
 import {
   IconDatabaseExport,
   IconDatabaseImport,
+  IconRefresh,
   IconTrash,
 } from "@tabler/icons-react";
 import { exportDB, importInto } from "dexie-export-import";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { db } from "../../../logic/db";
+import { resetAllSeedingState } from "../../../logic/seed/seedSystemDesignDeck";
 import classes from "./DatabaseSettingsView.module.css";
 import StorageSection from "./StorageSection";
 
 export default function DatabaseSettingsView() {
   const navigate = useNavigate();
   const [deleteAllDataModalOpened, setDeleteAllDataModalOpened] =
+    useState<boolean>(false);
+  const [resetSeedingModalOpened, setResetSeedingModalOpened] =
     useState<boolean>(false);
 
   return (
@@ -74,6 +78,19 @@ export default function DatabaseSettingsView() {
               )}
             </FileButton>
             <Button
+              leftSection={<IconRefresh />}
+              variant="outline"
+              color="orange"
+              onClick={() => setResetSeedingModalOpened(true)}
+            >
+              Reset Seeding State
+            </Button>
+            <Text size="xs" c="dimmed">
+              Clears seeding markers from all decks, allowing re-seeding of deck
+              files. Useful if you deleted decks but seeding still thinks they
+              exist.
+            </Text>
+            <Button
               leftSection={<IconTrash />}
               variant="filled"
               color="red"
@@ -84,6 +101,18 @@ export default function DatabaseSettingsView() {
           </Stack>
         </Card>
       </Stack>
+      <DangerousConfirmModal
+        dangerousAction={async () => {
+          await resetAllSeedingState();
+          setResetSeedingModalOpened(false);
+          window.location.reload();
+        }}
+        dangerousDependencies={[]}
+        dangerousTitle="Reset Seeding State"
+        dangerousDescription="This will remove all seeding markers from decks, allowing deck files to be re-seeded. Your decks and cards will NOT be deleted, only the seeding markers. Continue?"
+        opened={resetSeedingModalOpened}
+        setOpened={setResetSeedingModalOpened}
+      />
       <DangerousConfirmModal
         dangerousAction={() => {
           db.delete();

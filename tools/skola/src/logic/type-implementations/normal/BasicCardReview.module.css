@@ -1,0 +1,31 @@
+.answerBox {
+  padding: 1rem;
+  border: 1px solid light-dark(
+    var(--mantine-color-gray-4),
+    var(--mantine-color-dark-4)
+  );
+  border-radius: var(--mantine-radius-sm);
+  background-color: light-dark(
+    var(--mantine-color-gray-0),
+    var(--mantine-color-dark-6)
+  );
+  color: light-dark(
+    var(--mantine-color-gray-9),
+    var(--mantine-color-gray-0)
+  );
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  line-height: 1.6;
+}
+
+.answerBox * {
+  color: inherit;
+}
+
+/* Ensure <br> tags create visible line breaks */
+.answerBox :global(br) {
+  display: block;
+  margin: 0.25em 0;
+  content: "";
+  line-height: 1.6;
+}

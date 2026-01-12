@@ -1,0 +1,54 @@
+.cardPreview {
+  padding: 0.75rem;
+  border: 1px solid light-dark(
+    var(--mantine-color-gray-3),
+    var(--mantine-color-dark-4)
+  );
+  border-radius: var(--mantine-radius-sm);
+  background-color: light-dark(
+    var(--mantine-color-gray-0),
+    var(--mantine-color-dark-7)
+  );
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.iconContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: light-dark(
+    var(--mantine-color-gray-6),
+    var(--mantine-color-gray-4)
+  );
+  flex-shrink: 0;
+}
+
+.cardPreview:hover {
+  background-color: light-dark(
+    var(--mantine-color-gray-1),
+    var(--mantine-color-dark-6)
+  );
+  border-color: light-dark(
+    var(--mantine-color-gray-4),
+    var(--mantine-color-dark-3)
+  );
+}
+
+.currentCard {
+  border-color: var(--mantine-color-blue-6);
+  background-color: light-dark(
+    var(--mantine-color-blue-0),
+    var(--mantine-color-blue-9)
+  );
+}
+
+.selectedCard {
+  border-color: var(--mantine-color-blue-7);
+  background-color: light-dark(
+    var(--mantine-color-blue-1),
+    var(--mantine-color-blue-8)
+  );
+  outline: 2px solid var(--mantine-color-blue-5);
+  outline-offset: 2px;
+}

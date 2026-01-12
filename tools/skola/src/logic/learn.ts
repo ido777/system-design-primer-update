@@ -38,6 +38,11 @@ export type LearnController = {
 
   answerCard: (rating: Rating) => void;
   requestNextCard: () => void;
+  requestPreviousCard: () => void;
+  setCardDirectly: (card: Card<NoteType>) => void;
+
+  allCards: Card<NoteType>[];
+  cardHistory: Card<NoteType>[];
 
   statistics: DeckStatistics;
   isFinished: boolean;
@@ -71,10 +76,17 @@ export function useLearning(
 
   //Currently shown card
   const [currentCard, setCurrentCard] = useState<Card<NoteType> | null>(null);
+  
+  //Card history for navigation (previous cards)
+  const [cardHistory, setCardHistory] = useState<Card<NoteType>[]>([]);
+  
+  //All cards in current session (for overview)
+  const [allSessionCards, setAllSessionCards] = useState<Card<NoteType>[]>([]);
 
   const [showingAnswer, setShowingAnswer] = useState<boolean>(false);
   //Used so that nextCard isn't called immediately but only after state has been updated
   const [requestedNextCard, setRequestedNextCard] = useState<boolean>(false);
+  const [requestedPreviousCard, setRequestedPreviousCard] = useState<boolean>(false);
 
   //Determines if FinishedLearningView is shown
   const [isFinished, setIsFinished] = useState<boolean>(false);
@@ -86,6 +98,9 @@ export function useLearning(
   useEffect(() => {
     //Check if there are already cards provided
     if (providedCards) {
+      // Initialize all session cards with all provided cards
+      setAllSessionCards(providedCards);
+      
       //Check if there are no cards are in the respective lists and currentCard is not set.
       if (
         timeCriticalCards.length +
@@ -145,44 +160,117 @@ export function useLearning(
     if (isFinished) {
       return;
     }
+    
+    // Add current card to history before moving
+    if (currentCard) {
+      setCardHistory((prev) => [...prev, currentCard]);
+      setAllSessionCards((prev) => {
+        if (!prev.find((c) => c.id === currentCard.id)) {
+          return [...prev, currentCard];
+        }
+        return prev;
+      });
+    }
+    
     //If there are time critical cards that are due, set the first one as currentCard
     if (
       timeCriticalCards.length > 0 &&
       timeCriticalCards[0].model.due <= new Date(Date.now())
     ) {
-      setCurrentCard(timeCriticalCards[0]);
+      const next = timeCriticalCards[0];
+      setCurrentCard(next);
       setTimeCriticalCards((tcCards) => tcCards.filter((_, i) => i !== 0));
+      setAllSessionCards((prev) => {
+        if (!prev.find((c) => c.id === next.id)) {
+          return [...prev, next];
+        }
+        return prev;
+      });
       //If there are new cards or cards that need to be reviewed are available choose one of them based on the newToReviewRatio
     } else if (newCards.length + toReviewCards.length > 0) {
+      let next: Card<NoteType>;
       if (newCards.length === 0) {
-        setCurrentCard(toReviewCards[0]);
+        next = toReviewCards[0];
+        setCurrentCard(next);
         setToReviewCards((trCards) => trCards.filter((_, i) => i !== 0));
       } else if (toReviewCards.length === 0) {
-        setCurrentCard(newCards[0]);
+        next = newCards[0];
+        setCurrentCard(next);
         setNewCards((nCards) => nCards.filter((_, i) => i !== 0));
       } else {
         if (Math.random() < options.newToReviewRatio) {
-          setCurrentCard(newCards[0]);
+          next = newCards[0];
+          setCurrentCard(next);
           setNewCards((nCards) => nCards.filter((_, i) => i !== 0));
         } else {
-          setCurrentCard(toReviewCards[0]);
+          next = toReviewCards[0];
+          setCurrentCard(next);
           setToReviewCards((trCards) => trCards.filter((_, i) => i !== 0));
         }
       }
+      setAllSessionCards((prev) => {
+        if (!prev.find((c) => c.id === next.id)) {
+          return [...prev, next];
+        }
+        return prev;
+      });
       //If learnAll is true and there are learned cards available set the first one as currentCard
     } else if (options.learnAll && learnedCards.length > 0) {
-      setCurrentCard(learnedCards[0]);
+      const next = learnedCards[0];
+      setCurrentCard(next);
       setLearnedCards((lCards) => lCards.filter((_, i) => i !== 0));
+      setAllSessionCards((prev) => {
+        if (!prev.find((c) => c.id === next.id)) {
+          return [...prev, next];
+        }
+        return prev;
+      });
       //If there aren't any other cards but still time critical cards which are not due yet do them anyway
     } else if (timeCriticalCards.length > 0) {
-      setCurrentCard(timeCriticalCards[0]);
+      const next = timeCriticalCards[0];
+      setCurrentCard(next);
       setTimeCriticalCards((tcCards) => tcCards.filter((_, i) => i !== 0));
+      setAllSessionCards((prev) => {
+        if (!prev.find((c) => c.id === next.id)) {
+          return [...prev, next];
+        }
+        return prev;
+      });
       //If there are no cards left finish the learning session
     } else {
       setIsFinished(true);
       updateGlobalScheduler();
     }
-  }, [timeCriticalCards, newCards, toReviewCards, learnedCards, options]);
+    setShowingAnswer(false);
+  }, [timeCriticalCards, newCards, toReviewCards, learnedCards, options, currentCard]);
+
+  //Go to previous card from history
+  const previousCard = useCallback(() => {
+    if (cardHistory.length > 0) {
+      const prev = cardHistory[cardHistory.length - 1];
+      setCardHistory((prevHistory) => prevHistory.slice(0, -1));
+      
+      // Put current card back into appropriate queue
+      if (currentCard) {
+        const now = new Date(Date.now());
+        if (
+          currentCard.model.state === State.Learning ||
+          currentCard.model.state === State.Relearning
+        ) {
+          setTimeCriticalCards((tc) => [currentCard, ...tc].sort((a, b) => a.model.due.getTime() - b.model.due.getTime()));
+        } else if (currentCard.model.state === State.New) {
+          setNewCards((nc) => [currentCard, ...nc].sort(options.sort || (() => 0)));
+        } else if (currentCard.model.state === State.Review && currentCard.model.due <= now) {
+          setToReviewCards((tr) => [currentCard, ...tr].sort(options.sort || (() => 0)));
+        } else if (currentCard.model.state === State.Review && currentCard.model.due > now) {
+          setLearnedCards((lc) => [currentCard, ...lc].sort(options.sort || (() => 0)));
+        }
+      }
+      
+      setCurrentCard(prev);
+      setShowingAnswer(false);
+    }
+  }, [cardHistory, currentCard, options]);
 
   useEffect(() => {
     if (requestedNextCard) {
@@ -190,6 +278,13 @@ export function useLearning(
       setRequestedNextCard(false);
     }
   }, [requestedNextCard, nextCard]);
+
+  useEffect(() => {
+    if (requestedPreviousCard) {
+      previousCard();
+      setRequestedPreviousCard(false);
+    }
+  }, [requestedPreviousCard, previousCard]);
 
   //Providing information about how all 4 ratings would affect the current card
   //Shown on buttons
@@ -244,6 +339,23 @@ export function useLearning(
     [currentCard, currentCardRepeatInfo, timeCriticalCards, statistics]
   );
 
+  // Function to directly set a card (for overview selection)
+  const setCardDirectly = useCallback(
+    (card: Card<NoteType>) => {
+      if (currentCard) {
+        setCardHistory((prev) => [...prev, currentCard]);
+      }
+      setCurrentCard(card);
+      setShowingAnswer(false);
+      // Remove card from appropriate queue if it's there
+      setTimeCriticalCards((tc) => tc.filter((c) => c.id !== card.id));
+      setNewCards((nc) => nc.filter((c) => c.id !== card.id));
+      setToReviewCards((tr) => tr.filter((c) => c.id !== card.id));
+      setLearnedCards((lc) => lc.filter((c) => c.id !== card.id));
+    },
+    [currentCard]
+  );
+
   return {
     newCardsNumber: newCards.length,
     timeCriticalCardsNumber: timeCriticalCards.length,
@@ -258,6 +370,11 @@ export function useLearning(
 
     answerCard: answer,
     requestNextCard: setRequestedNextCard.bind(null, true),
+    requestPreviousCard: setRequestedPreviousCard.bind(null, true),
+    setCardDirectly: setCardDirectly,
+
+    allCards: allSessionCards,
+    cardHistory: cardHistory,
 
     statistics: statistics,
     isFinished: isFinished,

@@ -17,5 +17,6 @@ export enum NoteType {
   Cloze = "cloze",
   ImageOcclusion = "imageOcclusion",
   DoubleSided = "doubleSided",
+  List = "list",
   Undefined = "undefined",
 }

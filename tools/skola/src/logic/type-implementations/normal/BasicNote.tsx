@@ -14,6 +14,7 @@ import { updateNoteContent } from "@/logic/note/updateNoteContent";
 import common from "@/style/CommonStyles.module.css";
 import { Divider, Stack, Title } from "@mantine/core";
 import { useState } from "react";
+import { BasicCardReview } from "./BasicCardReview";
 
 export const BasicNoteTypeAdapter: NoteTypeAdapter<NoteType.Basic> = {
   async createNote(params: { front: string; back: string }, deck: Deck) {
@@ -48,9 +49,16 @@ export const BasicNoteTypeAdapter: NoteTypeAdapter<NoteType.Basic> = {
   },
 
   displayQuestion(
-    _: Card<NoteType.Basic>,
-    content?: NoteContent<NoteType.Basic>
+    card: Card<NoteType.Basic>,
+    content?: NoteContent<NoteType.Basic>,
+    place?: "learn" | "notebook"
   ) {
+    // In learn view, show question with input field
+    if (place === "learn") {
+      return <BasicCardReview card={card} content={content} showingAnswer={false} />;
+    }
+    
+    // In notebook view, just show the question
     return (
       <Title
         order={3}
@@ -65,13 +73,23 @@ export const BasicNoteTypeAdapter: NoteTypeAdapter<NoteType.Basic> = {
     content?: NoteContent<NoteType.Basic>,
     place?: "learn" | "notebook"
   ) {
-    return (
-      <Stack gap={place === "notebook" ? "sm" : "lg"} w="100%">
-        {BasicNoteTypeAdapter.displayQuestion(card, content)}
-        <Divider className={common.lightBorderColor} />
-        <div dangerouslySetInnerHTML={{ __html: content?.back ?? "" }}></div>
-      </Stack>
-    );
+    // In notebook view, just show the answer
+    if (place === "notebook") {
+      return (
+        <Stack gap={place === "notebook" ? "sm" : "lg"} w="100%">
+          {BasicNoteTypeAdapter.displayQuestion(card, content)}
+          <Divider className={common.lightBorderColor} />
+          <div 
+            className={common.preserveWhitespace}
+            dangerouslySetInnerHTML={{ __html: content?.back ?? "" }}
+          ></div>
+        </Stack>
+      );
+    }
+
+    // In learn view, show the interactive review component with input field
+    // Note: showingAnswer is passed via the LearnView context
+    return <BasicCardReview card={card} content={content} showingAnswer={true} />;
   },
 
   displayNote(
@@ -95,6 +113,7 @@ export const BasicNoteTypeAdapter: NoteTypeAdapter<NoteType.Basic> = {
           <>
             <Divider className={common.lightBorderColor} />
             <div
+              className={common.preserveWhitespace}
               dangerouslySetInnerHTML={{ __html: note.content?.back ?? "" }}
             />
           </>

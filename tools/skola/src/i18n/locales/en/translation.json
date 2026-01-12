@@ -127,6 +127,16 @@
           "back": "Back",
           "front": "Front"
         },
+        "list": {
+          "add-alias": "Add alias",
+          "add-item": "Add item",
+          "alias": "Alias",
+          "alias-placeholder": "Alternative name or spelling",
+          "item-placeholder": "Item {{number}}",
+          "items": "Items",
+          "ordered": "Order matters",
+          "prompt": "Prompt"
+        },
         "normal": {
           "back": "Back",
           "front": "Front"
@@ -151,6 +161,7 @@
     "type": {
       "cloze": "Cloze",
       "image-occlusion": "Image Occlusion",
+      "list": "List",
       "normal": "Normal",
       "undefined": "Undefined"
     },

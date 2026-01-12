@@ -8,13 +8,15 @@ import { useDeckFromUrl } from "@/logic/deck/hooks/useDeckFromUrl";
 import { useLearning } from "@/logic/learn";
 import { useNote } from "@/logic/note/hooks/useNote";
 import { useSetting } from "@/logic/settings/hooks/useSetting";
-import { Center, Flex, Modal, Paper } from "@mantine/core";
-import { useDebouncedValue } from "@mantine/hooks";
+import { ActionIcon, Center, Flex, Modal, Paper, Tooltip } from "@mantine/core";
+import { useDebouncedValue, useHotkeys } from "@mantine/hooks";
+import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
 import { Rating } from "fsrs.js";
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import FinishedLearningView from "../FinishedLearningView/FinishedLearningView";
 import LearnViewCurrentCardStateIndicator from "../LearnViewCurrentCardStateIndicator/LearnViewCurrentCardStateIndicator";
+import { CardOverviewModal } from "./CardOverviewModal";
 import classes from "./LearnView.module.css";
 import LearnViewFooter from "./LearnViewFooter";
 import LearnViewHeader, { stopwatchResult } from "./LearnViewHeader";
@@ -42,8 +44,29 @@ function LearnView() {
   const cardContent = useNote(controller.currentCard?.note ?? "")?.content;
 
   const [currentRating, setCurrentRating] = useState<Rating | null>(null);
+  const [overviewOpened, setOverviewOpened] = useState(false);
 
   const [debouncedFinish] = useDebouncedValue(controller.isFinished, 50);
+
+  // Navigation hotkeys
+  useHotkeys(
+    !controller.isFinished && !overviewOpened
+      ? [
+          ["ArrowLeft", () => {
+            if (controller.showingAnswer) {
+              controller.requestPreviousCard();
+            }
+          }],
+          ["ArrowRight", () => {
+            if (controller.showingAnswer) {
+              controller.requestNextCard();
+            } else {
+              controller.showAnswer();
+            }
+          }],
+        ]
+      : []
+  );
 
   const answerButtonPressed = useCallback(
     async (rating: Rating) => {
@@ -79,6 +102,7 @@ function LearnView() {
           currentCard={controller.currentCard ?? undefined}
           controller={controller}
           deck={deck}
+          onOpenOverview={() => setOverviewOpened(true)}
         />
       </AppHeaderContent>
 
@@ -90,6 +114,51 @@ function LearnView() {
         className={classes.learnViewWrapper}
       >
         {useVisualFeedback && <VisualFeedback rating={currentRating} />}
+        
+        {/* Navigation buttons at edges */}
+        {!controller.isFinished && (
+          <>
+            {/* Left edge - Previous */}
+            {controller.showingAnswer && (
+              <Tooltip label="Previous Card (←)" position="right">
+                <ActionIcon
+                  className={classes.navButtonLeft}
+                  variant="filled"
+                  size="xl"
+                  radius="xl"
+                  onClick={() => controller.requestPreviousCard()}
+                  aria-label="Previous card"
+                >
+                  <IconArrowLeft size={24} />
+                </ActionIcon>
+              </Tooltip>
+            )}
+
+            {/* Right edge - Next/Show Answer */}
+            <Tooltip
+              label={controller.showingAnswer ? "Next Card (→)" : "Show Answer (→)"}
+              position="left"
+            >
+              <ActionIcon
+                className={classes.navButtonRight}
+                variant="filled"
+                size="xl"
+                radius="xl"
+                onClick={() => {
+                  if (controller.showingAnswer) {
+                    controller.requestNextCard();
+                  } else {
+                    controller.showAnswer();
+                  }
+                }}
+                aria-label={controller.showingAnswer ? "Next card" : "Show answer"}
+              >
+                <IconArrowRight size={24} />
+              </ActionIcon>
+            </Tooltip>
+          </>
+        )}
+
         <Center className={classes.cardContainer}>
           <Paper className={classes.card}>
             <LearnViewCurrentCardStateIndicator
@@ -100,16 +169,29 @@ function LearnView() {
               getAdapter(controller.currentCard).displayQuestion(
                 controller.currentCard,
                 cardContent,
+                "learn",
               )}
             {controller.showingAnswer &&
               controller.currentCard &&
               getAdapter(controller.currentCard).displayAnswer(
                 controller.currentCard,
                 cardContent,
+                "learn",
               )}
           </Paper>
         </Center>
         <LearnViewFooter controller={controller} answer={answerButtonPressed} />
+
+        <CardOverviewModal
+          opened={overviewOpened}
+          onClose={() => setOverviewOpened(false)}
+          cards={controller.allCards.length > 0 ? controller.allCards : []}
+          currentCard={controller.currentCard ?? null}
+          onSelectCard={(card) => {
+            controller.setCardDirectly(card);
+            setOverviewOpened(false);
+          }}
+        />
 
         <Modal
           opened={debouncedFinish}
