@@ -1,0 +1,36 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Vite: Launch Chrome",
+        "type": "chrome",
+        "request": "launch",
+        "url": "http://localhost:5173",
+        "webRoot": "${workspaceFolder}",
+        "sourceMaps": true,
+        "resolveSourceMapLocations": [
+            "${workspaceFolder}/**",
+            "!**/node_modules/**"
+          ],
+          "skipFiles": [
+            "**/node_modules/**",
+            "<node_internals>/**"
+          ]
+      },
+      {
+        "name": "Vite: Attach to Chrome (pick tab)",
+        "type": "chrome",
+        "request": "attach",
+        "port": 9222,
+        "webRoot": "${workspaceFolder}",
+        "sourceMaps": true
+      }
+    ],
+    "compounds": [
+      {
+        "name": "Vite: Dev + Debug Chrome",
+        "configurations": ["Vite: Launch Chrome"]
+      }
+    ]
+  }
+  

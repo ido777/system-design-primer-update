@@ -7,6 +7,7 @@
 **Evaluate Communication and Clarification Skills**
 
 The interviewer wants to see if you can:
+
 - Ask the right questions
 - Uncover hidden constraints
 - Precisely frame the problem
@@ -24,12 +25,79 @@ Use this simple **ABC** mnemonic to remember what to do:
 
 ## 📋 Step 1: **A**SK - Core Questions
 
-Start with these three fundamental questions:
+In this step we want to get a wide view on the project.
+We will ask many questions that will make the project too huge to handel in the interview - but don't worry in step 2 we will start limiting the scope
 
-### **A**ctors, **B**usiness Scenarios, **C**ore Features
+We are about:
+- Clarify requirements (functional + non-functional) → define constraints (SLOs, cost, compliance) → estimate scale (QPS, data size, growth).
 
-**Opening Question:**
-> "What are the main **users, use cases, and main features** of the system?"
+Using the below process mighty help not to forget "aspects of the opening questions"
+
+Start with this fundamental anchor question:
+
+### CBA -  *C*ore (main) Features, *B*usiness Scenarios (use cases), *A*ctors (users), 
+
+**Anchor Opening Question:**
+
+> "**What** are the main *C*ore Features, *B*usiness Scenarios (use cases), *A*ctors (users)?"
+
+
+**Actual questions to dig deeper during the interview:**
+
+### *C*ore features
+- What do we know and assume about our system and main required features functional and non functional?
+- How Good ? Do we have defined SLO?  or any Constraints / Compliance / Cost / Complexity / Consistency needs?  
+- When? What steps can we reasonably define in the deployment / deployment?   
+
+
+### *B*usiness Scenarios - Workflows / use cases  
+- What workflow do we need to support?
+- When? What do we need to start with?
+
+
+### *A*ctors
+-  What do we know and assume about our users, developers and clients?
+   -  Web / Mobile
+   -  Amount / Growth - (QPS, data size)
+-  How good?
+   -  Metrics (Availability, Reliability, Performance, Privacy, Security)
+   -  Developers needs: Operability - (monitoring, logging, tracing, on-call, deploy/rollback)
+   -  Developers & Users: Maintainability: (extensibility, backwards compatibility, complexity limits)
+-  When?
+
+
+
+
+
+***Brief the answer you got in a smarttt way***
+
+**S**cope (what system covers - functional requirements)
+**M**etrics (success + SLOs -  non functional requirements)
+**A**ctors (personas/roles - anonymous / authenticated / authorization )
+**R**equirements (MVP + defer, constraints, cost, compliance)
+**T**raffic (scale numbers, QPS, data size, growth)
+**T**rust (security/compliance)
+**T**olerance (availability/RPO/RTO)
+
+
+**NFR = Non-Functional Requirements.**
+
+They’re the “**how good**” constraints of the system — not *what* features it has, but *how* it must behave.
+
+Typical NFR categories (with examples):
+
+* **Performance:** latency targets (e.g., P95/P99), throughput, timeouts
+* **Scale/Capacity:** DAU/MAU, QPS, data growth, peak traffic patterns
+* **Availability & Reliability:** 99.9/99.99, failover, RPO/RTO, error budgets
+* **Consistency & Durability:** strong vs eventual consistency, data loss tolerance
+* **Security & Privacy:** authn/authz, encryption, PII handling, threat model
+* **Compliance:** GDPR, SOC2, HIPAA/PCI (when relevant), audit logs, retention/deletion
+* **Operability:** monitoring, logging, tracing, on-call, deploy/rollback
+* **Cost:** budgets, cost-per-request, storage cost constraints
+* **Maintainability:** extensibility, backwards compatibility, complexity limits
+
+Why it matters in system design: NFRs often *pick the architecture for you* (e.g., “P99 < 100ms” pushes caching/denormalization; “99.99%” pushes redundancy; “GDPR delete” pushes data lifecycle design).
+
 
 **Follow-up questions to dig deeper:**
 

@@ -20,7 +20,11 @@ import Header from "./app/shell/Header/Header";
 import Sidebar from "./app/shell/Sidebar/Sidebar";
 import i18n from "./i18n";
 import { useSetting } from "./logic/settings/hooks/useSetting";
-import { seedSystemDesignDeck } from "./logic/seed/seedSystemDesignDeck";
+import {
+  resetAllSeedingState,
+  resetSeedingState,
+  seedSystemDesignDeck,
+} from "./logic/seed/seedSystemDesignDeck";
 
 function useRestoreLanguage() {
   const [language] = useSetting("language");
@@ -57,6 +61,14 @@ export default function App() {
     if (!hasSeededRef.current) {
       hasSeededRef.current = true;
       seedSystemDesignDeck();
+    }
+  }, []);
+
+  // Expose seeding reset functions to window for console access
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      (window as any).resetSeedingState = resetSeedingState;
+      (window as any).resetAllSeedingState = resetAllSeedingState;
     }
   }, []);
 

@@ -1,0 +1,5 @@
+.itemRow {
+  padding: 0.5rem;
+  border: 1px solid var(--mantine-color-gray-4);
+  border-radius: var(--mantine-radius-sm);
+}

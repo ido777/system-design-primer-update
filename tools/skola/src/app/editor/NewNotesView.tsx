@@ -136,6 +136,10 @@ function NewNotesView() {
                       value: NoteType.DoubleSided,
                     },
                     {
+                      label: NoteTypeLabels[NoteType.List],
+                      value: NoteType.List,
+                    },
+                    {
                       label:
                         NoteTypeLabels[NoteType.Cloze] +
                         t("global.feature-status.in-development"),

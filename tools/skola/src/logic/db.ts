@@ -33,7 +33,7 @@ export const db = new Database();
 // Configure Dexie Cloud only if enabled and not in a restricted environment
 // This prevents CORS errors on GitHub Pages where cloud sync isn't configured
 const enableDexieCloud = import.meta.env.VITE_ENABLE_DEXIE_CLOUD !== "false";
-const databaseUrl = import.meta.env.VITE_DEXIE_CLOUD_URL || "https://https://zj33i18c8.dexie.cloud";
+const databaseUrl = import.meta.env.VITE_DEXIE_CLOUD_URL || "https://zj33i18c8.dexie.cloud";
 
 if (enableDexieCloud && databaseUrl) {
   try {

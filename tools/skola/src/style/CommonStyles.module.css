@@ -8,3 +8,17 @@
 .lightTextColor {
   color: light-dark(var(--mantine-color-gray-5), var(--mantine-color-gray-7));
 }
+
+.preserveWhitespace {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  line-height: 1.6;
+}
+
+/* Ensure <br> tags create visible line breaks */
+.preserveWhitespace :global(br) {
+  display: block;
+  margin: 0.25em 0;
+  content: "";
+  line-height: 1.6;
+}

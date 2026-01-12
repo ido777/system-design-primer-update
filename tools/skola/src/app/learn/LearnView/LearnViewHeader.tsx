@@ -1,7 +1,7 @@
 import { NoteType } from "@/logic/note/note";
 import { ActionIcon, Group, Kbd, Progress, Tooltip } from "@mantine/core";
 import { useHotkeys } from "@mantine/hooks";
-import { IconX } from "@tabler/icons-react";
+import { IconArrowUp, IconX } from "@tabler/icons-react";
 import { useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { StopwatchResult, useStopwatch } from "react-timer-hook";
@@ -28,16 +28,24 @@ interface LearnViewHeaderProps {
   currentCard: Card<NoteType> | undefined;
   controller: LearnController;
   deck?: Deck;
+  onOpenOverview?: () => void;
 }
 
 function LearnViewHeader({
   currentCard,
   controller,
   deck,
+  onOpenOverview,
 }: LearnViewHeaderProps) {
   const navigate = useNavigate();
 
   useHotkeys([["d", () => navigate("/deck/" + deck?.id)]]);
+  
+  useHotkeys(
+    !controller.isFinished && onOpenOverview
+      ? [["ArrowUp", () => onOpenOverview()]]
+      : []
+  );
 
   const progress = useMemo(
     () =>
@@ -81,6 +89,31 @@ function LearnViewHeader({
         </Group>
 
         <Group justify="flex-end" wrap="nowrap" gap="xs">
+          {onOpenOverview && !controller.isFinished && (
+            <Tooltip label="Card Overview (↑)" position="bottom">
+              <ActionIcon
+                variant="subtle"
+                color="gray"
+                onClick={onOpenOverview}
+                aria-label="Open card overview"
+              >
+                <IconArrowUp size={20} />
+              </ActionIcon>
+            </Tooltip>
+          )}
+          <Tooltip
+            label={
+              <>
+                <Kbd>←</Kbd> Previous | <Kbd>→</Kbd> Next | <Kbd>↑</Kbd> Overview
+              </>
+            }
+          >
+            <Group gap={4}>
+              <Kbd style={{ fontSize: "0.7rem" }}>←</Kbd>
+              <Kbd style={{ fontSize: "0.7rem" }}>→</Kbd>
+              <Kbd style={{ fontSize: "0.7rem" }}>↑</Kbd>
+            </Group>
+          </Tooltip>
           <RemainingCardsIndicator controller={controller} />
           <CardMenu card={currentCard} onDelete={controller.requestNextCard} />
         </Group>

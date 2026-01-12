@@ -56,3 +56,75 @@
   left: 0;
   right: 0;
 }
+
+/* Navigation buttons at edges */
+.navButtonLeft,
+.navButtonRight {
+  position: fixed;
+  z-index: 100;
+  box-shadow: var(--mantine-shadow-md);
+  transition: all 0.2s ease;
+  background-color: light-dark(
+    var(--mantine-color-blue-6),
+    var(--mantine-color-blue-7)
+  );
+  color: var(--mantine-color-white);
+  border: 2px solid light-dark(
+    var(--mantine-color-blue-7),
+    var(--mantine-color-blue-6)
+  );
+}
+
+.navButtonTop:hover,
+.navButtonLeft:hover,
+.navButtonRight:hover {
+  background-color: light-dark(
+    var(--mantine-color-blue-7),
+    var(--mantine-color-blue-6)
+  );
+  box-shadow: var(--mantine-shadow-lg);
+}
+
+.navButtonTop:active,
+.navButtonLeft:active,
+.navButtonRight:active {
+  transform: scale(0.95);
+}
+
+.navButtonLeft {
+  left: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.navButtonLeft:hover {
+  transform: translateY(-50%) scale(1.1);
+}
+
+.navButtonLeft:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.navButtonRight {
+  right: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.navButtonRight:hover {
+  transform: translateY(-50%) scale(1.1);
+}
+
+.navButtonRight:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+@media (max-width: 768px) {
+  .navButtonLeft {
+    left: 1rem;
+  }
+  
+  .navButtonRight {
+    right: 1rem;
+  }
+}
