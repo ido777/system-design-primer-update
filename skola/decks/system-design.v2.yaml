@@ -1,0 +1,360 @@
+meta:
+  id: system-design.v3
+  title: "System Design Interview – Memory Deck (v3)"
+  version: 2
+  description: >-
+    Spaced-repetition cards for system design interviews: Phase 1 - Requirements & Problem Scope
+  license: CC-BY-4.0
+  created_at: 2026-01-12
+  tags:
+    - system-design
+    - interview
+    - foundations
+    - slo
+    - capacity
+    - reliability
+
+decks:
+  - deck_id: sd_foundations
+    name: "Foundations: Phase1 - Requirements & Problem Scope"
+    description: >-
+      A tight default interview flow + the concepts you should recall instantly
+      (requirements, SLOs, scale, core building blocks).
+    tags:
+      - phase1
+      - requirements
+      - problem-scope
+    cards:
+      - id: sd-001
+        type: basic
+        prompt: >-
+          What are the first 3 things to do at the start of a system design interview?
+        answer: |
+          - Clarify requirements (functional + non-functional)
+          - Define constraints (SLOs, cost, compliance)
+          - Estimate scale (QPS, data size, growth).
+        tags: [phase1, requirements, problem-scope]
+
+      - id: sd-001a
+        type: basic
+        prompt: >-
+          Opening anchor (CBA): what is the anchor question that helps to cover our requirements understanding?
+        answer: >-
+          Ask CBA: What are the main **C**ore features, **B**usiness scenarios (use cases/workflows),
+          and **A**ctors (users) of the system?
+        tags: [framework, opening, cba]
+
+      - id: sd-001d
+        type: list
+        prompt: >-
+          CBA – Core features: what follow-up questions should you ask?
+        answer: |
+          - What are the main features (read/write paths) and their priorities?
+          - What data entities exist and what operations (CRUD/search/feed/stream)?
+          - How good consistency? Is eventual consistency acceptable here, or do we strictly need strong consistency (e.g., for payments)?
+          - How good latency/availability/throughput SLOs, privacy/security, compliance, cost limits.
+          - What operational requirements exist (audit, rate limits, abuse prevention, observability)?
+          - When? What is needed for phase1? MVP? Scale?
+        tags: [opening, cba, features, nfr]
+
+      - id: sd-001h
+        type: basic
+        prompt: >-
+          CRUD: what does it CURD stand for?
+        answer: >-
+          CRUD = Create, Read, Update, Delete. 
+        tags: [phase1, requirements, problem-scope]
+
+      - id: sd-001i
+        type: basic
+        prompt: >-
+          When do you need a dedicated search endpoint?
+        answer: >-
+          You need a search endpoint for ad-hoc queries where users can filter, sort, or rank results dynamically. This often requires full text search, indexing, and the ability to handle complex queries efficiently (e.g., using systems like Elasticsearch or OpenSearch). Typical scenarios include searching for products, users, or documents based on keywords or multiple attributes.
+        tags: [api, core-features, search, workloads]
+
+      - id: sd-001i-feed
+        type: basic
+        prompt: >-
+          When do you need a dedicated feed endpoint?
+        answer: >-
+          You need a feed endpoint for delivering timelines or personalized lists of items, usually presented in reverse chronological order or according to some relevance algorithm. Common features include pagination, caching, pre-computation, or materialization, and fanout or aggregation of content. Examples: social media timelines, news feeds, or activity streams.
+        tags: [api, core-features, feed, workloads]
+
+      - id: sd-001i-stream
+        type: basic
+        prompt: >-
+          When do you need a dedicated stream endpoint?
+        answer: >-
+          A stream endpoint is needed for delivering real-time updates or events to clients as they happen, such as chat messages, push notifications, or live metrics. Typical delivery mechanisms are WebSockets, SSE (Server-Sent Events), or pub-sub systems, and these endpoints must support ordering, backpressure, and reconnect semantics.
+        tags: [api, core-features, stream, workloads]
+
+      - id: sd-001c
+        type: list
+        prompt: >-
+          CBA – Business scenarios: what follow-up questions should you ask?
+        answer: |
+          - What are the top workflows (happy paths) we must support?
+          - What are the failure cases and recovery expectations?
+          - Which scenarios are in-scope now vs deferred vs out-of-scope?
+          - Any ordering/consistency requirements within a workflow (e.g., “payment then ship”)?
+          - What’s the MVP to start with (the first scenario to design deeply)?
+        tags: [opening, cba, workflows, scope]
+
+      - id: sd-001b
+        type: list
+        prompt: >-
+          CBA – Actors: what follow-up questions should you ask?
+        answer: |
+          - Who are the users/clients (end-users, admins, internal tools, 3rd parties)?
+          - What platforms (web/mobile/API/SDK)? How many (DAU/MAU), geos, and growth?
+          - What are the reliability/performance expectations for each actor?
+          - What developer/operator needs exist (monitoring/logging/tracing, on-call, deploy/rollback, access controls)?
+          - Any actor-specific constraints (privacy, authN/authZ, data residency)?
+        tags: [opening, cba, requirements, actors]
+
+      - id: sd-001e
+        type: basic
+        prompt: >-
+          Part 1 — Clarify requirements: what questions do you ask?
+        answer: >-
+          Functional: What’s the MVP user journey? Inputs/outputs? Read vs write flows? Who can do what?
+          Edge cases? Non-functional: latency/availability targets, consistency/correctness expectations,
+          privacy/security. Scope control: What’s explicitly out-of-scope and what’s deferred to V2?
+        tags: [steps, requirements, scope]
+
+      - id: sd-001f
+        type: basic
+        prompt: >-
+          Part 2 — Define constraints (SLOs, cost, compliance): what questions do you ask?
+        answer: >-
+          SLOs: p95/p99 latency targets per critical endpoint, availability/SLA, error budget, durability (RPO/RTO).
+          Cost: infra budget, storage retention, data egress/CDN, staffing/ops constraints.
+          Compliance/security: PII handling, encryption, access control, audit logs, data residency, regulatory
+          requirements (e.g., GDPR/PCI/HIPAA where relevant).
+          Consistency: strong vs eventual, acceptable staleness, read-your-writes.
+        tags: [steps, constraints, slo, security, cost]
+
+      - id: sd-001g
+        type: basic
+        prompt: >-
+          Part 3 — Estimate scale: what questions do you ask?
+        answer: >-
+          Traffic: DAU/MAU, actions per user/day, peak factor, read/write ratio, concurrency.
+          Data: entity counts, avg object size, retention, growth rate, hot vs cold data.
+          Performance drivers: payload sizes, fanout, cache hit rate, regional distribution.
+          Future: expected growth horizons (6–24 months) and the first scaling bottleneck you anticipate.
+        tags: [steps, capacity, estimation, scale]
+
+      - id: sd-002
+        type: basic
+        prompt: >-
+          What are common non-functional requirements (NFRs) to ask about?
+        answer: >-
+          Latency SLOs (p50/p95/p99), availability/SLA, consistency & data correctness, throughput, durability,
+          cost (infra + storage + egress), security/privacy, compliance, observability, operability (deploy/rollback).
+        tags: [nfr, requirements]
+
+      - id: sd-002a
+        type: basic
+        prompt: >-
+          Give concrete examples of latency SLOs and how they change the design.
+        answer: >-
+          Example targets: p50 50ms, p95 200ms, p99 500ms for a read endpoint. Impact: tighter p99 pushes
+          aggressive caching (CDN/Redis), precomputation/denormalized read models, fewer synchronous hops,
+          smaller payloads, tail-latency mitigation (timeouts, hedged requests, isolation).
+        tags: [slo, latency, design-impact]
+
+      - id: sd-002b
+        type: basic
+        prompt: >-
+          SLA vs SLO vs SLI — what’s the difference?
+        answer: >-
+          SLI = the measured metric (e.g., request latency). SLO = target for that metric (e.g., p99 < 300ms).
+          SLA = externally committed agreement with consequences (credits/penalties) based on SLOs.
+        tags: [slo, observability, definitions]
+
+      - id: sd-003
+        type: basic
+        prompt: >-
+          Rule of thumb: how do you estimate bandwidth from QPS?
+        answer: >-
+          Bandwidth ≈ QPS × avg payload size. Also account for: peak vs average, request+response, overhead
+          (headers, TLS), replication/fanout, and CDN cache hit rate.
+        tags: [capacity, estimation]
+
+      - id: sd-003a
+        type: basic
+        prompt: >-
+          Quick scale math: convert DAU to QPS (rule of thumb).
+        answer: >-
+          QPS ≈ (DAU × actions_per_user_per_day) / 86,400. Then multiply by peak factor (often 3–10×)
+          to size for bursts.
+        tags: [capacity, estimation, qps]
+
+      - id: sd-004
+        type: basic
+        prompt: >-
+          When do you add a cache? Name 3 triggers.
+        answer: >-
+          Read-heavy workload, expensive DB/compute, hot keys/hot data, strict latency targets, or when you
+          need to reduce backend load / cost.
+        tags: [cache]
+
+      - id: sd-005
+        type: basic
+        prompt: >-
+          Name 3 cache invalidation strategies and one risk.
+        answer: >-
+          TTL/expiry; write-through (update cache on write); explicit invalidation (events/pub-sub).
+          Risk: stale reads/inconsistency; also thundering herd if many keys expire together.
+        tags: [cache, consistency]
+
+      - id: sd-005a
+        type: basic
+        prompt: >-
+          How do you mitigate thundering herd in caches?
+        answer: >-
+          Add jitter to TTLs, use request coalescing (single-flight), stale-while-revalidate, background refresh,
+          and protect origins with rate limits/circuit breakers.
+        tags: [cache, resilience, performance]
+
+      - id: sd-006
+        type: basic
+        prompt: >-
+          Replication vs sharding — what problem does each solve?
+        answer: >-
+          Replication: availability, read scaling, durability (with quorum/async tradeoffs). Sharding: write scaling
+          and storing datasets that exceed a single node.
+        tags: [datastore, scaling]
+
+      - id: sd-006a
+        type: basic
+        prompt: >-
+          Primary-replica vs multi-leader vs leaderless — when to choose each?
+        answer: >-
+          Primary-replica: simplest, strong-ish consistency, good for most OLTP. Multi-leader: multi-region writes
+          + conflict resolution needed. Leaderless (quorum): high availability under partitions, but requires tuning
+          R/W quorums and handling eventual consistency.
+        tags: [datastore, consistency, replication]
+
+      - id: sd-007
+        type: basic
+        prompt: >-
+          CAP theorem in one sentence (practical version).
+        answer: >-
+          If there’s a network partition, you must choose: favor availability (serve possibly stale/incorrect data)
+          or favor consistency (reject/timeout some requests).
+        tags: [cap, tradeoffs]
+
+      - id: sd-007a
+        type: basic
+        prompt: >-
+          Give one example where you pick AP and one where you pick CP.
+        answer: >-
+          AP example: social feed reads during partial outage—serve cached/older posts. CP example: money transfer—
+          reject/hold writes if you can’t guarantee correctness.
+        tags: [cap, examples]
+
+      - id: sd-008
+        type: basic
+        prompt: >-
+          Why use a message queue in system design?
+        answer: >-
+          Decouple producers/consumers, buffer spikes, smooth workloads, enable async work, and improve reliability
+          with retries + DLQ + backpressure.
+        tags: [messaging, resilience]
+
+      - id: sd-008a
+        type: basic
+        prompt: >-
+          At-least-once vs at-most-once vs exactly-once — what’s realistic?
+        answer: >-
+          At-most-once can drop messages; at-least-once can duplicate; exactly-once is usually achieved end-to-end
+          via idempotency + transactional/outbox patterns rather than a perfect queue guarantee.
+        tags: [messaging, reliability]
+
+      - id: sd-009
+        type: basic
+        prompt: >-
+          Idempotency: what is it and where is it critical?
+        answer: >-
+          Processing the same request multiple times results in the same final state. Critical for retries: payments,
+          order creation, inventory, and at-least-once consumers.
+        tags: [reliability, api]
+
+      - id: sd-009a
+        type: basic
+        prompt: >-
+          Name 3 common idempotency techniques.
+        answer: >-
+          Idempotency keys + dedupe store; natural idempotency via unique constraints; conditional updates (CAS/version checks).
+        tags: [reliability, patterns]
+
+      - id: sd-010
+        type: cloze
+        text: >-
+          High-level web service: Client → [A] → [B] → [C] → Database
+        blanks:
+          A: "CDN / Edge"
+          B: "Load balancer / API gateway"
+          C: "Stateless service tier"
+        tags: [architecture, diagram]
+
+      - id: sd-010a
+        type: cloze
+        text: >-
+          Typical read-optimized path: Client → CDN → [A] → [B] → DB
+        blanks:
+          A: "Cache (Redis/Memcached)"
+          B: "Read service (precomputed/denormalized)"
+        tags: [architecture, cache]
+
+      - id: sd-011
+        type: cloze
+        text: >-
+          Golden signals: [A], [B], [C], [D].
+        blanks:
+          A: Latency
+          B: Traffic
+          C: Errors
+          D: Saturation
+        tags: [observability]
+
+      - id: sd-011a
+        type: basic
+        prompt: >-
+          What is an error budget and why is it useful?
+        answer: >-
+          If your availability SLO is 99.9% monthly, the remaining 0.1% is your error budget. It helps balance
+          reliability vs shipping speed: spend budget on risky changes; slow down when budget is exhausted.
+        tags: [sre, slo, operations]
+
+      - id: sd-012
+        type: cloze
+        text: >-
+          Backpressure techniques: [A], [B], [C].
+        blanks:
+          A: Rate limiting
+          B: Load shedding
+          C: "Queue limits / bounded buffers"
+        tags: [resilience, performance]
+
+      - id: sd-012a
+        type: basic
+        prompt: >-
+          Circuit breaker: what problem does it solve?
+        answer: >-
+          Prevents cascading failures by quickly failing/short-circuiting calls to an unhealthy dependency,
+          allowing recovery and protecting upstream resources.
+        tags: [resilience, patterns]
+
+      - id: sd-013
+        type: basic
+        prompt: >-
+          RPO vs RTO — define and give one way to improve each.
+        answer: >-
+          RPO (Recovery Point Objective) = max acceptable data loss (time). Improve with frequent backups,
+          replication, write-ahead logs, multi-region. RTO (Recovery Time Objective) = max acceptable downtime.
+          Improve with automation, hot standbys, failover drills, and simpler recovery steps.
+        tags: [dr, reliability]
